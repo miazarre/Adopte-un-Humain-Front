@@ -1,0 +1,15 @@
+.board_container{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.board_menu{
+    width: 30vw;
+    height: 15vh;
+    border: solid 0.05rem black;
+    margin-top: 5vh;
+    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.464);
+    border-radius: 5px;
+}

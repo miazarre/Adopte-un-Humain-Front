@@ -1,0 +1,21 @@
+.users_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    margin-top: 1rem;
+}
+
+.users_title{
+    font-weight: 500;
+}
+
+.users_search{
+    margin-top: 1rem;
+    width: 15vw;
+    font-size:x-small;
+}
+
+.users_table{
+    width: 80vw;
+}

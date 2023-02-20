@@ -1,0 +1,14 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+.footer{
+    &__container{
+        height: 10vh;
+        width: 100%;
+        box-shadow: 1px 1px 20px rgba(v.$black, 0.3);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+    }
+}

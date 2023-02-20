@@ -1,8 +1,14 @@
+import Header from './component/Header';
+import Footer from './component/Footer';
+import './styles/index.scss';
+import './styles/reset.scss';
+
 function App() {
   return (
-    <div className="App">
-      <p>Coucou ça marche</p>
-    </div>
+    <>
+      <Header/>
+      <Footer/>
+    </>
   );
 }
 

@@ -1,0 +1,81 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+
+.header{
+
+// Global Header container
+  &__container{
+    box-shadow: 1px 1px 20px rgba(v.$black, 0.3);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  
+  }
+
+// Burger Menu style with React-burger-menu properties
+  &__menu{
+    .bm{
+
+      &-burger{
+        &-button {
+        position: fixed;
+        width: 40px;
+        height: 30px;
+        left: 40px;
+        top: 3em;
+        }
+    
+        &-bars {
+          background: v.$black;
+          transition: 0.2s;
+          &-hover {
+            background: $primary-color;
+          }}
+      }
+      &-cross {
+        background: v.$primary-color;
+      }
+      &-menu {
+        background: v.$white;
+        padding: 10px;
+        padding-top: 10vh;
+        font-size: 1.5em;
+
+        &-wrap{
+          top: 0;
+          left: 0;
+        }
+
+        .item-link{
+          padding: 15px;
+
+          &--social{
+            margin-top: 20vh;
+          }
+        }
+      }
+      &-morph-shape {
+        fill: v.$white;
+      }
+      &-overlay{
+        top: 0;
+        left: 0;
+      }
+    }}
+
+// Middle logo container
+  &__logo{
+    img{
+      height: 6em;
+    }
+  }
+
+// Right button on header, connexion or img if you are connected or not
+  &__right-button{
+    @include smallTitle;
+  }
+}
+
+
+  

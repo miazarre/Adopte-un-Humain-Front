@@ -1,0 +1,37 @@
+// Font import
+@font-face {
+  font-family: 'Antic Didone';
+  src: url('../assets/fonts/AnticDidone-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Arapey';
+  src: url('../assets/fonts/Arapey-Regular.ttf');
+}
+// Font variables
+$global-font:'Arapey';
+
+// Colors variables 
+// Generic for all avatars
+$black:#303030;
+$white:#F7F7F7;
+// dragon colors
+$primary-color:#70C1B3;
+$secondary-color:#CC0036;
+$tertiary-color:#B2DBBF;
+$light-color:#F3FFBD;
+$dark-color:#247BA0;
+
+// Mixins
+// Titles
+@mixin Title{
+  font-family: 'Antic Didone';
+  font-size: 3em;
+  font-weight: 700;
+}
+
+@mixin smallTitle{
+  font-family: 'Antic Didone';
+  font-size: 1.5em;
+  font-weight: 700;
+}

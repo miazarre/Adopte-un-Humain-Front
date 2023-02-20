@@ -1,0 +1,8 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+body{
+    color: v.$black;
+    background-color: v.$white;
+    font-family: v.$global-font;
+}

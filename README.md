@@ -1,5 +1,10 @@
 # J'adopte un humain Front
 
+## Objectifs de ce projet
+
+Ceci est un projet de fin d'étude. 
+Plus d'explications à venir.
+
 ## Git Workflow
 
 - Créer une branche par feature, commit les travaux sur cette branche et push le tout sur Github.

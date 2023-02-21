@@ -6,7 +6,8 @@
 
 // Global Header container
   &__container{
-    box-shadow: 1px 1px 20px rgba(v.$black, 0.3);
+    z-index: 3 !important;
+    box-shadow: 1px 1px 40px rgba(v.$black, 0.1);
     padding: 15px;
     display: flex;
     align-items: center;

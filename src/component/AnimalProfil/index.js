@@ -3,11 +3,20 @@ import { Link } from "react-router-dom"
 import data from '../../data/fake_animals.json'
 import './styles.scss'
 import {TiArrowBack} from 'react-icons/ti'
+import Slider from "react-slick";
 
 const AnimalProfil = () => {
 
     const param = useParams()
     const animal = data.filter(animal => parseInt(animal.id) === parseInt(param.id))
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+      };
 
     return(
     <>
@@ -15,10 +24,7 @@ const AnimalProfil = () => {
     <div className='animal-profil__container'>
         <div className='animal-profil__details'>
             <div className='animal-profil__details--gradient'>
-                <div 
-                style={{backgroundImage:`url(${animal[0].image})`}} 
-                className='animal-profil__details--image'
-                >
+                <div style={{backgroundImage:`url(${animal[0].image})`}} className='animal-profil__details--image'>
                 </div>
             </div>
         </div>

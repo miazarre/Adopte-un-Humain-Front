@@ -19,6 +19,7 @@
         justify-content: center;
         gap: 10vw;
         min-height: 76vh;
+        
     }
 
     &__details{
@@ -70,8 +71,13 @@
         width: 35%;
         text-align: justify;
 
-        &--text ::first-letter{
-            font-weight: 700;
+        &--text{
+            p{
+                margin-bottom: 5vh;
+            }
+            & ::first-letter{
+                font-weight: 700;
+            }
         }
 
         &--button{

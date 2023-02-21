@@ -13,7 +13,7 @@ const AnimalCard = ({animal}) => {
                 >
                 </div>
             </div>
-            <p className='animal-card__card--name'>{animal.name}</p>
+            <h2 className='animal-card__card--name'>{animal.name}</h2>
             <p className='animal-card__card--resume'>{animal.resume}</p>
             <p className='animal-card__card--points'>10 points communs</p>
             <Link to={`/trombinoscope/${animal.id}`} className='animal-card__card--bouton'><span>Profil</span></Link>

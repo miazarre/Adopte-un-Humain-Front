@@ -4,12 +4,26 @@
 
 .animal-profil{
 
+    &__back{
+        position: absolute;
+        top: 20vh;
+        left: 40px;
+        @include button;
+        span {
+            padding: 0;
+        }
+    }
+
     &__container{
         display: flex;
-        gap: 20vw;
+        justify-content: center;
+        gap: 10vw;
+        min-height: 76vh;
     }
 
     &__details{
+        width: 30%;
+
         &--gradient{
         margin: 5vh auto;
         padding-top: 1vw;
@@ -25,6 +39,47 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        }
+    }
+
+    &__title-container{
+
+        display: flex;
+        align-items: center;
+        gap: 1vw;
+
+        &--dot{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: v.$secondary-color;
+        }
+
+        &--name{
+            @include Title ;
+            margin: 5vh 0;
+        }
+
+        &--points{
+            @include smallTitle;
+        }
+
+    }
+
+    &__description{
+        width: 35%;
+        text-align: justify;
+
+        &--text ::first-letter{
+            font-weight: 700;
+        }
+
+        &--button{
+            @include button;
+            margin: 10vh auto;
+            font-size: 1.3em;
+            font-weight: 700;
+            width: 10em;
         }
     }
 }

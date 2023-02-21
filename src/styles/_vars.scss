@@ -41,9 +41,8 @@ $dark-color:#247BA0;
   margin: auto;
   background: linear-gradient(144deg,v.$light-color, v.$primary-color 50%, v.$dark-color);
   border: 0;
-  border-radius: 8px;
   box-sizing: border-box;
-  color: v.$white;
+  color: v.$black;
   display: flex;
   justify-content: center;
   line-height: 1em;
@@ -52,15 +51,15 @@ $dark-color:#247BA0;
   cursor: pointer;  
 
   span {
-      background-color: v.$primary-color;
+      background-color: v.$tertiary-color;
       padding: 16px 24px;
-      border-radius: 6px;
       width: 100%;
       height: 100%;
       transition: 300ms;
     }
 
     &:hover span {
+      color: v.$white;
       background: none;
     }
 }

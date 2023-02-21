@@ -6,6 +6,7 @@ import LoginForm from './component/LoginForm';
 import SigninForm from './component/SigninForm';
 import './styles/index.scss';
 import './styles/reset.scss';
+import Trombinoscope from './component/Trombinoscope';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/login' element={<LoginForm />} />
         <Route path='/signin' element={<SigninForm />} />
       </Routes>
+      <Trombinoscope/>
       <Footer/>
     </BrowserRouter>
   );

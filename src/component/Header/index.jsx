@@ -1,4 +1,5 @@
 import './styles.scss'
+import { Link } from 'react-router-dom';
 import { bubble as Menu } from 'react-burger-menu'
 import logo from '../../assets/logo.png'
 import { FaTiktok, FaFacebookF, FaDotCircle} from 'react-icons/fa';
@@ -25,7 +26,16 @@ const Header = () => {
                 <img src={logo} alt='animal paw and rainbow background'/>
             </div>
             <div className='header__right-button'>
-                <p>Connexion</p>
+                <div className='signin'>
+                    <Link to='/signin'>
+                     Inscription
+                     </Link>
+                </div>
+                <div className='login'>
+                    <Link to='/login'>
+                     Connexion
+                     </Link>
+                </div>
             </div>
         </div>
     )

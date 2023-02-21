@@ -1,0 +1,30 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+
+.animal-profil{
+
+    &__container{
+        display: flex;
+        gap: 20vw;
+    }
+
+    &__details{
+        &--gradient{
+        margin: 5vh auto;
+        padding-top: 1vw;
+        width: 25vw;
+        height: 25vw;
+        background: linear-gradient(v.$light-color, v.$dark-color);
+        }
+        
+        &--image{
+        margin: auto;
+        width: 23vw;
+        height: 23vw;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        }
+    }
+}

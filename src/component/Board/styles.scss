@@ -1,15 +1,32 @@
-.board_container{
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-}
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
 
-.board_menu{
-    width: 30vw;
-    height: 15vh;
-    border: solid 0.05rem black;
-    margin-top: 5vh;
-    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.464);
-    border-radius: 5px;
+
+.board{
+
+    &_container{
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+
+        &_menu{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30vw;
+            height: 15vh;
+            border: solid 0.05rem black;
+            margin-top: 5vh;
+            box-shadow: -5px 6px 6px $dark-color;
+            border-radius: 5px;
+            background-color: $dark-color;  
+            color: aliceblue;
+            font-size: 1rem;
+
+            &--icon{
+                padding-right: 1vw;
+            }
+        }
+    }
 }

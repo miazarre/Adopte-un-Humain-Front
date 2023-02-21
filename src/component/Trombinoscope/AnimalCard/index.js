@@ -17,7 +17,7 @@ const AnimalCard = ({animal}) => {
             <p className='animal-card__card--name'>{animal.name}</p>
             <p className='animal-card__card--resume'>{animal.resume}</p>
             <p className='animal-card__card--points'>10 points communs</p>
-            <a href='#' className='animal-card__card--bouton'>Profil</a>
+            <a href='#' className='animal-card__card--bouton'><span>Profil</span></a>
         </div>
     )
 }

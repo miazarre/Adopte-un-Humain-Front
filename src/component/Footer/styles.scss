@@ -3,6 +3,8 @@
 
 .footer{
     &__container{
+        position : absolute ;
+        bottom: 0;
         height: 10vh;
         width: 100%;
         box-shadow: 1px 1px 20px rgba(v.$black, 0.3);

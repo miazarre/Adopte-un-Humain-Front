@@ -3,8 +3,9 @@
 
 .footer{
     &__container{
-        
         z-index: 3 !important;
+        position : absolute ;
+        bottom: 0;
         height: 10vh;
         width: 100%;
         box-shadow: 1px 1px 40px rgba(v.$black, 0.1);

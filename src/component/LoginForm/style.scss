@@ -8,6 +8,8 @@
     padding: 1rem;
   }
 button {
+  @include button; 
+  font-family: v.$global-font ;
   display: block;
   margin: 1rem auto;
   padding: 1rem;

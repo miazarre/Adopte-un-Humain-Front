@@ -15,7 +15,7 @@ const LoginForm = () => {
       <div className="input-container">
             <form onSubmit={handleSubmit}>
                <input type="text" name="email" placeholder="email" value={email} onChange={(event) => setEmail(event.target.value)} />
-               <input type="text" name="password" placeholder="mot de passe" value={password} onChange={(event) => setPassword(event.target.value)} />
+               <input type="password" name="password" placeholder="mot de passe" value={password} onChange={(event) => setPassword(event.target.value)} />
                 <button type="submit" value="Submit">
                 Valider
                 </button>

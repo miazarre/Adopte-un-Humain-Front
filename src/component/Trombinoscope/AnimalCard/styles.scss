@@ -41,43 +41,18 @@
         }
 
         &--points{
-            margin: 5vh;
+            margin: 2vh;
             text-align: center;
             font-size: 0.9em;
             font-weight: 700;
         }
 
         &--bouton{
-            width: 5vw;
-            padding: 15px;
-            margin-left: 10vw;
+            @include button;
+            width: 4.5em;
+            font-size: 1.5rem;
             position: relative;
-            top: 10px;
-            background: linear-gradient(144deg,v.$light-color, v.$primary-color 50%, v.$dark-color);
-            border: 0;
-            border-radius: 8px;
-            box-sizing: border-box;
-            color: v.$white;
-            display: flex;
-            font-size: 20px;
-            justify-content: center;
-            line-height: 1em;
-            padding: 3px;
-            text-decoration: none;
-            cursor: pointer;  
-
-            span {
-                background-color: v.$primary-color;
-                padding: 16px 24px;
-                border-radius: 6px;
-                width: 100%;
-                height: 100%;
-                transition: 300ms;
-              }
-
-              &:hover span {
-                background: none;
-              }
+            top: 30px;
         }
     }
 

@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
 import './styles.scss'
-
+import { Link } from 'react-router-dom';
 
 const AnimalCard = ({animal}) => {
 
@@ -17,7 +16,7 @@ const AnimalCard = ({animal}) => {
             <p className='animal-card__card--name'>{animal.name}</p>
             <p className='animal-card__card--resume'>{animal.resume}</p>
             <p className='animal-card__card--points'>10 points communs</p>
-            <a href='#' className='animal-card__card--bouton'><span>Profil</span></a>
+            <Link to={`/trombinoscope/${animal.id}`} className='animal-card__card--bouton'><span>Profil</span></Link>
         </div>
     )
 }

@@ -2,7 +2,7 @@ import './styles.scss'
 import { Link } from 'react-router-dom';
 import { bubble as Menu } from 'react-burger-menu'
 import logo from '../../assets/logo.png'
-import { FaTiktok, FaFacebookF, FaDotCircle} from 'react-icons/fa';
+import { FaTiktok, FaFacebookF} from 'react-icons/fa';
 import {AiOutlineTwitter} from 'react-icons/ai'
 
 const Header = () => {

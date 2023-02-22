@@ -6,19 +6,15 @@ import Header from './component/Header';
 import Footer from './component/Footer';
 import LoginForm from './component/LoginForm';
 import SigninForm from './component/SigninForm';
-import Board from './component/Board';
-import Users from './component/Users';
-import Animals from './component/Animals';
-import Adoptions from './component/Adoptions';
 import Trombinoscope from './component/Trombinoscope';
 import AnimalProfil from './component/AnimalProfil';
-import AdoptionsDetail from './component/AdoptionsDetail';
 import ProfilUser from './component/ProfilUser';
 import Preferences from './component/Preferences';
-
 import './styles/index.scss';
 import './styles/reset.scss';
-import Favorites from './component/Favorites';
+
+import React from 'react';
+
 
 function App() {
 
@@ -44,16 +40,10 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<LoginForm setUser={setUser} setIsLogged={setIsLogged} />} />
         <Route path='/signin' element={<SigninForm />} />
-        <Route path='/trombinoscope' element={<Trombinoscope isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite}/>} />
-        <Route path='/trombinoscope/:id' element={<AnimalProfil user={user} isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite}/>}/>
-        <Route path='/favorites' element={<Favorites isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite}/>} />
-        <Route path='/profil' element={<ProfilUser user={user} isLogged={isLogged} />}/>
-        <Route path='/preferences' element={<Preferences isLogged={isLogged}/>}/>
-        <Route path='/board' element={<Board />} />
-        <Route path='/users' element={<Users />} />
-        <Route path='/animals' element={<Animals />} />
-        <Route path='/adoptions' element={<Adoptions />} />
-        <Route path='/adoptions/:id' element={<AdoptionsDetail />} />
+        <Route path='/trombinoscope' element={<Trombinoscope/>} />
+        <Route path='/trombinoscope/:id' element={<AnimalProfil/>}/>
+        <Route path='/profil' element={<ProfilUser/>}/>
+        <Route path='/preferences' element={<Preferences/>}/>
       </Routes>
       <Footer/>
     </BrowserRouter>

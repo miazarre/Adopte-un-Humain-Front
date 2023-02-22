@@ -47,8 +47,7 @@ const Preferences = ({isLogged}) => {
             : <p className='profil-user__connexion-message'> Il faut te connecter ! </p>
                     
             }
-        </div>
-    )
-}
+            </div>
+)}
 
 export default Preferences;

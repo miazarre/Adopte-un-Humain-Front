@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import data from '../../data/fake_animals.json'
 import './styles.scss'
 import {TiArrowBack} from 'react-icons/ti'
-import {RxCrossCircled} from 'react-icons/rx'
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

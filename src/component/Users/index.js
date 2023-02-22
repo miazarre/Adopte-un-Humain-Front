@@ -1,4 +1,5 @@
 import './styles.scss';
+import { Link } from 'react-router-dom'; 
 
 import { FiTrash2 } from "react-icons/fi";
 import { IoPersonAddSharp, IoPersonSharp } from "react-icons/io5";
@@ -8,6 +9,7 @@ const Users = () => {
         <div className='users_container'>
             <h1 className='users_container-title'>Liste des membres du refuge</h1>
             <div className='users_container-header'>
+                <div className='users_container-header--search'>
                 <form className="users_container-form">
                     <button>
                         <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
@@ -22,6 +24,10 @@ const Users = () => {
                     </button>
                 </form>
                 <IoPersonAddSharp size={'4vh'} className='users_container-icon' />
+                </div>
+                <Link to="/board">
+                    <button className='users_container--linkToBoard'>Retour au Tableau de Bord</button>
+                </Link>            
             </div>
             <table className='users_container-title-table'>
                 <tr>
@@ -35,7 +41,7 @@ const Users = () => {
                     <td>Doe</td>
                     <td>John</td>
                     <td>
-                        <select id="role" name="role">
+                        <select className='users_container-title-table--select' id="role" name="role">
                         <option value="benevole">bénévole</option>
                         <option value="salarie">salarié</option>
                         </select>
@@ -47,7 +53,7 @@ const Users = () => {
                     <td>test</td>
                     <td>test</td>
                     <td>
-                        <select id="role" name="role">
+                        <select className='users_container-title-table--select' id="role" name="role">
                         <option value="benevole">bénévole</option>
                         <option value="salarie">salarié</option>
                         </select>
@@ -59,7 +65,7 @@ const Users = () => {
                     <td>test</td>
                     <td>test</td>
                     <td>
-                        <select id="role" name="role">
+                        <select lassName='users_container-title-table--select' id="role" name="role">
                         <option value="benevole">bénévole</option>
                         <option value="salarie">salarié</option>
                         </select>
@@ -71,7 +77,7 @@ const Users = () => {
                     <td>test</td>
                     <td>test</td>
                     <td>
-                        <select id="role" name="role">
+                        <select lassName='users_container-title-table--select' id="role" name="role">
                         <option value="benevole">bénévole</option>
                         <option value="salarie">salarié</option>
                         </select>

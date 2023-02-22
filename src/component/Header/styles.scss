@@ -49,7 +49,30 @@
         }
 
         .item-link{
-          padding: 15px;
+
+        padding: 15px;
+
+        &--text{
+          background:
+          linear-gradient(
+            to right,
+            v.$primary-color,
+            v.$tertiary-color
+          ),
+          linear-gradient(
+            to right,
+            v.$secondary-color,
+            v.$dark-color
+        );
+
+          background-size: 100% 4px, 0 4px;
+          background-position: 100% 100%, 0 100%;
+          background-repeat: no-repeat;
+          transition: background-size 0.2s ease-in !important;
+          &:hover {
+            background-size: 0 4px, 100% 4px;
+          }
+        }
 
           &--social{
             margin-top: 20vh;
@@ -68,7 +91,7 @@
 // Middle logo container
   &__logo{
     img{
-      height: 6em;
+      height: 5em;
     }
   }
 

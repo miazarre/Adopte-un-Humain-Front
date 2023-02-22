@@ -1,0 +1,18 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+.gestionanimals{
+
+    &_container{
+
+        &--linkToBoard{
+            height: 3vh;
+            font-size: x-small;
+            background-color: $dark-color;
+            color:aliceblue;
+            display: flex;
+            align-items:center;
+            border-radius: 5px;
+        }
+    }
+}

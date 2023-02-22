@@ -12,7 +12,7 @@
         font-family: $global-font;
 
         &-title{
-            font-size: large;
+            font-size:x-large;
             font-weight: 500;
 
             &-search{
@@ -67,10 +67,29 @@
             }
         }
 
+
+
         &-header{
             display: flex;
-            justify-content: center;
             align-items: center;
+            gap: 5vw;
+
+            &--search{
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                padding-bottom: 2vh;
+            }
+        }
+
+        &--linkToBoard{
+            height: 3vh;
+            font-size: x-small;
+            background-color: $dark-color;
+            color:aliceblue;
+            display: flex;
+            align-items:center;
+            border-radius: 5px;
         }
 
         &-icon{
@@ -162,5 +181,5 @@
             }
 
         }
-}
+    }
 }

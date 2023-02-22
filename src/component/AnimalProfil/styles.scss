@@ -1,7 +1,6 @@
 @use 'src/styles/vars' as v ;
 @import 'src/styles/vars';
 
-
 .animal-profil{
 
     &__back{
@@ -29,18 +28,36 @@
         margin: 5vh auto;
         padding-top: 1vw;
         width: 25vw;
-        height: 25vw;
+        height: 26vw;
         background: linear-gradient(v.$light-color, v.$dark-color);
         }
         
         &--image{
         margin: auto;
+        margin-bottom: 1vh;
         width: 23vw;
         height: 23vw;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         }
+
+        .slick-prev:before, .slick-next:before{
+            color: v.$primary-color;
+            font-size: 20px;
+        }
+
+        .slick-dots li button:before
+        {
+            color: v.$white;
+            font-size: 15px;
+            line-height: 20px;
+        }
+
+        .slick-dots li.slick-active button:before {
+            color:v.$secondary-color;
+        }
+
     }
 
     &__title-container{

@@ -4,6 +4,9 @@ import { Link } from "react-router-dom"
 import data from '../../data/fake_animals.json'
 import './styles.scss'
 import {TiArrowBack} from 'react-icons/ti'
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const AnimalProfil = () => {
 
@@ -12,8 +15,6 @@ const AnimalProfil = () => {
 
     const settings = {
         dots: true,
-        infinite: true,
-        speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1
       };
@@ -24,8 +25,17 @@ const AnimalProfil = () => {
     <div className='animal-profil__container'>
         <div className='animal-profil__details'>
             <div className='animal-profil__details--gradient'>
-                <div style={{backgroundImage:`url(${animal[0].image})`}} className='animal-profil__details--image'>
-                </div>
+                <Slider {...settings}>
+                    <div> 
+                        <div style={{backgroundImage:`url(${animal[0].image})`}} className='animal-profil__details--image'> 
+                        </div>
+                    </div>
+                    <div > 
+                        <div style={{backgroundImage:`url(${animal[0].image2})`}} className='animal-profil__details--image'> 
+                        </div>
+                    </div>
+                    
+                </Slider>
             </div>
         </div>
         <div className='animal-profil__description'>

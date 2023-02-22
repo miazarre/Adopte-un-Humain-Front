@@ -81,12 +81,6 @@ const AnimalProfil = () => {
                     <p className='animal-profil__description--button' onClick={e=>setIsContactinganimal(!isContactingAnimal)}><span>Écrire à {animal[0].name}</span></p>
                 </>
                 }
-            
-            <div className='animal-profil__description--text'>
-                <p>{animal[0].description}</p>
-                <p>{animal[0].description}</p>
-            </div>
-            <Link to='/trombinoscope' className='animal-profil__description--button'><span>Écrire à {animal[0].name}</span></Link>
 
         </div>
     </div>

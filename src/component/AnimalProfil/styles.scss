@@ -33,8 +33,12 @@
         }
         
         &--image{
-        margin: auto;
-        margin-bottom: 1vh;
+            width: 23vw;
+            height: 23vw;
+            background-size: COVER;
+            background-position: center;
+            margin: auto;
+            margin-bottom: 1vh;
         }
 
 

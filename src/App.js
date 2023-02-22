@@ -10,6 +10,7 @@ import Trombinoscope from './component/Trombinoscope';
 import AnimalProfil from './component/AnimalProfil'
 import React from 'react';
 
+
 function App() {
   return (
     <BrowserRouter>

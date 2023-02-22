@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import data from '../../data/fake_animals.json'
 import './styles.scss'
 import {TiArrowBack} from 'react-icons/ti'
-import Slider from "react-slick";
 
 const AnimalProfil = () => {
 

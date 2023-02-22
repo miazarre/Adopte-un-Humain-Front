@@ -2,7 +2,6 @@ import React from 'react';
 import './style.scss';
 import { useState, Component } from 'react';
 import { render } from 'react-dom';
-import React from 'react';
 
 const SigninForm = () => {
   const [lastName, setLastName] = useState('');

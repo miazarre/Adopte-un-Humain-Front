@@ -35,12 +35,8 @@
         &--image{
         margin: auto;
         margin-bottom: 1vh;
-        width: 23vw;
-        height: 23vw;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
         }
+
 
         .slick-prev:before, .slick-next:before{
             color: v.$primary-color;
@@ -151,4 +147,5 @@
             position: relative;
         }
     }
+
 }

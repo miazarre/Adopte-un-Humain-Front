@@ -9,6 +9,7 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
 const AnimalProfil = () => {
 
     const param = useParams()
@@ -17,6 +18,8 @@ const AnimalProfil = () => {
     const [isContactingAnimal, setIsContactinganimal] = useState(false)
     const settings = {
         dots: true,
+        infinite: true,
+        speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1
       };
@@ -46,6 +49,7 @@ const AnimalProfil = () => {
                 <span className='animal-profil__title-container--dot'></span>
                 <p className='animal-profil__title-container--points'>10 points communs</p>
             </div>
+
 {/* Affichage conditionnel. Si tu cliques sur contacter, tu affiches le formulaire de contact. Si non, tu as la description de l'animal */}
                 {isContactingAnimal
                 ? <>
@@ -78,6 +82,12 @@ const AnimalProfil = () => {
                 </>
                 }
             
+            <div className='animal-profil__description--text'>
+                <p>{animal[0].description}</p>
+                <p>{animal[0].description}</p>
+            </div>
+            <Link to='/trombinoscope' className='animal-profil__description--button'><span>Écrire à {animal[0].name}</span></Link>
+
         </div>
     </div>
     </>

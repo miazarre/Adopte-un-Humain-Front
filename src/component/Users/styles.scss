@@ -9,6 +9,7 @@
         align-items: center;
         flex-flow: column wrap;
         margin-top: 1rem;
+        font-family: $global-font;
 
         &-title{
             font-size: large;
@@ -68,9 +69,9 @@
         }
 
         &-icon{
-            margin-top: 3vh;
+            margin-top: 2.5vh;
             margin-left: 3vh;
-            color: grey;
+            color: $dark-color;
         }
 
         /* From uiverse.io by @satyamchaudharydev */

@@ -1,7 +1,7 @@
 import './styles.scss';
 
 import { FiTrash2 } from "react-icons/fi";
-import { VscDiffAdded } from "react-icons/vsc";
+import { IoPersonAddSharp, IoPersonSharp } from "react-icons/io5";
 
 const Users = () => {
     return(
@@ -21,7 +21,7 @@ const Users = () => {
                         </svg>
                     </button>
                 </form>
-                <VscDiffAdded size={'4vh'} className='users_container-icon' />
+                <IoPersonAddSharp size={'4vh'} className='users_container-icon' />
             </div>
             <table className='users_container-title-table'>
                 <tr>
@@ -40,7 +40,7 @@ const Users = () => {
                         <option value="salarie">salarié</option>
                         </select>
                     </td>
-                    <td>test</td>
+                    <td><IoPersonSharp size={'3vh'} className='users_container-title-table--icon' /></td>
                     <td><FiTrash2 size={'3vh'} className='users_container-title-table--icon' /></td>
                 </tr>
                 <tr>
@@ -52,7 +52,7 @@ const Users = () => {
                         <option value="salarie">salarié</option>
                         </select>
                     </td>
-                    <td>test</td>
+                    <td><IoPersonSharp size={'3vh'} className='users_container-title-table--icon' /></td>
                     <td><FiTrash2 size={'3vh'} className='users_container-title-table--icon' /></td>
                 </tr>
                 <tr>
@@ -64,7 +64,7 @@ const Users = () => {
                         <option value="salarie">salarié</option>
                         </select>
                     </td>
-                    <td>test</td>
+                    <td><IoPersonSharp size={'3vh'} className='users_container-title-table--icon' /></td>
                     <td><FiTrash2 size={'3vh'} className='users_container-title-table--icon' /></td>
                 </tr>
                 <tr>
@@ -76,7 +76,7 @@ const Users = () => {
                         <option value="salarie">salarié</option>
                         </select>
                     </td>
-                    <td>test</td>
+                    <td><IoPersonSharp size={'3vh'} className='users_container-title-table--icon' /></td>
                     <td><FiTrash2 size={'3vh'} className='users_container-title-table--icon' /></td>
                 </tr>   
             </table>

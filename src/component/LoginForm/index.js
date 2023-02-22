@@ -1,7 +1,7 @@
 import './style.scss';
 import { useState, Component } from 'react';
 import { render } from 'react-dom';
-
+import React from 'react';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');

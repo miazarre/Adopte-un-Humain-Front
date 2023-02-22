@@ -8,8 +8,7 @@ import './styles/index.scss';
 import './styles/reset.scss';
 import Trombinoscope from './component/Trombinoscope';
 import AnimalProfil from './component/AnimalProfil'
-import { Routes, Route} from "react-router-dom";
-
+import React from 'react';
 
 function App() {
   return (

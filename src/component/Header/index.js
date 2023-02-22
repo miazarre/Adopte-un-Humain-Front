@@ -4,6 +4,7 @@ import { bubble as Menu } from 'react-burger-menu'
 import logo from '../../assets/logo.png'
 import { FaTiktok, FaFacebookF} from 'react-icons/fa';
 import {AiOutlineTwitter} from 'react-icons/ai'
+import React from 'react';
 
 const Header = () => {
     return (

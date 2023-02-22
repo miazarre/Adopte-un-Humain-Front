@@ -1,5 +1,6 @@
 import './styles.scss'
 import { Link } from 'react-router-dom';
+import React from 'react';
 
 const AnimalCard = ({animal}) => {
 

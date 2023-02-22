@@ -31,22 +31,24 @@ const Animals = () => {
                         </svg>
                     </button>
                 </form>
-                <VscDiffAdded size={'4vh'} className='animals_container-icon' />
+                <Link to="/">
+                    <VscDiffAdded size={'4vh'} className='animals_container-icon' />
+                </Link>
             </div>
             <Link to="/board">
                 <button className='animals_container--linkToBoard'>Retour au Tableau de Bord</button>
             </Link>
         </div>
         <table className='animals_container-title-table'>
-                <tr>
-                    <th>Nom</th>
-                    <th>Âge</th>
-                    <th>Espèce</th>
-                    <th>Caractère</th>
-                    <th>Histoire / Besoins</th>
-                    <th className='animals_container-title-table--icon'>Modifier / Supprimer</th>
-                </tr> 
-        { animal }
+            <tr>
+                <th>Nom</th>
+                <th>Âge</th>
+                <th>Espèce</th>
+                <th>Caractère</th>
+                <th>Histoire / Besoins</th>
+                <th className='animals_container-title-table--icon'>Modifier / Supprimer</th>
+            </tr> 
+            { animal }
         </table>
     </div>
     )

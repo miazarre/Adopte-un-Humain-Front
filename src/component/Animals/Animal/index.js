@@ -1,4 +1,5 @@
-import './styles.scss';
+import '../styles.scss';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { FiTrash2 } from "react-icons/fi";
@@ -13,8 +14,12 @@ const Animal = ({name, age, espece, caractere, besoins }) => {
             <td>{caractere}</td>
             <td>{besoins}</td>
             <td>
-                <TfiPencil size={'3vh'} className='animals_container-title-table--icon'/>
-                <FiTrash2 size={'3vh'} className='animals_container-title-table--icon' />
+                <Link to="/">
+                    <TfiPencil size={'3vh'} className='animals_container-title-table--icon'/>
+                </Link>
+                <Link to="/">
+                    <FiTrash2 size={'3vh'} className='animals_container-title-table--icon' />
+                </Link>
             </td>
         </tr>
     )

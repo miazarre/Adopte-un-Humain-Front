@@ -13,9 +13,8 @@ const Header = () => {
                 <Menu>
                     <a href='#' className='item-link item-link--text'> Accueil</a>
                     <Link to='/trombinoscope' className='item-link item-link--text'> Trombinoscope</Link>
-                    <a href='#' className='item-link item-link--text'> Préférences</a>
-                    <a href='#' className='item-link item-link--text'> Profil</a>
-
+                    <Link to='/preferences' className='item-link item-link--text'> Préférences</Link>
+                    <Link to='/profil' className='item-link item-link--text'> Profil</Link>
                     <div className='item-link item-link--social'>
                         <FaTiktok size={'30px'} className='footer__container--icons-div--icon'/>
                         <AiOutlineTwitter size={'30px'} className='footer__container--icons-div--icon'/>

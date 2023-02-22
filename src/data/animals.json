@@ -1,0 +1,34 @@
+[
+    {
+        "id": "1",
+        "name": "Crusty",
+        "age": "12",
+        "espece": "chat",
+        "caractere": "joueur",
+        "besoins": "jardin"
+    },
+    {
+        "id": "2",
+        "name": "Django",
+        "age": "5",
+        "espece": "chat",
+        "caractere": "câlin",
+        "besoins": "compagnie"
+    },
+    {
+        "id": "3",
+        "name": "Pirouette",
+        "age": "19",
+        "espece": "chat",
+        "caractere": "acariatre",
+        "besoins": "tranquilité"
+    },
+    {
+        "id": "4",
+        "name": "Sookie",
+        "age": "4",
+        "espece": "chat",
+        "caractere": "joueur",
+        "besoins": "animation"
+    }
+]

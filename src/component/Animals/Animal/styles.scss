@@ -1,0 +1,185 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+.animals{
+
+    &_container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column wrap;
+        margin-top: 1rem;
+        font-family: $global-font;
+
+        &-title{
+            font-size:x-large;
+            font-weight: 500;
+
+            &-search{
+                margin-top: 1rem;
+                width: 15vw;
+                font-size:x-small;
+                height: 4vh;
+            }
+
+            &-table{
+                margin-top: 4vh;
+                text-align: center;
+                width: 80vw;
+
+                &--icon{
+                    width: 3vw;
+                    padding-right: 1vw;
+                }
+            }
+
+            &-table th{
+                height: 5vh;
+                padding-bottom: 2vh;
+                vertical-align: middle;
+            }
+
+            &-table tr{
+                height: 5vh;
+
+                &:nth-child(even){
+                    background-color: $dark-color;
+                    color:aliceblue;
+                }
+            }
+
+            &-table td{
+                vertical-align: middle;
+                width: 16.6%;
+
+                &:first-child { 
+                    border-top-left-radius: 15px; 
+                }
+                &:first-child { 
+                    border-bottom-left-radius: 15px; 
+                }
+                &:last-child { 
+                    border-top-right-radius: 15px; 
+                }
+                &:last-child { 
+                    border-bottom-right-radius: 15px; 
+                }
+            }
+        }
+
+
+
+        &-header{
+            display: flex;
+            align-items: center;
+            gap: 5vw;
+
+            &--search{
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                padding-bottom: 2vh;
+            }
+        }
+
+        &--linkToBoard{
+            height: 3vh;
+            font-size: x-small;
+            background-color: $dark-color;
+            color:aliceblue;
+            display: flex;
+            align-items:center;
+            border-radius: 5px;
+        }
+
+        &-icon{
+            margin-top: 3vh;
+            margin-left: 3vh;
+            color: grey;
+        }
+
+        /* From uiverse.io by @satyamchaudharydev */
+        &-form{
+            --timing: 0.3s;
+            --width-of-input: 18vw;
+            --height-of-input: 5vh;
+            --border-height: 0.2rem;
+            --input-bg: white;
+            --border-color: darkblue;
+            --border-radius: 15px;
+            --after-border-radius: 0.1rem;
+            position: relative;
+            width: var(--width-of-input);
+            height: var(--height-of-input);
+            display: flex;
+            align-items: center;
+            margin-top: 3vh;
+            padding-inline: 0.8em;
+            border-radius: var(--border-radius);
+            transition: border-radius 0.5s ease;
+            background: var(--input-bg, white);
+
+            /* removing default style of button */
+            & button{
+                border: none;
+                background: none;
+                color: #8b8ba7;
+            }
+
+            /* styling of Input */
+            &__input {
+                font-size: 0.9rem;
+                background-color: transparent;
+                width: auto;
+                height: 100%;
+                padding-block: 1em;
+                border: none;
+                color: $dark-color;
+
+                &:focus{
+                    outline: none;
+                }
+
+                &:not(:placeholder-shown) ~ .reset {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                background: var(--border-color);
+                transform: scaleX(0);
+                transform-origin: center;
+                width: 100%;
+                height: var(--border-height);
+                left: 0;
+                bottom: 0;
+                border-radius: 0.1rem;
+                transition: transform var(--timing) ease;
+            }
+
+            &:focus-within {
+                border-radius: var(--after-border-radius);
+            }
+
+            &:focus-within:before {
+                transform: scale(1);
+            }
+
+            &__reset{
+                border: none;
+                background: none;
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            & svg {
+                width: 1rem;
+                margin-top: 0.2rem;
+            }
+
+        }
+    }
+}

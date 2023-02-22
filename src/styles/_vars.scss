@@ -10,6 +10,7 @@
 }
 // Font variables
 $global-font:'Arapey';
+$form-font:'Michel';
 
 // Colors variables 
 // Generic for all avatars
@@ -34,4 +35,32 @@ $dark-color:#247BA0;
   font-family: 'Antic Didone';
   font-size: 1.5em;
   font-weight: 700;
+}
+
+@mixin button{
+  text-align: center;
+  margin: auto;
+  background: linear-gradient(144deg,v.$light-color, v.$primary-color 50%, v.$dark-color);
+  border: 0;
+  box-sizing: border-box;
+  color: v.$black;
+  display: flex;
+  justify-content: center;
+  line-height: 1em;
+  padding: 4px;
+  text-decoration: none;
+  cursor: pointer;  
+
+  span {
+      background-color: v.$tertiary-color;
+      padding: 16px 24px;
+      width: 100%;
+      height: 100%;
+      transition: 300ms;
+    }
+
+    &:hover span {
+      color: v.$white;
+      background: none;
+    }
 }

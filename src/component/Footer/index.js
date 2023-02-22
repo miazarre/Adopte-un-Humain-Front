@@ -1,6 +1,7 @@
 import './styles.scss';
 import { FaTiktok, FaFacebookF} from 'react-icons/fa';
 import {AiOutlineTwitter} from 'react-icons/ai'
+import React from 'react';
 
 const Footer = () => {
     return(

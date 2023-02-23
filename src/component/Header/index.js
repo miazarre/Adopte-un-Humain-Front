@@ -27,6 +27,9 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
                     <Link to='/trombinoscope' className='item-link item-link--text'> Trombinoscope</Link>
                     <Link to='/preferences' className='item-link item-link--text'> Préférences</Link>
                     <Link to='/profil' className='item-link item-link--text'> Profil</Link>
+                    {isLogged && 
+                    <button onClick={handleDeconnexion}><span>Déconnexion</span></button>
+                    }
                     <div className='item-link item-link--social'>
                         <FaTiktok size={'30px'} className='footer__container--icons-div--icon'/>
                         <AiOutlineTwitter size={'30px'} className='footer__container--icons-div--icon'/>

@@ -40,15 +40,13 @@ const LoginForm = ({setUser, setIsLogged}) => {
 
     return (
       <div className="input-container">
-           {login != '' &&
-            <p className='input-container--message'>{login} <RxCrossCircled className='input-container--message-cross' size='20px' onClick={e => setLogin('')}/></p>
-           }
-            <form>
-               <input className="input-container--input" type="text" name="email" placeholder="email" value={email} onChange={(event) => setEmail(event.target.value)} />
-               <input className="input-container--input" type="password" name="password" placeholder="mot de passe" value={password} onChange={(event) => setPassword(event.target.value)} />
-                <p className='input-container--boutton' onClick={handleSubmit}>
-                <span >Valider</span>
-                </p>
+            <p>{login}</p>
+            <form onSubmit={handleSubmit}>
+               <input type="text" name="email" placeholder="email" value={email} onChange={(event) => setEmail(event.target.value)} />
+               <input type="password" name="password" placeholder="mot de passe" value={password} onChange={(event) => setPassword(event.target.value)} />
+                <button type="submit" value="Submit">
+                Valider
+                </button>
             </form>
       </div>
           )

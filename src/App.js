@@ -13,7 +13,7 @@ import Preferences from './component/Preferences';
 import './styles/index.scss';
 import './styles/reset.scss';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
         <Route path='/signin' element={<SigninForm />} />
         <Route path='/trombinoscope' element={<Trombinoscope/>} />
         <Route path='/trombinoscope/:id' element={<AnimalProfil/>}/>
-        <Route path='/profil' element={<ProfilUser/>}/>
+        <Route path='/profil' element={<ProfilUser user={user}/>}/>
         <Route path='/preferences' element={<Preferences/>}/>
       </Routes>
       <Footer/>

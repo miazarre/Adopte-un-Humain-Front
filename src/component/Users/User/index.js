@@ -6,8 +6,7 @@ import { FiTrash2 } from "react-icons/fi";
 import { TfiPencil } from "react-icons/tfi";
 import { IoPersonSharp } from "react-icons/io5";
 
-const User = ({name, firstname, role, id}) => {
-    const profile=`/trombinoscope/${id}`
+const User = ({name, firstname, role}) => {
     return( 
         <tr>
             <td>{name}</td>
@@ -19,7 +18,7 @@ const User = ({name, firstname, role, id}) => {
                 </Link>
             </td>
             <td>
-                <Link to= {profile}>
+                <Link to="/">
                     <IoPersonSharp size={'3vh'} className='users_container-title-table--icon' />
                 </Link>
             </td>

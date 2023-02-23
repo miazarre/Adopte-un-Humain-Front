@@ -11,19 +11,23 @@ import Preferences from './component/Preferences';
 import './styles/index.scss';
 import './styles/reset.scss';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 
 function App() {
+
+  const [isLogged, setIsLogged] = useState(false);
+  const [user, setUser] = useState() ;
+
   return (
     <BrowserRouter>
-      <Header/>
+      <Header user={user} setUser={setUser} isLogged={isLogged} setIsLogged={setIsLogged}/>
       <Routes>
-        <Route path='/login' element={<LoginForm />} />
+        <Route path='/login' element={<LoginForm setUser={setUser} setIsLogged={setIsLogged} />} />
         <Route path='/signin' element={<SigninForm />} />
         <Route path='/trombinoscope' element={<Trombinoscope/>} />
         <Route path='/trombinoscope/:id' element={<AnimalProfil/>}/>
-        <Route path='/profil' element={<ProfilUser/>}/>
+        <Route path='/profil' element={<ProfilUser user={user}/>}/>
         <Route path='/preferences' element={<Preferences/>}/>
       </Routes>
       <Footer/>

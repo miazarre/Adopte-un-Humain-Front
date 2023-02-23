@@ -3,7 +3,7 @@ import './styles.scss';
 import { Link } from 'react-router-dom';
 import {HiLightBulb} from 'react-icons/hi';
 
-const ProfilUser = () => {
+const ProfilUser = ({user}) => {
     return(
 
         <div className='profil-user__container'>

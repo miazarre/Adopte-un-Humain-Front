@@ -30,12 +30,13 @@ const SigninForm = () => {
 
 
               <div className="categories">
-                {["Licorne", "Dinosaure", "Dragon"].map(c => (
+ {/* Todo : Mettre une prop key */}
+                {["Licorne", "Dinosaure", "Dragon"].map(c => ( 
                   <div className="category" onClick={() => setCategory(c.toLowerCase())}>
                     <img src="https://media2.woopic.com/api/v1/images/2115%2Ftendances%2FArticles-Syndiques%2F90f%2F49c%2Fc730e6c3ca6855991f4ce4a032%2F7360804-bonne-nouvelle-pour-adam-driver-adam-dr-orig-5.jpg?format=1200x630&facedetect=1&quality=100" alt="Bibou" />
                     <div className="category-input">
                       <input type="radio" id={c.toLowerCase()} name="category" value={c.toLowerCase()} onChange={e => setCategory(e.target.value)} checked={c.toLowerCase() === category} />
-                      <label for={c.toLowerCase()}>{c}</label>
+                      <label htmlFor={c.toLowerCase()}>{c}</label>
                     </div>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis ornare libero. Donec lacinia mollis massa, id hendrerit arcu faucibus et.

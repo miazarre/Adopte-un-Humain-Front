@@ -14,7 +14,8 @@
         
         box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
         padding: 40px;
-        width: 15%;
+        width: 20vw;
+        text-align: center;
 
         h1{
             @include Title;

@@ -16,6 +16,7 @@
 
 // Burger Menu style with React-burger-menu properties
   &__menu{
+
     .bm{
 
       &-burger{
@@ -40,7 +41,6 @@
       &-menu {
         background: v.$white;
         padding: 10px;
-        padding-top: 10vh;
         font-size: 1.5em;
 
         &-wrap{
@@ -51,6 +51,8 @@
         .item-link{
 
         padding: 15px;
+        margin-right: 30%;
+        display: block;
 
         &--text{
           background:
@@ -76,6 +78,16 @@
 
           &--social{
             margin-top: 20vh;
+            margin-right: 0;
+          }
+
+          &--title{
+            padding-bottom: 5vh
+          }
+
+          &--deco{
+            @include button;
+            margin: 40px;
           }
         }
       }

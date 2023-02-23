@@ -3,6 +3,13 @@
 
 
 .profil-user{
+
+    &__connexion-message{
+        position: fixed;
+        top: 30vh;
+        left: 10vw;
+        font-size: 2em;
+    }
     
     &__container{
         display: flex;
@@ -25,9 +32,15 @@
         }
 
         p{
+            text-align: center;
+            font-size: 1.2em;
+            margin: 1vh;
+        }
+
+        &--name{
             @include smallTitle;
             text-align: center;
-            margin-top: 40px;
+            padding: 30px 0;
         }
     }
 

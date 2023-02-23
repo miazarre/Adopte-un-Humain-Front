@@ -23,12 +23,16 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
         <div className='header__container'>
             <div className='header__menu'>
                 <Menu>
+                    <p className='item-link--title'>J'adopte un humain !</p>
                     <a href='#' className='item-link item-link--text'> Accueil</a>
-                    <Link to='/trombinoscope' className='item-link item-link--text'> Trombinoscope</Link>
-                    <Link to='/preferences' className='item-link item-link--text'> Préférences</Link>
-                    <Link to='/profil' className='item-link item-link--text'> Profil</Link>
-                    {isLogged && 
-                    <button onClick={handleDeconnexion}><span>Déconnexion</span></button>
+                    {isLogged 
+                    ?<>
+                        <Link to='/trombinoscope' className='bm-item item-link item-link--text'> Trombinoscope</Link>
+                        <Link to='/preferences' className='bm-item item-link item-link--text'> Préférences</Link>
+                        <Link to='/profil' className='bm-item item-link item-link--text'> Profil</Link>
+                        <button onClick={handleDeconnexion} className='item-link--deco'><span>Déconnexion</span></button>
+                    </>
+                    :   <Link to='/login' className='bm-item item-link item-link--text'>Connexion</Link>
                     }
                     <div className='item-link item-link--social'>
                         <FaTiktok size={'30px'} className='footer__container--icons-div--icon'/>

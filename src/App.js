@@ -42,8 +42,8 @@ function App() {
         <Route path='/signin' element={<SigninForm />} />
         <Route path='/trombinoscope' element={<Trombinoscope/>} />
         <Route path='/trombinoscope/:id' element={<AnimalProfil/>}/>
-        <Route path='/profil' element={<ProfilUser user={user}/>}/>
-        <Route path='/preferences' element={<Preferences/>}/>
+        <Route path='/profil' element={<ProfilUser user={user} isLogged={isLogged}/>}/>
+        <Route path='/preferences' element={<Preferences isLogged={isLogged}/>}/>
       </Routes>
       <Footer/>
     </BrowserRouter>

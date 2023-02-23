@@ -4,6 +4,7 @@ import { bubble as Menu } from 'react-burger-menu'
 import logo from '../../assets/logo.png'
 import { FaTiktok, FaFacebookF, FaDotCircle} from 'react-icons/fa';
 import {AiOutlineTwitter} from 'react-icons/ai'
+import React from 'react';
 
 const Header = () => {
     return (
@@ -11,7 +12,7 @@ const Header = () => {
             <div className='header__menu'>
                 <Menu>
                     <a href='#' className='item-link item-link--text'> Accueil</a>
-                    <a href='#' className='item-link item-link--text'> Trombinoscope</a>
+                    <Link to='/trombinoscope' className='item-link item-link--text'> Trombinoscope</Link>
                     <a href='#' className='item-link item-link--text'> Préférences</a>
                     <a href='#' className='item-link item-link--text'> Profil</a>
 

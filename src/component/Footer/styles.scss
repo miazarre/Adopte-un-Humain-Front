@@ -3,11 +3,15 @@
 
 .footer{
     &__container{
+        z-index: 3 !important;
+        position : static ;
+        bottom: 0;
+        height: 10vh;
         position : absolute ;
         bottom: 0;
         height: 7vh;
         width: 100%;
-        box-shadow: 1px 1px 20px rgba(v.$black, 0.3);
+        box-shadow: 1px 1px 40px rgba(v.$black, 0.1);
         display: flex;
         justify-content: space-between;
         align-items: center;

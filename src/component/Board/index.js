@@ -12,7 +12,7 @@ const Board = () => {
             <Link to="/users">
                 <button className='board_container_menu'><IoMdPeople size={'7vh'} className='board_container_menu--icon'/> Profils des utilisateurs</button>
             </Link>
-            <Link to="/gestionanimals">
+            <Link to="/adoptions">
                 <button className='board_container_menu'><IoIosHeart size={'7vh'} className='board_container_menu--icon'/> Demandes d'adoption</button>
             </Link>
         </div>

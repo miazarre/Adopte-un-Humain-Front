@@ -1,0 +1,153 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+.animal-profil{
+
+    &__back{
+        position: absolute;
+        top: 20vh;
+        left: 40px;
+        @include button;
+        span {
+            padding: 0;
+        }
+    }
+
+    &__container{
+        display: flex;
+        justify-content: center;
+        gap: 10vw;
+        min-height: 76vh;
+        
+    }
+
+    &__details{
+        width: 30%;
+
+        &--gradient{
+        margin: 5vh auto;
+        padding-top: 1vw;
+        width: 25vw;
+        height: 26vw;
+        background: linear-gradient(v.$light-color, v.$dark-color);
+        }
+        
+        &--image{
+            width: 23vw;
+            height: 23vw;
+            background-size: COVER;
+            background-position: center;
+            margin: auto;
+            margin-bottom: 1vh;
+
+    }
+         .slick-prev:before, .slick-next:before{
+            color: v.$primary-color;
+            font-size: 20px;
+        }
+
+        .slick-dots li button:before
+        {
+            color: v.$white;
+            font-size: 15px;
+            line-height: 20px;
+        }
+
+        .slick-dots li.slick-active button:before {
+            color:v.$secondary-color;
+        }
+    }
+
+    &__title-container{
+
+        display: flex;
+        align-items: center;
+        gap: 1vw;
+
+        &--dot{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: v.$secondary-color;
+        }
+
+        &--name{
+            @include Title ;
+            margin: 5vh 0;
+        }
+
+        &--points{
+            @include smallTitle;
+        }
+
+    }
+
+    &__description{
+        width: 40%;
+        text-align: justify;
+
+        &--text{
+            p{
+                margin-bottom: 5vh;
+            }
+            & ::first-letter{
+                font-weight: 700;
+            }
+        }
+
+        &--button{
+            @include button;
+            margin: 10vh auto;
+            font-size: 1.3em;
+            font-weight: 700;
+            width: 10em;
+        }
+    }
+
+    &__contact{
+        
+        &--container{
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+            
+        }
+
+        &--textarea{
+            width: 100%;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            resize:vertical; 
+            border: 2px solid v.$primary-color ;
+            transition: 0.2s;
+
+        &:focus{
+            outline: none;
+            border: 2px solid v.$secondary-color;
+        }
+    }
+    }
+
+    &__button{
+        @include button;
+        width: 8rem;
+
+        &--container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            p{
+                
+             margin:10px;
+            }
+        }
+        &--cross{
+            @include button;
+            width: 4em;
+            font-weight: 700;
+            position: relative;
+        }
+    }
+
+}

@@ -4,41 +4,37 @@ import PropTypes from 'prop-types';
 
 import { FiTrash2 } from "react-icons/fi";
 import { TfiPencil } from "react-icons/tfi";
-import { GiLabradorHead } from "react-icons/gi";
+import { FcViewDetails } from "react-icons/fc";
 
-const Animal = ({name, age, espece, caractere, besoins, id }) => {
-    const profile=`/trombinoscope/${id}`;
+const Adoption = ({name, age, espece, id }) => {
+    const link = `/adoptions/${id}`
     return( 
         <tr>
             <td>{name}</td>
             <td>{age}</td>
             <td>{espece}</td>
-            <td>{caractere}</td>
-            <td>{besoins}</td>
             <td>
-                <Link to={profile}>
-                    <GiLabradorHead size={'3vh'} className='users_container-title-table--icon' />
+                <Link to={link}>
+                    <FcViewDetails size={'3vh'} className='adoptions_container-title-table--icon'/>
                 </Link>
             </td>
             <td>
                 <Link to="/">
-                    <TfiPencil size={'3vh'} className='animals_container-title-table--icon'/>
+                    <TfiPencil size={'3vh'} className='adoptions_container-title-table--icon'/>
                 </Link>
                 <Link to="/">
-                    <FiTrash2 size={'3vh'} className='animals_container-title-table--icon' />
+                    <FiTrash2 size={'3vh'} className='adoptions_container-title-table--icon' />
                 </Link>
             </td>
         </tr>
     )
 }
 
-Animal.propTypes = {
+Adoption.propTypes = {
     name: PropTypes.string.isRequired,
     age: PropTypes.number.isRequired,
     espece: PropTypes.string.isRequired,
-    caractere: PropTypes.string.isRequired,
-    besoins: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
   };
     
-export default Animal;
+export default Adoption;

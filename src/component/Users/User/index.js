@@ -6,7 +6,8 @@ import { FiTrash2 } from "react-icons/fi";
 import { TfiPencil } from "react-icons/tfi";
 import { IoPersonSharp } from "react-icons/io5";
 
-const User = ({name, firstname, role, profile }) => {
+const User = ({name, firstname, role, id}) => {
+    const profile=`/trombinoscope/${id}`
     return( 
         <tr>
             <td>{name}</td>
@@ -35,6 +36,7 @@ User.propTypes = {
     name: PropTypes.string.isRequired,
     firstname: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   };
     
 export default User;

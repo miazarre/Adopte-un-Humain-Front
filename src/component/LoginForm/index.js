@@ -1,16 +1,34 @@
 import './style.scss';
-import { useState, Component } from 'react';
-import { render } from 'react-dom';
+import { useState } from 'react';
 import React from 'react';
+import axios from 'axios';
+
+const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
 
 const LoginForm = () => {
+
+  const [user, setUser] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(`Email: ${email}\nPassword: ${password}`);
+
+    async function getUser() {
+      const response = await axios.post(`${baseUrl}/login`, 
+        {
+          "email" : `${email}`,
+          "password" : `${password}`
+      }
+      )
+      setUser(response.data);
+    }
+    getUser();
+    console.log(user)
   };
+
+
     return (
       <div className="input-container">
             <form onSubmit={handleSubmit}>

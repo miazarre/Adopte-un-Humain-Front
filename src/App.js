@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 
 import Header from './component/Header';
 import Footer from './component/Footer';
@@ -12,26 +12,33 @@ import Adoptions from './component/Adoptions';
 import Trombinoscope from './component/Trombinoscope';
 import AnimalProfil from './component/AnimalProfil';
 import AdoptionsDetail from './component/AdoptionsDetail';
+import ProfilUser from './component/ProfilUser';
+import Preferences from './component/Preferences';
 
 import './styles/index.scss';
 import './styles/reset.scss';
 
 function App() {
+
+  const [isLogged, setIsLogged] = useState(false);
+  const [user, setUser] = useState() ;
+
   return (
     <BrowserRouter>
-      <Header/>
-        <Routes>
-          <Route path='/signin' element={<SigninForm />} />
-          <Route path='/board' element={<Board />} />
-          <Route path='/users' element={<Users />} />
-          <Route path='/animals' element={<Animals />} />
-          <Route path='/login' element={<LoginForm />} />
-          <Route path='/signin' element={<SigninForm />} />
-          <Route path='/trombinoscope' element={<Trombinoscope/>} />
-          <Route path='/trombinoscope/:id' element={<AnimalProfil/>} />
-          <Route path='/adoptions' element={<Adoptions />} />
-          <Route path='/adoptions/:id' element={<AdoptionsDetail />} />
-        </Routes>
+      <Header user={user} setUser={setUser} isLogged={isLogged} setIsLogged={setIsLogged}/>
+      <Routes>
+        <Route path='/login' element={<LoginForm setUser={setUser} setIsLogged={setIsLogged} />} />
+        <Route path='/signin' element={<SigninForm />} />
+        <Route path='/trombinoscope' element={<Trombinoscope/>} />
+        <Route path='/trombinoscope/:id' element={<AnimalProfil/>}/>
+        <Route path='/profil' element={<ProfilUser user={user} isLogged={isLogged}/>}/>
+        <Route path='/preferences' element={<Preferences isLogged={isLogged}/>}/>
+        <Route path='/board' element={<Board />} />
+        <Route path='/users' element={<Users />} />
+        <Route path='/animals' element={<Animals />} />
+        <Route path='/adoptions' element={<Adoptions />} />
+        <Route path='/adoptions/:id' element={<AdoptionsDetail />} />
+      </Routes>
       <Footer/>
     </BrowserRouter>
   );

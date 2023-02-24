@@ -1,0 +1,112 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+
+.profil-user{
+
+    &__connexion-message{
+        position: fixed;
+        top: 30vh;
+        left: 10vw;
+        font-size: 2em;
+    }
+    
+    &__container{
+        display: flex;
+        justify-content: end;
+        gap: 15vw;
+        min-height: 76vh;
+    }
+
+    &__details{
+        position: fixed;
+        left: 5vw;
+        top: 25vh;
+        height: 60vh;
+        width: 20%;
+        box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
+        padding: 30px;
+
+        img{
+            width: 100%;
+        }
+
+        p{
+            text-align: center;
+            font-size: 1.2em;
+            margin: 1vh;
+        }
+
+        &--name{
+            @include smallTitle;
+            text-align: center;
+            padding: 30px 0;
+        }
+    }
+
+    &__form{
+        form{
+            margin-top: 5vh;
+            display: flex;
+            flex-direction: column;
+
+            &:last-child{
+                margin-bottom: 5vh;
+            }
+        }
+
+        &--input{
+            padding: 10px;
+            border-image-source: linear-gradient(-140deg, v.$primary-color, v.$tertiary-color);
+            border-width: 3px;
+            border-image-slice: 1;
+            transition: 0.2s;
+
+            &:focus{
+                border-image-source: linear-gradient(-140deg, v.$dark-color, v.$secondary-color);
+            }
+        }
+
+        &--section{
+            @include smallTitle;
+            text-align: center;
+            margin: 40px;
+        }
+
+        &--button{
+            @include button;
+            font-family: 'Antic Didone';
+            font-weight: 700;
+            margin: 40px auto;
+        }
+    }
+
+    &__tips{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background-color: v.$primary-color;
+        border-radius: 10px;
+        height: 100%;
+        width: 20%;
+        margin: 10vh 3vw;
+        padding:1vw;
+        font-family: v.$global-font;
+        font-weight: 700;
+
+        &--light{
+            color: v.$white;
+            margin: auto;
+        }
+
+        &--link{
+            border-bottom: 3px solid v.$dark-color;
+            transition: 0.2s;
+            &:hover{
+                border-bottom: 3px solid v.$light-color;
+            }
+        }
+    }
+}

@@ -1,18 +1,33 @@
 import { Link } from 'react-router-dom';
 import { VscDiffAdded } from "react-icons/vsc";
+import { useState, useEffect } from 'react';
 
+import axios from 'axios';
 import Animal from './Animal';
-
-import animals from '../../data/animals.json';
 
 const Animals = () => {
 
-    const animal = animals.map((animal) => (
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+      const fetchData = async () =>{
+        try {
+          const {data: response} = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/animals');
+          setData(response);
+        } catch (error) {
+          console.error(error.message);
+        }
+      }
+      fetchData()
+    }, []);
+
+    const animal = data.map((animal) => (
         <Animal
         key={animal.id}
         {...animal}
         />
     ))
+
     return(
         <div className='animals_container'>
         <h1 className='animals_container-title'>Liste des animaux du refuge</h1>
@@ -31,7 +46,7 @@ const Animals = () => {
                         </svg>
                     </button>
                 </form>
-                <Link to="/">
+                <Link to="/addanimal">
                     <VscDiffAdded size={'4vh'} className='animals_container-icon' />
                 </Link>
             </div>
@@ -42,10 +57,9 @@ const Animals = () => {
         <table className='animals_container-title-table'>
             <tr>
                 <th>Nom</th>
-                <th>Âge</th>
-                <th>Espèce</th>
-                <th>Caractère</th>
-                <th>Histoire / Besoins</th>
+                <th>Date de naissance</th>
+                <th>Description</th>
+                <th>Besoins</th>
                 <th>Profil</th>
                 <th className='animals_container-title-table--icon'>Modifier / Supprimer</th>
             </tr> 

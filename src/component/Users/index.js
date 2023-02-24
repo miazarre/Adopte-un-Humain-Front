@@ -33,7 +33,7 @@ const Users = () => {
                             </svg>
                         </button>
                     </form>
-                    <Link to="/">
+                    <Link to="/signin">
                         <IoPersonAddSharp size={'4vh'} className='users_container-icon' />
                     </Link>
                 </div>

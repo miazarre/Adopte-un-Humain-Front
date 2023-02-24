@@ -1,0 +1,95 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+.addanimal_container{
+  font-size: 1.3rem;
+    &-input {
+      font-family: v.$global-font ;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;  
+    }
+
+    &_textareas{
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-around;
+      align-items: center;
+      gap: 1rem; 
+
+      &-detail{
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+      }
+    }
+
+    &_photos{
+      display:flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+      &-addphotos{
+
+      }
+    }
+
+    &_categories {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-bottom: 2rem;
+
+        &_category {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+          
+            &-input {       
+                margin-top: 1rem;      
+                align-self: center;
+            }
+            
+            & input {
+                display: inline-block;
+                margin-right: 0.5rem;
+            }
+
+            & label {
+                font-size: 1.25rem;
+            }
+
+            &:hover {
+              border-color: orange;
+            }
+          
+            img {
+              display: inline-block;
+              max-width: 100%;
+            }
+          
+            &:not(:first-child) {
+              margin-left: 5rem;
+            }
+          
+            &:first-child {
+              margin-left: 1rem;
+            }
+          
+            &:last-child {
+              margin-right: 1rem;
+            }
+        }
+    }
+}

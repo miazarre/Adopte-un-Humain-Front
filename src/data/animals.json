@@ -2,33 +2,29 @@
     {
         "id": "1",
         "name": "Crusty",
-        "age": "12",
-        "espece": "chat",
-        "caractere": "joueur",
-        "besoins": "jardin"
+        "birthdate": "2022-02-19T23:00:00.000Z",
+        "resume": "joueur",
+        "needs": "jardin"
     },
     {
         "id": "2",
         "name": "Django",
-        "age": "5",
-        "espece": "chat",
-        "caractere": "câlin",
-        "besoins": "compagnie"
+        "birthdate": "2022-02-19T23:00:00.000Z",
+        "resume": "câlin",
+        "needs": "compagnie"
     },
     {
         "id": "3",
         "name": "Pirouette",
-        "age": "19",
-        "espece": "chat",
-        "caractere": "acariatre",
-        "besoins": "tranquilité"
+        "birthdate": "2022-02-19T23:00:00.000Z",
+        "resume": "acariatre",
+        "needs": "tranquilité"
     },
     {
         "id": "4",
         "name": "Sookie",
-        "age": "4",
-        "espece": "chat",
-        "caractere": "joueur",
-        "besoins": "animation"
+        "birthdate": "2022-02-19T23:00:00.000Z",
+        "resume": "joueur",
+        "needs": "animation"
     }
 ]

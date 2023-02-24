@@ -1,17 +1,46 @@
 @use 'src/styles/vars' as v ;
 @import 'src/styles/vars';
 
-.input-container input {
-    font-family: v.$global-font ;
-    font-size: 1rem;
-    display: block;
-    margin: 2rem auto;
-    padding: 1rem;
+.input-container {
+
+  min-height: 73vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &--boutton{
+    @include button;
+    margin: auto;
+    width: 6em;
   }
-button {
-  @include button; 
-  font-family: v.$global-font ;
-  display: block;
-  margin: 1rem auto;
-  padding: 1rem;
+
+  &--message{
+
+    background-color: v.$primary-color;
+    padding: 10px;
+    display: inline-block;
+    margin: 5vh auto ;
+
+    &-cross{
+      color: v.$black;
+      cursor: pointer;
+      transition: 0.2s;
+      &:hover{
+          color: v.$white;
+      }
+    }
+  }
+
+  &--input{
+    padding: 10px;
+    border-image-source: linear-gradient(-140deg, v.$primary-color, v.$tertiary-color);
+    border-width: 3px;
+    border-image-slice: 1;
+    transition: 0.2s;
+
+    &:focus{
+        border-image-source: linear-gradient(-140deg, v.$dark-color, v.$secondary-color);
+    }
+
+}
 }

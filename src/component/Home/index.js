@@ -36,12 +36,13 @@ const Home = () => {
                 </p>
             </div>
         <div className='animal-profils'>
-            <h1>Carousel of Profiles</h1>
             <div className='profiles'>
                 {filteredProfiles.map((profile) => (
                     <div key={profile.name} className='profile'>
+                        <div className='profile-image'>
                         <img src={profile.image} alt={profile.name} />
-                        <h3>{profile.name}</h3>
+                        </div>
+                        <h3 className='name'>{profile.name}</h3>
                     </div>
                 ))}
             </div>

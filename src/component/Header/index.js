@@ -18,7 +18,7 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
             <div className='header__menu'>
                 <Menu>
                     <p className='item-link--title'>J'adopte un humain !</p>
-                    <a href='#' className='item-link item-link--text'> Accueil</a>
+                    <Link to='/' className='item-link item-link--text'> Accueil</Link>
                     {isLogged 
                     ?<>
                         <Link to='/trombinoscope' className='bm-item item-link item-link--text'> Trombinoscope</Link>

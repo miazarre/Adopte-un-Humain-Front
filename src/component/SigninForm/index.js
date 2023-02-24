@@ -1,7 +1,16 @@
 import React from 'react';
 import './styles.scss';
+import Licorne from '../../assets/Licorne.png';
+import Dinosaure from '../../assets/Dinosaure.png';
+import Dragon from '../../assets/Dragon.png';
 import { useState, Component } from 'react';
 import { render } from 'react-dom';
+
+const categories = [
+  {name: "Licorne", image: Licorne},
+  {name: "Dinosaure", image: Dinosaure},
+  {name: "Dragon", image: Dragon},
+]
 
 const SigninForm = () => {
   const [lastName, setLastName] = useState('');
@@ -10,7 +19,7 @@ const SigninForm = () => {
   const [number, setNumber] = useState('');
   const [password, setPassword] = useState('');
   const [confirmation, setConfirmation] = useState('');
- const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,12 +39,14 @@ const SigninForm = () => {
 
 
               <div className="categories">
-                {["Licorne", "Dinosaure", "Dragon"].map(c => (
-                  <div className="category" onClick={() => setCategory(c.toLowerCase())}>
-                    <img src="https://media2.woopic.com/api/v1/images/2115%2Ftendances%2FArticles-Syndiques%2F90f%2F49c%2Fc730e6c3ca6855991f4ce4a032%2F7360804-bonne-nouvelle-pour-adam-driver-adam-dr-orig-5.jpg?format=1200x630&facedetect=1&quality=100" alt="Bibou" />
+                {categories.map(c => (
+                  <div className="category" onClick={() => setCategory(c.name.toLowerCase())}>
+                   <div className="category-image">
+                    <img src={c.image} alt={c.name}/>
+                    </div>
                     <div className="category-input">
-                      <input type="radio" id={c.toLowerCase()} name="category" value={c.toLowerCase()} onChange={e => setCategory(e.target.value)} checked={c.toLowerCase() === category} />
-                      <label for={c.toLowerCase()}>{c}</label>
+                      <input type="radio" id={c.name.toLowerCase()} name="category" value={c.name.toLowerCase()} onChange={e => setCategory(e.target.value)} checked={c.name.toLowerCase() === category} />
+                      <label for={c.name.toLowerCase()}>{c.name}</label>
                     </div>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis ornare libero. Donec lacinia mollis massa, id hendrerit arcu faucibus et.

@@ -1,0 +1,31 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+.container{
+    width: auto;
+    height: 100vh;
+    background: linear-gradient(v.$white, v.$primary-color);
+}
+
+.intro{
+    margin: 5rem 20rem;
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+.title{
+    @include Title ;
+    margin: 5rem 10rem;
+
+}
+
+.profiles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+img {
+    max-width: 20vh;
+}

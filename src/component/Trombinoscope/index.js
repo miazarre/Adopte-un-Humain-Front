@@ -4,7 +4,7 @@ import AnimalCard from './AnimalCard'
 import { useEffect, useState } from 'react'
 import React from 'react';
 
-const Trombinoscope = () => {
+const Trombinoscope = ({isLogged}) => {
 
     const [animals, setAnimals] = useState([])
 
@@ -15,16 +15,22 @@ const Trombinoscope = () => {
 
     return(
         <div className='trombinoscope'>
-            <div className='animal-card__container'>
-            {
-            animals.map((animal) => (
-                <AnimalCard
-                key={animal.id}
-                animal={animal}
-                />
-            ))
-            }
-            </div>
+        {isLogged
+            ? <>
+                <div className='animal-card__container'>
+                {
+                animals.map((animal) => (
+                    <AnimalCard
+                    key={animal.id}
+                    animal={animal}
+                    />
+                ))
+                }
+                </div>
+            </>
+            : <p className='profil-user__connexion-message'> Il faut te connecter ! </p>
+                    
+        }
         </div>
     )
 }

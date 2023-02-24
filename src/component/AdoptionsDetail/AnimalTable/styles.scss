@@ -1,0 +1,53 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+.animaltable{
+
+    &_container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column wrap;
+        margin-top: 1rem;
+        font-family: $global-font;
+
+        &-table{
+            margin-top: 4vh;
+            text-align: center;
+            max-width: 80vw;  
+        }
+
+        &-table th{
+            height: 5vh;
+            padding-bottom: 2vh;
+            vertical-align: middle;
+        }
+
+        &-table tr{
+            height: 5vh;
+        
+            &:nth-child(even){
+                background-color: $dark-color;
+                color:aliceblue;
+            }
+        }
+        
+        &-table td{
+            vertical-align: middle;
+            width: 16.6%;
+        
+            &:first-child { 
+                border-top-left-radius: 15px; 
+            }
+            &:first-child { 
+                border-bottom-left-radius: 15px; 
+            }
+            &:last-child { 
+                border-top-right-radius: 15px; 
+            }
+            &:last-child { 
+                border-bottom-right-radius: 15px; 
+            }
+        }
+    }
+}

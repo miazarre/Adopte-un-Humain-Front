@@ -30,18 +30,8 @@ const LoginForm = ({setUser, setIsLogged}) => {
       if(response.data.hasOwnProperty('token')){
         setLogin(`Salut ${response.data.firstname}`);
         localStorage.setItem('token', JSON.stringify(response.data.token));
-        const newUser = {
-          id:response.data.id,
-          firstname:response.data.firstname,
-          lastname:response.data.lastname,
-          phone:response.data.phone,
-          email:response.data.email,
-          country:response.data.country,
-          address:response.data.address,
-          city:response.data.city,
-          postal_code:response.data.postal_code,
-          role_id:response.data.role_id
-        } 
+        let newUser = response.data ;
+        delete newUser.token ;
         setUser(newUser)
         setIsLogged(true)
         navigate('/trombinoscope')

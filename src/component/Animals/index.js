@@ -45,7 +45,7 @@ const Animals = () => {
                         </svg>
                     </button>
                 </form>
-                <Link to="/">
+                <Link to="/animals/addanimal">
                     <VscDiffAdded size={'4vh'} className='animals_container-icon' />
                 </Link>
             </div>

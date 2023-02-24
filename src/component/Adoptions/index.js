@@ -32,9 +32,9 @@ const Adoptions = () => {
                         </svg>
                     </button>
                 </form>
-                <Link to="/">
+                {/* <Link to="/">
                     <VscDiffAdded size={'4vh'} className='adoptions_container-icon' />
-                </Link>
+                </Link> */}
             </div>
             <Link to="/board">
                 <button className='adoptions_container--linkToBoard'>Retour au Tableau de Bord</button>

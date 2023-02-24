@@ -15,6 +15,7 @@ import AnimalProfil from './component/AnimalProfil';
 import AdoptionsDetail from './component/AdoptionsDetail';
 import ProfilUser from './component/ProfilUser';
 import Preferences from './component/Preferences';
+import AddAnimal from './component/Animals/AddAnimal';
 
 import './styles/index.scss';
 import './styles/reset.scss';
@@ -52,6 +53,7 @@ function App() {
         <Route path='/board' element={<Board />} />
         <Route path='/users' element={<Users />} />
         <Route path='/animals' element={<Animals />} />
+        <Route path='/animals/addanimal' element={<AddAnimal />} />
         <Route path='/adoptions' element={<Adoptions />} />
         <Route path='/adoptions/:id' element={<AdoptionsDetail />} />
       </Routes>

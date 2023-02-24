@@ -55,6 +55,24 @@
             }
         }
 
+        &--error_message{
+            background-color: v.$primary-color;
+            color: v.$white;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            
+            &--cross{
+                color: v.$black;
+                cursor: pointer;
+                transition: 0.2s;
+                &:hover{
+                    color: v.$white;
+                }
+            }
+        }
+
         &--input{
             padding: 10px;
             border-image-source: linear-gradient(-140deg, v.$primary-color, v.$tertiary-color);

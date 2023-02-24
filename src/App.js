@@ -31,9 +31,9 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<LoginForm setUser={setUser} setIsLogged={setIsLogged} />} />
         <Route path='/signin' element={<SigninForm />} />
-        <Route path='/trombinoscope' element={<Trombinoscope/>} />
+        <Route path='/trombinoscope' element={<Trombinoscope isLogged={isLogged}/>} />
         <Route path='/trombinoscope/:id' element={<AnimalProfil/>}/>
-        <Route path='/profil' element={<ProfilUser user={user} isLogged={isLogged}/>}/>
+        <Route path='/profil' element={<ProfilUser user={user} isLogged={isLogged} />}/>
         <Route path='/preferences' element={<Preferences isLogged={isLogged}/>}/>
         <Route path='/board' element={<Board />} />
         <Route path='/users' element={<Users />} />

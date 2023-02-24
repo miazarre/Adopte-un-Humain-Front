@@ -62,6 +62,12 @@ const ProfilUser = ({user, isLogged}) => {
             return
         }
 
+        let firstNumber = form.phone.charAt(0);
+
+        if(form.phone != '' && form.phone.length != 10 || firstNumber !== 0){
+            setErrorMessage('Veuillez entrer un numéro de téléphone valide.')
+            return
+        }
 // On fait un objet à partir des champs du formulaire qui ne sont pas vides
         const modifiedFields = Object.entries(form)
             .filter(([_, value]) => value !== '')

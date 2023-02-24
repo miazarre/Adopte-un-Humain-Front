@@ -5,12 +5,16 @@ import logo from '../../assets/logo.png'
 import { FaTiktok, FaFacebookF} from 'react-icons/fa';
 import {AiOutlineTwitter} from 'react-icons/ai'
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Header = ({isLogged, user, setUser, setIsLogged}) => {
+
+    const navigate = useNavigate()
 
     const handleDeconnexion = () => {
         setUser('');
         setIsLogged(false);
+        navigate('/login')
     }
 
     return (
@@ -43,7 +47,6 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
                     ?<>
                         <p>Bienvenue {user.firstname} !</p>
                     </>   
-                    
                     
                     : <>
                         <div className='signin'>

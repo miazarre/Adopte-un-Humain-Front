@@ -2,10 +2,13 @@ import './style.scss';
 import { useState } from 'react';
 import React from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
 
 const LoginForm = ({setUser, setIsLogged}) => {
+
+  const navigate = useNavigate();
 
   const [login, setLogin] = useState('')
   const [email, setEmail] = useState('');
@@ -28,6 +31,7 @@ const LoginForm = ({setUser, setIsLogged}) => {
         setLogin(`Salut ${response.data.firstname}`);
         localStorage.setItem('token', JSON.stringify(response.data.token));
         const newUser = {
+          id:response.data.id,
           firstname:response.data.firstname,
           lastname:response.data.lastname,
           phone:response.data.phone,
@@ -40,6 +44,7 @@ const LoginForm = ({setUser, setIsLogged}) => {
         } 
         setUser(newUser)
         setIsLogged(true)
+        navigate('/trombinoscope')
       }else{
         setLogin('Il y a eu une erreur lors de la connexion.')
       }

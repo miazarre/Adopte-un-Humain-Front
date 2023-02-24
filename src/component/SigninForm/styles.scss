@@ -61,6 +61,12 @@ input {
   }
 }
 
+.category-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .category-input {
   align-self: center;
 }

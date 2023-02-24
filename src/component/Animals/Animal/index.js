@@ -6,15 +6,17 @@ import { FiTrash2 } from "react-icons/fi";
 import { TfiPencil } from "react-icons/tfi";
 import { GiLabradorHead } from "react-icons/gi";
 
-const Animal = ({name, age, espece, caractere, besoins, id }) => {
+const Animal = ({name, birthdate, resume, needs, id }) => {
     const profile=`/trombinoscope/${id}`;
+    const date = new Date(birthdate);
+    const localeDate = (date.toLocaleDateString('fr-FR'));
+
     return( 
         <tr>
             <td>{name}</td>
-            <td>{age}</td>
-            <td>{espece}</td>
-            <td>{caractere}</td>
-            <td>{besoins}</td>
+            <td>{localeDate}</td>
+            <td>{resume}</td>
+            <td>{needs}</td>
             <td>
                 <Link to={profile}>
                     <GiLabradorHead size={'3vh'} className='users_container-title-table--icon' />
@@ -34,10 +36,9 @@ const Animal = ({name, age, espece, caractere, besoins, id }) => {
 
 Animal.propTypes = {
     name: PropTypes.string.isRequired,
-    age: PropTypes.number.isRequired,
-    espece: PropTypes.string.isRequired,
-    caractere: PropTypes.string.isRequired,
-    besoins: PropTypes.string.isRequired,
+    birthdate: PropTypes.string.isRequired,
+    resume: PropTypes.string.isRequired,
+    needs: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
   };
     

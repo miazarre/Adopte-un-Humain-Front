@@ -16,9 +16,33 @@
     &__container{
         display: flex;
         justify-content: center;
-        gap: 10vw;
+        gap: 5vw;
         min-height: 76vh;
         
+    }
+
+    &__sending-message{
+        background-color: v.$primary-color;
+        padding: 10px;
+
+        &--cross{
+            color: v.$black;
+            transition: 0.2s;
+            margin-right: 10px;
+
+            &:hover{
+                cursor: pointer;
+                color:v.$white;
+            }
+        }
+
+        &--link{
+            border-bottom: 2px solid v.$black;
+            transition: 0.2s;
+            &:hover{
+                border-color: v.$white;
+            }
+        }
     }
 
     &__details{
@@ -113,6 +137,19 @@
             
         }
 
+        &--exemple{
+            width: 30vw;
+            font-size: 0.8em;
+
+            &--title{
+                text-align: center;
+                background-color: rgba(v.$black, 0.1);
+                padding: 5px;
+                margin-bottom: 10px;
+                border-radius: 10px;
+            }
+        }
+
         &--textarea{
             width: 100%;
             border-radius: 10px;
@@ -127,18 +164,37 @@
             border: 2px solid v.$secondary-color;
         }
     }
+
+    &--errorMessage{
+        background-color: v.$primary-color;
+        padding:10px;
+        display: flex;
+        gap: 30px;
+        justify-content: space-between;
+        margin-bottom: 20px;
+
+        &--cross{
+            transition: 0.2s;
+            &:hover{
+                color: v.$white;
+                cursor: pointer;
+            }
+        }
+    }
     }
 
     &__button{
         @include button;
         width: 8rem;
+        
 
         &--container{
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 7vh;
+
             p{
-                
              margin:10px;
             }
         }

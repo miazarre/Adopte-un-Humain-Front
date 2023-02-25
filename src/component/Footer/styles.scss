@@ -4,11 +4,7 @@
 .footer{
     &__container{
         z-index: 3 !important;
-        position : static ;
-        bottom: 0;
         height: 10vh;
-        position : absolute ;
-        bottom: 0;
         height: 7vh;
         width: 100%;
         box-shadow: 1px 1px 40px rgba(v.$black, 0.1);
@@ -16,8 +12,6 @@
         justify-content: space-between;
         align-items: center;
         padding: 20px;
-        position:fixed;
-        bottom: 0;
         font-family: $global-font;
         background-color: v.$white;
 

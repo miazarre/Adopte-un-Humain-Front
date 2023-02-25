@@ -9,7 +9,7 @@ const AnimalCard = ({animal}) => {
         <div className='animal-card__card'>
             <div className='animal-card__card--gradient'>
                 <div 
-                style={{backgroundImage:`url(${animal.image})`}} 
+                style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo1})`}} 
                 className='animal-card__card--image'
                 >
                 </div>

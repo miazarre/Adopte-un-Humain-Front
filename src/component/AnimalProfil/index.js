@@ -1,20 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
-import data from '../../data/fake_animals.json'
-import './styles.scss'
 import {TiArrowBack} from 'react-icons/ti'
 import Slider from 'react-slick';
+import axios from 'axios';
+
+import './styles.scss'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
 
 const AnimalProfil = () => {
 
     const param = useParams()
-    const animal = data.filter(animal => parseInt(animal.id) === parseInt(param.id))
+    const [animal, setAnimal] = useState([])
 
-    const [isContactingAnimal, setIsContactinganimal] = useState(false)
+    const getAnimal = async () =>{
+        const response = await axios.get(`${baseUrl}/animal/${param.id}`) ;
+        setAnimal(response.data)
+    }
+
+    useEffect(() => {
+        getAnimal()
+        }, 
+      []);
+
+    const [isContactingAnimal, setIsContactinganimal] = useState(false);
+
     const settings = {
         dots: true,
         infinite: true,
@@ -31,20 +44,34 @@ const AnimalProfil = () => {
             <div className='animal-profil__details--gradient'>
                 <Slider {...settings}>
                     <div> 
-                        <div style={{backgroundImage:`url(${animal[0].image})`}} className='animal-profil__details--image'> 
+                        <div style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo1})`}} className='animal-profil__details--image'> 
+                        </div> 
+                    </div>
+                    {animal.photo2 &&
+                    <div> 
+                        <div style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo2})`}} className='animal-profil__details--image'> 
                         </div>
                     </div>
-                    <div > 
-                        <div style={{backgroundImage:`url(${animal[0].image2})`}} className='animal-profil__details--image'> 
+                    }
+                    {animal.photo3 &&
+                    <div> 
+                        <div style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo3})`}} className='animal-profil__details--image'> 
                         </div>
                     </div>
+                    }
+                    {animal.photo4 &&
+                    <div> 
+                        <div style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo4})`}} className='animal-profil__details--image'> 
+                        </div>
+                    </div>
+                    }
                     
                 </Slider>
             </div>
         </div>
         <div className='animal-profil__description'>
             <div className='animal-profil__title-container'>
-                <h1 className='animal-profil__title-container--name'>{animal[0].name}</h1>
+                <h1 className='animal-profil__title-container--name'>{animal.name}</h1>
                 <span className='animal-profil__title-container--dot'></span>
                 <p className='animal-profil__title-container--points'>10 points communs</p>
             </div>
@@ -74,10 +101,10 @@ const AnimalProfil = () => {
                  </>
                 : <>
                     <div className='animal-profil__description--text'>
-                        <p>{animal[0].description}</p>
-                        <p>{animal[0].description}</p>
+                        <p>{animal.description}</p>
+                        <p>{animal.description}</p>
                     </div>
-                    <p className='animal-profil__description--button' onClick={e=>setIsContactinganimal(!isContactingAnimal)}><span>Écrire à {animal[0].name}</span></p>
+                    <p className='animal-profil__description--button' onClick={e=>setIsContactinganimal(!isContactingAnimal)}><span>Écrire à {animal.name}</span></p>
                 </>
                 }
 

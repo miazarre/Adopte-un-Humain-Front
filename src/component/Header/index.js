@@ -3,9 +3,11 @@ import logo from '../../assets/logo.png'
 
 import { Link } from 'react-router-dom';
 import { bubble as Menu } from 'react-burger-menu'
+
 import { FaTiktok, FaFacebookF} from 'react-icons/fa';
 import {AiOutlineTwitter} from 'react-icons/ai'
 import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 const Header = ({isLogged, user, setUser, setIsLogged}) => {

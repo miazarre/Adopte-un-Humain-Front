@@ -16,6 +16,7 @@ import AdoptionsDetail from './component/AdoptionsDetail';
 import ProfilUser from './component/ProfilUser';
 import Preferences from './component/Preferences';
 import AddAnimal from './component/Animals/AddAnimal';
+import Error from './component/Error';
 
 import './styles/index.scss';
 import './styles/reset.scss';
@@ -56,6 +57,7 @@ function App() {
         <Route path='/animals/addanimal' element={<AddAnimal />} />
         <Route path='/adoptions' element={<Adoptions />} />
         <Route path='/adoptions/:id' element={<AdoptionsDetail />} />
+        <Route path='*' element={<Error />} />
       </Routes>
       <Footer/>
     </BrowserRouter>

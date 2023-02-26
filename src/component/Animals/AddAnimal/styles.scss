@@ -1,13 +1,30 @@
 @use 'src/styles/vars' as v ;
 @import 'src/styles/vars';
 
-.input-container input {
+.input-container {
+  display: flex;
+
+  & input {
     font-family: v.$global-font ;
     font-size: 1rem;
     display: block;
     margin: 2rem auto;
     padding: 1rem;
   }
+
+  &-informations {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 4vh;
+  }
+
+  & label {
+    font-family: v.$global-font ;
+    font-size: 1rem;
+    display: block;
+  }
+}
 
 h1 {
   color: v.$black;
@@ -68,7 +85,8 @@ input {
 }
 
 .category-input {
-  align-self: center;
+  display: flex;
+  align-items: baseline;
 }
 
 .category-input input {
@@ -78,4 +96,27 @@ input {
 
 .category-input label {
   font-size: 1.25rem;
+}
+
+.textareas{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.input-label{
+  display: flex;
+  justify-content: center;
+
+}
+
+.informations-date{
+  justify-content: center;
+  align-items: center;
+}
+
+.textareas-label{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }

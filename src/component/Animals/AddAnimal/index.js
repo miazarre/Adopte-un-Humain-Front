@@ -25,33 +25,41 @@ const AddAnimal = () => {
     ]
 
     return( 
+    <>
+    <Link to="/board">
+        <button className='adoptions_container--linkToBoard'>Retour au Tableau de Bord</button>
+    </Link>
      <div className="input-container">
-        <Link to="/board">
-            <button className='adoptions_container--linkToBoard'>Retour au Tableau de Bord</button>
-        </Link>
         <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Nom" name="name" value={name} onChange={(event) => setName(event.target.value)} />
-            <label for="date">Date de naissance :</label>
-            <input type="date" id="date" name="date" />
-            <div>
-                <label for="photos">Ajouter des photos :</label>
-                <input type="file"
+            <div className="input-container-informations">
+                <div>
+                <input type="text" placeholder="Nom" name="name" value={name} onChange={(event) => setName(event.target.value)} />
+                </div>
+                <div>
+                <label for="date"  className="informations-date">Date de naissance :</label>
+                <input type="date" id="date" name="date" />
+                </div>
+                <div>
+                <label className="input-label" for="photos">Ajouter des photos :</label>
+                <input 
+                    type="file"
                     id="photos" name="photos"
                     accept="image/png, image/jpeg" multiple>
                 </input>
+                </div>
             </div>
-            <div>
+            <div className='textareas'>
                 <div>
-                    <label for="resume">Résumé :</label>
-                    <textarea id="resume" name="resume" rows="5" cols="40" value={resume} onChange={(event) => setResume(event.target.value)}></textarea>
+                    <label for="resume" className='textareas-label'>Résumé :</label>
+                    <textarea id="resume" name="resume" rows="6" cols="45" value={resume} onChange={(event) => setResume(event.target.value)}></textarea>
                 </div>
                 <div>
-                    <label for="description">Description :</label>
-                    <textarea id="description" name="description" rows="5" cols="40" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
+                    <label for="description" className='textareas-label'>Description :</label>
+                    <textarea id="description" name="description" rows="6" cols="45" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
                 </div>
                 <div>      
-                    <label for="needs">Besoins de l'animal :</label>
-                    <textarea id="needs" name="needs" rows="5" cols="40" value={needs} onChange={(event) => setNeeds(event.target.value)}></textarea>
+                    <label for="needs" className='textareas-label'>Besoins de l'animal :</label>
+                    <textarea id="needs" name="needs" rows="6" cols="45" value={needs} onChange={(event) => setNeeds(event.target.value)}></textarea>
                 </div>   
             </div>
             <div className="categories">
@@ -77,6 +85,7 @@ const AddAnimal = () => {
             <button type="submit" value="Submit">Valider</button>
         </form>
     </div>
+    </>
     )
 }
 

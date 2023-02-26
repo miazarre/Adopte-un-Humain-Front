@@ -11,8 +11,6 @@ import { useNavigate } from 'react-router-dom';
 const Header = ({isLogged, user, setUser, setIsLogged}) => {
     const navigate = useNavigate()
 
-    const navigate = useNavigate()
-
     const handleDeconnexion = () => {
         setUser('');
         setIsLogged(false);
@@ -41,9 +39,11 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
                     </div>
                 </Menu>
             </div>
-            <div className='header__logo'>
-                <img src={logo} alt='animal paw and rainbow background'/>
-            </div>
+            <Link to='/'>
+                <div className='header__logo'>
+                    <img src={logo} alt='animal paw and rainbow background'/>
+                </div>
+            </Link>
             <div className='header__right-button'>
                 {isLogged
                     ?<>

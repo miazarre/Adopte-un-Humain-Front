@@ -6,7 +6,15 @@
     &__card{
         background-color: v.$white;
         border-radius: 50px 0 50px 0;
-        width: 30%;
+        width: 30vw;
+
+        &--heart{
+            color: v.$primary-color;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 10px;
+        }
 
         &--gradient{
             margin: 5vh auto;

@@ -4,11 +4,33 @@ import AnimalCard from './AnimalCard'
 import { useEffect, useState } from 'react'
 import React from 'react';
 import axios from 'axios';
+import {BsSuitHeart} from 'react-icons/bs'
 
 const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
 
 const Trombinoscope = ({isLogged}) => {
 
+    const [favorites, setFavorites] = useState([]);
+
+    useEffect(() => {
+        const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+        if (storedFavorites) {
+          setFavorites(storedFavorites);
+        }
+      }, []);
+
+     const toggleFavorite = (animal) => {
+        if (favorites.includes(animal)) {
+        const newFavorites = favorites.filter((fav) => fav !== animal);
+        setFavorites(newFavorites);
+        localStorage.setItem("favorites", JSON.stringify(newFavorites));
+        } else {
+        const newFavorites = [...favorites, animal];
+        setFavorites(newFavorites);
+        localStorage.setItem("favorites", JSON.stringify(newFavorites));
+        }
+    };
+    
     const [animals, setAnimals] = useState([])
 
     const getAnimals = async () => {
@@ -31,6 +53,8 @@ const Trombinoscope = ({isLogged}) => {
                     <AnimalCard
                     key={animal.id}
                     animal={animal}
+                    toggleFavorite={toggleFavorite}
+                    favorites={favorites}
                     />
                 ))
                 }

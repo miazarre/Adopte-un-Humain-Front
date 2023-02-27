@@ -23,7 +23,19 @@ function App() {
 
   const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState() ;
+  const [favorites, setFavorites] = useState([]);
 
+  const toggleFavorite = (animal) => {
+    if (favorites.includes(animal)) {
+    const newFavorites = favorites.filter((fav) => fav !== animal);
+    setFavorites(newFavorites);
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    } else {
+    const newFavorites = [...favorites, animal];
+    setFavorites(newFavorites);
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    }
+};
   return (
     <BrowserRouter>
       <Header user={user} setUser={setUser} isLogged={isLogged} setIsLogged={setIsLogged}/>
@@ -31,8 +43,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<LoginForm setUser={setUser} setIsLogged={setIsLogged} />} />
         <Route path='/signin' element={<SigninForm />} />
-        <Route path='/trombinoscope' element={<Trombinoscope isLogged={isLogged}/>} />
-        <Route path='/trombinoscope/:id' element={<AnimalProfil user={user} isLogged={isLogged} />}/>
+        <Route path='/trombinoscope' element={<Trombinoscope isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite}/>} />
+        <Route path='/trombinoscope/:id' element={<AnimalProfil user={user} isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite}/>}/>
         <Route path='/profil' element={<ProfilUser user={user} isLogged={isLogged} />}/>
         <Route path='/preferences' element={<Preferences isLogged={isLogged}/>}/>
         <Route path='/board' element={<Board />} />

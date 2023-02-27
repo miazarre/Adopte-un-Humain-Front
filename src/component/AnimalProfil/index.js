@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 import {TiArrowBack} from 'react-icons/ti'
 import { RxCrossCircled } from 'react-icons/rx';
+import {BsSuitHeart, BsSuitHeartFill} from 'react-icons/bs'
 import Slider from 'react-slick';
 import axios from 'axios';
 
@@ -12,7 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
 
-const AnimalProfil = ({user, isLogged}) => {
+const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
 // Déclaration de tous les params
     const param = useParams()
@@ -127,7 +128,14 @@ const AnimalProfil = ({user, isLogged}) => {
                     <h1 className='animal-profil__title-container--name'>{animal.name}</h1>
                     <span className='animal-profil__title-container--dot'></span>
                     <p className='animal-profil__title-container--points'>10 points communs</p>
+                    <div className='animal-card__card--heart' onClick={e => toggleFavorite(animal.id)}>
+                    {favorites.includes(animal.id)
+                    ?  <div className='animal-profil__title-container--fav animal-profil__title-container--fav-added'><BsSuitHeartFill className='icon' size={'15px'}/> Retirer des coups de coeur</div>
+                    :  <div className='animal-profil__title-container--fav animal-profil__title-container--fav-not-added'><BsSuitHeart className='icon' size={'15px'} /> Ajouter aux coups de coeur</div>
+                    }
+                    </div>
                 </div>
+
 
     {/* Affichage conditionnel. Si tu cliques sur contacter, tu affiches le formulaire de contact. Si non, tu as la description de l'animal */}
                     {isContactingAnimal === 'yes' &&

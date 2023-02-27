@@ -38,7 +38,7 @@ const Favorites = ({favorites, setFavorites, isLogged}) => {
     return(
         <div className='favorites-page__container'>
         {isLogged
-            ? <> Favorites
+            ? <div className='favorites-page__fav--container'>
             {
                 animals.map((animal) => (
                     <AnimalFav
@@ -47,7 +47,7 @@ const Favorites = ({favorites, setFavorites, isLogged}) => {
                     />
                 ))
             }
-            </>
+            </div>
 
             : <p className='profil-user__connexion-message'> Il faut te connecter ! </p> 
             

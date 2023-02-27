@@ -17,7 +17,7 @@
         display: flex;
         justify-content: center;
         gap: 5vw;
-        min-height: 76vh;
+        min-height: 85vh;
         
     }
 
@@ -104,6 +104,27 @@
             @include smallTitle;
         }
 
+        &--fav{
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+            border-radius: 10px;
+            cursor: pointer;
+            &-added{
+                color: v.$white;
+                background-color: v.$primary-color;
+                border: 2px solid v.$white;
+            }
+
+            &-not-added{
+                color: v.$primary-color;
+                background-color: v.$white;
+                border: 2px solid v.$primary-color;
+            }
+        }
     }
 
     &__description{

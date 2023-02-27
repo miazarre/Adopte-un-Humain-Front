@@ -6,21 +6,30 @@
     &__card{
         background-color: v.$white;
         border-radius: 50px 0 50px 0;
-        width: 30%;
+        width: 20vw;
+
+        &--heart{
+            color: v.$primary-color;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 10px;
+            cursor: pointer;
+        }
 
         &--gradient{
-            margin: 5vh auto;
+            margin: 1vh auto;
             padding-top: 1vw;
-            width: 17vw;
-            height: 17vw;
+            width: 22vw;
+            height: 22vw;
             border-radius: 50%;
             background: linear-gradient(v.$light-color, v.$dark-color);
         }
 
         &--image{
             margin: auto;
-            width: 15vw;
-            height: 15vw;
+            width: 20vw;
+            height: 20vw;
             border-radius: 50%;
             background-size: cover;
             background-position: center;

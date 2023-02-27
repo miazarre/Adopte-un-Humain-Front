@@ -7,8 +7,15 @@ import axios from 'axios';
 
 const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
 
-const Trombinoscope = ({isLogged}) => {
+const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite}) => {
 
+    useEffect(() => {
+        const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+        if (storedFavorites) {
+          setFavorites(storedFavorites);
+        }
+      }, []);
+    
     const [animals, setAnimals] = useState([])
 
     const getAnimals = async () => {
@@ -31,6 +38,8 @@ const Trombinoscope = ({isLogged}) => {
                     <AnimalCard
                     key={animal.id}
                     animal={animal}
+                    toggleFavorite={toggleFavorite}
+                    favorites={favorites}
                     />
                 ))
                 }
@@ -40,6 +49,8 @@ const Trombinoscope = ({isLogged}) => {
             : <p className='profil-user__connexion-message'> Il faut te connecter ! </p> 
 
         }
+
+
         </div>
     )
 }

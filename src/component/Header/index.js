@@ -1,7 +1,9 @@
 import './styles.scss'
+import logo from '../../assets/logo.png'
+
 import { Link } from 'react-router-dom';
 import { bubble as Menu } from 'react-burger-menu'
-import logo from '../../assets/logo.png'
+
 import { FaTiktok, FaFacebookF} from 'react-icons/fa';
 import {AiOutlineTwitter} from 'react-icons/ai'
 import React from 'react';
@@ -28,6 +30,7 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
                         <Link to='/trombinoscope' className='bm-item item-link item-link--text'> Trombinoscope</Link>
                         <Link to='/preferences' className='bm-item item-link item-link--text'> Préférences</Link>
                         <Link to='/profil' className='bm-item item-link item-link--text'> Profil</Link>
+                        <Link to='/favorites' className='bm-item item-link item-link--text'>Coups de coeur</Link>
                         <button onClick={handleDeconnexion} className='item-link--deco'><span>Déconnexion</span></button>
                     </>
                     :   <Link to='/login' className='bm-item item-link item-link--text'>Connexion</Link>

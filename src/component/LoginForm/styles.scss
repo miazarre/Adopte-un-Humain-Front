@@ -3,11 +3,12 @@
 
 .input-container {
 
-  min-height: 73vh;
+  min-height: 81.5vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
   &--boutton{
     @include button;
     margin: auto;

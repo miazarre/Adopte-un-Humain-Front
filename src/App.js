@@ -18,6 +18,7 @@ import Preferences from './component/Preferences';
 
 import './styles/index.scss';
 import './styles/reset.scss';
+import Favorites from './component/Favorites';
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
         <Route path='/signin' element={<SigninForm />} />
         <Route path='/trombinoscope' element={<Trombinoscope isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite}/>} />
         <Route path='/trombinoscope/:id' element={<AnimalProfil user={user} isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite}/>}/>
+        <Route path='/favorites' element={<Favorites isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite}/>} />
         <Route path='/profil' element={<ProfilUser user={user} isLogged={isLogged} />}/>
         <Route path='/preferences' element={<Preferences isLogged={isLogged}/>}/>
         <Route path='/board' element={<Board />} />

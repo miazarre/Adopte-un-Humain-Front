@@ -1,27 +1,22 @@
-import React, { useState } from 'react';
-import { useParams } from "react-router-dom"
-import { Link } from "react-router-dom"
-import data from '../../data/fake_animals.json'
+import React, { useEffect, useState } from 'react';
 import './styles.scss'
-import {TiArrowBack} from 'react-icons/ti'
-import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import axios from 'axios';
+
+const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
 
 const Home = () => {
-    const [profiles, setProfiles] = useState(data)
+    const [profiles, setProfiles] = useState([])
 
-    const filteredProfiles = profiles.filter((profile) => {
-        return profile;
-      }).slice(0, 5); 
-
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-      };
+    const filteredProfiles = async () => {
+        const response = await axios.get(`${baseUrl}/animals`);
+        setProfiles(response.data)
+    }
+     useEffect(() => {
+        filteredProfiles()
+     },
+     [] );
 
     return(
     <>
@@ -35,21 +30,22 @@ const Home = () => {
                      Nullam molestie, orci sit amet feugiat molestie, libero mauris pretium nisi, et dapibus eros sapien at est. Ut interdum lectus enim, non eleifend eros fermentum vitae.
                 </p>
             </div>
-        <div className='animal-profils'>
+        <div className='animal-profiles'>
             <div className='profiles'>
-                {filteredProfiles.map((profile) => (
+                {profiles.map((profile) => (
                     <div key={profile.name} className='profile'>
-                        <div className='profile-image'>
-                        <img src={profile.image} alt={profile.name} />
+                        <div 
+                            style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${profile.photo1})`}} 
+                            className='animal-card__card--image'>
                         </div>
                         <h3 className='name'>{profile.name}</h3>
                     </div>
                 ))}
-            </div>
+                </div>
         </div>
     </div>
     </>
-    )
+    );
 }
 
 export default Home

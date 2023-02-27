@@ -29,7 +29,6 @@ const SigninForm = () => {
     email,
     password,
     phone,
-    category
     })
   }
 

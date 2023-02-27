@@ -40,6 +40,8 @@ const Trombinoscope = ({isLogged}) => {
             : <p className='profil-user__connexion-message'> Il faut te connecter ! </p> 
 
         }
+
+
         </div>
     )
 }

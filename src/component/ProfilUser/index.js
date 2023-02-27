@@ -2,9 +2,12 @@ import dragon from '../../assets/Dragon.png';
 import './styles.scss';
 import { Link } from 'react-router-dom';
 import {HiLightBulb} from 'react-icons/hi';
+<<<<<<< HEAD
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {RxCrossCircled} from 'react-icons/rx';
+=======
+>>>>>>> 3fae22783a8bf06b88e2b6a0319f0834d0c16cf9
 
 const ProfilUser = ({user, isLogged}) => {
     return( 
@@ -35,6 +38,7 @@ const ProfilUser = ({user, isLogged}) => {
                     <input className='profil-user__form--input' placeholder='Nouveau mot de passe' type='password'/>
                     <input className='profil-user__form--input' placeholder='Confirmation' type='password'/>
 
+<<<<<<< HEAD
 const ProfilUser = ({user, isLogged}) => {
 
     const [profilUSer, setProfilUser] = useState(user);
@@ -172,6 +176,8 @@ const ProfilUser = ({user, isLogged}) => {
                         <input className='profil-user__form--input' value={form.new_password} name='new_password' placeholder='Nouveau mot de passe' type='password' onChange={handleFormChange}/>
                         <input className='profil-user__form--input' value={form.confirm_new_password} name='confirm_new_password' placeholder='Confirmation' type='password' onChange={handleFormChange}/>
 
+=======
+>>>>>>> 3fae22783a8bf06b88e2b6a0319f0834d0c16cf9
                         <button className='profil-user__form--button'><span>Valider</span></button>
                     </form>
                     </div>

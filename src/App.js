@@ -20,6 +20,7 @@ function App() {
 
   const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState() ;
+<<<<<<< HEAD
   const [favorites, setFavorites] = useState([]);
 
   const toggleFavorite = (animal) => {
@@ -33,11 +34,17 @@ function App() {
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
     }
 };
+=======
+
+>>>>>>> 3fae22783a8bf06b88e2b6a0319f0834d0c16cf9
   return (
     <BrowserRouter>
       <Header user={user} setUser={setUser} isLogged={isLogged} setIsLogged={setIsLogged}/>
       <Routes>
+<<<<<<< HEAD
         <Route path='/' element={<Home />} />
+=======
+>>>>>>> 3fae22783a8bf06b88e2b6a0319f0834d0c16cf9
         <Route path='/login' element={<LoginForm setUser={setUser} setIsLogged={setIsLogged} />} />
         <Route path='/signin' element={<SigninForm />} />
         <Route path='/trombinoscope' element={<Trombinoscope/>} />

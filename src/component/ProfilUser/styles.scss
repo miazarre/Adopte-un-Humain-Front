@@ -28,7 +28,10 @@
         padding: 30px;
 
         img{
+<<<<<<< HEAD
             all: unset;
+=======
+>>>>>>> 3fae22783a8bf06b88e2b6a0319f0834d0c16cf9
             width: 100%;
         }
 
@@ -56,6 +59,7 @@
             }
         }
 
+<<<<<<< HEAD
         &--error_message{
             background-color: v.$primary-color;
             color: v.$white;
@@ -74,6 +78,8 @@
             }
         }
 
+=======
+>>>>>>> 3fae22783a8bf06b88e2b6a0319f0834d0c16cf9
         &--input{
             padding: 10px;
             border-image-source: linear-gradient(-140deg, v.$primary-color, v.$tertiary-color);

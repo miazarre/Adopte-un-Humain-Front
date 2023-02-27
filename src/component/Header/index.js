@@ -8,15 +8,22 @@ import { FaTiktok, FaFacebookF} from 'react-icons/fa';
 import {AiOutlineTwitter} from 'react-icons/ai'
 import React from 'react';
 
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
 
 const Header = ({isLogged, user, setUser, setIsLogged}) => {
     const navigate = useNavigate()
+=======
+const Header = ({isLogged, user, setUser, setIsLogged}) => {
+>>>>>>> 3fae22783a8bf06b88e2b6a0319f0834d0c16cf9
 
     const handleDeconnexion = () => {
         setUser('');
         setIsLogged(false);
+<<<<<<< HEAD
         navigate('/login')
+=======
+>>>>>>> 3fae22783a8bf06b88e2b6a0319f0834d0c16cf9
     }
 
     return (
@@ -50,6 +57,10 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
                         <p>Bienvenue {user.firstname} !</p>
                     </>   
                     
+<<<<<<< HEAD
+=======
+                    
+>>>>>>> 3fae22783a8bf06b88e2b6a0319f0834d0c16cf9
                     : <>
                         <div className='signin'>
                         <Link to='/signin'>

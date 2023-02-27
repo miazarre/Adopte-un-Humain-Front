@@ -1,5 +1,7 @@
 import '../styles.scss';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 
 import { FiTrash2 } from "react-icons/fi";
@@ -10,9 +12,24 @@ const Animal = ({name, birthdate, resume, needs, id }) => {
     const profile=`/trombinoscope/${id}`;
     const date = new Date(birthdate);
     const localeDate = (date.toLocaleDateString('fr-FR'));
+    const URLdelete = `http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal/${id}`;
+
+    // const [data, setData] = useState([])
+
+    // useEffect(() => {
+    //   const fetchData = async () =>{
+    //     try {
+    //       const {data: response} = await axios.delete(URLdelete);
+    //       setData(response);
+    //     } catch (error) {
+    //       console.error(error.message);
+    //     }
+    //   }
+    //   fetchData();
+    // }, []);
 
     return( 
-        <tr>
+        <tr className="animal_table">
             <td>{name}</td>
             <td>{localeDate}</td>
             <td>{resume}</td>
@@ -26,9 +43,17 @@ const Animal = ({name, birthdate, resume, needs, id }) => {
                 <Link to="/">
                     <TfiPencil size={'3vh'} className='animals_container-title-table--icon'/>
                 </Link>
-                <Link to="/">
-                    <FiTrash2 size={'3vh'} className='animals_container-title-table--icon' />
-                </Link>
+                <FiTrash2 
+                    size={'3vh'} 
+                    className='animals_container-title-table--icon' 
+                    onClick={() => {const confirmation = window.confirm("Etes-vous sûr de vouloir le supprimer ?")
+                        if (confirmation){
+                            console.log('OK on supprime')
+                        } else {
+                            console.log('On annule')
+                        }}}
+                />
+                
             </td>
         </tr>
     )

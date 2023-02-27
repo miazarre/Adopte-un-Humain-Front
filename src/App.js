@@ -37,12 +37,12 @@ function App() {
         <Route path='/trombinoscope/:id' element={<AnimalProfil user={user} isLogged={isLogged} />}/>
         <Route path='/profil' element={<ProfilUser user={user} isLogged={isLogged} />}/>
         <Route path='/preferences' element={<Preferences isLogged={isLogged}/>}/>
-        <Route path='/board' element={<Board />} />
-        <Route path='/users' element={<Users />} />
-        <Route path='/animals' element={<Animals />} />
-        <Route path='/animals/addanimal' element={<AddAnimal />} />
-        <Route path='/adoptions' element={<Adoptions />} />
-        <Route path='/adoptions/:id' element={<AdoptionsDetail />} />
+        <Route path='/board' element={<Board user={user} isLogged={isLogged}/>} />
+        <Route path='/users' element={<Users user={user} isLogged={isLogged}/>} />
+        <Route path='/animals' element={<Animals  user={user} isLogged={isLogged}/>} />
+        <Route path='/animals/addanimal' element={<AddAnimal user={user} isLogged={isLogged}/>} />
+        <Route path='/adoptions' element={<Adoptions user={user} isLogged={isLogged}/>} />
+        <Route path='/adoptions/:id' element={<AdoptionsDetail user={user} isLogged={isLogged}/>} />
         <Route path='*' element={<Error />} />
       </Routes>
       <Footer/>

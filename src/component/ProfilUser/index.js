@@ -2,43 +2,11 @@ import dragon from '../../assets/Dragon.png';
 import './styles.scss';
 import { Link } from 'react-router-dom';
 import {HiLightBulb} from 'react-icons/hi';
-<<<<<<< HEAD
+
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {RxCrossCircled} from 'react-icons/rx';
-=======
->>>>>>> 3fae22783a8bf06b88e2b6a0319f0834d0c16cf9
 
-const ProfilUser = ({user, isLogged}) => {
-    return( 
-             <div className='profil-user__container'>
-                {isLogged
-                ? <>
-                <div className='profil-user__details'>
-                    <img src={dragon}/>
-                    <p className='profil-user__details--name'>{user.firstname} {user.lastname}</p>
-                    <p>{user.email}</p>
-                    <p>{user.phone}</p>
-                    <p>{user.address} {user.postal_code} {user.city} {user.country}</p>
-                </div>
-                <div className='profil-user__form'>
-                    <form>
-                        <p className='profil-user__form--section'>Informations personnelles</p>
-                    <input className='profil-user__form--input' placeholder='Nom'/>
-                    <input className='profil-user__form--input' placeholder='Prénom'/>
-                    <input className='profil-user__form--input' placeholder='Téléphone' type='tel'/>
-                    <p className='profil-user__form--section'>Adresse</p>
-                    <input className='profil-user__form--input' placeholder='Adresse'/>
-                    <input className='profil-user__form--input' placeholder='Code postal'/>
-                    <input className='profil-user__form--input' placeholder='Ville'/>
-                    <input className='profil-user__form--input' placeholder='Pays'/>
-                    <p className='profil-user__form--section'>Sécurité</p>
-                    <input className='profil-user__form--input' placeholder='E-mail' type='email'/>
-                    <input className='profil-user__form--input' placeholder='Confirmation e-mail' type='email'/>
-                    <input className='profil-user__form--input' placeholder='Nouveau mot de passe' type='password'/>
-                    <input className='profil-user__form--input' placeholder='Confirmation' type='password'/>
-
-<<<<<<< HEAD
 const ProfilUser = ({user, isLogged}) => {
 
     const [profilUSer, setProfilUser] = useState(user);
@@ -176,8 +144,6 @@ const ProfilUser = ({user, isLogged}) => {
                         <input className='profil-user__form--input' value={form.new_password} name='new_password' placeholder='Nouveau mot de passe' type='password' onChange={handleFormChange}/>
                         <input className='profil-user__form--input' value={form.confirm_new_password} name='confirm_new_password' placeholder='Confirmation' type='password' onChange={handleFormChange}/>
 
-=======
->>>>>>> 3fae22783a8bf06b88e2b6a0319f0834d0c16cf9
                         <button className='profil-user__form--button'><span>Valider</span></button>
                     </form>
                     </div>

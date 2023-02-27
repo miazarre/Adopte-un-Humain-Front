@@ -11,8 +11,6 @@ import { useNavigate } from 'react-router-dom';
 const Header = ({isLogged, user, setUser, setIsLogged}) => {
     const navigate = useNavigate()
 
-    const navigate = useNavigate()
-
     const handleDeconnexion = () => {
         setUser('');
         setIsLogged(false);

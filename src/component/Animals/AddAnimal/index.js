@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import './styles.scss';
+const dayjs = require('dayjs')
 // import Licorne from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Licorne.png';
 // import Dinosaure from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Dinosaure.png';
 // import Dragon from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Dragon.png';
@@ -16,27 +17,28 @@ const AddAnimal = () => {
     const [photos, setPhotos] = useState('');
     const [birthdate, setBirthdate] = useState('');
 
-    const event = new Date(birthdate);
-    const jsonDate = event.toJSON();
-  
+    console.log(birthdate)
+    const birthdate2 = dayjs(birthdate).format('YYYY-MM-DD');
+    console.log(birthdate2);
+
     const token = localStorage.getItem('token');
     const newToken = JSON.parse(token);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addAnimal(name, resume, description, needs, photos, jsonDate);
+        addAnimal(name, resume, description, needs, photos, birthdate2);
     };
     
-    const addAnimal = async (name, resume, description, needs, photos, jsonDate) => {
-        console.log(name, resume, description, needs, photos, jsonDate)
+    const addAnimal = async (name, resume, description, needs, photos, birthdate2) => {
+        console.log(name, resume, description, needs, photos, birthdate2)
         try {     
             const response = await axios.post(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal`, { 
                 name: name,
                 resume: resume,
                 description: description,
                 needs: needs,
-                // photo1: photos,
-                birthdate: jsonDate,
+                photo1: photos,
+                birthdate: birthdate2,
             }, { headers: {
                 Authorization : `Bearer ${newToken}`
                 }}
@@ -60,21 +62,31 @@ const AddAnimal = () => {
     <Link to="/board">
         <button className='adoptions_container--linkToBoard'>Retour au Tableau de Bord</button>
     </Link>
-     <div className="input-container">
+     <div className="addAnimal-container">
         <form>
-            <div className="input-container-informations">
+            <div className="addAnimal-container-informations">
                 <div>
                 <input type="text" placeholder="Nom" name="name" value={name} onChange={(event) => setName(event.target.value)} />
                 </div>
                 <div>
-                <label for="date"  className="informations-date" value={birthdate} onChange={(event) => setBirthdate(event.target.value)}>Date de naissance :</label>
-                <input type="date" id="date" name="date" />
+                <label id="date">Date de naissance :</label>
+                <input 
+                    type="date"  
+                    name="date" 
+                    for="date" 
+                    className="informations-date" 
+                    value={birthdate} 
+                    onChange={(event) => setBirthdate(event.target.value)}/>
                 </div>
                 <div>
-                <label className="input-label" for="photos" value={photos} onChange={(event) => setPhotos(event.target.value)}>Ajouter des photos :</label>
+                <label id="photos" >Ajouter des photos :</label>
                 <input 
+                    className="input-label" 
+                    for="photos" 
+                    value={photos} 
+                    onChange={(event) => setPhotos(event.target.value)}
                     type="file"
-                    id="photos" name="photos"
+                    name="photos"
                     accept="image/png, image/jpeg" multiple>
                 </input>
                 </div>

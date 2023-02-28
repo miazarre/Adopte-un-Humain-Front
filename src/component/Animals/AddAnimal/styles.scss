@@ -1,14 +1,16 @@
 @use 'src/styles/vars' as v ;
 @import 'src/styles/vars';
 
-.input-container {
+.addAnimal-container {
   display: flex;
+  justify-content: space-around;
+  align-items:center;
+  padding-top: 5vh;
 
   & input {
     font-family: v.$global-font ;
-    font-size: 1rem;
-    display: block;
-    margin: 1rem auto;
+    font-size: large;
+    // display: block;
     padding: 1rem;
   }
 
@@ -21,8 +23,9 @@
 
   & label {
     font-family: v.$global-font ;
-    font-size: 1rem;
+    font-size: 1.3rem;
     display: block;
+    padding-bottom: 1vh;
   }
 }
 
@@ -37,6 +40,7 @@ button {
   display: block;
   margin: 1rem auto;
   padding: 1rem;
+  font-size: 1.3rem;
 }
 
 input {

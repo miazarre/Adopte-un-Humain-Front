@@ -15,19 +15,11 @@
     padding: 1rem;
     width: 20%;
     border-radius: 10px;
-<<<<<<< HEAD
 
     button {
       @include button;
     }   
 
-=======
-
-    button {
-      @include button;
-    }   
-
->>>>>>> add server on home
     .title {
       @include Title;
       margin-top: 30px;
@@ -86,8 +78,4 @@
 .category-input label {
   padding: 20rem;
   font-size: 1.5rem;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> add server on home

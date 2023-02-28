@@ -14,21 +14,23 @@ const Animal = ({name, birthdate, resume, needs, id }) => {
     const localeDate = (date.toLocaleDateString('fr-FR'));
     const URLdelete = `http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal/${id}`;
 
-    // const [data, setData] = useState([])
+    const [data, setData] = useState([])
+    const [errorMessage, setErrorMessage] = useState(null);
 
-    // useEffect(() => {
-    //   const fetchData = async () =>{
-    //     try {
-    //       const {data: response} = await axios.delete(URLdelete);
-    //       setData(response);
-    //     } catch (error) {
-    //       console.error(error.message);
-    //     }
-    //   }
-    //   fetchData();
-    // }, []);
+    useEffect(() => {
+     async function deleteAnimal() {
+        await axios.delete(URLdelete)
+            .then(response => setData('Delete successful'))
+            .catch(error => {
+                setErrorMessage(error.message);
+                console.error('Il y a une erreur !', error);
+            });
+      }
+      deleteAnimal();
+    }, []);
 
     return( 
+        <>
         <tr className="animal_table">
             <td>{name}</td>
             <td>{localeDate}</td>
@@ -48,14 +50,17 @@ const Animal = ({name, birthdate, resume, needs, id }) => {
                     className='animals_container-title-table--icon' 
                     onClick={() => {const confirmation = window.confirm("Etes-vous sûr de vouloir supprimer le profil de cet animal ?")
                         if (confirmation){
-                            console.log('OK on supprime')
+                            console.log('On supprime')
                         } else {
                             console.log('On annule')
                         }}}
-                />
-                
+                />         
             </td>
         </tr>
+        <div>
+            Error: {errorMessage}
+        </div>
+        </>
     )
 }
 

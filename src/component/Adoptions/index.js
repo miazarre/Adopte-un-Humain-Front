@@ -4,8 +4,6 @@ import axios from 'axios';
 import { VscDiffAdded } from "react-icons/vsc";
 
 import Adoption from './Adoption';
-
-import adoptions from '../../data/adoptions.json';
 import './styles.scss'
 
 const Adoptions = () => {
@@ -30,7 +28,7 @@ const Adoptions = () => {
         {...adoption}
         />      
     ))
-    console.log(adoption)
+
     return(
         <div className='adoptions_container'>
         <h1 className='adoptions_container-title'>Demandes d'adoptions</h1>

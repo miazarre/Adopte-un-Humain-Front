@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import './styles.scss';
-import Licorne from '../../../assets/Licorne.png'
-import Dinosaure from '../../../assets/Dinosaure.png'
-import Dragon from '../../../assets/Dragon.png'
+import Dinosaure from '../../../assets/Dinosaure.png';
+import Dragon from '../../../assets/Dragon.png';
+import Licorne from '../../../assets/Licorne.png';
 
 const AddAnimal = () => {
     const [category, setCategory] = useState('');

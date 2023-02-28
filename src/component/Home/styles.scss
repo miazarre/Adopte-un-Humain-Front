@@ -2,23 +2,33 @@
 @import 'src/styles/vars';
 
 .container{
-    width: auto;
-    height: 100vh;
-    background: linear-gradient(v.$white, #F3C090);
+    margin-top: 10vh ;
+    padding-bottom: 10vh;    
+    background: linear-gradient(v.$white, v.$warm);
+    min-height: 76vh;
+    
+    .title {
+        @include Title;
+    }
+
+    .intro  {
+        padding: 10vh;
+    }
+
+    p {
+        font-family: v.$global-font;
+        font-size: 1.5em;
+    }
+
+
+    h3 {
+        @include smallTitle;
+        text-align: center;
+        padding: 5vh;
+    }
+
 }
 
-.intro{
-    margin: 5rem 20rem;
-    display: flex;
-    align-items: center;
-    gap: 1vw;
-}
-
-.title{
-    @include Title ;
-    margin: 5rem 10rem;
-
-}
 
 .profiles {
     display: flex;
@@ -45,3 +55,4 @@
     border-radius: 50%;
     background: linear-gradient(v.$light-color, v.$tertiary-color);
 }
+

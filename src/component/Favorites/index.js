@@ -10,10 +10,16 @@ const Favorites = ({favorites, setFavorites, isLogged}) => {
     const [animals, setAnimals] = useState([])
 
     const getAnimalsData = async (id) => {
+
+        const token = localStorage.getItem('token');
+        const newToken = JSON.parse(token);
         const animalExists = animals.find((animal) => animal.id === id);
+
         if (!animalExists) {
-          console.log(id);
-          const response = await axios.get(`${baseUrl}/animal/${id}`);
+
+          const response = await axios.get(`${baseUrl}/animal/${id}`,
+          { headers: { Authorization: `Bearer ${newToken}` } }
+          );
           setAnimals(prevAnimals => [...prevAnimals, response.data]);
         }
 
@@ -28,7 +34,6 @@ const Favorites = ({favorites, setFavorites, isLogged}) => {
           setFavorites(storedFavorites);
 
           favorites.forEach(element => {
-            console.log(element)
             getAnimalsData(element)
           });
 

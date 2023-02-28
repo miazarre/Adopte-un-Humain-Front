@@ -16,14 +16,15 @@ const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
 const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
 // Déclaration de tous les params
-    const param = useParams()
+    const [tags, setTags] = useState([]);
+    const param = useParams();
     const [animal, setAnimal] = useState([])
     const [isContactingAnimal, setIsContactinganimal] = useState('no');
     const [form, setForm] = useState({
         form1:'',
         form2:'',
         form3:''
-    })
+    });
     const [errorMessage, setErrorMessage] = useState('');
 
 // Gestion des formulaires controlés
@@ -35,7 +36,11 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 // Contact de l'API pour récupérer les données de l'animal
     const getAnimal = async () =>{
         const response = await axios.get(`${baseUrl}/animal/${param.id}`) ;
+        const responseTags = await axios.get(`${baseUrl}/animal/${param.id}/tag`) ;
+        setTags(responseTags.data)
         setAnimal(response.data)
+
+        console.log(responseTags.data)
     }
 // Au chargement de la page on lance la fonction getAnimal
     useEffect(() => {
@@ -99,10 +104,12 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                 <div className='animal-profil__details--gradient'>
                     <Slider {...settings}>
     {/* Affichage conditionnel des photos selon le nombre lié à l'animal */}
+                        {animal.photo1 &&
                         <div> 
                             <div style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo1})`}} className='animal-profil__details--image'> 
                             </div> 
                         </div>
+                        }
                         {animal.photo2 &&
                         <div> 
                             <div style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo2})`}} className='animal-profil__details--image'> 
@@ -136,7 +143,17 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                     :  <div className='animal-profil__title-container--fav animal-profil__title-container--fav-not-added'><BsSuitHeart className='icon' size={'15px'} /> Ajouter aux coups de coeur</div>
                     }
                     </div>
-                </div>
+
+                    {
+                    tags.map((tag) => (
+                    <p
+                    key={tag.id}
+                    >
+                    {tag.name}
+                    </p>
+                ))
+                }
+            </div>
 
 
     {/* Affichage conditionnel. Si tu cliques sur contacter, tu affiches le formulaire de contact. Si non, tu as la description de l'animal */}

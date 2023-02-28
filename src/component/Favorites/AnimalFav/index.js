@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import './styles.scss' ;
 
 const AnimalFav = ({animal}) => {
-    console.log(animal)
     return(
         <div className='fav__round'>
             <Link to={`/trombinoscope/${animal.id}`}>

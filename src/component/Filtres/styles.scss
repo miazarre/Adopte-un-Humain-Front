@@ -5,8 +5,7 @@
 
 
     &__container{
-        min-height: 82vh;
-        min-width: 100vh;
+        min-height: 71vh;
 
         h2{
             font-size: 1.2em;
@@ -35,19 +34,24 @@
         box-shadow: 1px 1px 30px rgba(v.$black, 0.1) ;
         margin: 5vw auto ;
         width: 80%;
-        padding: 30px;
+        padding: 50px;
     }
 
     &__CRUD{
         &--container{
             display: flex;
-            gap: 10vw;
+            gap: 5vw;
         }
     }
 
     &__left-part{
 
         margin-top: 50px;
+        width: 30vw;
+        height: 45vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
         &--add{
 
@@ -149,4 +153,97 @@
 
         }
     }
+
+    &__right-part{
+        margin-top: 50px;
+        box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
+        padding: 20px;
+        width: 50vw;
+        height: 45vh;
+
+        &--validate{
+            padding: 10px;
+            background-color: v.$primary-color;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        &--modif{
+            display: flex;
+        }
+
+        &--selected-tag{
+            display: flex;
+            gap: 10px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+
+            &--selected{
+                color: v.$primary-color;
+                font-weight: 700;
+            }
+        }
+
+        .selected{
+            background-color: v.$primary-color;
+        }
+
+        &--tags-list{
+            display: flex;
+            height: 25vh;
+            flex-direction: column;
+            flex-wrap: wrap;
+            padding-top: 20px;
+
+            &--tag{
+                padding: 5px;
+                cursor: pointer;
+            }
+        }
+
+        &--toggle-button{
+            position: relative;
+            display: inline-block;
+            width: 34px;
+            height: 20px;
+
+            input {
+                display: none;
+              }
+            }
+
+            &--slider{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            border-radius: 34px;
+            transition: .4s;
+            &:before {
+                position: absolute;
+                content: "";
+                height: 13px;
+                width: 13px;
+                left: 4px;
+                bottom: 4px;
+                background-color: v.$white;
+                border-radius: 50%;
+                transition: .4s;
+                }
+            }
+            input:checked + .tags-page__right-part--slider {
+                background-color: v.$primary-color;
+            }
+            input:checked + .tags-page__right-part--slider:before {
+            transform: translateX(13px);
+            }
+    }
+
+
+
 }
+

@@ -13,6 +13,14 @@ const Filtres = () => {
       new_tag_name:'',
       eliminatoire:false,
       tagToDelete:'',
+      name_modified:'',
+      priority_modified:false,
+   })
+
+   const [tagSelected, setTagSelected] = useState({
+      name:'',
+      id:'',
+      priority:false
    })
 
    useEffect(() => {
@@ -75,13 +83,37 @@ const Filtres = () => {
            `${baseUrl}/tag`,
            newTag,
            { headers: { Authorization: `Bearer ${newToken}` } }
-       );
-
+       );   
        console.log(response.data)
+       getTags();
       }catch(error){
 
       }
    } 
+
+   const handleModify = async () => {
+
+      const modifiedField = {
+         name:form.name_modified,
+         priority:form.priority_modified
+      }
+
+      try{
+         const token = localStorage.getItem('token');
+         const newToken = JSON.parse(token);
+
+         const response = axios.patch(`${baseUrl}/tag/${tagSelected.id}`,
+         modifiedField,
+         { headers: { Authorization: `Bearer ${newToken}` } }
+         )
+
+         console.log(response)
+         getTags()
+
+      }catch(error){
+         console.log(error)
+      }
+   }
 
  return(
     <div className='tags-page__container'>
@@ -113,15 +145,37 @@ const Filtres = () => {
                      ))}
                   </select>
                </div>
-               <p className='tags-page__left-part--remove--validate' onClick={handleDeleteTag}>Supprimer le tag</p>
+               <p className='tags-page__left-part--remove--validate' onClick={handleDeleteTag}>Supprimer</p>
             </div>
          </div>   
          <div className='tags-page__right-part'>
+         <h2>Modifier un tag</h2>
+         <div className='tags-page__right-part--selected-tag'>
+            <p>Tag selectionné :</p>
+            <p className='tags-page__right-part--selected-tag--selected'>{tagSelected.name} - {tagSelected.priority ? 'Eliminatoire' : 'Non-éliminatoire'}</p>
+         </div>
+         <div className='tags-page__right-part--selected-tag'>
+            <input placeholder='Nouveau nom' value={form.name_modified} name='name_modified' onChange={handleChange}/>
+            <p>Eliminatoire : </p>
+            <label className="tags-page__right-part--toggle-button">
+               <input type="checkbox" className="tags-page__right-part--toggle-button" checked={form.priority_modified} onChange={(event) => setForm({...form, priority_modified :event.target.checked})}/>
+               <span className="tags-page__right-part--slider"></span>
+            </label>
+            <p className='tags-page__right-part--validate' onClick={handleModify}>Modifier</p>
+         </div>
+         <div className='tags-page__right-part--tags-list'>
             {
             tags.map((tag) => (
-            <p key={tag.id}>{tag.name}</p>
+            <p
+            key={tag.id}
+            onClick={() => setTagSelected({name:tag.name, id:tag.id, priority:tag.priority})}
+            className={tagSelected.name === tag.name ? 'tags-page__right-part--tags-list--tag selected' : 'tags-page__right-part--tags-list--tag'}
+            >
+            {tag.name}
+            </p>
             ))
             }
+         </div> 
          </div>  
       </div>
     </div>

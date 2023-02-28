@@ -53,12 +53,9 @@ const SigninForm = ({setUser, setIsLogged}) => {
    return (
       <div className="input-container">
         <h1 className='title'>Inscription</h1>
-        {login !== '' &&
-          <p className='input-container--message'>{login} <RxCrossCircled className='input-container--message-cross' size='20px' onClick={e => setLogin('')}/></p>
-            }
-          <form>
-              <input type="text" placeholder="Nom" name="lastname" value={lastname} onChange={(event) => setLastname(event.target.value)} />
-              <input type="text" placeholder="Prénom" name="firstname" value={firstname} onChange={(event) => setFirstname(event.target.value)} />
+          <form onSubmit={handleSubmit}>
+              <input type="text" placeholder="Nom" name="lastname" value={lastName} onChange={(event) => setLastName(event.target.value)} />
+              <input type="text" placeholder="Prénom" name="firstname" value={firstName} onChange={(event) => setFirstName(event.target.value)} />
               <input type="text" placeholder="E-mail" name="email" value={email} onChange={(event) => setEmail(event.target.value)} />
               <input type="text" placeholder="Numéro de téléphone" name="phone" value={phone} onChange={(event) => setPhone(event.target.value)} />
               <input type="password" placeholder="Mot de passe" name="password" value={password} onChange={(event) => setPassword(event.target.value)} />

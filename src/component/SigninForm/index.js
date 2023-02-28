@@ -29,6 +29,7 @@ const SigninForm = () => {
 
     return (
       <div className="input-container">
+        <h1 className='title'>Inscription</h1>
           <form onSubmit={handleSubmit}>
               <input type="text" placeholder="Nom" name="lastname" value={lastName} onChange={(event) => setLastName(event.target.value)} />
               <input type="text" placeholder="Prénom" name="firstname" value={firstName} onChange={(event) => setFirstName(event.target.value)} />

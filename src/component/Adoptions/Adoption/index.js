@@ -9,7 +9,7 @@ import { FcViewDetails } from "react-icons/fc";
 const Adoption = ({name, age, espece, id }) => {
     const link = `/adoptions/${id}`
     return( 
-        <tr>
+        <tr className='adoption_table'>
             <td>{name}</td>
             <td>{age}</td>
             <td>{espece}</td>

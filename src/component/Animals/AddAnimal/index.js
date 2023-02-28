@@ -1,5 +1,6 @@
 import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import './styles.scss';
 import Licorne from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Licorne.png';
@@ -12,10 +13,19 @@ const AddAnimal = () => {
     const [resume, setResume] = useState('');
     const [description, setDescription] = useState('');
     const [needs, setNeeds] = useState('');
+    const [photos, setPhotos] = useState('');
+    const [birthdate, setBirthdate] = useState('');
   
     const handleSubmit = (event) => {
-      event.preventDefault();
-      console.log(`Name: ${name}`);
+       axios.post(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal`, {
+        category,
+        name,
+        resume,
+        description,
+        needs,
+        photos,
+        birthdate,
+        })
     };
 
     const categories = [
@@ -36,11 +46,11 @@ const AddAnimal = () => {
                 <input type="text" placeholder="Nom" name="name" value={name} onChange={(event) => setName(event.target.value)} />
                 </div>
                 <div>
-                <label for="date"  className="informations-date">Date de naissance :</label>
+                <label for="date"  className="informations-date" value={birthdate} onChange={(event) => setBirthdate(event.target.value)}>Date de naissance :</label>
                 <input type="date" id="date" name="date" />
                 </div>
                 <div>
-                <label className="input-label" for="photos">Ajouter des photos :</label>
+                <label className="input-label" for="photos" value={photos} onChange={(event) => setPhotos(event.target.value)}>Ajouter des photos :</label>
                 <input 
                     type="file"
                     id="photos" name="photos"
@@ -80,8 +90,6 @@ const AddAnimal = () => {
                   </div>
                 ))}
             </div>
-
-              
             <button type="submit" value="Submit">Valider</button>
         </form>
     </div>

@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { VscDiffAdded } from "react-icons/vsc";
 
 import Adoption from './Adoption';
@@ -8,12 +10,27 @@ import './styles.scss'
 
 const Adoptions = () => {
 
+    // const [data, setData] = useState([])
+
+    // useEffect(() => {
+    //   const fetchData = async () =>{
+    //     try {
+    //       const {data: response} = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/adopts');
+    //       setData(response);
+    //     } catch (error) {
+    //       console.error(error.message);
+    //     }
+    //   }
+    //   fetchData();
+    // }, []);
+
     const adoption = adoptions.map((adoption) => (
         <Adoption
         key={adoption.id}
         {...adoption}
-        />
+        />      
     ))
+    console.log(adoption)
     return(
         <div className='adoptions_container'>
         <h1 className='adoptions_container-title'>Demandes d'adoptions</h1>

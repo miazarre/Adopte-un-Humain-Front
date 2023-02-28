@@ -8,7 +8,7 @@ import { IoPersonSharp } from "react-icons/io5";
 
 const User = ({name, firstname, role}) => {
     return( 
-        <tr>
+        <tr className='user_table'>
             <td>{name}</td>
             <td>{firstname}</td>
             <td>

@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import './styles.scss';
-import Licorne from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Licorne.png';
-import Dinosaure from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Dinosaure.png';
-import Dragon from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Dragon.png';
-
+import Dinosaure from '../../../assets/Dinosaure.png';
+import Dragon from '../../../assets/Dragon.png';
+import Licorne from '../../../assets/Licorne.png';
 const AddAnimal = () => {
     const [category, setCategory] = useState('');
     const [name, setName] = useState('');

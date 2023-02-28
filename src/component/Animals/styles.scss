@@ -84,7 +84,7 @@
 
         &--linkToBoard{
             height: 3vh;
-            font-size: medium;
+            font-size: large;
             background-color: $dark-color;
             color:aliceblue;
             display: flex;
@@ -182,4 +182,8 @@
 
         }
     }
+}
+
+.animal_table td{
+    padding: 0.75rem;
 }

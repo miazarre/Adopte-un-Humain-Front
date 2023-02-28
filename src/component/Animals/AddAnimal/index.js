@@ -1,104 +1,100 @@
-import './styles.scss';
 import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
-import dinosaure from "/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Dinosaure.png";
-import licorne from "/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Licorne.png";
-import dragon from "/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Dragon.png";
+import axios from 'axios';
+
+import './styles.scss';
+import Licorne from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Licorne.png';
+import Dinosaure from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Dinosaure.png';
+import Dragon from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Dragon.png';
 
 const AddAnimal = () => {
-
-const [category, setCategory] = useState('');
-const [name, setName] = useState('');
-const [birthdate, setBirthdate] = useState('');
-const [needs, setNeeds] = useState('');
-const [resume, setResume] = useState('');
-const [description, setDescription] = useState('');
-const [photo, setPhoto] = useState('');
-
-const handleSubmit = (event) => {
-  event.preventDefault();
-  console.log(`Name: ${name}`);
-};
-
-return (
-  <div className="addanimal_container">
-    <form onSubmit={handleSubmit}>
-      <div className="addanimal_container-input">
-        <Link to="/animals">
-            <button className='animals_container--linkToBoard'>Retour à la liste des animaux</button>
-        </Link>
-        <input type="text" placeholder="Nom" name="name" value={name} onChange={(event) => setName(event.target.value)} />
-        <input type="date" placeholder="Date de naissance" name="birthdate" value={birthdate} onChange={(event) => setBirthdate(event.target.value)} />      
-        <div>
-          <select name="pets" id="pet-select">
-              <option value="">choisir un statut</option>
-              <option value="adoptable">adoptable</option>
-              <option value="adopt">adopté</option>
-          </select>
-        </div>
-      </div>
-      <div className="addanimal_container_photos">
-        <label for="photos">Ajouter des photos :</label>
-        <input className="addanimal_container_photos-addphotos" type="file" id="photos" accept=".png, .jpg, .jpeg" multiple value={photo} onSubmit={(event) => setPhoto(event.target.value)}/>
-      </div>
-      <div className="addanimal_container_textareas">
-        <div className="addanimal_container_textareas-detail">
-          <label for="needs">Besoins de l'animal :</label>
-          <textarea id="needs" rows="5" cols="40" value={needs} onChange={(event) => setNeeds(event.target.value)}></textarea>
-        </div>
-        <div className="addanimal_container_textareas-detail">
-          <label for="resume">Courte description :</label>
-          <textarea id="resume" rows="5" cols="40" value={resume} onChange={(event) => setResume(event.target.value)}></textarea>
-        </div>
-        <div className="addanimal_container_textareas-detail">
-          <label for="description">Remarques complémentaires :</label>
-          <textarea id="description" rows="5" cols="40" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
-        </div>
-      </div>
-
-      <div className="addanimal_container_categories">
-        <div className="addanimal_container_categories_category" onClick={() => setCategory("licorne")}>
-            <img src={licorne} alt="logo" />
-            <div className="addanimal_container_categories_category-input">
-              <input type="radio" id={"licorne"} name="category" value={"licorne"} onChange={e => setCategory(e.target.value)} checked={"licorne" === category} />
-              <label htmlFor={"licorne"}>Licorne</label>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis ornare libero. Donec lacinia mollis massa, id hendrerit arcu faucibus et.
-              Aliquam pretium, mi sed imperdiet maximus, lacus erat vehicula ex, vitae interdum nibh arcu a mi. 
-              Cras vehicula, nunc mollis facilisis porta, ligula diam cursus felis, efficitur mollis tortor turpis in justo. In hac habitasse platea dictumst.
-            </p>
-          </div>
-          <div className="addanimal_container_categories_category" onClick={() => setCategory("dragon")}>
-            <img src={dragon} alt="logo" />
-            <div className="addanimal_container_categories_category-input">
-              <input type="radio" id={"dragon"} name="category" value={"dragon"} onChange={e => setCategory(e.target.value)} checked={"dragon" === category} />
-              <label htmlFor={"dragon"}>Dragon</label>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis ornare libero. Donec lacinia mollis massa, id hendrerit arcu faucibus et.
-              Aliquam pretium, mi sed imperdiet maximus, lacus erat vehicula ex, vitae interdum nibh arcu a mi. 
-              Cras vehicula, nunc mollis facilisis porta, ligula diam cursus felis, efficitur mollis tortor turpis in justo. In hac habitasse platea dictumst.
-            </p>
-          </div>
-          <div className="addanimal_container_categories_category" onClick={() => setCategory("dinosaure")}>
-            <img src={dinosaure} alt="logo" />
-            <div className="addanimal_container_categories_category-input">
-              <input type="radio" id={"dinosaure"} name="category" value={"dinosaure"} onChange={e => setCategory(e.target.value)} checked={"dinosaure" === category} />
-              <label htmlFor={"dinosaure"}>Dinosaure</label>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis ornare libero. Donec lacinia mollis massa, id hendrerit arcu faucibus et.
-              Aliquam pretium, mi sed imperdiet maximus, lacus erat vehicula ex, vitae interdum nibh arcu a mi. 
-              Cras vehicula, nunc mollis facilisis porta, ligula diam cursus felis, efficitur mollis tortor turpis in justo. In hac habitasse platea dictumst.
-            </p>
-          </div>
-      </div>   
-
-      <button type="submit" value="Submit">Valider</button>
-      </form>
-  </div>
-)
-}  
+    const [category, setCategory] = useState('');
+    const [name, setName] = useState('');
+    const [resume, setResume] = useState('');
+    const [description, setDescription] = useState('');
+    const [needs, setNeeds] = useState('');
+    const [photos, setPhotos] = useState('');
+    const [birthdate, setBirthdate] = useState('');
   
+    const handleSubmit = (event) => {
+       axios.post(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal`, {
+        category,
+        name,
+        resume,
+        description,
+        needs,
+        photos,
+        birthdate,
+        })
+    };
+
+    const categories = [
+        {name: "Licorne", image: Licorne},
+        {name: "Dinosaure", image: Dinosaure},
+        {name: "Dragon", image: Dragon},
+    ]
+
+    return( 
+    <>
+    <Link to="/board">
+        <button className='adoptions_container--linkToBoard'>Retour au Tableau de Bord</button>
+    </Link>
+     <div className="input-container">
+        <form onSubmit={handleSubmit}>
+            <div className="input-container-informations">
+                <div>
+                <input type="text" placeholder="Nom" name="name" value={name} onChange={(event) => setName(event.target.value)} />
+                </div>
+                <div>
+                <label for="date"  className="informations-date" value={birthdate} onChange={(event) => setBirthdate(event.target.value)}>Date de naissance :</label>
+                <input type="date" id="date" name="date" />
+                </div>
+                <div>
+                <label className="input-label" for="photos" value={photos} onChange={(event) => setPhotos(event.target.value)}>Ajouter des photos :</label>
+                <input 
+                    type="file"
+                    id="photos" name="photos"
+                    accept="image/png, image/jpeg" multiple>
+                </input>
+                </div>
+            </div>
+            <div className='textareas'>
+                <div>
+                    <label for="resume" className='textareas-label'>Résumé :</label>
+                    <textarea id="resume" name="resume" rows="6" cols="45" value={resume} onChange={(event) => setResume(event.target.value)}></textarea>
+                </div>
+                <div>
+                    <label for="description" className='textareas-label'>Description :</label>
+                    <textarea id="description" name="description" rows="6" cols="45" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
+                </div>
+                <div>      
+                    <label for="needs" className='textareas-label'>Besoins de l'animal :</label>
+                    <textarea id="needs" name="needs" rows="6" cols="45" value={needs} onChange={(event) => setNeeds(event.target.value)}></textarea>
+                </div>   
+            </div>
+            <div className="categories">
+                {categories.map(c => (
+                  <div className="category" onClick={() => setCategory(c.name.toLowerCase())}>
+                   <div className="category-image">
+                    <img src={c.image} alt={c.name}/>
+                    </div>
+                    <div className="category-input">
+                      <input type="radio" id={c.name.toLowerCase()} name="category" value={c.name.toLowerCase()} onChange={e => setCategory(e.target.value)} checked={c.name.toLowerCase() === category} />
+                      <label for={c.name.toLowerCase()}>{c.name}</label>
+                    </div>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis ornare libero. Donec lacinia mollis massa, id hendrerit arcu faucibus et.
+                      Aliquam pretium, mi sed imperdiet maximus, lacus erat vehicula ex, vitae interdum nibh arcu a mi. 
+                      Cras vehicula, nunc mollis facilisis porta, ligula diam cursus felis, efficitur mollis tortor turpis in justo. In hac habitasse platea dictumst.
+                    </p>
+                  </div>
+                ))}
+            </div>
+            <button type="submit" value="Submit">Valider</button>
+        </form>
+    </div>
+    </>
+    )
+}
+
 export default AddAnimal;

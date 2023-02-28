@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { VscDiffAdded } from "react-icons/vsc";
 import { useState, useEffect } from 'react';
@@ -18,7 +19,7 @@ const Animals = () => {
           console.error(error.message);
         }
       }
-      fetchData()
+      fetchData();
     }, []);
 
     const animal = data.map((animal) => (
@@ -46,7 +47,7 @@ const Animals = () => {
                         </svg>
                     </button>
                 </form>
-                <Link to="/addanimal">
+                <Link to="/animals/addanimal">
                     <VscDiffAdded size={'4vh'} className='animals_container-icon' />
                 </Link>
             </div>

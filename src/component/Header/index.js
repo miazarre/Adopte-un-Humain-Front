@@ -1,16 +1,22 @@
 import './styles.scss'
+import logo from '../../assets/logo.png'
+
 import { Link } from 'react-router-dom';
 import { bubble as Menu } from 'react-burger-menu'
-import logo from '../../assets/logo.png'
-import { FaTiktok, FaFacebookF, FaDotCircle} from 'react-icons/fa';
+
+import { FaTiktok, FaFacebookF} from 'react-icons/fa';
 import {AiOutlineTwitter} from 'react-icons/ai'
 import React from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 const Header = ({isLogged, user, setUser, setIsLogged}) => {
+    const navigate = useNavigate()
 
     const handleDeconnexion = () => {
         setUser('');
         setIsLogged(false);
+        navigate('/login')
     }
 
     return (
@@ -18,12 +24,15 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
             <div className='header__menu'>
                 <Menu>
                     <p className='item-link--title'>J'adopte un humain !</p>
-                    <a href='#' className='item-link item-link--text'> Accueil</a>
+                    <Link to='/' className='item-link item-link--text'> Accueil</Link>
                     {isLogged 
                     ?<>
                         <Link to='/trombinoscope' className='bm-item item-link item-link--text'> Trombinoscope</Link>
                         <Link to='/preferences' className='bm-item item-link item-link--text'> Préférences</Link>
                         <Link to='/profil' className='bm-item item-link item-link--text'> Profil</Link>
+                        <Link to='/favorites' className='bm-item item-link item-link--text'>Coups de coeur</Link>
+                        <Link to='/board' className='bm-item item-link item-link--text'> Tableau de Bord</Link>
+                        <Link to='/board' className='bm-item item-link item-link--text'> Tableau de Bord</Link>
                         <button onClick={handleDeconnexion} className='item-link--deco'><span>Déconnexion</span></button>
                     </>
                     :   <Link to='/login' className='bm-item item-link item-link--text'>Connexion</Link>
@@ -35,15 +44,18 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
                     </div>
                 </Menu>
             </div>
-            <div className='header__logo'>
-                <img src={logo} alt='animal paw and rainbow background'/>
-            </div>
+            <Link to='/'>
+                <Link to='/'>
+                <div className='header__logo'>
+                        <img src={logo} alt='animal paw and rainbow background'/>
+                    </div>
+            </Link>
+            </Link>
             <div className='header__right-button'>
                 {isLogged
                     ?<>
                         <p>Bienvenue {user.firstname} !</p>
                     </>   
-                    
                     
                     : <>
                         <div className='signin'>

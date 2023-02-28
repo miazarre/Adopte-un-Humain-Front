@@ -28,6 +28,7 @@
         padding: 30px;
 
         img{
+            all: unset;
             width: 100%;
         }
 
@@ -47,11 +48,30 @@
     &__form{
         form{
             margin-top: 5vh;
+            margin-left: 35vw;
             display: flex;
             flex-direction: column;
 
             &:last-child{
                 margin-bottom: 5vh;
+            }
+        }
+
+        &--error_message{
+            background-color: v.$primary-color;
+            color: v.$white;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            
+            &--cross{
+                color: v.$black;
+                cursor: pointer;
+                transition: 0.2s;
+                &:hover{
+                    color: v.$white;
+                }
             }
         }
 

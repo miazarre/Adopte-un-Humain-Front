@@ -5,7 +5,8 @@
     margin-top: 10vh ;
     padding-bottom: 10vh;    
     background: linear-gradient(v.$white, v.$primary-color);
-
+    min-height: 76vh;
+    
     .animal-card__container{
         width: 80%;
         margin: auto;

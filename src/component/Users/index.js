@@ -1,5 +1,7 @@
 import './styles.scss';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react'; 
+import axios from 'axios';
 
 import { IoPersonAddSharp } from "react-icons/io5";
 
@@ -8,6 +10,21 @@ import User from './User';
 import users from '../../data/users.json';
 
 const Users = () => {
+
+    // const [data, setData] = useState([])
+
+    // useEffect(() => {
+    //   const fetchData = async () =>{
+    //     try {
+    //       const {data: response} = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/users');
+    //       setData(response);
+    //     } catch (error) {
+    //       console.error(error.message);
+    //     }
+    //   }
+    //   fetchData();
+    // }, []);
+
     const user = users.map((user) => (
         <User
         key={user.id}

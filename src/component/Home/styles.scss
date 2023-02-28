@@ -1,0 +1,47 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+.container{
+    width: auto;
+    height: 100vh;
+    background: linear-gradient(v.$white, #F3C090);
+}
+
+.intro{
+    margin: 5rem 20rem;
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+.title{
+    @include Title ;
+    margin: 5rem 10rem;
+
+}
+
+.profiles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.name {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    font-family: 'Antic Didone';
+    font-size: 2.5em;
+    font-weight: 100;
+    text-align: center;
+}
+
+.animal-card__card--image {
+    width: 10vw;
+    height: 10vw;
+    background-color: v.$white;
+    border-radius: 50%;
+    margin: 2rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background: linear-gradient(v.$light-color, v.$tertiary-color);
+}

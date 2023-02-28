@@ -1,9 +1,16 @@
 @use 'src/styles/vars' as v;
 @import 'src/styles/vars';
 
-.input-container {
+.title {
+  @include Title;
+  margin-top: 30px;
+  margin-right: 90px;
+}
 
-  min-height: 81.5vh;
+.form {
+  width: 90vw;
+}
+.input-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,7 +40,7 @@
   }
 
   &--input{
-    padding: 10px;
+    padding: 20rem auto;
     border-image-source: linear-gradient(-140deg, v.$primary-color, v.$tertiary-color);
     border-width: 3px;
     border-image-slice: 1;

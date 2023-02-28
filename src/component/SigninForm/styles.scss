@@ -1,53 +1,51 @@
 @use 'src/styles/vars' as v ;
 @import 'src/styles/vars';
 
+.input-container {
+  width: 100%;
+}
+
 .input-container input {
     font-family: v.$global-font ;
     font-size: 1rem;
     display: block;
-    margin: 2rem auto;
+    justify-content:center;
+    margin: 2rem;
+    margin-left: 30rem;
     padding: 1rem;
+    width: 20%;
+    border-radius: 10px;
   }
 
-h1 {
-  color: v.$black;
-  text-align: center;
-}
-
-button {
-  @include button; 
-  font-family: v.$global-font ;
-  display: block;
-  margin: 1rem auto;
-  padding: 1rem;
-}
-
-input {
-    margin: 0.4rem;
-}
+.title {
+    @include Title;
+    margin-top: 30px;
+    margin-right: 90px;
+  } 
 
 .categories {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content:space-between;
+  border-radius: 10px;
 }
 
 .category {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   border: 1px solid transparent;
   cursor: pointer;
 
   &:hover {
-    border-color: orange;
+    border-color: v.$warm;
+    border-radius: 10px;
   }
 
   img {
     display: inline-block;
-    max-width: 100%;
+    width: 200px;
+    height: auto;
   }
-
   &:not(:first-child) {
     margin-left: 5rem;
   }
@@ -73,9 +71,29 @@ input {
 
 .category-input input {
   display: inline-block;
-  margin-right: 0.5rem;
 }
 
 .category-input label {
-  font-size: 1.25rem;
+  padding: 1rem;
+  font-size: 1rem;
 }
+
+.validation {
+  font-size: 2rem;
+  display: block;
+  align-items: center;
+  text-align: center;
+  margin: 5rem auto;
+  background: linear-gradient(144deg,v.$light-color, v.$primary-color 50%, v.$dark-color);
+  border: 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: v.$black;
+  display: flex;
+  justify-content: center;
+  line-height: 2rem;
+  padding-right: 5rem;
+  padding-left: 5rem;
+  text-decoration: none;
+  cursor: pointer;  
+}   

@@ -5,26 +5,23 @@
     font-family: v.$global-font ;
     font-size: 1rem;
     display: block;
-    margin: 2rem auto;
+    justify-content:center;
+    margin: 2rem;
+    margin-left: 30rem;
     padding: 1rem;
+    width: 20%;
+    border-radius: 10px;
+
+    button {
+      @include button;
+    }   
+
+    .title {
+      @include Title;
+      margin-top: 30px;
+      margin-right: 90px;
+    } 
   }
-
-h1 {
-  color: v.$black;
-  text-align: center;
-}
-
-button {
-  @include button; 
-  font-family: v.$global-font ;
-  display: block;
-  margin: 1rem auto;
-  padding: 1rem;
-}
-
-input {
-    margin: 0.4rem;
-}
 
 .categories {
   display: flex;
@@ -40,12 +37,12 @@ input {
   cursor: pointer;
 
   &:hover {
-    border-color: orange;
+    border-color: v.$warm;
   }
 
   img {
     display: inline-block;
-    max-width: 100%;
+    max-width: 60%;
   }
 
   &:not(:first-child) {
@@ -77,5 +74,6 @@ input {
 }
 
 .category-input label {
-  font-size: 1.25rem;
+  padding: 20rem;
+  font-size: 1.5rem;
 }

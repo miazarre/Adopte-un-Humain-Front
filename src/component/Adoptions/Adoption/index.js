@@ -1,6 +1,9 @@
 import '../styles.scss';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import AdoptionsDetail from '../../AdoptionsDetail';
 
 import { FiTrash2 } from "react-icons/fi";
 import { TfiPencil } from "react-icons/tfi";
@@ -12,6 +15,28 @@ const Adoption = ({animal_id, user_id, id }) => {
     const link = `/adoptions/${id}`
     const linkAnimal=`/trombinoscope/${animal_id}`;
     const linkUser=`/trombinoscope/${user_id}`;
+
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+      const fetchData = async () =>{
+        try {
+          const {data: response} = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/adopts');
+          setData(response);
+        } catch (error) {
+          console.error(error.message);
+        }
+      }
+      fetchData();
+    }, []);
+
+    data.map((adoption) => (
+        <AdoptionsDetail
+        key={adoption.id}
+        {...adoption}
+        />
+    ))
+
     return( 
         <tr className='adoption_table'>
             <td>

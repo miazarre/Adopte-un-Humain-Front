@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { VscDiffAdded } from "react-icons/vsc";
-import { useState, useEffect } from 'react';
 
 import axios from 'axios';
 import Animal from './Animal';

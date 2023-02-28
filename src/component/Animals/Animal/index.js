@@ -1,9 +1,7 @@
 import '../styles.scss';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { FiTrash2 } from "react-icons/fi";
@@ -48,7 +46,7 @@ const Animal = ({name, birthdate, resume, needs, id }) => {
                 <FiTrash2 
                     size={'3vh'} 
                     className='animals_container-title-table--icon' 
-                    onClick={() => {const confirmation = window.confirm("Etes-vous sûr de vouloir le supprimer ?")
+                    onClick={() => {const confirmation = window.confirm("Etes-vous sûr de vouloir supprimer le profil de cet animal ?")
                         if (confirmation){
                             console.log('OK on supprime')
                         } else {

@@ -10,21 +10,21 @@ import './styles.scss'
 
 const Adoptions = () => {
 
-    // const [data, setData] = useState([])
+    const [data, setData] = useState([])
 
-    // useEffect(() => {
-    //   const fetchData = async () =>{
-    //     try {
-    //       const {data: response} = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/adopts');
-    //       setData(response);
-    //     } catch (error) {
-    //       console.error(error.message);
-    //     }
-    //   }
-    //   fetchData();
-    // }, []);
+    useEffect(() => {
+      const fetchData = async () =>{
+        try {
+          const {data: response} = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/adopts');
+          setData(response);
+        } catch (error) {
+          console.error(error.message);
+        }
+      }
+      fetchData();
+    }, []);
 
-    const adoption = adoptions.map((adoption) => (
+    const adoption = data.map((adoption) => (
         <Adoption
         key={adoption.id}
         {...adoption}
@@ -59,9 +59,8 @@ const Adoptions = () => {
         </div>
         <table className='adoptions_container-title-table'>
             <tr>
-                <th>Nom</th>
-                <th>Âge</th>
-                <th>Espèce</th>
+                <th>Profil de l'utilisateur</th>
+                <th>Profil de l'animal</th>
                 <th>Détail des demandes</th>
                 <th className='adoptions_container-title-table--icon'>Modifier / Supprimer</th>
             </tr> 

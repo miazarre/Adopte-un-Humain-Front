@@ -1,0 +1,152 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+.tags-page{
+
+
+    &__container{
+        min-height: 82vh;
+        min-width: 100vh;
+
+        h2{
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1{
+            @include Title;
+        }
+
+        input{
+            margin: 0;
+            padding: 10px;
+            border-image-source: linear-gradient(-140deg, v.$primary-color, v.$tertiary-color);
+            border-width: 3px;
+            border-image-slice: 1;
+            transition: 0.2s;
+            &:focus{
+                border-image-source: linear-gradient(-140deg, v.$dark-color, v.$secondary-color);
+            }
+        }
+    }
+
+    &__list {
+        box-shadow: 1px 1px 30px rgba(v.$black, 0.1) ;
+        margin: 5vw auto ;
+        width: 80%;
+        padding: 30px;
+    }
+
+    &__CRUD{
+        &--container{
+            display: flex;
+            gap: 10vw;
+        }
+    }
+
+    &__left-part{
+
+        margin-top: 50px;
+
+        &--add{
+
+            padding: 20px;
+            box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
+            margin-bottom: 50px;
+
+            &--validate{
+                padding: 10px;
+                border-radius: 10px;
+                background-color: v.$primary-color;
+                display: inline-block;
+                margin-left: 42%;
+                margin-top: 10px;
+                cursor: pointer;
+            }
+
+            &--toggle{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            &--div{
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+
+            &--toggle-button{
+            position: relative;
+            display: inline-block;
+            width: 34px;
+            height: 20px;
+
+            input {
+                display: none;
+              }
+            }
+
+            &--slider{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            border-radius: 34px;
+            transition: .4s;
+            &:before {
+                position: absolute;
+                content: "";
+                height: 13px;
+                width: 13px;
+                left: 4px;
+                bottom: 4px;
+                background-color: v.$white;
+                border-radius: 50%;
+                transition: .4s;
+                }
+            }
+        }
+        input:checked + .tags-page__left-part--add--slider {
+            background-color: v.$primary-color;
+        }
+        input:checked + .tags-page__left-part--add--slider:before {
+        transform: translateX(13px);
+        }
+
+        &--remove{
+            padding: 20px;
+            box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            &--validate{
+                padding: 10px;
+                border-radius: 10px;
+                background-color: v.$primary-color;
+                display: inline-block;
+                margin-top: 10px;
+                cursor: pointer;
+            }
+            select{
+                margin: 10px 0;
+                margin: 0;
+                padding: 10px;
+                border-image-source: linear-gradient(-140deg, v.$primary-color, v.$tertiary-color);
+                border-width: 3px;
+                border-image-slice: 1;
+                transition: 0.2s;
+                &:focus{
+                    border-image-source: linear-gradient(-140deg, v.$dark-color, v.$secondary-color);
+                }
+            }
+
+        }
+    }
+}

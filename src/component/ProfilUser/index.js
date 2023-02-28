@@ -41,7 +41,11 @@ const [form, setForm] = useState({
 
 // Au chargement de la page on contact l'API pour avoir els données à jour de l'utilisateur
     const settingUserOnLoad = async () => {
-        const response = await axios.get(`${baseUrl}/user/${user.id}`)
+        const token = localStorage.getItem('token');
+        const newToken = JSON.parse(token);
+        const response = await axios.get(`${baseUrl}/user/${user.id}`,
+        { headers: { Authorization: `Bearer ${newToken}` } }
+        )
         setProfilUser(response.data)
     }
 // le useEffect qui déclanche le changement de données du user

@@ -1,7 +1,7 @@
 import './styles.scss';
 import { Link } from 'react-router-dom';
 
-import error from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Cookie.jpg';
+// import error from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Cookie.jpg';
 
 const Error = () => {
     return(
@@ -14,7 +14,7 @@ const Error = () => {
                     </Link>
                 </p>
 
-                <img src={error} alt="error 404" className="error404-image" />
+                {/* <img src={error} alt="error 404" className="error404-image" /> */}
             </body>
         </>
     )

@@ -14,12 +14,21 @@
     .intro  {
         padding: 10vh;
     }
+<<<<<<< HEAD
 
     p {
         font-family: v.$global-font;
         font-size: 1.5em;
     }
 
+=======
+
+    p {
+        font-family: v.$global-font;
+        font-size: 1.5em;
+    }
+
+>>>>>>> add server on home
 
     h3 {
         @include smallTitle;
@@ -36,7 +45,10 @@
     justify-content: space-around;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> add server on home
 
 .name {
     margin-top: 3vh;
@@ -65,3 +77,5 @@
 =======
 >>>>>>> update
 >>>>>>> update
+=======
+>>>>>>> add server on home

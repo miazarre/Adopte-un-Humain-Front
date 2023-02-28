@@ -43,11 +43,8 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
                     </div>
                 </Menu>
             </div>
-            <Link to='/'>
-                <div className='header__logo'>
-                        <img src={logo} alt='animal paw and rainbow background'/>
-                    </div>
-
+            <Link to='/' className='header__logo'>
+                <img src={logo} alt='animal paw and rainbow background'/>
             </Link>
             <div className='header__right-button'>
                 {isLogged

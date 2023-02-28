@@ -38,14 +38,21 @@ export  const optionsCohabitation=[
     { value: 'nac', label: 'NAC' }
   ]
 
-export  const optionsTemps=[
+export  const optionsTempsSolo=[
     { value: 'low', label: 'Moins de 2h' },
     { value: 'medium', label: 'Entre 2 et 6 heures' },
     { value: 'hight', label: 'Plus de 6h' }
   ]
+
+export  const optionsTempsBallade=[
+  { value: 'low', label: '30 minutes' },
+  { value: 'medium', label: 'Entre 1 et 2 heures' },
+  { value: 'hight', label: 'Plus de 2h' }
+]
+
 export  const optionsKids=[
     { value: 'kids', label: "J'ai des enfants" },
-    { value: 'nokids', label: "Pas d'enfants en vue" }
+    { value: 'nokids', label: "Pas d'enfants" }
   ]
 
 export  const optionsBudget=[

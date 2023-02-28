@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import './styles.scss';
-import { optionsAge, optionsActivité, optionsBudget, optionsCaracter, optionsCohabitation, optionsHabitat, optionsJardin, optionsKids, optionsSexe, optionsTemps } from '../../data/options_select';
+import { optionsAge, optionsActivité, optionsBudget, optionsCaracter, optionsCohabitation, optionsHabitat, optionsJardin, optionsKids, optionsSexe, optionsTemps, optionsTempsBallade, optionsTempsSolo } from '../../data/options_select';
 import customStyles from './custom_styles';
 
 const Preferences = ({isLogged}) => {
@@ -27,7 +27,8 @@ const Preferences = ({isLogged}) => {
                         <div className='preference__form-container--formdiv'>
                             <Select options={optionsHabitat} placeholder='Habitat' className='preference__form-container--select' styles={customStyles}/>
                             <Select options={optionsJardin} placeholder='Jardin' className='preference__form-container--select' styles={customStyles}/>
-                            <Select options={optionsTemps} placeholder="Heures d'absence par jour" className='preference__form-container--select' styles={customStyles}/>
+                            <Select options={optionsTempsBallade} placeholder="Temps de ballades par jour" className='preference__form-container--select' styles={customStyles}/>
+                            <Select options={optionsTempsSolo} placeholder="Heures d'absence par jour" className='preference__form-container--select' styles={customStyles}/>
                             <Select options={optionsKids} placeholder='Avez-vous des enfants ?' className='preference__form-container--select' styles={customStyles}/>
                             <Select options={optionsBudget} placeholder='Votre budget est plutôt...' className='preference__form-container--select' styles={customStyles}/>
                             <Select options={optionsCohabitation} isMulti placeholder='Vous avez déjà...' className='preference__form-container--select' styles={customStyles}/>

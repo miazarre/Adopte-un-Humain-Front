@@ -14,19 +14,30 @@ const ProfilUser = ({user, isLogged}) => {
     const [errorMessage, setErrorMessage] = useState('') ;
 
 // Déclaration de tous les champs de form à controler
-    const [form, setForm] = useState({
-        firstname:'',
-        lastname:'',
-        phone:'',
-        address:'',
-        postal_code:'',
-        city:'',
-        country:'',
-        new_mail:'',
-        mail_confirm:'',
-        new_password:'',
-        confirm_new_password:''
-    })
+const [form, setForm] = useState({
+    firstname: '',
+    lastname: '',
+    phone: '',
+    address: '',
+    postal_code: '',
+    city: '',
+    country: '',
+    new_mail: '',
+    mail_confirm: '',
+    new_password: '',
+    confirm_new_password: ''
+  });
+  
+  useEffect(() => {
+    for (const key in profilUSer) {
+      if (key in form) {
+        setForm(prevForm => ({
+          ...prevForm,
+          [key]: profilUSer[key]
+        }));
+      }
+    }
+  }, []);
 
 // Au chargement de la page on contact l'API pour avoir els données à jour de l'utilisateur
     const settingUserOnLoad = async () => {
@@ -64,7 +75,10 @@ const ProfilUser = ({user, isLogged}) => {
 
         let firstNumber = form.phone.charAt(0);
 
-        if(form.phone != '' && form.phone.length != 10 || firstNumber !== 0){
+        if(form.phone != '' && (form.phone.length != '10' || firstNumber !== '0')){
+            console.log(form.phone)
+            console.log('form.phone.length != 10 ' + form.phone.length != 10 )
+            console.log('firstNumber !== 0' + firstNumber !== 0)
             setErrorMessage('Veuillez entrer un numéro de téléphone valide.')
             return
         }
@@ -126,26 +140,50 @@ const ProfilUser = ({user, isLogged}) => {
                 </div>
                 <div className='profil-user__form'>
 
-                    <form onSubmit={handleSubmit}>
+                    <form>
                         {errorMessage != '' &&
                         <p className='profil-user__form--error_message'>{errorMessage} <RxCrossCircled size='20px' onClick={e => setErrorMessage('')} className='profil-user__form--error_message--cross'/></p>
                         }
                         <p className='profil-user__form--section'>Informations personnelles</p>
-                        <input className='profil-user__form--input' value={form.firstname} name='firstname' placeholder='Prénom' onChange={handleFormChange}/>
-                        <input className='profil-user__form--input' value={form.lastname} name='lastname' placeholder='Nom' onChange={handleFormChange}/>
-                        <input className='profil-user__form--input' value={form.phone} name='phone' placeholder='Téléphone' type='tel' onChange={handleFormChange}/>
-                        <p className='profil-user__form--section'>Adresse</p>
-                        <input className='profil-user__form--input' value={form.address} name='address' placeholder='Adresse' onChange={handleFormChange}/>
-                        <input className='profil-user__form--input' value={form.postal_code} name='postal_code' placeholder='Code postal' onChange={handleFormChange}/>
-                        <input className='profil-user__form--input' value={form.city} name='city' placeholder='Ville' onChange={handleFormChange}/>
-                        <input className='profil-user__form--input' value={form.country} name='country' placeholder='Pays' onChange={handleFormChange}/>
-                        <p className='profil-user__form--section'>Sécurité</p>
-                        <input className='profil-user__form--input' value={form.new_mail} name='new_mail' placeholder='Nouvel e-mail' type='email' onChange={handleFormChange}/>
-                        <input className='profil-user__form--input' value={form.mail_confirm} name='mail_confirm' placeholder='Confirmation e-mail' type='email' onChange={handleFormChange}/>
-                        <input className='profil-user__form--input' value={form.new_password} name='new_password' placeholder='Nouveau mot de passe' type='password' onChange={handleFormChange}/>
-                        <input className='profil-user__form--input' value={form.confirm_new_password} name='confirm_new_password' placeholder='Confirmation' type='password' onChange={handleFormChange}/>
+                        <input className='profil-user__form--input' value={form.firstname} name='firstname' placeholder={profilUSer.firstname} onChange={handleFormChange}/>
+                        <label className='profil-user__form--label' htmlFor='firstname'>Prénom</label>
+                        
+                        <input className='profil-user__form--input' value={form.lastname} name='lastname' placeholder={profilUSer.lastname} onChange={handleFormChange}/>
+                        <label className='profil-user__form--label' htmlFor='lastname'>Nom</label>
+                        
+                        <input className='profil-user__form--input' value={form.phone} name='phone' placeholder={profilUSer.phone} type='tel' onChange={handleFormChange}/>
+                        <label className='profil-user__form--label' htmlFor='phone'>Téléphone</label>
 
-                        <button className='profil-user__form--button'><span>Valider</span></button>
+                        <p className='profil-user__form--section'>Adresse</p>
+                        
+                        <input className='profil-user__form--input' value={form.address} name='address' placeholder={profilUSer.address} onChange={handleFormChange}/>
+                        <label className='profil-user__form--label' htmlFor='address'>Adresse</label>
+
+                        <input className='profil-user__form--input' value={form.postal_code} name='postal_code' placeholder={profilUSer.postal_code} onChange={handleFormChange}/>
+                        <label className='profil-user__form--label' htmlFor='postal_code'>Code postal</label>
+
+                        <input className='profil-user__form--input' value={form.city} name='city' placeholder={profilUSer.city} onChange={handleFormChange}/>
+                        <label className='profil-user__form--label' htmlFor='city'>Ville</label>
+
+                        <input className='profil-user__form--input' value={form.country} name='country' placeholder={profilUSer.country} onChange={handleFormChange}/>
+                        <label className='profil-user__form--label' htmlFor='country'>Pays</label>
+
+                        
+                        <p className='profil-user__form--section'>Sécurité</p>
+
+                        <input className='profil-user__form--input' value={form.new_mail} name='new_mail' placeholder={profilUSer.email} type='email' onChange={handleFormChange}/>
+                        <label className='profil-user__form--label' htmlFor='new_mail'>E-mail</label>
+
+                        <input className='profil-user__form--input' value={form.mail_confirm} name='mail_confirm' placeholder='Confirmation e-mail' type='email' onChange={handleFormChange}/>
+                        <label className='profil-user__form--label' htmlFor='mail_confirm'>Confirmation</label>
+
+                        <input className='profil-user__form--input' value={form.new_password} name='new_password' placeholder='Nouveau mot de passe' type='password' onChange={handleFormChange}/>
+                        <label className='profil-user__form--label' htmlFor='new_password'>Mot de passe</label>
+
+                        <input className='profil-user__form--input' value={form.confirm_new_password} name='confirm_new_password' placeholder='Confirmation' type='password' onChange={handleFormChange}/>
+                        <label className='profil-user__form--label' htmlFor='confirm_new_password'>Confirmation</label>
+
+                        <button  onClick={handleSubmit} className='profil-user__form--button'><span>Valider</span></button>
                     </form>
                     </div>
                     <div className='profil-user__tips'>

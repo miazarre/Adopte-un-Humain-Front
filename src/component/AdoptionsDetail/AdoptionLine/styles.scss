@@ -1,0 +1,44 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+.adoptionLine{
+    &__container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: v.$primary-color;
+        padding: 15px;
+        border-radius: 40px;
+        width: 40vw;
+        margin: 20px;
+    }
+
+    &__user{
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        align-items: center;
+        img{
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    &__bigdetails{
+        width: 90vw;
+        height: 70vh;
+        background-color: v.$primary-color;
+        position: fixed;
+        top: 15vh;
+        left: 5vw;
+
+        &--modal{
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(v.$black, 0.6);
+        }
+    }
+}

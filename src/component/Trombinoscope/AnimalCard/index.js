@@ -6,7 +6,6 @@ import {BsSuitHeart, BsSuitHeartFill} from 'react-icons/bs'
 
 const AnimalCard = ({animal, toggleFavorite, favorites}) => {
 
-
     return(
         <div className='animal-card__card'>
             <div className='animal-card__card--heart' onClick={e => toggleFavorite(animal.id)}>

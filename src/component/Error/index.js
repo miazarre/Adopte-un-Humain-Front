@@ -1,7 +1,9 @@
 import './styles.scss';
 import { Link } from 'react-router-dom';
 
+
 //import Error from '../../../assets/Cookie.png';
+
 
 const anError = () => {
     return(
@@ -14,7 +16,9 @@ const anError = () => {
                     </Link>
                 </p>
 
+
                 ////<img src={Error} alt="error 404" className="error404-image" />
+
             </body>
         </>
     )

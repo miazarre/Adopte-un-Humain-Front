@@ -6,6 +6,7 @@ import './styles.scss';
 import Dinosaure from '../../../assets/Dinosaure.png';
 import Dragon from '../../../assets/Dragon.png';
 import Licorne from '../../../assets/Licorne.png';
+
 const AddAnimal = () => {
     const [category, setCategory] = useState('');
     const [name, setName] = useState('');

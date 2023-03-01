@@ -20,16 +20,16 @@
         &--gradient{
             margin: 1vh auto;
             padding-top: 1vw;
-            width: 22vw;
-            height: 22vw;
+            width: 15vw;
+            height: 15vw;
             border-radius: 50%;
             background: linear-gradient(v.$light-color, v.$dark-color);
         }
 
         &--image{
             margin: auto;
-            width: 20vw;
-            height: 20vw;
+            width: 13vw;
+            height: 13vw;
             border-radius: 50%;
             background-size: cover;
             background-position: center;

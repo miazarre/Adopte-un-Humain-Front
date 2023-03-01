@@ -4,61 +4,61 @@ export const optionsHabitat=[
 ];
 
 export const optionsJardin=[
-    { value: 'aucun', label: 'Aucun' },
-    { value: 'petit', label: 'Petit' },
-    { value: 'grand', label: 'Grand' },
+    { value: 'pas de jardin', label: 'Aucun' },
+    { value: 'petit jardin', label: 'Petit' },
+    { value: 'grand jardin', label: 'Grand' },
 
 ];
 
 export const optionsAge = [
-    { value: 'baby', label: 'Bébé' },
+    { value: 'bébé', label: 'Bébé' },
     { value: 'junior', label: 'Junior' },
     { value: 'adult', label: 'Adulte' },
     { value: 'senior', label: 'Senior' }
   ]
 
   export const optionsCaracter = [
-    { value: 'hugs', label: 'Calin' },
-    { value: 'aventure', label: 'Aventureux' },
-    { value: 'playful', label: 'Joueur' },
-    { value: 'calm', label: 'Calme' },
+    { value: 'calin', label: 'Calin' },
+    { value: 'aventurier', label: 'Aventurier' },
+    { value: 'joueur', label: 'Joueur' },
+    { value: 'calme', label: 'Calme' },
     { value: 'dynamique', label: 'Dynamique' },
-    { value: 'independant', label: 'Idépendant' },
+    { value: 'independant', label: 'Indépendant' },
     { value: 'sociable', label: 'Sociable' }
   ]
 
  export const optionsSexe = [
     { value: 'femelle', label: 'Femelle' },
-    { value: 'male', label: 'Mâle' }
+    { value: 'mâle', label: 'Mâle' }
   ]
 
 export  const optionsCohabitation=[
-    { value: 'chat', label: 'Chat' },
-    { value: 'chien', label: 'Chien' },
-    { value: 'nac', label: 'NAC' }
+    { value: 'ok chat', label: 'Chat' },
+    { value: 'ok chien', label: 'Chien' },
+    { value: 'ok NAC', label: 'NAC' }
   ]
 
 export  const optionsTempsSolo=[
-    { value: 'low', label: 'Moins de 2h' },
-    { value: 'medium', label: 'Entre 2 et 6 heures' },
-    { value: 'hight', label: 'Plus de 6h' }
+    { value: 'solitude - moins de 2h', label: 'Moins de 2h' },
+    { value: 'solitude - entre 2h et 6h', label: 'Entre 2 et 6 heures' },
+    { value: 'solitude - plus de 6h', label: 'Plus de 6h' }
   ]
 
 export  const optionsTempsBallade=[
-  { value: 'low', label: '30 minutes' },
-  { value: 'medium', label: 'Entre 1 et 2 heures' },
-  { value: 'hight', label: 'Plus de 2h' }
+  { value: 'ballade - 30 min', label: '30 minutes' },
+  { value: 'ballade - 1h à 2h', label: 'Entre 1 et 2 heures' },
+  { value: 'ballade - + de 2h', label: 'Plus de 2h' }
 ]
 
 export  const optionsKids=[
-    { value: 'kids', label: "J'ai des enfants" },
-    { value: 'nokids', label: "Pas d'enfants" }
+    { value: 'enfants', label: "J'ai des enfants" },
+    { value: 'Pas d\'enfants', label: "Pas d'enfants" }
   ]
 
 export  const optionsBudget=[
-    { value: 'low', label: "Restreint" },
-    { value: 'medium', label: "Capable d'assurer des ennuis ponctuels" },
-    { value: 'hight', label: "Illimité" }
+    { value: 'budget - restreint', label: "Restreint" },
+    { value: 'budget - medium', label: "Capable d'assurer des ennuis ponctuels" },
+    { value: 'budget - illimité', label: "Illimité" }
   ]
 
  export const optionsActivité = [

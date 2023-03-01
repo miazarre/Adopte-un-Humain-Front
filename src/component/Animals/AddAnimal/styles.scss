@@ -8,7 +8,7 @@
     font-family: v.$global-font ;
     font-size: 1rem;
     display: block;
-    margin: 2rem auto;
+    margin: 1rem auto;
     padding: 1rem;
   }
 
@@ -16,7 +16,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding-top: 4vh;
+    padding-top: 1vh;
   }
 
   & label {
@@ -102,13 +102,15 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  margin-top: 2rem;
   margin-bottom: 1rem;
+  gap: 3rem;
 }
 
 .input-label{
   display: flex;
   justify-content: center;
-
+  align-items: center;
 }
 
 .informations-date{
@@ -138,7 +140,7 @@ input {
       margin-top: 2rem;
       margin-bottom: 1rem;
       display: flex;
-      flex-flow: row nowrap;
+      flex-flow: column wrap;
       justify-content: space-around;
       align-items: center;
       gap: 1rem; 
@@ -158,9 +160,6 @@ input {
       justify-content: center;
       align-items: center;
       margin-top: 2rem;
-      &-addphotos{
-
-      }
     }
 
     &_categories {

@@ -39,7 +39,7 @@ const SigninForm = ({setUser, setIsLogged}) => {
           "phone" : `${phone}`,
         }
       )
-
+        console.log(response)
       localStorage.setItem('token', JSON.stringify(response.data.token));
       let newUser = response.data ;
       delete newUser.token ;

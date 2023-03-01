@@ -37,7 +37,7 @@ const Preferences = ({isLogged, user}) => {
         const response = await axios.get(`${baseUrl}/tags`,
         { headers: { Authorization: `Bearer ${newToken}` }}
         )
-        let foundTag = response.data.filter((tag) => tag.name.toLowerCase() === selectedOption.value)
+        let foundTag = response.data.filter((tag) => tag.name.toLowerCase() === selectedOption.value.toLowerCase())
         return foundTag ;
     }
 // Au changement sur un Select multi, on appelle la fonction qui contact l'API pour chaque champs séléctionné
@@ -50,8 +50,8 @@ const Preferences = ({isLogged, user}) => {
   const addingTag = async (selectedOption) => {
     try{
         const tag = await getTagId(selectedOption);
-        const existingTag = tags.find((tag) => tag.tag_name.toLowerCase() === selectedOption.value);
-
+        const existingTag = tags.find((tag) => tag.tag_name.toLowerCase() === selectedOption.value.toLowerCase());
+        console.log(tag)
         if (existingTag) {
             setMessage(`Vous avez déjà choisi '${selectedOption.value}' comme option.`)
             console.log(`Tag '${selectedOption.value}' already exists.`);
@@ -62,25 +62,28 @@ const Preferences = ({isLogged, user}) => {
         {tag_id:tag[0].id},
         { headers: { Authorization: `Bearer ${newToken}` }}
         )
-        console.log(response)
+        console.log(tag)
         settingPref()
+        setMessage(`Vous avez bien ajouté ${tag[0].name} à vos préférences.`)
 
     }catch(error){
-        console.log(error)
+       setMessage('Il y a eu une erreur.')
+       console.log(error)
     }
 }
 // Fonction qui appelle l'API pour supprimer la liaison tag-user
-    const deletingTag = async (id) => {
+    const deletingTag = async (id, name) => {
+        console.log('delete' + id)
         try{
-            const response = await axios.delete(`${baseUrl}/user/${user.id}/tag`,
-            {tag_id:id},
+            const response = await axios.delete(`${baseUrl}/user/${user.id}/tag/${id}`,
             { headers: { Authorization: `Bearer ${newToken}` }}
             )
             console.log(response)
             settingPref()
+            setMessage(`Vous avez bien supprimé ${name} de vos préférences.`)
         }catch(error){
             console.log(error)
-        }
+            setMessage('Il y a eu une erreur.')        }
     }
     return(
         <div className='preference__page-container'>
@@ -93,7 +96,7 @@ const Preferences = ({isLogged, user}) => {
                             {tags.map((tag) =>{
                                 if(tag.priority === true){
                                     return(
-                                    <span key={tag.tag_id}>{tag.tag_name} <RxCrossCircled onClick={deletingTag(tag.tag_id)}/></span>
+                                    <span key={tag.tag_id}>{tag.tag_name} <RxCrossCircled onClick={e=>deletingTag(tag.tag_id, tag.tag_name)} className='cross'/></span>
                                 )}
                                 
                                 })
@@ -104,7 +107,7 @@ const Preferences = ({isLogged, user}) => {
                         {tags.map((tag) =>{
                                 if(tag.priority === false){
                                     return(
-                                    <span key={tag.tag_id}>{tag.tag_name}</span>
+                                    <span key={tag.tag_id}>{tag.tag_name} <RxCrossCircled onClick={e=>deletingTag(tag.tag_id, tag.tag_name)} className='cross'/></span>
                                 )}
                                 
                                 })
@@ -114,7 +117,7 @@ const Preferences = ({isLogged, user}) => {
                     <form className='preference__form-container'>
                         <h2>Votre profil</h2>
                         {message != '' &&
-                        <p className='preference__message'>{message} <RxCrossCircled/></p>
+                        <p className='preference__message'>{message} <RxCrossCircled onClick={e => setMessage('')}/></p>
                         }
                         <div className='preference__form-container--formdiv'>
                             <Select options={optionsHabitat} placeholder='Habitat' className='preference__form-container--select' styles={customStyles} onChange={handleChange}/>

@@ -23,7 +23,7 @@ export const optionsAge = [
     { value: 'joueur', label: 'Joueur' },
     { value: 'calme', label: 'Calme' },
     { value: 'dynamique', label: 'Dynamique' },
-    { value: 'independant', label: 'Indépendant' },
+    { value: 'indépendant', label: 'Indépendant' },
     { value: 'sociable', label: 'Sociable' }
   ]
 
@@ -35,7 +35,7 @@ export const optionsAge = [
 export  const optionsCohabitation=[
     { value: 'ok chat', label: 'Chat' },
     { value: 'ok chien', label: 'Chien' },
-    { value: 'ok NAC', label: 'NAC' }
+    { value: 'ok nac', label: 'NAC' }
   ]
 
 export  const optionsTempsSolo=[
@@ -52,7 +52,7 @@ export  const optionsTempsBallade=[
 
 export  const optionsKids=[
     { value: 'enfants', label: "J'ai des enfants" },
-    { value: 'Pas d\'enfants', label: "Pas d'enfants" }
+    { value: 'pas enfants', label: "Pas d'enfants" }
   ]
 
 export  const optionsBudget=[
@@ -64,5 +64,5 @@ export  const optionsBudget=[
  export const optionsActivité = [
     { value: 'sportif', label: "Sportif" },
     { value: 'actif', label: "Actif" },
-    { value: 'calm', label: "Calme" }
+    { value: 'calme', label: "Calme" }
   ]

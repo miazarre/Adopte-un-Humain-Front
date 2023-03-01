@@ -19,7 +19,6 @@ const SigninForm = ({setUser, setIsLogged}) => {
 
   const navigate = useNavigate();
 
-  const [login, setLogin] = useState('');
   const [lastname, setLastname] = useState('');
   const [firstname, setFirstname] = useState('');
   const [email, setEmail] = useState('');
@@ -28,61 +27,62 @@ const SigninForm = ({setUser, setIsLogged}) => {
   const [confirmation, setConfirmation] = useState('');
   const [category, setCategory] = useState('');
 
-  const submit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-     try { 
-    const response  = await axios.post(`${baseUrl}/register`, 
-    {
-      "lastname" : `${lastname}`,
-      "firstname" : `${firstname}`,
-      "email" : `${email}`,
-      "password" : `${password}`,
-      "phone" : `${phone}`,
-    })
-    localStorage.setItem('token', JSON.stringify(response.data.token));
-          let newUser = response.data ;
-          delete newUser.token ;
-          setUser(newUser)
-          setIsLogged(true)
-          navigate('/preferences')
+    try { 
+      const response  = await axios.post(`${baseUrl}/register`, 
+        {
+          "lastname" : `${lastname}`,
+          "firstname" : `${firstname}`,
+          "email" : `${email}`,
+          "password" : `${password}`,
+          "phone" : `${phone}`,
+        }
+      )
 
-   }catch(error){
-    console.log(error)
-    setLogin('hello')}
+      localStorage.setItem('token', JSON.stringify(response.data.token));
+      let newUser = response.data ;
+      delete newUser.token ;
+      setUser(newUser)
+      setIsLogged(true)
+      navigate('/preferences')
+    } catch(error) {
+      console.log(error)
+    }
+  }
 
-   return (
-      <div className="input-container">
-        <h1 className='title'>Inscription</h1>
-          <form onSubmit={handleSubmit}>
-              <input type="text" placeholder="Nom" name="lastname" value={lastName} onChange={(event) => setLastName(event.target.value)} />
-              <input type="text" placeholder="Prénom" name="firstname" value={firstName} onChange={(event) => setFirstName(event.target.value)} />
-              <input type="text" placeholder="E-mail" name="email" value={email} onChange={(event) => setEmail(event.target.value)} />
-              <input type="text" placeholder="Numéro de téléphone" name="phone" value={phone} onChange={(event) => setPhone(event.target.value)} />
-              <input type="password" placeholder="Mot de passe" name="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-              <input type="password" placeholder="Validation mot de passe" name="confirmation" value={confirmation} onChange={(event) => setConfirmation(event.target.value)} />
+  return (
+    <div className="input-container">
+      <h1 className='title'>Inscription</h1>
+      <form onSubmit={handleSubmit}>
+        <input type="text" placeholder="Nom" name="lastname" value={lastname} onChange={(event) => setLastname(event.target.value)} />
+        <input type="text" placeholder="Prénom" name="firstname" value={firstname} onChange={(event) => setFirstname(event.target.value)} />
+        <input type="text" placeholder="E-mail" name="email" value={email} onChange={(event) => setEmail(event.target.value)} />
+        <input type="text" placeholder="Numéro de téléphone" name="phone" value={phone} onChange={(event) => setPhone(event.target.value)} />
+        <input type="password" placeholder="Mot de passe" name="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+        <input type="password" placeholder="Validation mot de passe" name="confirmation" value={confirmation} onChange={(event) => setConfirmation(event.target.value)} />
 
 
-              <div className="categories">
-                {categories.map(c => (
-                  <div className="category" key={c.name.toLowerCase()} onClick={() => setCategory(c.name.toLowerCase())}>
-                   <div className="category-image">
-                    <img src={c.image} alt={c.name}/>
-                    </div>
-                    <div className="category-input">
-                      <input type="radio" id={c.name.toLowerCase()} name="category" value={c.name.toLowerCase()} onChange={e => setCategory(e.target.value)} checked={c.name.toLowerCase() === category} />
-                      <label htmlFor={c.name.toLowerCase()}>{c.name}</label>
-                    </div>
-                    <p>{c.description}
-                    </p>
-                  </div>
-                ))}
+        <div className="categories">
+          {categories.map(c => (
+            <div className="category" key={c.name.toLowerCase()} onClick={() => setCategory(c.name.toLowerCase())}>
+              <div className="category-image">
+              <img src={c.image} alt={c.name}/>
               </div>
+              <div className="category-input">
+                <input type="radio" id={c.name.toLowerCase()} name="category" value={c.name.toLowerCase()} onChange={e => setCategory(e.target.value)} checked={c.name.toLowerCase() === category} />
+                <label htmlFor={c.name.toLowerCase()}>{c.name}</label>
+              </div>
+              <p>{c.description}
+              </p>
+            </div>
+          ))}
+        </div>
 
-              
-              <button className='validation' type="submit" value="Submit" onClick={submit}>Valider</button>
-            </form>
-          </div>
-          )
-        }}
+        <button className='validation' type="submit" value="Submit">Valider</button>
+      </form>
+    </div>
+  )
+}
         
 export default SigninForm;

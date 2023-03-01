@@ -4,8 +4,7 @@ import Licorne from '../../assets/Licorne.png';
 import Dinosaure from '../../assets/Dinosaure.png';
 import Dragon from '../../assets/Dragon.png';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {RxCrossCircled} from 'react-icons/rx';
+import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 
 const categories = [
@@ -15,10 +14,9 @@ const categories = [
 ];
 
 const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api";
-const SigninForm = ({setUser, setIsLogged}) => {
+const SigninForm = () => {
 
-  const navigate = useNavigate();
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [lastname, setLastname] = useState('');
   const [firstname, setFirstname] = useState('');
   const [email, setEmail] = useState('');
@@ -29,6 +27,7 @@ const SigninForm = ({setUser, setIsLogged}) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsAuthenticated(true);
     try { 
       const response  = await axios.post(`${baseUrl}/register`, 
         {
@@ -37,15 +36,14 @@ const SigninForm = ({setUser, setIsLogged}) => {
           "email" : `${email}`,
           "password" : `${password}`,
           "phone" : `${phone}`,
-        }
-      )
+        })
 
       localStorage.setItem('token', JSON.stringify(response.data.token));
-      let newUser = response.data ;
-      delete newUser.token ;
-      setUser(newUser)
-      setIsLogged(true)
-      navigate('/preferences')
+
+      if (isAuthenticated){
+        return <Navigate to="/login" />;
+
+      }
     } catch(error) {
       console.log(error)
     }

@@ -58,7 +58,6 @@ function App() {
         <Route path='/adoptions' element={<Adoptions user={user} isLogged={isLogged}/>} />
         <Route path='/adoptions/:id' element={<AdoptionsDetail user={user} isLogged={isLogged}/>} />
         <Route path='*' element={<Error />} />
-        <Route path='/addanimal' element={<AddAnimal />} />
       </Routes>
       <Footer/>
     </BrowserRouter>

@@ -3,36 +3,57 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import './styles.scss';
-import Licorne from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Licorne.png';
-import Dinosaure from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Dinosaure.png';
-import Dragon from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Dragon.png';
+// import Licorne from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Licorne.png';
+// import Dinosaure from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Dinosaure.png';
+// import Dragon from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Dragon.png';
 
 const AddAnimal = () => {
-    const [category, setCategory] = useState('');
+    // const [category, setCategory] = useState('');
     const [name, setName] = useState('');
     const [resume, setResume] = useState('');
     const [description, setDescription] = useState('');
     const [needs, setNeeds] = useState('');
     const [photos, setPhotos] = useState('');
     const [birthdate, setBirthdate] = useState('');
-  
-    const handleSubmit = (event) => {
-       axios.post(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal`, {
-        category,
-        name,
-        resume,
-        description,
-        needs,
-        photos,
-        birthdate,
-        })
-    };
 
-    const categories = [
-        {name: "Licorne", image: Licorne},
-        {name: "Dinosaure", image: Dinosaure},
-        {name: "Dragon", image: Dragon},
-    ]
+    const event = new Date(birthdate);
+    const jsonDate = event.toJSON();
+  
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        addAnimal(name, resume, description, needs, photos, jsonDate);
+    };
+    
+    const addAnimal = async (name, resume, description, needs, photos, jsonDate) => {
+        console.log(name, resume, description, needs, photos, jsonDate)
+        try {     
+            const response = await axios.post(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal`, { 
+                name: name,
+                resume: resume,
+                description: description,
+                needs: needs,
+                // photo1: photos,
+                birthdate: jsonDate,
+            }, { headers: {
+                Authorization : `Bearer ${newToken}`
+                }}
+            )
+            console.log(response.data)}
+            catch(error) {
+                console.error(error)
+        }
+    }
+
+    console.log(addAnimal);
+   
+    // const categories = [
+    //     {name: "Licorne", image: Licorne},
+    //     {name: "Dinosaure", image: Dinosaure},
+    //     {name: "Dragon", image: Dragon},
+    // ]
 
     return( 
     <>
@@ -40,7 +61,7 @@ const AddAnimal = () => {
         <button className='adoptions_container--linkToBoard'>Retour au Tableau de Bord</button>
     </Link>
      <div className="input-container">
-        <form onSubmit={handleSubmit}>
+        <form>
             <div className="input-container-informations">
                 <div>
                 <input type="text" placeholder="Nom" name="name" value={name} onChange={(event) => setName(event.target.value)} />
@@ -65,14 +86,14 @@ const AddAnimal = () => {
                 </div>
                 <div>
                     <label for="description" className='textareas-label'>Description :</label>
-                    <textarea id="description" name="description" rows="6" cols="45" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
+                    <textarea id="description" rows="6" cols="45" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
                 </div>
                 <div>      
                     <label for="needs" className='textareas-label'>Besoins de l'animal :</label>
                     <textarea id="needs" name="needs" rows="6" cols="45" value={needs} onChange={(event) => setNeeds(event.target.value)}></textarea>
                 </div>   
             </div>
-            <div className="categories">
+            {/* <div className="categories">
                 {categories.map(c => (
                   <div className="category" onClick={() => setCategory(c.name.toLowerCase())}>
                    <div className="category-image">
@@ -89,12 +110,11 @@ const AddAnimal = () => {
                     </p>
                   </div>
                 ))}
-            </div>
-            <button type="submit" value="Submit">Valider</button>
-        </form>
+                </div> */}
+            <button onClick={handleSubmit}>Valider</button>
+            </form>
     </div>
     </>
     )
 }
-
 export default AddAnimal;

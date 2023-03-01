@@ -15,19 +15,25 @@ const Animal = ({name, birthdate, resume, needs, id }) => {
     const URLdelete = `http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal/${id}`;
 
     const [data, setData] = useState([])
-    const [errorMessage, setErrorMessage] = useState(null);
 
-    useEffect(() => {
-     async function deleteAnimal() {
-        await axios.delete(URLdelete)
-            .then(response => setData('Delete successful'))
-            .catch(error => {
-                setErrorMessage(error.message);
-                console.error('Il y a une erreur !', error);
-            });
-      }
-      deleteAnimal();
-    }, []);
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
+    const reqInstance = axios.create({
+        headers: {
+            Authorization : `Bearer ${newToken}`
+        }
+    })
+
+    // useEffect(() => {
+    //  async function deleteAnimal() {
+    //     await reqInstance.delete(URLdelete)
+    //         .then(response => setData('Delete successful'))
+    //         .catch(error => {
+    //             console.error(error.message);
+    //         });
+    //   }
+    //   deleteAnimal();
+    // }, []);
 
     return( 
         <>
@@ -53,13 +59,11 @@ const Animal = ({name, birthdate, resume, needs, id }) => {
                             console.log('On supprime')
                         } else {
                             console.log('On annule')
-                        }}}
+                        }}
+                    }
                 />         
             </td>
         </tr>
-        <div>
-            Error: {errorMessage}
-        </div>
         </>
     )
 }

@@ -19,6 +19,7 @@
     justify-content: space-around;
     align-items: center;
     padding-top: 1vh;
+    padding-top: 1vh;
   }
 
   & label {
@@ -107,13 +108,16 @@ input {
   align-items: center;
   justify-content: space-around;
   margin-top: 2rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
+  gap: 3rem;
   gap: 3rem;
 }
 
 .input-label{
   display: flex;
   justify-content: center;
+  align-items: center;
   align-items: center;
 }
 
@@ -144,6 +148,7 @@ input {
       margin-top: 2rem;
       margin-bottom: 1rem;
       display: flex;
+      flex-flow: column wrap;
       flex-flow: column wrap;
       justify-content: space-around;
       align-items: center;

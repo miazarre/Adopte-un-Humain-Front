@@ -10,6 +10,7 @@ const dayjs = require('dayjs')
 
 const AddAnimal = () => {
     // const [category, setCategory] = useState('');
+    // const [category, setCategory] = useState('');
     const [name, setName] = useState('');
     const [resume, setResume] = useState('');
     const [description, setDescription] = useState('');
@@ -99,12 +100,14 @@ const AddAnimal = () => {
                 <div>
                     <label for="description" className='textareas-label'>Description :</label>
                     <textarea id="description" rows="6" cols="45" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
+                    <textarea id="description" rows="6" cols="45" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
                 </div>
                 <div>      
                     <label for="needs" className='textareas-label'>Besoins de l'animal :</label>
                     <textarea id="needs" name="needs" rows="6" cols="45" value={needs} onChange={(event) => setNeeds(event.target.value)}></textarea>
                 </div>   
             </div>
+            {/* <div className="categories">
             {/* <div className="categories">
                 {categories.map(c => (
                   <div className="category" onClick={() => setCategory(c.name.toLowerCase())}>
@@ -122,6 +125,9 @@ const AddAnimal = () => {
                     </p>
                   </div>
                 ))}
+                </div> */}
+            <button onClick={handleSubmit}>Valider</button>
+            </form>
                 </div> */}
             <button onClick={handleSubmit}>Valider</button>
             </form>

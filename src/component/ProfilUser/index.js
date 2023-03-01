@@ -44,7 +44,7 @@ const [form, setForm] = useState({
         const token = localStorage.getItem('token');
         const newToken = JSON.parse(token);
         const response = await axios.get(`${baseUrl}/user/${user.id}`,
-        { headers: { Authorization: `Bearer ${newToken}` } }
+        { headers: { Authorization: `Bearer ${newToken}` }}
         )
         setProfilUser(response.data)
     }

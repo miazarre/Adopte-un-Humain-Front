@@ -10,6 +10,15 @@
         min-height: 76vh;
     }
 
+    &__message{
+        background-color: v.$primary-color;
+        margin: 30px auto;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     &__actual-profil{
         
         box-shadow: 1px 1px 30px rgba(v.$black, 0.1);

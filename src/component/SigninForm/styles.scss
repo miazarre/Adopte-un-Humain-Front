@@ -13,7 +13,6 @@
     margin: 2rem;
     margin-left: 30rem;
     padding: 1rem;
-    width: 20%;
     border-radius: 10px;
 
     button {
@@ -78,3 +77,11 @@
 .category-input label {
   padding: 20rem;
   font-size: 1.5rem;}
+
+.validation{
+  @include button;
+  display: inline-block;
+  span{
+    display: block;
+  }
+}

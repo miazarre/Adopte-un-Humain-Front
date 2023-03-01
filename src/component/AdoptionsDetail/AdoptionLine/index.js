@@ -47,13 +47,35 @@ const AdoptionLine = ({adoption}) => {
             <BsThreeDots 
             size='30px'
             onClick={handleClickDetails}
+            className='dots'
             />
 
             {details &&
             <div className='adoptionLine__bigdetails--modal'>
                 <div className='adoptionLine__bigdetails'>
-                    <p className='adoptionLine__bigdetails--title'>Détails de l'adoption</p>
-                    <BsFillXCircleFill size='30px' onClick={handleClickDetails}/>
+                    <div className='adoptionLine__bigdetails--title--container'>
+                        <p className='adoptionLine__bigdetails--title'>Détails de l'adoption</p>
+                        <BsFillXCircleFill size='30px' onClick={handleClickDetails} className='cross'/>
+                    </div>
+                    <div className='adoptionLine__bigdetails--body-part'>
+                        <div className='adoptionLine__bigdetails--body-part--user'>
+                            <img src={Licorne}/>
+                            <p className='adoptionLine__bigdetails--body-part--user-name'>{user.firstname} {user.lastname}</p>
+                            <p><BsFillTelephoneFill/> {user.phone}</p>
+                        </div>
+                        <div className='adoptionLine__bigdetails--body-part--comment'>
+                        {adoption.comment 
+                        ? <p>{adoption.comment}</p>
+                        : <p>Il n'y a pas encore de commentaires liés à cette demande d'adoption.</p>
+                        }
+                        </div>
+                        <div className='adoptionLine__bigdetails--body-part--adoption'>
+                            <p>{adoption.form1}</p>
+                            <p>{adoption.form2}</p>
+                            <p>{adoption.form3}</p>
+                        </div>
+
+                    </div>
                 </div>
             </div>
             }

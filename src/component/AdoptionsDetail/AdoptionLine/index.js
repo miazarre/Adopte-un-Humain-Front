@@ -4,18 +4,20 @@ import { useEffect, useState } from 'react'
 import './styles.scss'
 import {BsThreeDots, BsFillTelephoneFill, BsFillXCircleFill} from 'react-icons/bs'
 const baseUrl='http://matthieuskrzypczak-server.eddi.cloud:8080/api'
+const token = localStorage.getItem('token');
+const newToken = JSON.parse(token);
 
 const AdoptionLine = ({adoption}) => {
     const [user, setUser] = useState({
         firstname:''
     })
 
+    const [comment, setComment] = useState('');
     const [details, setDetails] = useState(false);
 
     const getUser = async () => {
         try{
-        const token = localStorage.getItem('token');
-        const newToken = JSON.parse(token);
+        
         const response = await axios.get(`${baseUrl}/user/${adoption.user_id}`,
         { headers: { Authorization: `Bearer ${newToken}` } }
         )
@@ -27,11 +29,18 @@ const AdoptionLine = ({adoption}) => {
 
     useEffect(() => {
         getUser()
+        setComment(adoption.comment)
     }, [])
 
-    const handleClickDetails = () => {
-
-        setDetails(!details)
+    const handleSaveComment = async () => {
+        try{
+        const response = await axios.patch(`${baseUrl}/adopt/${adoption.id}`,
+        {comment:comment},
+        { headers: { Authorization: `Bearer ${newToken}` } }
+        )
+        }catch(error){
+            console.log(error)
+        }
     }
 
     return(
@@ -46,7 +55,7 @@ const AdoptionLine = ({adoption}) => {
             <p>{adoption.status}</p>
             <BsThreeDots 
             size='30px'
-            onClick={handleClickDetails}
+            onClick={e=>setDetails(!details)}
             className='dots'
             />
 
@@ -55,21 +64,22 @@ const AdoptionLine = ({adoption}) => {
                 <div className='adoptionLine__bigdetails'>
                     <div className='adoptionLine__bigdetails--title--container'>
                         <p className='adoptionLine__bigdetails--title'>Détails de l'adoption</p>
-                        <BsFillXCircleFill size='30px' onClick={handleClickDetails} className='cross'/>
+                        <BsFillXCircleFill size='30px' onClick={e=>setDetails(!details)} className='cross'/>
                     </div>
                     <div className='adoptionLine__bigdetails--body-part'>
                         <div className='adoptionLine__bigdetails--body-part--user'>
+                            <h3>Utilisateur :</h3>
                             <img src={Licorne}/>
                             <p className='adoptionLine__bigdetails--body-part--user-name'>{user.firstname} {user.lastname}</p>
                             <p><BsFillTelephoneFill/> {user.phone}</p>
                         </div>
                         <div className='adoptionLine__bigdetails--body-part--comment'>
-                        {adoption.comment 
-                        ? <p>{adoption.comment}</p>
-                        : <p>Il n'y a pas encore de commentaires liés à cette demande d'adoption.</p>
-                        }
+                            <h3>Commentaire du staff :</h3>
+                            <textarea value={comment} onChange={e => setComment(e.target.value)}/>
+                            <p onClick={handleSaveComment}><span>Sauvegarder</span></p>
                         </div>
                         <div className='adoptionLine__bigdetails--body-part--adoption'>
+                            <h3>Message :</h3>
                             <p>{adoption.form1}</p>
                             <p>{adoption.form2}</p>
                             <p>{adoption.form3}</p>

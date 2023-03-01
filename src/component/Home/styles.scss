@@ -10,7 +10,6 @@
     .title {
         @include Title;
     }
-<<<<<<< HEAD
 
     .intro  {
         padding: 10vh;
@@ -22,19 +21,6 @@
     }
 
 
-=======
-
-    .intro  {
-        padding: 10vh;
-    }
-
-    p {
-        font-family: v.$global-font;
-        font-size: 1.5em;
-    }
-
-
->>>>>>> 30ac31da61fda8afd192db76bb3ba4f5bf1ffe2b
     h3 {
         @include smallTitle;
         text-align: center;
@@ -43,14 +29,11 @@
 
 }
 
-
 .profiles {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
-<<<<<<< HEAD
-=======
 
 .name {
     margin-top: 3vh;
@@ -71,4 +54,3 @@
     border-radius: 50%;
     background: linear-gradient(v.$light-color, v.$tertiary-color);
 }
->>>>>>> 30ac31da61fda8afd192db76bb3ba4f5bf1ffe2b

@@ -18,20 +18,19 @@ const AddAnimal = () => {
     const [photos, setPhotos] = useState('');
     const [birthdate, setBirthdate] = useState('');
 
-    console.log(birthdate)
-    const birthdate2 = dayjs(birthdate).format('YYYY-MM-DD');
-    console.log(birthdate2);
+    const newBirthdate = dayjs(birthdate).format('YYYY-MM-DD');
+    console.log(newBirthdate);
 
     const token = localStorage.getItem('token');
     const newToken = JSON.parse(token);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addAnimal(name, resume, description, needs, photos, birthdate2);
+        addAnimal(name, resume, description, needs, photos, newBirthdate);
     };
     
-    const addAnimal = async (name, resume, description, needs, photos, birthdate2) => {
-        console.log(name, resume, description, needs, photos, birthdate2)
+    const addAnimal = async (name, resume, description, needs, photos, newBirthdate) => {
+        console.log(name, resume, description, needs, photos, newBirthdate)
         try {     
             const response = await axios.post(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal`, { 
                 name: name,
@@ -39,7 +38,7 @@ const AddAnimal = () => {
                 description: description,
                 needs: needs,
                 photo1: photos,
-                birthdate: birthdate2,
+                birthdate: newBirthdate,
             }, { headers: {
                 Authorization : `Bearer ${newToken}`
                 }}
@@ -125,9 +124,6 @@ const AddAnimal = () => {
                     </p>
                   </div>
                 ))}
-                </div> */}
-            <button onClick={handleSubmit}>Valider</button>
-            </form>
                 </div> */}
             <button onClick={handleSubmit}>Valider</button>
             </form>

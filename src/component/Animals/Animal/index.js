@@ -10,11 +10,11 @@ import { GiLabradorHead } from "react-icons/gi";
 
 const Animal = ({name, birthdate, resume, needs, id }) => {
     const profile=`/trombinoscope/${id}`;
+
+    const URLdelete = `http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal/${id}`;
+    const [data, setData] = useState([])
     const date = new Date(birthdate);
     const localeDate = (date.toLocaleDateString('fr-FR'));
-    const URLdelete = `http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal/${id}`;
-
-    const [data, setData] = useState([])
 
     const token = localStorage.getItem('token');
     const newToken = JSON.parse(token);
@@ -24,16 +24,16 @@ const Animal = ({name, birthdate, resume, needs, id }) => {
         }
     })
 
-    // useEffect(() => {
-    //  async function deleteAnimal() {
-    //     await reqInstance.delete(URLdelete)
-    //         .then(response => setData('Delete successful'))
-    //         .catch(error => {
-    //             console.error(error.message);
-    //         });
-    //   }
-    //   deleteAnimal();
-    // }, []);
+  // useEffect(() => {
+  //  async function deleteAnimal() {
+  //     await reqInstance.delete(URLdelete)
+  //         .then(response => setData('Delete successful'))
+  //         .catch(error => {
+  //             console.error(error.message);
+  //         });
+  //   }
+  //   deleteAnimal();
+  // }, []);
 
     return( 
         <>

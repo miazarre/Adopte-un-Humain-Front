@@ -6,7 +6,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: v.$primary-color;
+        background:linear-gradient(-90deg, v.$primary-color, v.$tertiary-color);
         padding: 15px;
         border-radius: 40px;
         width: 40vw;
@@ -35,11 +35,26 @@
     &__bigdetails{
         width: 90vw;
         height: 70vh;
-        background-color: v.$primary-color;
+        background: linear-gradient( v.$primary-color, v.$tertiary-color);
         position: fixed;
         top: 15vh;
         left: 5vw;
         padding: 30px;
+
+        textarea{
+            width: 100%;
+            height: 80%;
+            resize: none;
+            border-image-source: linear-gradient(-140deg, v.$primary-color, v.$tertiary-color);
+            border-width: 3px;
+            border-image-slice: 1;
+            transition: 0.2s;
+
+            &:focus{
+                outline: none;
+                border-image-source: linear-gradient(-140deg, v.$dark-color, v.$secondary-color);
+            }
+        }
 
         &--modal{
             width: 100vw;
@@ -76,13 +91,19 @@
             padding-top: 30px;
             gap: 1vw;
 
+            h3{
+                @include smallTitle;
+                text-align: center;
+                font-size: 1.1em;
+                margin-bottom: 20px;
+            }
             &--user{
                 background-color: v.$white;
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
                 align-items: center;
-                justify-content: center;
+                padding: 30px 10px;
 
                 &-name{
                     @include smallTitle;
@@ -110,6 +131,20 @@
                 width: 20vw;
                 height: 57vh;
                 padding: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                gap: 30px;
+
+                p{
+                    @include button;
+                    display: inline-block;
+                    
+                    span{
+                        display: inline-block;
+                    }
+                }
             }
         }
     }

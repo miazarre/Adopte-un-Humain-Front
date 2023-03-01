@@ -23,7 +23,7 @@
         
         box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
         padding: 40px;
-        width: 20vw;
+        width: 40vw;
         text-align: center;
 
         h1{
@@ -49,6 +49,18 @@
                 font-weight: 700;
                 padding: 8px;
                 margin: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+
+                .cross{
+                    color: v.$black;
+                    transition: 0.2s;
+                    &:hover{
+                        color: v.$white;
+                    }
+                }
             }
         }
     }

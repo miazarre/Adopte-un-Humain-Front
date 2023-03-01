@@ -177,12 +177,14 @@
             padding: 20px;
             margin-bottom: 30px;
             resize:vertical; 
-            border: 2px solid v.$primary-color ;
+            border-image-source: linear-gradient(-140deg, v.$primary-color, v.$tertiary-color);
+            border-width: 3px;
+            border-image-slice: 1;
             transition: 0.2s;
 
         &:focus{
             outline: none;
-            border: 2px solid v.$secondary-color;
+            border-image-source: linear-gradient(-140deg, v.$dark-color, v.$secondary-color);
         }
     }
 

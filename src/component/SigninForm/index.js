@@ -21,13 +21,48 @@ const SigninForm = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmation, setConfirmation] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [category, setCategory] = useState('');
 
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState('');
+
+  const handleEmailSubmit = (event) => {
+    setEmail(event.target.value);
+  };
+  const handlePhoneSubmit = (event) => {
+    setPhone(event.target.value);
+  }
+  const handlePasswordSubmit = (event) => {
+    setPassword(event.target.value);
+  };
+  const handleConfirmPasswordSubmit = (event) => {
+    setConfirmPassword(event.target.value);
+  };
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert("Le format de l'adresse mail n'est pas valide");
+      return;
+    }
+
+    if (!/^[0-9]{10}$/.test(phone)) {
+      alert("Le numéro de téléphone n'est pas au bon format");
+      return;
+    }
+
+    if (password.length < 6) {
+      alert("Le mot de passe doit être d'un minimum de 6 caractères");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("La validation du mot de passe ne correspond pas au précédent");
+      return;
+    }
+
 
     const newUser = {
       "firstname": firstname,
@@ -59,13 +94,13 @@ const SigninForm = () => {
       {message != '' &&
         <p>{message}</p>
       }
-      <form>
+      <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Nom" name="lastname" value={lastname} onChange={(event) => setLastname(event.target.value)} />
         <input type="text" placeholder="Prénom" name="firstname" value={firstname} onChange={(event) => setFirstname(event.target.value)} />
-        <input type="text" placeholder="E-mail" name="email" value={email} onChange={(event) => setEmail(event.target.value)} />
-        <input type="text" placeholder="Numéro de téléphone" name="phone" value={phone} onChange={(event) => setPhone(event.target.value)} />
-        <input type="password" placeholder="Mot de passe" name="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-        <input type="password" placeholder="Validation mot de passe" name="confirmation" value={confirmation} onChange={(event) => setConfirmation(event.target.value)} />
+        <input type="text" placeholder="E-mail" name="email" value={email} onChange={handleEmailSubmit} />
+        <input type="text" placeholder="Numéro de téléphone" name="phone" value={phone} onChange={handlePhoneSubmit} />
+        <input type="password" placeholder="Mot de passe" name="password" value={password} onChange={handlePasswordSubmit} />
+        <input type="password" placeholder="Validation mot de passe" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPasswordSubmit} />
 
 
         <div className="categories">

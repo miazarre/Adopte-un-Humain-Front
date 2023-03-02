@@ -1,5 +1,5 @@
 import '../styles.scss';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -9,10 +9,11 @@ import { TfiPencil } from "react-icons/tfi";
 import { GiLabradorHead } from "react-icons/gi";
 
 const Animal = ({name, birthdate, resume, needs, id }) => {
-    const profile=`/trombinoscope/${id}`;
 
-    const URLdelete = `http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal/${id}`;
     const [data, setData] = useState([])
+    const profile=`/trombinoscope/${id}`;
+    const URLdelete = `http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal/${id}`;
+
     const date = new Date(birthdate);
     const localeDate = (date.toLocaleDateString('fr-FR'));
 
@@ -24,16 +25,12 @@ const Animal = ({name, birthdate, resume, needs, id }) => {
         }
     })
 
-  // useEffect(() => {
-  //  async function deleteAnimal() {
-  //     await reqInstance.delete(URLdelete)
-  //         .then(response => setData('Delete successful'))
-  //         .catch(error => {
-  //             console.error(error.message);
-  //         });
-  //   }
-  //   deleteAnimal();
-  // }, []);
+    const onDelete = async (id) => {
+        await reqInstance.delete(URLdelete)
+        .then (setData(data))
+        .catch(error => {
+            console.error(error.message);
+    })};
 
     return( 
         <>
@@ -48,15 +45,14 @@ const Animal = ({name, birthdate, resume, needs, id }) => {
                 </Link>
             </td>
             <td>
-                <Link to="/">
-                    <TfiPencil size={'3vh'} className='animals_container-title-table--icon'/>
-                </Link>
+                <TfiPencil size={'3vh'} className='animals_container-title-table--icon' />
                 <FiTrash2 
                     size={'3vh'} 
                     className='animals_container-title-table--icon' 
                     onClick={() => {const confirmation = window.confirm("Etes-vous sûr de vouloir supprimer le profil de cet animal ?")
                         if (confirmation){
                             console.log('On supprime')
+                            onDelete(id)
                         } else {
                             console.log('On annule')
                         }}
@@ -74,6 +70,6 @@ Animal.propTypes = {
     resume: PropTypes.string.isRequired,
     needs: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
-  };
+};
     
 export default Animal;

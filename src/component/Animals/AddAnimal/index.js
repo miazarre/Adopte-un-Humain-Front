@@ -27,35 +27,27 @@ const AddAnimal = () => {
     const token = localStorage.getItem('token');
     const newToken = JSON.parse(token);
 
-    const handleSubmit = (e) => {
+    const content = { name, resume, description, needs, newBirthdate }
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        addAnimal(name, resume, description, needs, photo1, photo2, photo3, photo4, newBirthdate);
-    };
-    
-    const addAnimal = async (name, resume, description, needs, photo1, photo2, photo3, photo4, newBirthdate) => {
-        console.log(name, resume, description, needs, photo1, photo2, photo3, photo4, newBirthdate)
+
+        const form = new FormData();
+        form.append('json', JSON.stringify(content));
+        form.append('photo', photo1, photo2, photo3, photo4);;
+
         try {     
             const response = await axios.post(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal`, { 
-                name: name,
-                resume: resume,
-                description: description,
-                needs: needs,
-                photo1: photo1,
-                photo2: photo2,
-                photo3: photo3,
-                photo4: photo4,
-                birthdate: newBirthdate,
             }, { headers: {
-                Authorization : `Bearer ${newToken}`
-                }}
-            )
+                Authorization : `Bearer ${newToken}`,
+                "Content-Type": "multipart/form-data"
+                },
+                data: form,
+            });
             console.log(response.data)}
             catch(error) {
                 console.error(error)
         }
-    }
-
-    console.log(addAnimal);
+    };
        
     // const categories = [
     //     {name: "Licorne", image: Licorne},
@@ -89,8 +81,8 @@ const AddAnimal = () => {
                 <input 
                     className="input-label" 
                     for="photos" 
-                    value={photo1} 
-                    onChange={(event) => setPhoto1(event.target.value)}
+                    // value={photo1} 
+                    onChange={(event) => setPhoto1(event.target.files[0])}
                     type="file"
                     name="photos"
                     accept="image/png, image/jpeg" >

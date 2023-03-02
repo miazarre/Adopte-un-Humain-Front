@@ -4,19 +4,30 @@ import { useParams } from 'react-router-dom';
 import React from 'react';
 import axios from 'axios';
 import AdoptionLine from './AdoptionLine';
-const AdoptionsDetail = () => {
+const baseUrl='http://matthieuskrzypczak-server.eddi.cloud:8080/api/'
+
+
+
+const AdoptionsDetail = ({user}) => {
     const idAnimal = useParams();
     const [animal, setAnimal] = useState({
         name:'',
         id:''
     })
+    const [tags, setTags] = useState([])
 
     const [adoptions, setAdoptions] = useState([])
 
     const getAnimal = async () => {
         try{
-            const response = await axios.get(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal/${idAnimal.id}`)
+            const response = await axios.get(`${baseUrl}animal/${idAnimal.id}`)
             setAnimal(response.data)
+
+            const responsebis = await axios.get(`${baseUrl}animal/${idAnimal.id}/tag`)
+            console.log('Coucou')
+            setTags(responsebis.data)
+            console.log(tags)
+
         }catch(error){
             console.log(error)
         }
@@ -43,7 +54,15 @@ const AdoptionsDetail = () => {
         <div className='adoptionsdetail'>
             <div className='adoptionsdetail__animal-details'>
                 <p className='adoptionsdetail__animal-details--name'>{animal.name}</p>
-                <div className='animal-adoptions__card--image' style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo1})`}}>
+                <div className='adoptionsdetail__image' style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo1})`}}>
+                </div>
+                <div className='adoptionsdetail__tags-container'>
+                {tags.map((tag) =>{
+                        return(
+                            <span className='adoptionsdetail__tags-container--tags'>{tag.tag_name}</span>
+                        )
+                    })
+                }
                 </div>
             </div>
             <div className='adoptionsdetail__adoptions-list--container'>
@@ -55,6 +74,7 @@ const AdoptionsDetail = () => {
                             <AdoptionLine
                             key={Math.random()}
                             adoption={adoption}
+                            getAdoptions={getAdoptions}
                             />
                             )
                             

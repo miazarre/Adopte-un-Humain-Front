@@ -1,10 +1,54 @@
 import './styles.scss'
 import { Link } from 'react-router-dom';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {BsSuitHeart, BsSuitHeartFill} from 'react-icons/bs'
+import axios from 'axios';
+import { PieChart } from 'react-minimal-pie-chart';
+const baseUrl = 'http://matthieuskrzypczak-server.eddi.cloud:8080/api'
+const token = localStorage.getItem('token');
+const newToken = JSON.parse(token);
 
+const AnimalCard = ({animal, toggleFavorite, favorites, user}) => {
 
-const AnimalCard = ({animal, toggleFavorite, favorites}) => {
+    const [data, setData] = useState([])
+    const [matching, setMatching] = useState({
+        count:'',
+        pourcentage:''
+    });
+
+    const getMatching = async () => {
+        try{
+            const response = await axios.get(`${baseUrl}/user/${user.id}/matching/${animal.id}`,
+            { headers: { Authorization: `Bearer ${newToken}` } }
+            )
+            setData(response.data)
+            resolveMatching(response.data)
+            console.log(response.data)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    const resolveMatching = (data) => {
+        let animalTagCount = 0;
+        let animalFilledTagCount = 0;
+        data.forEach(tag => {
+            if (tag.statut.includes('animal') || tag.statut.includes('commun')) {
+                animalTagCount++;
+                if (tag.match_count === '1') {
+                    animalFilledTagCount++;
+                }
+            }
+        });
+        let pourcentageDone = parseInt((animalFilledTagCount / animalTagCount) * 100);
+        let pourcentage = parseInt(100 - pourcentageDone);
+        setMatching({...matching, count: animalFilledTagCount, animalTag:animalTagCount, pourcentage:pourcentage, pourcentageDone:pourcentageDone});
+    }
+
+    useEffect(() => {
+        getMatching()
+    }, [])
 
     return(
         <div className='animal-card__card'>
@@ -17,14 +61,27 @@ const AnimalCard = ({animal, toggleFavorite, favorites}) => {
             </div>
             <div className='animal-card__card--gradient'>
                 <div 
-                style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo1})`}} 
+                style={{backgroundImage:`url(${baseUrl}/images/animal/${animal.photo1})`}} 
                 className='animal-card__card--image'
                 >
                 </div>
             </div>
             <h2 className='animal-card__card--name'>{animal.name}</h2>
             <p className='animal-card__card--resume'>{animal.resume}</p>
-            <p className='animal-card__card--points'>10 points communs</p>
+            <div className='animal-card__card--match'>
+                <p className='animal-card__card--points'>{matching.count} points communs - {matching.pourcentageDone ? matching.pourcentageDone : '0'}%</p>
+                <PieChart
+                className='animal-card__card--camembert'
+                data={[
+                    { title: 'Match', value:matching.pourcentageDone, color: '#70C1B3' },
+                    { title: 'No Match', value:matching.pourcentage, color: '#247BA0' },
+                ]}
+                radius={40}
+                startAngle={-60}
+                lengthAngle={-360}
+                lineWidth={55}
+                />
+            </div>
             <Link to={`/trombinoscope/${animal.id}`} className='animal-card__card--bouton'><span>Profil</span></Link>
         </div>
     )

@@ -56,6 +56,18 @@
             font-weight: 700;
         }
 
+        &--camembert{
+            width: 70px;
+            align-items: center
+        }
+
+        &--match{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center
+        }
+
         &--bouton{
             @include button;
             width: 4.5em;

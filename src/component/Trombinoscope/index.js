@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
 
-const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite}) => {
+const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite, user}) => {
 
     useEffect(() => {
         const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
@@ -40,6 +40,7 @@ const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite}) => {
                     animal={animal}
                     toggleFavorite={toggleFavorite}
                     favorites={favorites}
+                    user={user}
                     />
                 ))
                 }

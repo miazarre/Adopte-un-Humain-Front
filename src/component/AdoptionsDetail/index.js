@@ -4,8 +4,10 @@ import { useParams } from 'react-router-dom';
 import React from 'react';
 import axios from 'axios';
 import AdoptionLine from './AdoptionLine';
-const baseUrl='http://matthieuskrzypczak-server.eddi.cloud:8080/api/'
 
+const baseUrl='http://matthieuskrzypczak-server.eddi.cloud:8080/api/'
+const token = localStorage.getItem('token');
+const newToken = JSON.parse(token);
 
 
 const AdoptionsDetail = ({user}) => {
@@ -20,10 +22,13 @@ const AdoptionsDetail = ({user}) => {
 
     const getAnimal = async () => {
         try{
-            const response = await axios.get(`${baseUrl}animal/${idAnimal.id}`)
+            const response = await axios.get(`${baseUrl}animal/${idAnimal.id}`,
+            { headers: { Authorization: `Bearer ${newToken}` } })
             setAnimal(response.data)
 
-            const responsebis = await axios.get(`${baseUrl}animal/${idAnimal.id}/tag`)
+            const responsebis = await axios.get(`${baseUrl}animal/${idAnimal.id}/tag`,
+            { headers: { Authorization: `Bearer ${newToken}` } })
+
             console.log('Coucou')
             setTags(responsebis.data)
             console.log(tags)
@@ -35,10 +40,13 @@ const AdoptionsDetail = ({user}) => {
 
     const getAdoptions = async () => {
         try{
-            const response = await axios.get(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/adopts`)
+            const response = await axios.get(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/adopts`,
+            { headers: { Authorization: `Bearer ${newToken}` } })
+
             let adoptionsList = response.data
             adoptionsList = adoptionsList.filter((adoption) => adoption.animal_id == idAnimal.id)
             setAdoptions(adoptionsList)
+
         }catch(error){
             console.log(error)
         }

@@ -54,10 +54,12 @@
         width: 25vw;
         height: 26vw;
         background: linear-gradient(v.$light-color, v.$dark-color);
+        
         }
         
         &--camembert{
-            width: 50px;
+            width: 100px;
+            height: 100px;
         }
 
         &--image{

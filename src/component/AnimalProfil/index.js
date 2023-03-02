@@ -43,7 +43,8 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
 // Contact de l'API pour récupérer les données de l'animal
     const getAnimal = async () =>{
-        const response = await axios.get(`${baseUrl}/animal/${param.id}`) ;
+        const response = await axios.get(`${baseUrl}/animal/${param.id}`,
+        { headers: { Authorization: `Bearer ${newToken}` } }) ;
         setAnimal(response.data)
     }
 // Au chargement de la page on lance la fonction getAnimal
@@ -60,8 +61,6 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
             )
             setData(response.data)
             resolveMatching(response.data)
-            console.log('data :')
-            console.log(data)
 
         }catch(error){
             console.log(error)
@@ -169,7 +168,9 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                         }
                         
                     </Slider>
-                    <PieChart
+                   
+                </div>
+                <PieChart
                     className='animal-profil__details--camembert'
                     data={[
                         { title: 'Match', value:matching.pourcentageDone, color: '#70C1B3' },
@@ -180,7 +181,6 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                     lengthAngle={-360}
                     lineWidth={55}
                     />
-                </div>
             </div>
             <div className='animal-profil__description'>
                 <div className='animal-profil__title-container'>

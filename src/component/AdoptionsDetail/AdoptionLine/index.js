@@ -11,9 +11,9 @@ const newToken = JSON.parse(token);
 
 const AdoptionLine = ({adoption, getAdoptions}) => {
     const [user, setUser] = useState({
-        firstname:''
+        firstname:'',
+        id:''
     })
- 
     const param = useParams()
 
     const [comment, setComment] = useState('');
@@ -28,7 +28,7 @@ const AdoptionLine = ({adoption, getAdoptions}) => {
     const getUser = async () => {
         try{
         
-        const response = await axios.get(`${baseUrl}/user/${adoption.user_id}`,
+        const response = await axios.get(`${baseUrl}/admin/user/${adoption.user_id}`,
         { headers: { Authorization: `Bearer ${newToken}` } }
         )
             setUser(response.data)
@@ -36,7 +36,7 @@ const AdoptionLine = ({adoption, getAdoptions}) => {
         }catch(error){
             console.log(error)
         }
-    }
+    } 
 
     useEffect(() => {
         getUser()
@@ -58,7 +58,7 @@ const AdoptionLine = ({adoption, getAdoptions}) => {
             console.log(error) 
         }
     }
-
+ 
     const handleStatusChange = async (e) => {
         try{
             const response = await axios.patch(`${baseUrl}/adopt/${adoption.id}`,
@@ -73,12 +73,12 @@ const AdoptionLine = ({adoption, getAdoptions}) => {
 
     const getMatching = async () => {
         try{
+            
             const response = await axios.get(`${baseUrl}/user/${user.id}/matching/${param.id}`,
             { headers: { Authorization: `Bearer ${newToken}` } }
             )
             setData(response.data)
             resolveMatching(response.data)
-            console.log(data)
 
         }catch(error){
             console.log(error)

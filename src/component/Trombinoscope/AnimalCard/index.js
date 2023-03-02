@@ -23,7 +23,6 @@ const AnimalCard = ({animal, toggleFavorite, favorites, user}) => {
             )
             setData(response.data)
             resolveMatching(response.data)
-            console.log(response.data)
 
         }catch(error){
             console.log(error)
@@ -70,7 +69,8 @@ const AnimalCard = ({animal, toggleFavorite, favorites, user}) => {
             <p className='animal-card__card--resume'>{animal.resume}</p>
             <div className='animal-card__card--match'>
                 <p className='animal-card__card--points'>{matching.count} points communs - {matching.pourcentageDone ? matching.pourcentageDone : '0'}%</p>
-                <PieChart
+                {matching.count != '' &&
+                    <PieChart
                 className='animal-card__card--camembert'
                 data={[
                     { title: 'Match', value:matching.pourcentageDone, color: '#70C1B3' },
@@ -80,7 +80,7 @@ const AnimalCard = ({animal, toggleFavorite, favorites, user}) => {
                 startAngle={-60}
                 lengthAngle={-360}
                 lineWidth={55}
-                />
+                />}
             </div>
             <Link to={`/trombinoscope/${animal.id}`} className='animal-card__card--bouton'><span>Profil</span></Link>
         </div>

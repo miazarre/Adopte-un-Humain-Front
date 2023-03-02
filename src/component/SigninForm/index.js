@@ -4,8 +4,7 @@ import Licorne from '../../assets/Licorne.png';
 import Dinosaure from '../../assets/Dinosaure.png';
 import Dragon from '../../assets/Dragon.png';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {RxCrossCircled} from 'react-icons/rx';
+import { Navigate } from 'react-router-dom';
 import axios from 'axios';
 
 const categories = [
@@ -15,9 +14,7 @@ const categories = [
 ];
 
 const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api";
-const SigninForm = ({setUser, setIsLogged}) => {
-
-  const navigate = useNavigate();
+const SigninForm = () => {
 
   const [lastname, setLastname] = useState('');
   const [firstname, setFirstname] = useState('');
@@ -27,34 +24,42 @@ const SigninForm = ({setUser, setIsLogged}) => {
   const [confirmation, setConfirmation] = useState('');
   const [category, setCategory] = useState('');
 
+  const [message, setMessage] = useState('')
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try { 
-      const response  = await axios.post(`${baseUrl}/register`, 
-        {
-          "lastname" : `${lastname}`,
-          "firstname" : `${firstname}`,
-          "email" : `${email}`,
-          "password" : `${password}`,
-          "phone" : `${phone}`,
-        }
-      )
 
-      localStorage.setItem('token', JSON.stringify(response.data.token));
-      let newUser = response.data ;
-      delete newUser.token ;
-      setUser(newUser)
-      setIsLogged(true)
-      navigate('/preferences')
+    const newUser = {
+      "firstname": firstname,
+      "lastname": lastname,
+      "email": email,
+      "password": password,
+      "phone": phone
+  }
+
+  // Ici tu dois faire les vérifications dont j'ai parlé avant l'appelle à l'API
+    console.log(newUser)
+    try { 
+
+      const response  = await axios.post(`${baseUrl}/register`, 
+        newUser
+        )
+
+        console.log(response.request.statusText)
+
     } catch(error) {
-      console.log(error)
+      console.log(error.response.data.error)
+      setMessage(error.response.data.error)
     }
   }
 
   return (
     <div className="input-container">
       <h1 className='title'>Inscription</h1>
-      <form onSubmit={handleSubmit}>
+      {message != '' &&
+        <p>{message}</p>
+      }
+      <form>
         <input type="text" placeholder="Nom" name="lastname" value={lastname} onChange={(event) => setLastname(event.target.value)} />
         <input type="text" placeholder="Prénom" name="firstname" value={firstname} onChange={(event) => setFirstname(event.target.value)} />
         <input type="text" placeholder="E-mail" name="email" value={email} onChange={(event) => setEmail(event.target.value)} />
@@ -64,7 +69,7 @@ const SigninForm = ({setUser, setIsLogged}) => {
 
 
         <div className="categories">
-          {categories.map(c => (
+          {/* {categories.map(c => (
             <div className="category" key={c.name.toLowerCase()} onClick={() => setCategory(c.name.toLowerCase())}>
               <div className="category-image">
               <img src={c.image} alt={c.name}/>
@@ -76,10 +81,10 @@ const SigninForm = ({setUser, setIsLogged}) => {
               <p>{c.description}
               </p>
             </div>
-          ))}
+          ))} */}
         </div>
 
-        <button className='validation' type="submit" value="Submit">Valider</button>
+        <p className='validation' onClick={handleSubmit}><span>Valider</span></p>
       </form>
     </div>
   )

@@ -65,7 +65,8 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                     form2:form.form2,
                     form3:form.form3,
                     user_id:user.id,
-                    animal_id:animal.id
+                    animal_id:param.id,
+                    status:'En cours'
                 },
                 { headers: { Authorization: `Bearer ${newToken}` } }
                 )

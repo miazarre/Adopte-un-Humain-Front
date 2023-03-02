@@ -12,15 +12,16 @@ const Adoptions = () => {
     const [searchText, setSearchText] = useState('');
     const [filteredAdoption, setFilteredAdoption] = useState([]);
 
-    useEffect(() => {
-      const fetchData = async () =>{
+    const fetchData = async () =>{
         try {
-          const {data: response} = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/adopts');
-          setData(response);
+          const response = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/animals');
+          setAnimals(response.data);
         } catch (error) {
-          console.error(error.message);
+          console.error(error);
         }
       }
+
+    useEffect(() => {
       fetchData();
     }, []);
 
@@ -43,22 +44,19 @@ const Adoptions = () => {
                 <form className="adoptions_container-form">
                     <button>
                         <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
-                            <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" strokeWidth="1.333" strokeLinecap="round" strokeLinejoin="round"></path>
                         </svg>
                     </button>
                     <input className="adoptions_container-form__input" placeholder="Rechercher un animal" required="" type="text" value={searchText} onChange={(event) => setSearchText(event.target.value)}  />
                     <button className="adoptions_container-form__reset" type="reset">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
                 </form>
-                {/* <Link to="/">
-                    <VscDiffAdded size={'4vh'} className='adoptions_container-icon' />
-                </Link> */}
             </div>
             <Link to="/board">
-                <button className='adoptions_container--linkToBoard'>Retour au Tableau de Bord</button>
+                <p className='adoptions_container--linkToBoard'><span>Retour au Tableau de Bord</span></p>
             </Link>
         </div>
         <table className='adoptions_container-title-table'>

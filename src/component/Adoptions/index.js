@@ -8,7 +8,9 @@ import './styles.scss'
 
 const Adoptions = () => {
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
+    const [searchText, setSearchText] = useState('');
+    const [filteredAdoption, setFilteredAdoption] = useState([]);
 
     useEffect(() => {
       const fetchData = async () =>{
@@ -22,12 +24,16 @@ const Adoptions = () => {
       fetchData();
     }, []);
 
-    const adoption = data.map((adoption) => (
-        <Adoption
-        key={adoption.id}
-        {...adoption}
-        />      
-    ))
+    useEffect(() => {
+        if (searchText.length) {
+          const filteredAdoptions = data.filter((adoption) => {
+            return (adoption.id).toLowerCase().includes(searchText.toLowerCase());
+          });
+          setFilteredAdoption(filteredAdoptions);
+        } else {
+            setFilteredAdoption([]);
+        }
+      }, [searchText, data]);
 
     return(
         <div className='adoptions_container'>
@@ -40,7 +46,7 @@ const Adoptions = () => {
                             <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                     </button>
-                    <input className="adoptions_container-form__input" placeholder="Rechercher un animal" required="" type="text" />
+                    <input className="adoptions_container-form__input" placeholder="Rechercher un animal" required="" type="text" value={searchText} onChange={(event) => setSearchText(event.target.value)}  />
                     <button className="adoptions_container-form__reset" type="reset">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
@@ -62,7 +68,20 @@ const Adoptions = () => {
                 <th>Détail des demandes</th>
                 <th className='adoptions_container-title-table--icon'>Modifier / Supprimer</th>
             </tr> 
-            { adoption }
+            { 
+            filteredAdoption.length ?
+            filteredAdoption.map((adoption) => 
+            <Adoption 
+            key={adoption.id}
+            {...adoption}
+            />
+            ) :
+            data.map((adoption) => (
+            <Adoption
+            key={adoption.id}
+            {...adoption}
+            />      
+            ))}
         </table>
     </div>
     )

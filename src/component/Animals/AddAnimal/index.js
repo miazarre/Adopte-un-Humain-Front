@@ -15,7 +15,10 @@ const AddAnimal = () => {
     const [resume, setResume] = useState('');
     const [description, setDescription] = useState('');
     const [needs, setNeeds] = useState('');
-    const [photos, setPhotos] = useState('');
+    const [photo1, setPhoto1] = useState('');
+    const [photo2, setPhoto2] = useState('');
+    const [photo3, setPhoto3] = useState('');
+    const [photo4, setPhoto4] = useState('');
     const [birthdate, setBirthdate] = useState('');
 
     const newBirthdate = dayjs(birthdate).format('YYYY-MM-DD');
@@ -26,18 +29,21 @@ const AddAnimal = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addAnimal(name, resume, description, needs, photos, newBirthdate);
+        addAnimal(name, resume, description, needs, photo1, photo2, photo3, photo4, newBirthdate);
     };
     
-    const addAnimal = async (name, resume, description, needs, photos, newBirthdate) => {
-        console.log(name, resume, description, needs, photos, newBirthdate)
+    const addAnimal = async (name, resume, description, needs, photo1, photo2, photo3, photo4, newBirthdate) => {
+        console.log(name, resume, description, needs, photo1, photo2, photo3, photo4, newBirthdate)
         try {     
             const response = await axios.post(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal`, { 
                 name: name,
                 resume: resume,
                 description: description,
                 needs: needs,
-                photo1: photos,
+                photo1: photo1,
+                photo2: photo2,
+                photo3: photo3,
+                photo4: photo4,
                 birthdate: newBirthdate,
             }, { headers: {
                 Authorization : `Bearer ${newToken}`
@@ -50,7 +56,7 @@ const AddAnimal = () => {
     }
 
     console.log(addAnimal);
-   
+       
     // const categories = [
     //     {name: "Licorne", image: Licorne},
     //     {name: "Dinosaure", image: Dinosaure},
@@ -83,11 +89,38 @@ const AddAnimal = () => {
                 <input 
                     className="input-label" 
                     for="photos" 
-                    value={photos} 
-                    onChange={(event) => setPhotos(event.target.value)}
+                    value={photo1} 
+                    onChange={(event) => setPhoto1(event.target.value)}
                     type="file"
                     name="photos"
-                    accept="image/png, image/jpeg" multiple>
+                    accept="image/png, image/jpeg" >
+                </input>
+                <input 
+                    className="input-label" 
+                    for="photos" 
+                    value={photo2} 
+                    onChange={(event) => setPhoto2(event.target.value)}
+                    type="file"
+                    name="photos"
+                    accept="image/png, image/jpeg" >
+                </input>
+                <input 
+                    className="input-label" 
+                    for="photos" 
+                    value={photo3} 
+                    onChange={(event) => setPhoto3(event.target.value)}
+                    type="file"
+                    name="photos"
+                    accept="image/png, image/jpeg" >
+                </input>
+                <input 
+                    className="input-label" 
+                    for="photos" 
+                    value={photo4} 
+                    onChange={(event) => setPhoto4(event.target.value)}
+                    type="file"
+                    name="photos"
+                    accept="image/png, image/jpeg" >
                 </input>
                 </div>
             </div>
@@ -98,7 +131,6 @@ const AddAnimal = () => {
                 </div>
                 <div>
                     <label for="description" className='textareas-label'>Description :</label>
-                    <textarea id="description" rows="6" cols="45" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
                     <textarea id="description" rows="6" cols="45" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
                 </div>
                 <div>      

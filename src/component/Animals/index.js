@@ -78,7 +78,7 @@ const Animals = () => {
             key={animal.id}
             {...animal}
           />
-        ) :
+          ) :
           data.map((animal) => 
           <Animal 
             key={animal.id}

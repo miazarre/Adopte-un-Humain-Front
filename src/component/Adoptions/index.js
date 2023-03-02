@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Animal from './Animal';
 import './styles.scss'
+const baseUrl='http://matthieuskrzypczak-server.eddi.cloud:8080/api'
+const token = localStorage.getItem('token');
+const newToken = JSON.parse(token);
 
 const Adoptions = () => {
 
@@ -10,7 +13,9 @@ const Adoptions = () => {
 
     const fetchData = async () =>{
         try {
-          const response = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/animals');
+          const response = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/animals',
+          { headers: { Authorization: `Bearer ${newToken}` } }
+          );
           setAnimals(response.data);
         } catch (error) {
           console.error(error);

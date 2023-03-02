@@ -10,8 +10,12 @@ import axios from 'axios';
 import './styles.scss'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { PieChart } from 'react-minimal-pie-chart';
 
 const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
+const token = localStorage.getItem('token');
+const newToken = JSON.parse(token);
+
 
 const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
@@ -25,6 +29,11 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
         form3:''
     })
     const [errorMessage, setErrorMessage] = useState('');
+    const [data, setData] = useState([])
+    const [matching, setMatching] = useState({
+        count:'',
+        pourcentage:''
+    });
 
 // Gestion des formulaires controlés
     const handleFormChange = (event) => {
@@ -34,14 +43,50 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
 // Contact de l'API pour récupérer les données de l'animal
     const getAnimal = async () =>{
-        const response = await axios.get(`${baseUrl}/animal/${param.id}`) ;
+        const response = await axios.get(`${baseUrl}/animal/${param.id}`,
+        { headers: { Authorization: `Bearer ${newToken}` } }) ;
         setAnimal(response.data)
     }
 // Au chargement de la page on lance la fonction getAnimal
     useEffect(() => {
         getAnimal()
+        getMatching()
         }, 
       []);
+
+      const getMatching = async () => {
+        try{
+            const response = await axios.get(`${baseUrl}/user/${user.id}/matching/${param.id}`,
+            { headers: { Authorization: `Bearer ${newToken}` } }
+            )
+            setData(response.data)
+            console.log(data)
+            resolveMatching(response.data)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    const resolveMatching = (data) => {
+        let animalTagCount = 0;
+        let animalFilledTagCount = 0;
+        data.forEach(tag => {
+            if (tag.statut.includes('animal') || tag.statut.includes('commun')) {
+                animalTagCount++;
+                if (tag.match_count === '1') {
+                    animalFilledTagCount++;
+                }
+            }
+        });
+        let pourcentageDone = parseInt((animalFilledTagCount / animalTagCount) * 100);
+        let pourcentage = parseInt(100 - pourcentageDone);
+        setMatching({...matching, count: animalFilledTagCount, animalTag:animalTagCount, pourcentage:pourcentage, pourcentageDone:pourcentageDone});
+    }
+
+    useEffect(() => {
+        getMatching()
+    }, [])
 
 // Gestion du submit de la demande d'adoption
         const handleFormSubmit = async () => {
@@ -124,13 +169,53 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                         }
                         
                     </Slider>
+                   
+                </div>
+                <div className='animal-profil__details--matching'>
+                    <div>
+                        <p className='pourcent'>{matching.pourcentageDone}%</p>
+                        <PieChart
+                            className='animal-profil__details--camembert'
+                            data={[
+                                { title: 'Match', value:matching.pourcentageDone, color: '#70C1B3' },
+                                { title: 'No Match', value:matching.pourcentage, color: '#247BA0' },
+                            ]}
+                            radius={40}
+                            startAngle={-60}
+                            lengthAngle={-360}
+                            lineWidth={55}
+                        />
+                    </div>
+                <div>
+                    <span className='match'>Match :</span>
+                    {data.map((tag) => {
+                        if(tag.match_count == '1'){
+                            return(
+                                <span className='animal-profil__details--tag-match'>{tag.tag_name}</span>
+                            )
+                        }
+                    })
+
+                    }
+                </div>
+                <div>
+                    <span className='no-match'>No match :</span>
+                    {data.map((tag) => {
+                        if(tag.match_count == '0' && tag.statut.includes('animal')){
+                            return(
+                                <span className='animal-profil__details--tag-nomatch'>{tag.tag_name}</span>
+                            )
+                        }
+                    })
+                    }
+                </div>
                 </div>
             </div>
             <div className='animal-profil__description'>
                 <div className='animal-profil__title-container'>
                     <h1 className='animal-profil__title-container--name'>{animal.name}</h1>
                     <span className='animal-profil__title-container--dot'></span>
-                    <p className='animal-profil__title-container--points'>10 points communs</p>
+                    <p className='animal-profil__title-container--points'>{matching.count} point{matching.count > 1 ? 's' : ''} commun{matching.count > 1 ? 's' : ''}</p>
                     <div className='animal-card__card--heart' onClick={e => toggleFavorite(animal.id)}>
                     {favorites.includes(animal.id)
                     ?  <div className='animal-profil__title-container--fav animal-profil__title-container--fav-added'><BsSuitHeartFill className='icon' size={'15px'}/> Retirer des coups de coeur</div>

@@ -50,11 +50,55 @@
 
         &--gradient{
         margin: 5vh auto;
+        margin-bottom: 2vh;
         padding-top: 1vw;
         width: 25vw;
         height: 26vw;
         background: linear-gradient(v.$light-color, v.$dark-color);
         
+        }
+
+        &--tag-match{
+            padding: 5px;
+            border-radius: 30px;
+            background-color: v.$primary-color;
+            color: v.$white;
+        }
+        &--tag-nomatch{
+            padding: 5px;
+            border-radius: 30px;
+            background-color: v.$dark-color;
+            color: v.$white;
+        }
+
+        &--matching{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+
+            .pourcent{
+                @include smallTitle;
+                color: v.$primary-color;
+            }
+
+            div{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+                align-items: center;
+
+                .match{
+                    color: v.$primary-color;
+                    font-weight: 700;
+                }
+
+                .no-match{
+                    color: v.$dark-color;
+                    font-weight: 700;
+                }
+            }
         }
         
         &--camembert{

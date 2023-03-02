@@ -60,6 +60,7 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
             { headers: { Authorization: `Bearer ${newToken}` } }
             )
             setData(response.data)
+            console.log(data)
             resolveMatching(response.data)
 
         }catch(error){
@@ -170,17 +171,45 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                     </Slider>
                    
                 </div>
-                <PieChart
-                    className='animal-profil__details--camembert'
-                    data={[
-                        { title: 'Match', value:matching.pourcentageDone, color: '#70C1B3' },
-                        { title: 'No Match', value:matching.pourcentage, color: '#247BA0' },
-                    ]}
-                    radius={40}
-                    startAngle={-60}
-                    lengthAngle={-360}
-                    lineWidth={55}
-                    />
+                <div className='animal-profil__details--matching'>
+                    <div>
+                        <p className='pourcent'>{matching.pourcentageDone}%</p>
+                        <PieChart
+                            className='animal-profil__details--camembert'
+                            data={[
+                                { title: 'Match', value:matching.pourcentageDone, color: '#70C1B3' },
+                                { title: 'No Match', value:matching.pourcentage, color: '#247BA0' },
+                            ]}
+                            radius={40}
+                            startAngle={-60}
+                            lengthAngle={-360}
+                            lineWidth={55}
+                        />
+                    </div>
+                <div>
+                    <span className='match'>Match :</span>
+                    {data.map((tag) => {
+                        if(tag.match_count == '1'){
+                            return(
+                                <span className='animal-profil__details--tag-match'>{tag.tag_name}</span>
+                            )
+                        }
+                    })
+
+                    }
+                </div>
+                <div>
+                    <span className='no-match'>No match :</span>
+                    {data.map((tag) => {
+                        if(tag.match_count == '0' && tag.statut.includes('animal')){
+                            return(
+                                <span className='animal-profil__details--tag-nomatch'>{tag.tag_name}</span>
+                            )
+                        }
+                    })
+                    }
+                </div>
+                </div>
             </div>
             <div className='animal-profil__description'>
                 <div className='animal-profil__title-container'>

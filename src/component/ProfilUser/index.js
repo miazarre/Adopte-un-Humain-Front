@@ -9,6 +9,7 @@ import {RxCrossCircled} from 'react-icons/rx';
 const baseUrl=process.env.REACT_APP_BASE_URL
 
 const ProfilUser = ({user, isLogged}) => {
+    console.log(user)
 
     const [profilUSer, setProfilUser] = useState(user);
     const [errorMessage, setErrorMessage] = useState('') ;
@@ -68,21 +69,18 @@ const [form, setForm] = useState({
 // On check si les champs pairés (mail/confirm et pass/confirm) correspondent bien
 // Si oui, on passe a la suite
 // Si non, on setUp un message d'erreur et on termine a fonction
-        if(form.new_mail != form.mail_confirm){
+        if(form.new_mail !== form.mail_confirm){
             setErrorMessage('L\'e-mail et sa confirmation ne correspondent pas.')
             return
         }
-        if(form.new_password != form.confirm_new_password){
+        if(form.new_password !== form.confirm_new_password){
             setErrorMessage('Le nouveau mot de passe et sa confirmation ne correspondent pas.')
             return
         }
 
         let firstNumber = form.phone.charAt(0);
 
-        if(form.phone != '' && (form.phone.length != '10' || firstNumber !== '0')){
-            console.log(form.phone)
-            console.log('form.phone.length != 10 ' + form.phone.length != 10 )
-            console.log('firstNumber !== 0' + firstNumber !== 0)
+        if(form.phone !== '' && (form.phone.length !== '10' || firstNumber !== '0')){
             setErrorMessage('Veuillez entrer un numéro de téléphone valide.')
             return
         }
@@ -145,7 +143,7 @@ const [form, setForm] = useState({
                 <div className='profil-user__form'>
 
                     <form>
-                        {errorMessage != '' &&
+                        {errorMessage !== '' &&
                         <p className='profil-user__form--error_message'>{errorMessage} <RxCrossCircled size='20px' onClick={e => setErrorMessage('')} className='profil-user__form--error_message--cross'/></p>
                         }
                         <p className='profil-user__form--section'>Informations personnelles</p>

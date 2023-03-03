@@ -7,30 +7,38 @@ import { IoPersonAddSharp } from "react-icons/io5";
 
 import User from './User';
 
-import users from '../../data/users.json';
-
 const Users = () => {
+    
+    const [data, setData] = useState([]);
+    const [searchText, setSearchText] = useState('');
+    const [filteredUser, setFilteredUser] = useState([]);
+    console.log(searchText);
 
-    // const [data, setData] = useState([])
+    useEffect(() => {
+      const fetchData = async () =>{
+        const token = localStorage.getItem('token');
+        const newToken = JSON.parse(token);
+        try {
+          const {data: response} = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/users',
+          { headers: { Authorization: `Bearer ${newToken}` } });
+          setData(response);
+        } catch (error) {
+          console.error(error.message);
+        }
+      }
+      fetchData();
+    }, []);
 
-    // useEffect(() => {
-    //   const fetchData = async () =>{
-    //     try {
-    //       const {data: response} = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/users');
-    //       setData(response);
-    //     } catch (error) {
-    //       console.error(error.message);
-    //     }
-    //   }
-    //   fetchData();
-    // }, []);
-
-    const user = users.map((user) => (
-        <User
-        key={user.id}
-        {...user}
-        />
-    ))
+    useEffect(() => {
+        if (searchText.length) {
+          const filteredUsers = data.filter((user) => {
+            return (user.name).toLowerCase().includes(searchText.toLowerCase());
+          });
+          setFilteredUser(filteredUsers);
+        } else {
+          setFilteredUser([]);
+        }
+      }, [searchText, data]);
 
     return(
         <div className='users_container'>
@@ -43,7 +51,7 @@ const Users = () => {
                                 <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
                         </button>
-                        <input className="users_container-form__input" placeholder="Rechercher un membre" required="" type="text" />
+                        <input className="users_container-form__input" placeholder="Rechercher un membre" required="" type="text" value={searchText} onChange={(event) => setSearchText(event.target.value)} />
                         <button className="users_container-form__reset" type="reset">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
@@ -66,7 +74,21 @@ const Users = () => {
                     <th>Profil</th>
                     <th className='users_container-title-table--icon'>Supprimer</th>
                 </tr>
-                {user}
+                {
+                filteredUser.length ?
+                filteredUser.map((user) => 
+                <User 
+                    key={user.id}
+                    {...user}
+                />
+                ) :
+                data.map((user) => 
+                <User 
+                    key={user.id}
+                    {...user}
+                />
+                )
+                }
             </table>
         </div>
     )

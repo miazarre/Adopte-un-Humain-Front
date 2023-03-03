@@ -3,58 +3,116 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import './styles.scss';
-import Dinosaure from '../../../assets/Dinosaure.png';
-import Dragon from '../../../assets/Dragon.png';
-import Licorne from '../../../assets/Licorne.png';
+const dayjs = require('dayjs')
+// import Licorne from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Licorne.png';
+// import Dinosaure from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Dinosaure.png';
+// import Dragon from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Dragon.png';
 
 const AddAnimal = () => {
-    const [category, setCategory] = useState('');
+    // const [category, setCategory] = useState('');
+    // const [category, setCategory] = useState('');
     const [name, setName] = useState('');
     const [resume, setResume] = useState('');
     const [description, setDescription] = useState('');
     const [needs, setNeeds] = useState('');
-    const [photos, setPhotos] = useState('');
+    const [photo1, setPhoto1] = useState('');
+    const [photo2, setPhoto2] = useState('');
+    const [photo3, setPhoto3] = useState('');
+    const [photo4, setPhoto4] = useState('');
     const [birthdate, setBirthdate] = useState('');
-  
-    const handleSubmit = (event) => {
-       axios.post(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal`, {
-        category,
-        name,
-        resume,
-        description,
-        needs,
-        photos,
-        birthdate,
-        })
-    };
 
-    const categories = [
-        {name: "Licorne", image: Licorne},
-        {name: "Dinosaure", image: Dinosaure},
-        {name: "Dragon", image: Dragon},
-    ]
+    const newBirthdate = dayjs(birthdate).format('YYYY-MM-DD');
+    console.log(newBirthdate);
+
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
+
+    const content = { name, resume, description, needs, newBirthdate, photo1, photo2, photo3, photo4 }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('content', content);
+
+        try {     
+            const response = await axios.post(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal`, { 
+            }, { headers: {
+                Authorization : `Bearer ${newToken}`,
+                "Content-Type": "multipart/form-data"
+                },
+                data:formData
+            });
+            console.log(response.data)}
+            catch(error) {
+                console.error(error)
+        }
+    };
+       
+    // const categories = [
+    //     {name: "Licorne", image: Licorne},
+    //     {name: "Dinosaure", image: Dinosaure},
+    //     {name: "Dragon", image: Dragon},
+    // ]
 
     return( 
     <>
     <Link to="/board">
         <button className='adoptions_container--linkToBoard'>Retour au Tableau de Bord</button>
     </Link>
-     <div className="input-container">
-        <form onSubmit={handleSubmit}>
-            <div className="input-container-informations">
+     <div className="addAnimal-container">
+        <form>
+            <div className="addAnimal-container-informations">
                 <div>
                 <input type="text" placeholder="Nom" name="name" value={name} onChange={(event) => setName(event.target.value)} />
                 </div>
                 <div>
-                <label for="date"  className="informations-date" value={birthdate} onChange={(event) => setBirthdate(event.target.value)}>Date de naissance :</label>
-                <input type="date" id="date" name="date" />
+                <label id="date">Date de naissance :</label>
+                <input 
+                    type="date"  
+                    name="date" 
+                    for="date" 
+                    className="informations-date" 
+                    value={birthdate} 
+                    onChange={(event) => setBirthdate(event.target.value)}/>
                 </div>
                 <div>
-                <label className="input-label" for="photos" value={photos} onChange={(event) => setPhotos(event.target.value)}>Ajouter des photos :</label>
+                <label id="photos" >Ajouter des photos :</label>
                 <input 
+                    className="input-label" 
+                    for="photos" 
+                    value={photo1} 
+                    onChange={(event) => setPhoto1(event.target.files[0])}
                     type="file"
-                    id="photos" name="photos"
-                    accept="image/png, image/jpeg" multiple>
+                    name="photos"
+                    accept="image/png, image/jpeg" >
+                </input>
+                <input 
+                    className="input-label" 
+                    for="photos" 
+                    value={photo2} 
+                    onChange={(event) => setPhoto2(event.target.value)}
+                    type="file"
+                    name="photos"
+                    accept="image/png, image/jpeg" >
+                </input>
+                <input 
+                    className="input-label" 
+                    for="photos" 
+                    value={photo3} 
+                    onChange={(event) => setPhoto3(event.target.value)}
+                    type="file"
+                    name="photos"
+                    accept="image/png, image/jpeg" >
+                </input>
+                <input 
+                    className="input-label" 
+                    for="photos" 
+                    value={photo4} 
+                    onChange={(event) => setPhoto4(event.target.value)}
+                    type="file"
+                    name="photos"
+                    accept="image/png, image/jpeg" >
                 </input>
                 </div>
             </div>
@@ -65,14 +123,15 @@ const AddAnimal = () => {
                 </div>
                 <div>
                     <label for="description" className='textareas-label'>Description :</label>
-                    <textarea id="description" name="description" rows="6" cols="45" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
+                    <textarea id="description" rows="6" cols="45" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
                 </div>
                 <div>      
                     <label for="needs" className='textareas-label'>Besoins de l'animal :</label>
                     <textarea id="needs" name="needs" rows="6" cols="45" value={needs} onChange={(event) => setNeeds(event.target.value)}></textarea>
                 </div>   
             </div>
-            <div className="categories">
+            {/* <div className="categories">
+            {/* <div className="categories">
                 {categories.map(c => (
                   <div className="category" onClick={() => setCategory(c.name.toLowerCase())}>
                    <div className="category-image">
@@ -89,12 +148,11 @@ const AddAnimal = () => {
                     </p>
                   </div>
                 ))}
-            </div>
-            <button type="submit" value="Submit">Valider</button>
-        </form>
+                </div> */}
+            <button onClick={handleSubmit}>Valider</button>
+            </form>
     </div>
     </>
     )
 }
-
 export default AddAnimal;

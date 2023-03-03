@@ -4,7 +4,6 @@ import axios from 'axios';
 import Animal from './Animal';
 import './styles.scss'
 
-
 const baseUrl=process.env.REACT_APP_BASE_URL
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
@@ -14,6 +13,9 @@ const Adoptions = () => {
     const [animals, setAnimals] = useState([])
 
     const fetchData = async () =>{
+        const token = localStorage.getItem('token');
+        const newToken = JSON.parse(token);
+
         try {
           const response = await axios.get(`${baseUrl}/animals`,
           { headers: { Authorization: `Bearer ${newToken}` } }

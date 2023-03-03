@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import './styles.scss';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -94,5 +95,12 @@ const AdoptionsDetail = ({user}) => {
         </div>
     )
 }
+
+AdoptionsDetail.propTypes = {
+    animal_id: PropTypes.number.isRequired,
+    form1: PropTypes.string.isRequired,
+    form2: PropTypes.string.isRequired,
+    form3: PropTypes.string.isRequired,
+  };
 
 export default AdoptionsDetail ;

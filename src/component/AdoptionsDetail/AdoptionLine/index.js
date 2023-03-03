@@ -5,9 +5,10 @@ import { useEffect, useState } from 'react'
 import './styles.scss'
 import {BsThreeDots, BsFillTelephoneFill, BsFillXCircleFill} from 'react-icons/bs'
 import { useParams } from 'react-router-dom'
-const baseUrl='http://matthieuskrzypczak-server.eddi.cloud:8080/api'
+
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
+const baseUrl=process.env.REACT_APP_BASE_URL
 
 const AdoptionLine = ({adoption, getAdoptions}) => {
     const [user, setUser] = useState({

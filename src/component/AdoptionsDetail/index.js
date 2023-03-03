@@ -5,9 +5,9 @@ import React from 'react';
 import axios from 'axios';
 import AdoptionLine from './AdoptionLine';
 
-const baseUrl='http://matthieuskrzypczak-server.eddi.cloud:8080/api/'
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
+const baseUrl=process.env.REACT_APP_BASE_URL;
 
 
 const AdoptionsDetail = ({user}) => {

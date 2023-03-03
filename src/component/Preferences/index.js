@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import './styles.scss';
-import { optionsAge, optionsActivité, optionsBudget, optionsCaracter, optionsCohabitation, optionsHabitat, optionsJardin, optionsKids, optionsSexe, optionsTemps, optionsTempsBallade, optionsTempsSolo } from '../../data/options_select';
+import { optionsAge, optionsActivité, optionsBudget, optionsCaracter, optionsCohabitation, optionsHabitat, optionsJardin, optionsKids, optionsSexe, optionsTempsBallade, optionsTempsSolo } from '../../data/options_select';
 import customStyles from './custom_styles';
 import axios from 'axios';
 import {RxCrossCircled} from 'react-icons/rx'
 
-const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
+const baseUrl=process.env.REACT_APP_BASE_URL
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
 
@@ -17,11 +17,16 @@ const Preferences = ({isLogged, user}) => {
 // Contact de l'API pour récupérer les tags liés a l'utilisateur connecté
     const settingPref = async () => {
 
-        const responseTags = await axios.get(`${baseUrl}/user/${user.id}/tag`,
-        { headers: { Authorization: `Bearer ${newToken}` }}
-        )
-        setTags(responseTags.data)
-        console.log(responseTags.data)
+        try{
+                const responseTags = await axios.get(`${baseUrl}/user/${user.id}/tag`,
+            { headers: { Authorization: `Bearer ${newToken}` }}
+            )
+            setTags(responseTags.data)
+
+        }catch(error){
+            console.log(error)
+        }
+        
     }
 // Appel au chargement de la page de la fonction pour setup les tags du user
     useEffect(() => {
@@ -51,18 +56,14 @@ const Preferences = ({isLogged, user}) => {
     try{
         const tag = await getTagId(selectedOption);
         const existingTag = tags.find((tag) => tag.tag_name.toLowerCase() === selectedOption.value.toLowerCase());
-        console.log(tag)
         if (existingTag) {
             setMessage(`Vous avez déjà choisi '${selectedOption.value}' comme option.`)
-            console.log(`Tag '${selectedOption.value}' already exists.`);
             return;
         }
-        
         const response = await axios.post(`${baseUrl}/user/${user.id}/tag`,
         {tag_id:tag[0].id},
         { headers: { Authorization: `Bearer ${newToken}` }}
         )
-        console.log(tag)
         settingPref()
         setMessage(`Vous avez bien ajouté ${tag[0].name} à vos préférences.`)
 
@@ -78,7 +79,6 @@ const Preferences = ({isLogged, user}) => {
             const response = await axios.delete(`${baseUrl}/user/${user.id}/tag/${id}`,
             { headers: { Authorization: `Bearer ${newToken}` }}
             )
-            console.log(response)
             settingPref()
             setMessage(`Vous avez bien supprimé ${name} de vos préférences.`)
         }catch(error){
@@ -116,7 +116,7 @@ const Preferences = ({isLogged, user}) => {
                     </div>
                     <form className='preference__form-container'>
                         <h2>Votre profil</h2>
-                        {message != '' &&
+                        {message !== '' &&
                         <p className='preference__message'>{message} <RxCrossCircled onClick={e => setMessage('')}/></p>
                         }
                         <div className='preference__form-container--formdiv'>

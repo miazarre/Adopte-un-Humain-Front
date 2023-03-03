@@ -8,7 +8,8 @@ import axios from 'axios';
 
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
-const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
+const baseUrl=process.env.REACT_APP_BASE_URL
+
 
 const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite, user}) => {
 

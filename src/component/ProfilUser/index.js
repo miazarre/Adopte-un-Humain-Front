@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {RxCrossCircled} from 'react-icons/rx';
 
-const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
+const baseUrl=process.env.REACT_APP_BASE_URL
 
 const ProfilUser = ({user, isLogged}) => {
 

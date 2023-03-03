@@ -4,11 +4,8 @@ import Licorne from '../../assets/Licorne.png';
 import Dinosaure from '../../assets/Dinosaure.png';
 import Dragon from '../../assets/Dragon.png';
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 
 const baseUrl=process.env.REACT_APP_BASE_URL;
 
@@ -19,6 +16,7 @@ const categories = [
 ];
 
 const SigninForm = () => {
+  const navigate = useNavigate();
 
   const [lastname, setLastname] = useState('');
   const [firstname, setFirstname] = useState('');
@@ -78,11 +76,8 @@ const SigninForm = () => {
     console.log(newUser)
     try { 
 
-      const response  = await axios.post(`${baseUrl}/register`,
-      { headers: { Authorization: `Bearer ${newToken}` } },
-      newUser
-        )
-      Navigate('/login')
+      const response  = await axios.post(`${baseUrl}/register`, newUser)
+      navigate('/login')
 
       console.log(response.request.statusText)
 
@@ -108,7 +103,7 @@ const SigninForm = () => {
 
 
         <div className="categories">
-        {/*{{categories.map(c => (
+       {categories.map(c => (
             <div className="category" key={c.name.toLowerCase()} onClick={() => setCategory(c.name.toLowerCase())}>
               <div className="category-image">
               <img src={c.image} alt={c.name}/>
@@ -120,7 +115,7 @@ const SigninForm = () => {
               <p>{c.description}
               </p>
             </div>
-          ))}*/}
+          ))}
         </div>
 
         <p className='validation' onClick={handleSubmit}><span>Valider</span></p>

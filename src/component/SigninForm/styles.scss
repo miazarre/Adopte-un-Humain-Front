@@ -24,6 +24,10 @@
       margin-top: 30px;
       margin-right: 90px;
     } 
+
+    form {
+      justify-content: center;
+    }
   }
 
 .categories {
@@ -45,7 +49,7 @@
 
   img {
     display: inline-block;
-    max-width: 60%;
+    max-width: 20%;
   }
   &:not(:first-child) {
     margin-left: 5rem;
@@ -75,7 +79,7 @@
 }
 
 .category-input label {
-  padding: 20rem;
+  padding: 2rem;
   font-size: 1.5rem;}
 
 .validation{

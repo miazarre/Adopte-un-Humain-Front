@@ -23,11 +23,12 @@ const AdoptionsDetail = ({user}) => {
 
     const getAnimal = async () => {
         try{
-            const response = await axios.get(`${baseUrl}animal/${idAnimal.id}`,
+            const response = await axios.get(`${baseUrl}/animal/${idAnimal.id}`,
             { headers: { Authorization: `Bearer ${newToken}` } })
             setAnimal(response.data)
+            setAnimal(response.data)
 
-            const responsebis = await axios.get(`${baseUrl}animal/${idAnimal.id}/tag`,
+            const responsebis = await axios.get(`${baseUrl}/animal/${idAnimal.id}/tag`,
             { headers: { Authorization: `Bearer ${newToken}` } })
 
             console.log('Coucou')
@@ -41,7 +42,7 @@ const AdoptionsDetail = ({user}) => {
 
     const getAdoptions = async () => {
         try{
-            const response = await axios.get(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/adopts`,
+            const response = await axios.get(`${baseUrl}/adopts`,
             { headers: { Authorization: `Bearer ${newToken}` } })
 
             let adoptionsList = response.data

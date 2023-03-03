@@ -5,19 +5,35 @@ import { useParams } from 'react-router-dom';
 import React from 'react';
 import axios from 'axios';
 import AdoptionLine from './AdoptionLine';
-const AdoptionsDetail = () => {
+
+const token = localStorage.getItem('token');
+const newToken = JSON.parse(token);
+const baseUrl=process.env.REACT_APP_BASE_URL;
+
+
+const AdoptionsDetail = ({user}) => {
     const idAnimal = useParams();
     const [animal, setAnimal] = useState({
         name:'',
         id:''
     })
+    const [tags, setTags] = useState([])
 
     const [adoptions, setAdoptions] = useState([])
 
     const getAnimal = async () => {
         try{
-            const response = await axios.get(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal/${idAnimal.id}`)
+            const response = await axios.get(`${baseUrl}animal/${idAnimal.id}`,
+            { headers: { Authorization: `Bearer ${newToken}` } })
             setAnimal(response.data)
+
+            const responsebis = await axios.get(`${baseUrl}animal/${idAnimal.id}/tag`,
+            { headers: { Authorization: `Bearer ${newToken}` } })
+
+            console.log('Coucou')
+            setTags(responsebis.data)
+            console.log(tags)
+
         }catch(error){
             console.log(error)
         }
@@ -25,10 +41,13 @@ const AdoptionsDetail = () => {
 
     const getAdoptions = async () => {
         try{
-            const response = await axios.get(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/adopts`)
+            const response = await axios.get(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/adopts`,
+            { headers: { Authorization: `Bearer ${newToken}` } })
+
             let adoptionsList = response.data
             adoptionsList = adoptionsList.filter((adoption) => adoption.animal_id == idAnimal.id)
             setAdoptions(adoptionsList)
+
         }catch(error){
             console.log(error)
         }
@@ -44,7 +63,15 @@ const AdoptionsDetail = () => {
         <div className='adoptionsdetail'>
             <div className='adoptionsdetail__animal-details'>
                 <p className='adoptionsdetail__animal-details--name'>{animal.name}</p>
-                <div className='animal-adoptions__card--image' style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo1})`}}>
+                <div className='adoptionsdetail__image' style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo1})`}}>
+                </div>
+                <div className='adoptionsdetail__tags-container'>
+                {tags.map((tag) =>{
+                        return(
+                            <span className='adoptionsdetail__tags-container--tags'>{tag.tag_name}</span>
+                        )
+                    })
+                }
                 </div>
             </div>
             <div className='adoptionsdetail__adoptions-list--container'>
@@ -56,6 +83,7 @@ const AdoptionsDetail = () => {
                             <AdoptionLine
                             key={Math.random()}
                             adoption={adoption}
+                            getAdoptions={getAdoptions}
                             />
                             )
                             

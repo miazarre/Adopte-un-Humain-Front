@@ -31,7 +31,12 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
                         <Link to='/preferences' className='bm-item item-link item-link--text'> Préférences</Link>
                         <Link to='/profil' className='bm-item item-link item-link--text'> Profil</Link>
                         <Link to='/favorites' className='bm-item item-link item-link--text'>Coups de coeur</Link>
-                        <Link to='/board' className='bm-item item-link item-link--text'> Tableau de Bord</Link>
+                        {user.role_id == 3 &&
+                            <Link to='/board' className='bm-item item-link item-link--text'> Tableau de Bord</Link>
+                        }
+                        {user.role_id == 2 &&
+                            <Link to='/board' className='bm-item item-link item-link--text'> Tableau de Bord</Link>
+                        }
                         <button onClick={handleDeconnexion} className='item-link--deco'><span>Déconnexion</span></button>
                     </>
                     :   <Link to='/login' className='bm-item item-link item-link--text'>Connexion</Link>

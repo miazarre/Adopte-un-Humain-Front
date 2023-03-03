@@ -46,8 +46,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<LoginForm setUser={setUser} setIsLogged={setIsLogged} />} />
-        <Route path='/signin' element={<SigninForm setUser={setUser} setIsLogged={setIsLogged} />} />
-        <Route path='/trombinoscope' element={<Trombinoscope isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite}/>} />
+        <Route path='/signin' element={<SigninForm setUser={setUser} setIsLogged={setIsLogged} />} /> 
+        <Route path='/trombinoscope' element={<Trombinoscope isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite} user={user} /> } />
         <Route path='/trombinoscope/:id' element={<AnimalProfil user={user} isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite}/>}/>
         <Route path='/favorites' element={<Favorites isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite}/>} />
         <Route path='/profil' element={<ProfilUser user={user} isLogged={isLogged} />}/>

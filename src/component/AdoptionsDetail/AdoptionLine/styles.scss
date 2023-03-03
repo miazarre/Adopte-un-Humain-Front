@@ -12,6 +12,12 @@
         width: 40vw;
         margin: 20px;
 
+        .camembert{
+            width: 50px;
+            height: 50px;
+        }
+
+        
         .dots{
             transition: 0.2s;
             &:hover{
@@ -30,6 +36,7 @@
             height: 50px;
         }
 
+
     }
 
     &__bigdetails{
@@ -40,6 +47,12 @@
         top: 15vh;
         left: 5vw;
         padding: 30px;
+
+        .camembert{
+            width: 100px;
+            height: 100px;
+        }
+
 
         textarea{
             width: 100%;
@@ -54,6 +67,7 @@
                 outline: none;
                 border-image-source: linear-gradient(-140deg, v.$dark-color, v.$secondary-color);
             }
+
         }
 
         &--modal{
@@ -83,13 +97,12 @@
                 }
             }
         }
-
+ 
         &--body-part{
 
             display: flex;
             justify-content: space-between;
-            padding-top: 30px;
-            gap: 1vw;
+            padding-top: 10px;
 
             h3{
                 @include smallTitle;
@@ -97,22 +110,48 @@
                 font-size: 1.1em;
                 margin-bottom: 20px;
             }
+            &--match{
+                @include smallTitle;
+                font-size: 1em;
+                color: v.$dark-color;
+            }
             &--user{
                 background-color: v.$white;
+                height: 57vh;
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
+                gap: 5px;
                 align-items: center;
                 padding: 30px 10px;
+                width: 15vw;
+                overflow-y: auto;
 
                 &-name{
                     @include smallTitle;
                 }
             }
 
+            &--address{
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            &--tagslist{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+
+                .tags{
+                    background-color: v.$primary-color;
+                    padding: 5px;
+                    border-radius: 20px;
+                    color: v.$white;
+                }
+            }
+
             img{
-                width: 300px;
-                height: 300px;
+                width: 100px;
+                height: 100px;
             }
 
             &--adoption{
@@ -120,7 +159,7 @@
                 flex-direction: column;
                 text-align: justify;
                 gap: 30px;
-                width: 50%;
+                width: 45vw;
                 height: 57vh;
                 overflow-y: auto;
                 padding: 30px;
@@ -135,7 +174,7 @@
                 align-items: center;
                 justify-content: center;
                 flex-direction: column;
-                gap: 30px;
+                gap: 10px;
 
                 p{
                     @include button;
@@ -143,6 +182,19 @@
                     
                     span{
                         display: inline-block;
+                    }
+                }
+
+                select{
+                    border-image-source: linear-gradient(-140deg, v.$primary-color, v.$tertiary-color);
+                    border-width: 3px;
+                    border-image-slice: 1;
+                    transition: 0.2s;
+                    padding: 5px;
+        
+                    &:focus{
+                        outline: none;
+                        border-image-source: linear-gradient(-140deg, v.$dark-color, v.$secondary-color);
                     }
                 }
             }

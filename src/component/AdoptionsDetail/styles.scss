@@ -11,6 +11,10 @@
     &__animal-details{
         box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
         padding: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
 
         &--name{
             @include smallTitle;
@@ -19,9 +23,34 @@
         }
     }
 
-    &__adoptions-list--container{
+    &__image{
+        width: 25vw;
+        height: 50%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    &__tags-container{
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        width: 25vw;
+
+        &--tags{
+            background-color: v.$primary-color;
+            padding: 10px;
+            border-radius: 30px;
+        }
+    }
+
+    &__adoptions-list{
+        
+        &--container{
         box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
         padding: 30px;
+    }
     }
 
     h2{

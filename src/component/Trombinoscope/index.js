@@ -5,9 +5,12 @@ import { useEffect, useState } from 'react'
 import React from 'react';
 import axios from 'axios';
 
+
+const token = localStorage.getItem('token');
+const newToken = JSON.parse(token);
 const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
 
-const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite}) => {
+const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite, user}) => {
 
     useEffect(() => {
         const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
@@ -16,15 +19,43 @@ const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite}) => {
         }
       }, []);
     
-    const [animals, setAnimals] = useState([])
+    const [animals, setAnimals] = useState([]);
+    const [animalsId, setAnimalsId] = useState([]);
 
     const getAnimals = async () => {
-        const response = await axios.get(`${baseUrl}/animals`) ;
-        setAnimals(response.data)
+
+        try{
+            const response = await axios.get(`${baseUrl}/user/${user.id}/matching`,
+            { headers: { Authorization: `Bearer ${newToken}` } }) ;
+
+            setAnimalsId(response.data)
+
+            response.data.forEach(async animal => {
+                getOneAnimal(animal)
+            });
+
+        }catch(error){
+            console.log(error) 
+        }
+        
     }
 
+    const getOneAnimal = async (animal) => {
+        try {
+          const response = await axios.get(`${baseUrl}/animal/${animal.id}`, {
+            headers: { Authorization: `Bearer ${newToken}` },
+          });
+      
+          setAnimals((prevAnimals) => prevAnimals.concat(response.data));
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
     useEffect(() => {
-        getAnimals()
+        if(isLogged){
+            getAnimals()
+        }
         }, 
       []);
 
@@ -40,6 +71,7 @@ const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite}) => {
                     animal={animal}
                     toggleFavorite={toggleFavorite}
                     favorites={favorites}
+                    user={user}
                     />
                 ))
                 }

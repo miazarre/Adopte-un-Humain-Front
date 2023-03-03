@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.scss';
 import axios from 'axios';
+const token = localStorage.getItem('token');
+const newToken = JSON.parse(token);
+
 const Animal = ({animal}) => {
 
     const [adoptions, setAdoptions] = useState([])

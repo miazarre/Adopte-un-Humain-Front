@@ -5,13 +5,17 @@ import "slick-carousel/slick/slick-theme.css";
 import axios from 'axios';
 import AnimalFav from '../Favorites/AnimalFav';
 
-const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
+const token = localStorage.getItem('token');
+const newToken = JSON.parse(token);
+
+const baseUrl=process.env.REACT_APP_BASE_URL;
 
 const Home = () => {
     const [profiles, setProfiles] = useState([])
 
     const filteredProfiles = async () => {
-        const response = await axios.get(`${baseUrl}/animals`);
+        const response = await axios.get(`${baseUrl}/animals`,
+        { headers: { Authorization: `Bearer ${newToken}` } });
         setProfiles(response.data.slice(0, 4))
     }
 

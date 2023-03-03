@@ -16,8 +16,11 @@ const Users = () => {
 
     useEffect(() => {
       const fetchData = async () =>{
+        const token = localStorage.getItem('token');
+        const newToken = JSON.parse(token);
         try {
-          const {data: response} = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/users');
+          const {data: response} = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/users',
+          { headers: { Authorization: `Bearer ${newToken}` } });
           setData(response);
         } catch (error) {
           console.error(error.message);

@@ -15,7 +15,10 @@ const Animals = () => {
     useEffect(() => {
       const fetchData = async () =>{
         try {
-          const {data: response} = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/animals');
+          const token = localStorage.getItem('token');
+          const newToken = JSON.parse(token);
+          const {data: response} = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/animals',
+          { headers: { Authorization: `Bearer ${newToken}` } });
           setData(response);
         } catch (error) {
           console.error(error.message);

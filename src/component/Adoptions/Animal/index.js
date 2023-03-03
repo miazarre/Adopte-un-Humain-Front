@@ -7,8 +7,12 @@ const Animal = ({animal}) => {
     const [adoptions, setAdoptions] = useState([])
 
     const getAdoptions = async () => {
+        const token = localStorage.getItem('token');
+        const newToken = JSON.parse(token);
+
         try{
-            const response = await axios.get(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/adopts`)
+            const response = await axios.get(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/adopts`,
+            { headers: { Authorization: `Bearer ${newToken}` } });
             let adoptionsList = response.data
             adoptionsList = adoptionsList.filter((adoption) => adoption.animal_id == animal.id)
             setAdoptions(adoptionsList)

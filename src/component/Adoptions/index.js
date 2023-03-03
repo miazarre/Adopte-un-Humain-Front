@@ -9,8 +9,12 @@ const Adoptions = () => {
     const [animals, setAnimals] = useState([])
 
     const fetchData = async () =>{
+        const token = localStorage.getItem('token');
+        const newToken = JSON.parse(token);
+
         try {
-          const response = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/animals');
+          const response = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/animals',
+          { headers: { Authorization: `Bearer ${newToken}` } });
           setAnimals(response.data);
         } catch (error) {
           console.error(error);

@@ -27,13 +27,13 @@ const AddAnimal = () => {
     const token = localStorage.getItem('token');
     const newToken = JSON.parse(token);
 
-    const content = { name, resume, description, needs, newBirthdate }
+    const content = { name, resume, description, needs, newBirthdate, photo1, photo2, photo3, photo4 }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const form = new FormData();
-        form.append('json', JSON.stringify(content));
-        form.append('photo', photo1, photo2, photo3, photo4);;
+        const formData = new FormData();
+        formData.append('content', content);
 
         try {     
             const response = await axios.post(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal`, { 
@@ -41,7 +41,7 @@ const AddAnimal = () => {
                 Authorization : `Bearer ${newToken}`,
                 "Content-Type": "multipart/form-data"
                 },
-                data: form,
+                data:formData
             });
             console.log(response.data)}
             catch(error) {
@@ -81,7 +81,7 @@ const AddAnimal = () => {
                 <input 
                     className="input-label" 
                     for="photos" 
-                    // value={photo1} 
+                    value={photo1} 
                     onChange={(event) => setPhoto1(event.target.files[0])}
                     type="file"
                     name="photos"

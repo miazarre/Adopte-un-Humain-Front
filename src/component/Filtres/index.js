@@ -3,11 +3,14 @@ import './styles.scss'
 import React from 'react';
 import axios from 'axios';
 
-const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
+const token = localStorage.getItem('token');
+const newToken = JSON.parse(token);
+const baseUrl=process.env.REACT_APP_BASE_URL
 
 
 const Filtres = () => {
 
+   const [tagToDelete, setTagToDelete] = useState('');
    const [tags, setTags] = useState([]);
    const [form, setForm] = useState({
       new_tag_name:'',
@@ -28,20 +31,21 @@ const Filtres = () => {
       
    }, [])
 
-   const [tagToDelete, setTagToDelete] = useState('');
-
    const handleTagSelect = (event) => {
       setTagToDelete(event.target.value);
    };
 
    const getTags = async () => {
-      const token = localStorage.getItem('token');
-      const newToken = JSON.parse(token);
-      const response = await axios.get(`${baseUrl}/tags`,
-      { headers: { Authorization: `Bearer ${newToken}` } }
-      ) ;
-      setTags(response.data);
-      console.log(response.data)
+
+      try{
+         const response = await axios.get(`${baseUrl}/tags`,
+         { headers: { Authorization: `Bearer ${newToken}` } }
+         ) ;
+         setTags(response.data);
+         console.log(response.data)
+      }catch(error){
+         console.log(error)
+      }
    }
 
    const handleChange = (event) => {
@@ -53,9 +57,7 @@ const Filtres = () => {
   };
 
   const handleDeleteTag = async () => {
-   const token = localStorage.getItem('token');
-   const newToken = JSON.parse(token);
- 
+
    try {
      const response = await axios.delete(
        `${baseUrl}/tag/${tagToDelete}`,
@@ -71,8 +73,6 @@ const Filtres = () => {
   }
 
   const handleAddTag = async () => {
-   const token = localStorage.getItem('token');
-   const newToken = JSON.parse(token);
 
    const newTag={
       name:form.new_tag_name,
@@ -99,9 +99,6 @@ const Filtres = () => {
       }
 
       try{
-         const token = localStorage.getItem('token');
-         const newToken = JSON.parse(token);
-
          const response = axios.patch(`${baseUrl}/tag/${tagSelected.id}`,
          modifiedField,
          { headers: { Authorization: `Bearer ${newToken}` } }

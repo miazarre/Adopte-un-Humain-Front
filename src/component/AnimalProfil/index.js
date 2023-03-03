@@ -12,9 +12,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { PieChart } from 'react-minimal-pie-chart';
 
-const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
+const baseUrl=process.env.REACT_APP_BASE_URL;
 
 
 const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
@@ -43,9 +43,14 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
 // Contact de l'API pour récupérer les données de l'animal
     const getAnimal = async () =>{
-        const response = await axios.get(`${baseUrl}/animal/${param.id}`,
-        { headers: { Authorization: `Bearer ${newToken}` } }) ;
-        setAnimal(response.data)
+        try{
+            const response = await axios.get(`${baseUrl}/animal/${param.id}`,
+            { headers: { Authorization: `Bearer ${newToken}` } }) ;
+            setAnimal(response.data)
+        }catch(error){
+            console.log(error)
+        }
+        
     }
 // Au chargement de la page on lance la fonction getAnimal
     useEffect(() => {
@@ -60,7 +65,6 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
             { headers: { Authorization: `Bearer ${newToken}` } }
             )
             setData(response.data)
-            console.log(data)
             resolveMatching(response.data)
 
         }catch(error){
@@ -91,9 +95,6 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 // Gestion du submit de la demande d'adoption
         const handleFormSubmit = async () => {
 
-            const token = localStorage.getItem('token');
-            const newToken = JSON.parse(token);
-
             if(form.form1 === '' || form.form2 === '' || form.form3 === ''){
                 setErrorMessage('Veuillez remplir toutes les parties du formulaire.')
                 return
@@ -115,7 +116,6 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                 },
                 { headers: { Authorization: `Bearer ${newToken}` } }
                 )
-                console.log(response.data)
                 setIsContactinganimal('send')
 
             }catch(error){
@@ -145,10 +145,11 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                 <div className='animal-profil__details--gradient'>
                     <Slider {...settings}>
     {/* Affichage conditionnel des photos selon le nombre lié à l'animal */}
+                        {animal.photo1 &&
                         <div> 
                             <div style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo1})`}} className='animal-profil__details--image'> 
                             </div> 
-                        </div>
+                        </div>}
                         {animal.photo2 &&
                         <div> 
                             <div style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo2})`}} className='animal-profil__details--image'> 
@@ -174,7 +175,8 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                 <div className='animal-profil__details--matching'>
                     <div>
                         <p className='pourcent'>{matching.pourcentageDone}%</p>
-                        <PieChart
+                        {matching.pourcentage != 0 &&
+                            <PieChart
                             className='animal-profil__details--camembert'
                             data={[
                                 { title: 'Match', value:matching.pourcentageDone, color: '#70C1B3' },
@@ -184,14 +186,14 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                             startAngle={-60}
                             lengthAngle={-360}
                             lineWidth={55}
-                        />
+                        />}
                     </div>
                 <div>
                     <span className='match'>Match :</span>
                     {data.map((tag) => {
                         if(tag.match_count == '1'){
                             return(
-                                <span className='animal-profil__details--tag-match'>{tag.tag_name}</span>
+                                <span key={tag.tag_name} className='animal-profil__details--tag-match'>{tag.tag_name}</span>
                             )
                         }
                     })
@@ -203,7 +205,7 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                     {data.map((tag) => {
                         if(tag.match_count == '0' && tag.statut.includes('animal')){
                             return(
-                                <span className='animal-profil__details--tag-nomatch'>{tag.tag_name}</span>
+                                <span key={tag.tag_name} className='animal-profil__details--tag-nomatch'>{tag.tag_name}</span>
                             )
                         }
                     })

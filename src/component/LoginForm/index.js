@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {RxCrossCircled} from 'react-icons/rx';
 
-const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
+const baseUrl=process.env.REACT_APP_BASE_URL
 
 const LoginForm = ({setUser, setIsLogged}) => {
 

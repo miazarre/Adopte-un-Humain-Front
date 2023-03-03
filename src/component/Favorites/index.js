@@ -3,7 +3,9 @@ import { React, useEffect, useState } from 'react';
 import AnimalFav from './AnimalFav';
 import axios from 'axios';
 
-const baseUrl="http://matthieuskrzypczak-server.eddi.cloud:8080/api"
+const token = localStorage.getItem('token');
+const newToken = JSON.parse(token);
+const baseUrl=process.env.REACT_APP_BASE_URL
 
 const Favorites = ({favorites, setFavorites, isLogged}) => {
 
@@ -12,9 +14,13 @@ const Favorites = ({favorites, setFavorites, isLogged}) => {
     const getAnimalsData = async (id) => {
         const animalExists = animals.find((animal) => animal.id === id);
         if (!animalExists) {
-          console.log(id);
-          const response = await axios.get(`${baseUrl}/animal/${id}`);
+         try{
+          const response = await axios.get(`${baseUrl}/animal/${id}`,
+          { headers: { Authorization: `Bearer ${newToken}` }});
           setAnimals(prevAnimals => [...prevAnimals, response.data]);
+         }catch(error){
+          console.log(error)
+         } 
         }
 
         return
@@ -23,12 +29,10 @@ const Favorites = ({favorites, setFavorites, isLogged}) => {
     useEffect(() => {
 
         const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
-
         if (storedFavorites) {
           setFavorites(storedFavorites);
 
           favorites.forEach(element => {
-            console.log(element)
             getAnimalsData(element)
           });
 
@@ -48,9 +52,7 @@ const Favorites = ({favorites, setFavorites, isLogged}) => {
                 ))
             }
             </div>
-
             : <p className='profil-user__connexion-message'> Il faut te connecter ! </p> 
-            
         } 
         </div>
     )

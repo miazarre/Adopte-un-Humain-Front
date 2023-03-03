@@ -15,6 +15,8 @@ const AnimalCard = ({animal, toggleFavorite, favorites, user}) => {
         count:'',
         pourcentage:''
     });
+    const [avatarsId, setAvatarsId] = useState([])
+    const [highestAvatar, setHighestAvatar] = useState([])
 
     const getMatching = async () => {
         try{
@@ -27,6 +29,62 @@ const AnimalCard = ({animal, toggleFavorite, favorites, user}) => {
         }catch(error){
             console.log(error)
         }
+    }
+
+    const getAvatarsId = async () => {
+        try{
+// On récup la liste des avatars et on stock leurs ids dans un tableau
+            const responseavatar = await axios.get(`${baseUrl}/avatars`,
+            { headers: { Authorization: `Bearer ${newToken}` } }
+            )
+
+            let avatars = []
+            responseavatar.data.forEach((avatar) => {
+                avatars.push(avatar)
+            })
+
+            setAvatarsId(avatars)
+        }catch(error){
+            console.log(error)
+        }
+}
+
+const getAvatars = async () => {
+    try {
+        avatarsId.forEach(async avatar => {
+            const avatarTags = await axios.get(`${baseUrl}/avatar/${avatar.id}/tag`,
+                { headers: { Authorization: `Bearer ${newToken}` } }
+            )
+            console.log('---------------------------')
+            console.log('Début pour ' + avatar.name)
+
+            let animalTagCount = 0;
+
+            avatarTags.data.forEach((tag) => {
+                for (const animalTag of data) {
+                    if (animalTag.statut.includes('animal') || animalTag.statut.includes('commun')) {
+                        if (tag.tag_name === animalTag.tag_name) {
+                            animalTagCount++;
+                        }
+                    }
+                }
+            })
+
+            console.log(`${animal.name} à ${animalTagCount} tags de ${avatar.name}`)
+            const avatarCount = { [avatar.name]: animalTagCount };
+            setHighestAvatar(prevState => [...prevState, avatarCount]);
+
+            selectAvatar()
+        });
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+    const selectAvatar = () => {
+        console.log('Highest Avatar')
+        console.log(highestAvatar)
     }
 
     const resolveMatching = (data) => {
@@ -47,6 +105,8 @@ const AnimalCard = ({animal, toggleFavorite, favorites, user}) => {
 
     useEffect(() => {
         getMatching()
+        getAvatarsId()
+        getAvatars()
     }, [])
 
     return(

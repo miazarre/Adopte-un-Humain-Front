@@ -1,12 +1,11 @@
 export const optionsHabitat=[
-    { value: 'maison', label: 'Maison' },
-    { value: 'appartement', label: 'Appartement' }
+    { value: 'campagne', label: 'Campagne' },
+    { value: 'ville', label: 'Ville' }
 ];
 
 export const optionsJardin=[
-    { value: 'pas de jardin', label: 'Aucun' },
-    { value: 'petit jardin', label: 'Petit' },
-    { value: 'grand jardin', label: 'Grand' },
+    { value: 'pas de jardin', label: 'Pas de jardin' },
+    { value: 'petit jardin', label: 'Jardin' }
 
 ];
 
@@ -38,17 +37,6 @@ export  const optionsCohabitation=[
     { value: 'ok nac', label: 'NAC' }
   ]
 
-export  const optionsTempsSolo=[
-    { value: 'solitude - moins de 2h', label: 'Moins de 2h' },
-    { value: 'solitude - entre 2h et 6h', label: 'Entre 2 et 6 heures' },
-    { value: 'solitude - plus de 6h', label: 'Plus de 6h' }
-  ]
-
-export  const optionsTempsBallade=[
-  { value: 'ballade - 30 min', label: '30 minutes' },
-  { value: 'ballade - 1h à 2h', label: 'Entre 1 et 2 heures' },
-  { value: 'ballade - + de 2h', label: 'Plus de 2h' }
-]
 
 export  const optionsKids=[
     { value: 'enfants', label: "J'ai des enfants" },
@@ -63,6 +51,5 @@ export  const optionsBudget=[
 
  export const optionsActivité = [
     { value: 'sportif', label: "Sportif" },
-    { value: 'actif', label: "Actif" },
     { value: 'calme', label: "Calme" }
   ]

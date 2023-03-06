@@ -83,13 +83,13 @@ const getAvatars = async () => {
 }
 
     const selectAvatar = () => {
-        console.log('Highest Avatar')
+        console.log('Highest Avatars')
         console.log(highestAvatar)
     }
 
     const resolveMatching = (data) => {
         let animalTagCount = 0;
-        let animalFilledTagCount = 0;
+        let animalFilledTagCount = 0;  
         data.forEach(tag => {
             if (tag.statut.includes('animal') || tag.statut.includes('commun')) {
                 animalTagCount++;

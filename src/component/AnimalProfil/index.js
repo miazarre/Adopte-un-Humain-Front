@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom"
-import { Link } from "react-router-dom"
-import {TiArrowBack} from 'react-icons/ti'
-import { RxCrossCircled } from 'react-icons/rx';
-import {BsSuitHeart, BsSuitHeartFill} from 'react-icons/bs'
-import Slider from 'react-slick';
-import axios from 'axios';
-
+// Imports internes
 import './styles.scss'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { PieChart } from 'react-minimal-pie-chart';
 
+//Imports librairies 
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from "react-router-dom";
+import {TiArrowBack} from 'react-icons/ti';
+import { RxCrossCircled } from 'react-icons/rx';
+import {BsSuitHeart, BsSuitHeartFill} from 'react-icons/bs';
+import { PieChart } from 'react-minimal-pie-chart';
+import Slider from 'react-slick';
+import axios from 'axios';
+import PropTypes from 'prop-types';
+
+//Déclarations API
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL;
@@ -48,6 +51,7 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
             { headers: { Authorization: `Bearer ${newToken}` } }) ;
             setAnimal(response.data)
         }catch(error){
+            setErrorMessage('Impossible de récupérer les données de l\'animal auprès du serveur.')
             console.log(error)
         }
         
@@ -59,6 +63,7 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
         }, 
       []);
 
+// Fonction qui récupère le matching entre l'utilisateur connecté et l'animal en cours d'affichage
       const getMatching = async () => {
         try{
             const response = await axios.get(`${baseUrl}/user/${user.id}/matching/${param.id}`,
@@ -69,12 +74,16 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
         }catch(error){
             console.log(error)
+            setErrorMessage('Impossible de récupérer les données de matching auprès du serveur.')
         }
     }
 
+// Calcul des % pour chaque matchong
     const resolveMatching = (data) => {
+
         let animalTagCount = 0;
         let animalFilledTagCount = 0;
+
         data.forEach(tag => {
             if (tag.statut.includes('animal') || tag.statut.includes('commun')) {
                 animalTagCount++;
@@ -83,6 +92,7 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                 }
             }
         });
+
         let pourcentageDone = parseInt((animalFilledTagCount / animalTagCount) * 100);
         let pourcentage = parseInt(100 - pourcentageDone);
         setMatching({...matching, count: animalFilledTagCount, animalTag:animalTagCount, pourcentage:pourcentage, pourcentageDone:pourcentageDone});
@@ -92,7 +102,7 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
         getMatching()
     }, [])
 
-// Gestion du submit de la demande d'adoption
+// Gestion du submit de la demande d'adoption avec vérification du contenu des form
         const handleFormSubmit = async () => {
 
             if(form.form1 === '' || form.form2 === '' || form.form3 === ''){
@@ -116,6 +126,7 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                 },
                 { headers: { Authorization: `Bearer ${newToken}` } }
                 )
+
                 setIsContactinganimal('send')
 
             }catch(error){
@@ -287,4 +298,14 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
     )
 }
 
-export default AnimalProfil
+AnimalProfil.propTypes = {
+    user: PropTypes.shape({
+        id: PropTypes.number.isRequired
+    }),
+    isLogged: PropTypes.bool.isRequired,
+    favorites: PropTypes.array.isRequired,
+    toggleFavorite: PropTypes.func.isRequired,
+};
+
+export default AnimalProfil ;
+

@@ -1,8 +1,12 @@
-import './styles.scss'
-import { React, useEffect, useState } from 'react';
+// Imports internes
 import AnimalFav from './AnimalFav';
+import './styles.scss'
+
+// Imports externes
+import { React, useEffect, useState } from 'react';
 import axios from 'axios';
 
+// Déclarations contact API
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL
@@ -11,9 +15,13 @@ const Favorites = ({favorites, setFavorites, isLogged}) => {
 
     const [animals, setAnimals] = useState([])
 
+// Récupération des données 
     const getAnimalsData = async (id) => {
+
         const animalExists = animals.find((animal) => animal.id === id);
+
         if (!animalExists) {
+
          try{
           const response = await axios.get(`${baseUrl}/animal/${id}`,
           { headers: { Authorization: `Bearer ${newToken}` }});
@@ -21,6 +29,7 @@ const Favorites = ({favorites, setFavorites, isLogged}) => {
          }catch(error){
           console.log(error)
          } 
+         
         }
 
         return

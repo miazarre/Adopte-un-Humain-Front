@@ -8,6 +8,12 @@
     gap: 5vw;
     margin: 10vh auto;
 
+    &--message{
+        background-color: v.$primary-color;
+        padding: 10px;
+        position: fixed;
+    }
+
     &__animal-details{
         box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
         padding: 30px;

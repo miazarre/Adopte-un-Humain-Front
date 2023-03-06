@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import {BsSuitHeart, BsSuitHeartFill} from 'react-icons/bs'
 import axios from 'axios';
 import { PieChart } from 'react-minimal-pie-chart';
+
 const baseUrl = 'http://matthieuskrzypczak-server.eddi.cloud:8080/api'
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
@@ -36,7 +37,7 @@ const AnimalCard = ({animal, toggleFavorite, favorites, user}) => {
 // On récup la liste des avatars et on stock leurs ids dans un tableau
             const responseavatar = await axios.get(`${baseUrl}/avatars`,
             { headers: { Authorization: `Bearer ${newToken}` } }
-            )
+            )   
 
             let avatars = []
             responseavatar.data.forEach((avatar) => {
@@ -51,12 +52,14 @@ const AnimalCard = ({animal, toggleFavorite, favorites, user}) => {
 
 const getAvatars = async () => {
     try {
+
+        console.log('---------------------------')
+        console.log('Début pour ' + animal.name)
         avatarsId.forEach(async avatar => {
             const avatarTags = await axios.get(`${baseUrl}/avatar/${avatar.id}/tag`,
                 { headers: { Authorization: `Bearer ${newToken}` } }
             )
-            console.log('---------------------------')
-            console.log('Début pour ' + avatar.name)
+
 
             let animalTagCount = 0;
 
@@ -70,12 +73,12 @@ const getAvatars = async () => {
                 }
             })
 
-            console.log(`${animal.name} à ${animalTagCount} tags de ${avatar.name}`)
+            console.log(`${animal.name} à ${animalTagCount} tags de ${avatar.name}`)  
             const avatarCount = { [avatar.name]: animalTagCount };
-            setHighestAvatar(prevState => [...prevState, avatarCount]);
-
-            selectAvatar()
+            setHighestAvatar(prevState => [...prevState, avatarCount]); 
         });
+
+        selectAvatar() 
 
     } catch (error) {
         console.log(error)
@@ -83,8 +86,23 @@ const getAvatars = async () => {
 }
 
     const selectAvatar = () => {
-        console.log('Highest Avatars')
-        console.log(highestAvatar)
+        console.log(animal.name + 'ses tags sont :')
+        console.log(highestAvatar)    
+        console.log(highestAvatar[0])
+        console.log(highestAvatar[1])
+        console.log(highestAvatar[2])
+
+        console.log(highestAvatar[0].Licorne)
+        if(highestAvatar[0].value > highestAvatar[1] && highestAvatar[0] > highestAvatar[2]){
+            console.log('Cet animal est' + highestAvatar[0] + '!!!!!!!!!!')
+        }
+        if(highestAvatar[1] > highestAvatar[0] && highestAvatar[1] > highestAvatar[2]){
+            console.log('Cet animal est' + highestAvatar[1] + '!!!!!!!!!!')
+        }
+        if(highestAvatar[2] > highestAvatar[0] && highestAvatar[2] > highestAvatar[1]){
+            console.log('Cet animal est' + highestAvatar[2] + '!!!!!!!!!!')
+        }
+    
     }
 
     const resolveMatching = (data) => {
@@ -105,6 +123,9 @@ const getAvatars = async () => {
 
     useEffect(() => {
         getMatching()
+    }, [])
+
+    useEffect(()=>{
         getAvatarsId()
         getAvatars()
     }, [])

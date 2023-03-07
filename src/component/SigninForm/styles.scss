@@ -10,8 +10,7 @@
     font-size: 1rem;
     display: block;
     justify-content:center;
-    margin: 2rem;
-    margin-left: 30rem;
+    margin: 2rem auto;
     padding: 1rem;
     border-radius: 10px;
 
@@ -45,10 +44,10 @@
 
   img {
     display: inline-block;
-    max-width: 60%;
+    width: 15rem;
   }
   &:not(:first-child) {
-    margin-left: 5rem;
+    margin-left: 1rem;
   }
 
   &:first-child {
@@ -75,7 +74,7 @@
 }
 
 .category-input label {
-  padding: 20rem;
+  padding: 2rem;
   font-size: 1.5rem;}
 
 .validation{

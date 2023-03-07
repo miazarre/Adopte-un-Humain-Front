@@ -1,5 +1,13 @@
-import { Link } from 'react-router-dom';
+// Imports internes
 import './styles.scss' ;
+
+// Imports externes
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+// Base Url
+const baseUrl=process.env.REACT_APP_BASE_URL;
+
 
 const AnimalFav = ({animal}) => {
     console.log(animal)
@@ -8,7 +16,7 @@ const AnimalFav = ({animal}) => {
             <Link to={`/trombinoscope/${animal.id}`}>
             <div className='fav__round--gradient'>
                 <div 
-                style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo1})`}} 
+                style={{backgroundImage:`url(${baseUrl}/images/animal/${animal.photo1})`}} 
                 className='fav__round--image'
                 >
                 </div>
@@ -20,4 +28,12 @@ const AnimalFav = ({animal}) => {
     )
 }
 
+AnimalFav.propTypes = {
+    animal: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      photo1: PropTypes.string.isRequired,
+    }).isRequired,
+  };
+  
 export default AnimalFav ;

@@ -1,45 +1,51 @@
-import PropTypes from 'prop-types';
+// Imports internes
 import './styles.scss';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import React from 'react';
-import axios from 'axios';
 import AdoptionLine from './AdoptionLine';
 
+// Imports librairies
+import { React, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { RxCrossCircled } from 'react-icons/rx';
+
+// Déclarations contact API
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL;
 
+const AdoptionsDetail = () => {
 
-const AdoptionsDetail = ({user}) => {
     const idAnimal = useParams();
     const [animal, setAnimal] = useState({
         name:'',
         id:''
-    })
-    const [tags, setTags] = useState([])
+    });
+    const [tags, setTags] = useState([]);
+    const [adoptions, setAdoptions] = useState([]);
+    const [message, setMessage] = useState([]);
 
-    const [adoptions, setAdoptions] = useState([])
-
+// On récupère l'animal concerné via les params de l'url
+// Puis on contact l'API pour avoir les infos sur lui
+// Et la liste de ses tags
     const getAnimal = async () => {
         try{
             const response = await axios.get(`${baseUrl}/animal/${idAnimal.id}`,
             { headers: { Authorization: `Bearer ${newToken}` } })
-            setAnimal(response.data)
+
             setAnimal(response.data)
 
             const responsebis = await axios.get(`${baseUrl}/animal/${idAnimal.id}/tag`,
             { headers: { Authorization: `Bearer ${newToken}` } })
 
-            console.log('Coucou')
             setTags(responsebis.data)
-            console.log(tags)
 
         }catch(error){
+            setMessage('Il y a eu un problème avec le serveur au moment de récupérer les informations sur l\'animal.')
             console.log(error)
         }
     }
 
+// On récupère la liste des adoptions qui concernent l'animal en question
     const getAdoptions = async () => {
         try{
             const response = await axios.get(`${baseUrl}/adopts`,
@@ -50,6 +56,7 @@ const AdoptionsDetail = ({user}) => {
             setAdoptions(adoptionsList)
 
         }catch(error){
+            setMessage('Il y a eu un problème avec le serveur au moment de récupérer les informations sur les adoptions.')
             console.log(error)
         }
     }
@@ -62,9 +69,12 @@ const AdoptionsDetail = ({user}) => {
 
     return(
         <div className='adoptionsdetail'>
+            {message != '' &&
+            <p className='adoptionsdetail--message'>{message} <RxCrossCircled onClick={e => setMessage('')}/></p>
+            }
             <div className='adoptionsdetail__animal-details'>
                 <p className='adoptionsdetail__animal-details--name'>{animal.name}</p>
-                <div className='adoptionsdetail__image' style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo1})`}}>
+                <div className='adoptionsdetail__image' style={{backgroundImage:`url(${baseUrl}/images/animal/${animal.photo1})`}}>
                 </div>
                 <div className='adoptionsdetail__tags-container'>
                 {tags.map((tag) =>{
@@ -85,6 +95,7 @@ const AdoptionsDetail = ({user}) => {
                             key={Math.random()}
                             adoption={adoption}
                             getAdoptions={getAdoptions}
+                            setMessage={setMessage}
                             />
                             )
                             
@@ -95,12 +106,5 @@ const AdoptionsDetail = ({user}) => {
         </div>
     )
 }
-
-AdoptionsDetail.propTypes = {
-    animal_id: PropTypes.number.isRequired,
-    form1: PropTypes.string.isRequired,
-    form2: PropTypes.string.isRequired,
-    form3: PropTypes.string.isRequired,
-  };
 
 export default AdoptionsDetail ;

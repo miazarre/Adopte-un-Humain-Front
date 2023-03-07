@@ -20,4 +20,19 @@
             margin: auto;
         }
     }
+
+    &__message{
+        background-color: v.$primary-color;
+        padding: 10px;
+
+        .cross{
+            color: v.$black;
+            transition: 0.2s;
+
+            &:hover{
+                color: v.$white;
+            }
+        }
+
+    }
 }

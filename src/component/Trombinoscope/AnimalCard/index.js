@@ -1,14 +1,20 @@
+// Imports internes
 import './styles.scss'
+
+// Imports externes
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import {BsSuitHeart, BsSuitHeartFill} from 'react-icons/bs'
 import axios from 'axios';
 import { PieChart } from 'react-minimal-pie-chart';
+import PropTypes from 'prop-types';
+
+// Base url
 const baseUrl = 'http://matthieuskrzypczak-server.eddi.cloud:8080/api'
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
 
-const AnimalCard = ({animal, toggleFavorite, favorites, user}) => {
+const AnimalCard = ({animal, toggleFavorite, favorites, user, avatarsTags}) => {
 
     const [data, setData] = useState([])
     const [matching, setMatching] = useState({
@@ -31,61 +37,9 @@ const AnimalCard = ({animal, toggleFavorite, favorites, user}) => {
         }
     }
 
-    const getAvatarsId = async () => {
-        try{
-// On récup la liste des avatars et on stock leurs ids dans un tableau
-            const responseavatar = await axios.get(`${baseUrl}/avatars`,
-            { headers: { Authorization: `Bearer ${newToken}` } }
-            )
-
-            let avatars = []
-            responseavatar.data.forEach((avatar) => {
-                avatars.push(avatar)
-            })
-
-            setAvatarsId(avatars)
-        }catch(error){
-            console.log(error)
-        }
-}
-
-const getAvatars = async () => {
-    try {
-        avatarsId.forEach(async avatar => {
-            const avatarTags = await axios.get(`${baseUrl}/avatar/${avatar.id}/tag`,
-                { headers: { Authorization: `Bearer ${newToken}` } }
-            )
-            console.log('---------------------------')
-            console.log('Début pour ' + avatar.name)
-
-            let animalTagCount = 0;
-
-            avatarTags.data.forEach((tag) => {
-                for (const animalTag of data) {
-                    if (animalTag.statut.includes('animal') || animalTag.statut.includes('commun')) {
-                        if (tag.tag_name === animalTag.tag_name) {
-                            animalTagCount++;
-                        }
-                    }
-                }
-            })
-
-            console.log(`${animal.name} à ${animalTagCount} tags de ${avatar.name}`)
-            const avatarCount = { [avatar.name]: animalTagCount };
-            setHighestAvatar(prevState => [...prevState, avatarCount]);
-
-            selectAvatar()
-        });
-
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-    const selectAvatar = () => {
-        console.log('Highest Avatars')
-        console.log(highestAvatar)
-    }
+    useEffect(() => {
+        console.log(avatarsTags)
+    }, [avatarsTags])
 
     const resolveMatching = (data) => {
         let animalTagCount = 0;
@@ -105,9 +59,62 @@ const getAvatars = async () => {
 
     useEffect(() => {
         getMatching()
-        getAvatarsId()
-        getAvatars()
+        getAvatar()
+
     }, [])
+
+    const getAvatar = async () => {
+
+        try{
+
+            const response = await axios.get(`${baseUrl}/animal/${animal.id}/tag`,
+            { headers: { Authorization: `Bearer ${newToken}` } }
+            )
+
+            let licorneCount = 0 ;
+            let dragonCount = 0 ;
+            let dinosaureCount = 0 ;
+            console.log('___________________________________________________________');
+            console.log('Nouvel animal : ' + animal.name);
+            console.log('Avatars tag :');
+            console.log(avatarsTags);
+            console.log('Licorne' + licorneCount + 'dragon' + dragonCount + 'dinosaure' + dinosaureCount);
+            
+            response.data.forEach(animalTag => {
+            
+                console.log('---- Nouveau tag de l\'animal ------')
+                console.log(animalTag.tag_name)
+
+                avatarsTags.Licorne.forEach(licorneTag => {
+                    console.log(licorneTag.tag_name)
+                    if(licorneTag.tag_name === animalTag.tag_name){
+                        licorneCount ++ ;
+                    }
+                });
+
+                avatarsTags.Dragon.forEach(dragonTag => {
+                    console.log(dragonTag.tag_name)
+                    if(dragonTag.tag_name === animalTag.tag_name){
+                        dragonCount ++ ;
+                    }
+                });
+
+                avatarsTags.Licorne.forEach(dinosaureTag => {
+                    console.log(dinosaureTag.tag_name)
+                    if(dinosaureTag.tag_name === animalTag.tag_name){
+                        dinosaureCount ++ ;
+                    }
+                });
+            });  
+
+            console.log(animal.name + ' a ' + licorneCount + ' tags licorne')
+            console.log(animal.name + ' a ' + dinosaureCount + ' tags dinosaure')
+            console.log(animal.name + ' a ' + dragonCount + ' tags dragon')
+
+        }catch(error){
+            console.log(error)
+        }
+    }
 
     return(
         <div className='animal-card__card'>
@@ -146,5 +153,12 @@ const getAvatars = async () => {
         </div>
     )
 }
+
+AnimalCard.propTypes = {
+    animal: PropTypes.object.isRequired,
+    toggleFavorite: PropTypes.func.isRequired,
+    favorites: PropTypes.array.isRequired,
+    user: PropTypes.object.isRequired,
+};
 
 export default AnimalCard ;

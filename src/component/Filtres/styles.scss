@@ -3,6 +3,12 @@
 
 .tags-page{
 
+    &__message{
+        background-color: v.$primary-color;
+        padding: 10px;
+        text-align: center;
+    }
+
 
     &__container{
         min-height: 71vh;

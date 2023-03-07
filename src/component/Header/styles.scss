@@ -7,8 +7,8 @@
 // Global Header container
   &__container{
     z-index: 3 !important;
-    box-shadow: 1px 1px 40px rgba(v.$black, 0.1);
-    padding: 15px;
+    box-shadow: 1px 1px 40px rgba(v.$heart, 0.1);
+    padding: 30px;
     display: flex;
     align-items: center;
     justify-content: space-between; 
@@ -65,7 +65,7 @@
           linear-gradient(
             to right,
             v.$secondary-color,
-            v.$dark-color
+            v.$tertiary-color
         );
 
           background-size: 100% 4px, 0 4px;
@@ -101,21 +101,13 @@
       }
     }}
 
-// Middle logo container
-  &__logo{
-    img{
-      width: 80px;
-      height: 70px;
-      height: auto;
-    }
-  }
+  .title {
+  @include Title;
+}
+
 
 // Right button on header, connexion or img if you are connected or not
   &__right-button{
     @include smallTitle;
   }
-
 }
-
-
-  

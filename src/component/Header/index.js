@@ -1,24 +1,24 @@
-import './styles.scss'
-import logo from '../../assets/logo.png'
+// Imports internes
+import './styles.scss';
+import logo from '../../assets/logo.png';
 
-import { Link } from 'react-router-dom';
-import { bubble as Menu } from 'react-burger-menu'
-
+// Imports externes
+import { Link, useNavigate } from 'react-router-dom';
+import { bubble as Menu } from 'react-burger-menu';
 import { FaTiktok, FaFacebookF} from 'react-icons/fa';
-import {AiOutlineTwitter} from 'react-icons/ai'
+import {AiOutlineTwitter} from 'react-icons/ai';
+import PropTypes from 'prop-types';
 import React from 'react';
 
-import { useNavigate } from 'react-router-dom';
-
 const Header = ({isLogged, user, setUser, setIsLogged}) => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handleDeconnexion = () => {
         setUser('');
         localStorage.setItem('token', JSON.stringify(''));
         setIsLogged(false);
         navigate('/login')
-    }
+    };
 
     return (
         <div className='header__container'>
@@ -76,4 +76,11 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
     )
 }
 
-export default Header
+Header.propTypes = {
+    isLogged: PropTypes.bool.isRequired,
+    user: PropTypes.object.isRequired,
+    setUser: PropTypes.func.isRequired,
+    setIsLogged: PropTypes.func.isRequired
+};
+
+export default Header;

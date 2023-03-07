@@ -74,7 +74,7 @@ const AdoptionsDetail = () => {
             }
             <div className='adoptionsdetail__animal-details'>
                 <p className='adoptionsdetail__animal-details--name'>{animal.name}</p>
-                <div className='adoptionsdetail__image' style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo1})`}}>
+                <div className='adoptionsdetail__image' style={{backgroundImage:`url(${baseUrl}/images/animal/${animal.photo1})`}}>
                 </div>
                 <div className='adoptionsdetail__tags-container'>
                 {tags.map((tag) =>{

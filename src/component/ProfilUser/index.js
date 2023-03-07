@@ -1,15 +1,21 @@
+// Imports internes
 import dragon from '../../assets/Dragon.png';
 import './styles.scss';
+
+// Imports externes
 import { Link } from 'react-router-dom';
 import {HiLightBulb} from 'react-icons/hi';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {RxCrossCircled} from 'react-icons/rx';
+import PropTypes from "prop-types";
 
+//BaseUrl
 const baseUrl=process.env.REACT_APP_BASE_URL
+const token = localStorage.getItem('token');
+const newToken = JSON.parse(token);
 
 const ProfilUser = ({user, isLogged}) => {
-    console.log(user)
 
     const [profilUSer, setProfilUser] = useState(user);
     const [errorMessage, setErrorMessage] = useState('') ;
@@ -42,12 +48,16 @@ const [form, setForm] = useState({
 
 // Au chargement de la page on contact l'API pour avoir els données à jour de l'utilisateur
     const settingUserOnLoad = async () => {
-        const token = localStorage.getItem('token');
-        const newToken = JSON.parse(token);
-        const response = await axios.get(`${baseUrl}/user/${user.id}`,
-        { headers: { Authorization: `Bearer ${newToken}` }}
-        )
-        setProfilUser(response.data)
+        try{
+            const response = await axios.get(`${baseUrl}/user/${user.id}`,
+            { headers: { Authorization: `Bearer ${newToken}` }}
+            )
+            setProfilUser(response.data)
+        }catch(error){
+            console.log(error)
+            setErrorMessage('Il y a eu un problème au moment de récupérer vos informations.')
+        }
+        
     }
 // le useEffect qui déclanche le changement de données du user
     useEffect(() => {
@@ -200,5 +210,20 @@ const [form, setForm] = useState({
                 </div>
     )
 }
+
+ProfilUser.propTypes = {
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      email: PropTypes.string.isRequired,
+      firstname: PropTypes.string.isRequired,
+      lastname: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
+      address: PropTypes.string.isRequired,
+      postal_code: PropTypes.string.isRequired,
+      city: PropTypes.string.isRequired,
+      country: PropTypes.string.isRequired,
+    }).isRequired,
+    isLogged: PropTypes.bool.isRequired,
+  };
 
 export default ProfilUser ;

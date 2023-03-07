@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import Select from 'react-select';
+// Imports internes
 import './styles.scss';
 import { optionsAge, optionsActivité, optionsBudget, optionsCaracter, optionsCohabitation, optionsHabitat, optionsJardin, optionsKids, optionsSexe } from '../../data/options_select';
 import customStyles from './custom_styles';
+
+// Imports externes
+import React, { useEffect, useState } from 'react';
+import Select from 'react-select';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import {RxCrossCircled} from 'react-icons/rx'
 
+// Base url
 const baseUrl=process.env.REACT_APP_BASE_URL
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
@@ -14,9 +19,9 @@ const Preferences = ({isLogged, user}) => {
 
     const [tags, setTags] = useState([]);
     const [message, setMessage] = useState('');
+
 // Contact de l'API pour récupérer les tags liés a l'utilisateur connecté
     const settingPref = async () => {
-
         try{
                 const responseTags = await axios.get(`${baseUrl}/user/${user.id}/tag`,
             { headers: { Authorization: `Bearer ${newToken}` }}
@@ -24,6 +29,7 @@ const Preferences = ({isLogged, user}) => {
             setTags(responseTags.data)
 
         }catch(error){
+            setMessage('Il y a eu un soucis au moment de récupérer vos données auprès du serveur.')
             console.log(error)
         }
         
@@ -37,14 +43,23 @@ const Preferences = ({isLogged, user}) => {
   const handleChange = async (selectedOption) => {
     addingTag(selectedOption)
     };
+
 // On récupère l'id du tag selectionné via l'API
     const getTagId = async (selectedOption) => {
+
+        try{
         const response = await axios.get(`${baseUrl}/tags`,
         { headers: { Authorization: `Bearer ${newToken}` }}
         )
         let foundTag = response.data.filter((tag) => tag.name.toLowerCase() === selectedOption.value.toLowerCase())
         return foundTag ;
+        }catch(error){
+            console.log(error)
+            setMessage('Il y a eu un problème au moment de récupérer la liste des tags.')
+        }
     }
+
+
 // Au changement sur un Select multi, on appelle la fonction qui contact l'API pour chaque champs séléctionné
   const handleChangeMulti = (selectedOption) => {
     selectedOption.forEach(element => {
@@ -142,5 +157,12 @@ const Preferences = ({isLogged, user}) => {
         </div>
     )
 }
+
+Preferences.propTypes = {
+    isLogged: PropTypes.bool.isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    }).isRequired,
+  };
 
 export default Preferences;

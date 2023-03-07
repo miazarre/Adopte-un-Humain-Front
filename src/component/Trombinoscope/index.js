@@ -1,11 +1,14 @@
+// Imports internes
 import './styles.scss'
-// import data from '../../data/fake_animals.json'
 import AnimalCard from './AnimalCard'
+
+// Imports externes
 import { useEffect, useState } from 'react'
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
-
+// Base Url
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL
@@ -87,5 +90,18 @@ const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite, user}
         </div>
     )
 }
+
+Trombinoscope.propTypes = {
+  isLogged: PropTypes.bool.isRequired,
+  favorites: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setFavorites: PropTypes.func.isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired
+  }).isRequired
+};
 
 export default Trombinoscope ;

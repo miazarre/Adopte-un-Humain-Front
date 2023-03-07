@@ -1,10 +1,15 @@
+// Imports internes
 import './styles.scss'
+
+// Imports externes
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import {BsSuitHeart, BsSuitHeartFill} from 'react-icons/bs'
 import axios from 'axios';
 import { PieChart } from 'react-minimal-pie-chart';
+import PropTypes from 'prop-types';
 
+// Base url
 const baseUrl = 'http://matthieuskrzypczak-server.eddi.cloud:8080/api'
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
@@ -93,7 +98,7 @@ const getAvatars = async () => {
         console.log(highestAvatar[2])
 
         console.log(highestAvatar[0].Licorne)
-        if(highestAvatar[0].value > highestAvatar[1] && highestAvatar[0] > highestAvatar[2]){
+        if(highestAvatar[0].Licorne > highestAvatar[1] && highestAvatar[0] > highestAvatar[2]){
             console.log('Cet animal est' + highestAvatar[0] + '!!!!!!!!!!')
         }
         if(highestAvatar[1] > highestAvatar[0] && highestAvatar[1] > highestAvatar[2]){
@@ -167,5 +172,12 @@ const getAvatars = async () => {
         </div>
     )
 }
+
+AnimalCard.propTypes = {
+    animal: PropTypes.object.isRequired,
+    toggleFavorite: PropTypes.func.isRequired,
+    favorites: PropTypes.array.isRequired,
+    user: PropTypes.object.isRequired,
+};
 
 export default AnimalCard ;

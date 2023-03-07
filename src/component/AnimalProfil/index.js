@@ -158,24 +158,24 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
     {/* Affichage conditionnel des photos selon le nombre lié à l'animal */}
                         {animal.photo1 &&
                         <div> 
-                            <div style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo1})`}} className='animal-profil__details--image'> 
+                            <div style={{backgroundImage:`url(${baseUrl}/images/animal/${animal.photo1})`}} className='animal-profil__details--image'> 
                             </div> 
                         </div>}
                         {animal.photo2 &&
                         <div> 
-                            <div style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo2})`}} className='animal-profil__details--image'> 
+                            <div style={{backgroundImage:`url(${baseUrl}/images/animal/${animal.photo2})`}} className='animal-profil__details--image'> 
                             </div>
                         </div>
                         }
                         {animal.photo3 &&
                         <div> 
-                            <div style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo3})`}} className='animal-profil__details--image'> 
+                            <div style={{backgroundImage:`url(${baseUrl}/images/animal/${animal.photo3})`}} className='animal-profil__details--image'> 
                             </div>
                         </div>
                         }
                         {animal.photo4 &&
                         <div> 
-                            <div style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo4})`}} className='animal-profil__details--image'> 
+                            <div style={{backgroundImage:`url(${baseUrl}/images/animal/${animal.photo4})`}} className='animal-profil__details--image'> 
                             </div>
                         </div>
                         }

@@ -5,7 +5,12 @@
   @include Title;
 }
 
+.login {
+  @include smallTitle;
+}
+
 .form {
+  height: 85vh;
   width: 90vw;
 }
 .input-container {

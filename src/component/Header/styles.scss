@@ -109,5 +109,20 @@
 // Right button on header, connexion or img if you are connected or not
   &__right-button{
     @include smallTitle;
+    display: contents;
+    &__signin{
+      padding: 1rem;
+      border-radius: 10px;
+      &:hover {
+        background-color: v.$heart
+      }
+    }
+    &__login{
+      padding: 1rem;
+      border-radius: 10px;
+      &:hover {
+        background-color: v.$tertiary-color
+      }
+    }
   }
 }

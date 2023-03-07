@@ -21,6 +21,8 @@ const AnimalCard = ({animal, toggleFavorite, favorites, user, avatarsTags}) => {
         count:'',
         pourcentage:''
     });
+    const [avatarsId, setAvatarsId] = useState([])
+    const [highestAvatar, setHighestAvatar] = useState([])
 
     const getMatching = async () => {
         try{
@@ -58,6 +60,7 @@ const AnimalCard = ({animal, toggleFavorite, favorites, user, avatarsTags}) => {
     useEffect(() => {
         getMatching()
         getAvatar()
+
     }, [])
 
     const getAvatar = async () => {

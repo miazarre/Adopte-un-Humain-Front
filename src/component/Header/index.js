@@ -2,6 +2,7 @@
 import './styles.scss';
 import logo from '../../assets/logo.png';
 
+
 // Imports externes
 import { Link, useNavigate } from 'react-router-dom';
 import { bubble as Menu } from 'react-burger-menu';
@@ -23,7 +24,7 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
         <div className='header__container'>
             <div className='header__menu'>
                 <Menu>
-                    <p className='item-link--title'>J'adopte un humain !</p>
+                    <p className='item-link--title'>J'adopte un humain</p>
                     <Link to='/' className='item-link item-link--text'> Accueil</Link>
                     {isLogged 
                     ?<>
@@ -48,9 +49,7 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
                     </div>
                 </Menu>
             </div>
-            <Link to='/' className='header__logo'>
-                <img src={logo} alt='animal paw and rainbow background'/>
-            </Link>
+            <Link to='/' className='title'> J'adopte un humain </Link>
             <div className='header__right-button'>
                 {isLogged
                     ?<>
@@ -58,12 +57,12 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
                     </>   
                     
                     : <>
-                        <div className='signin'>
+                        <div className='header__right-button__signin'>
                         <Link to='/signin'>
                         Inscription
                         </Link>
                         </div>
-                        <div className='login'>
+                        <div className='header__right-button__login'>
                         <Link to='/login'>
                         Connexion
                         </Link>

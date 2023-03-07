@@ -17,6 +17,7 @@ $form-font:'Michel';
 $black:#303030;
 $white:#F7F7F7;
 $warm:#fdd2b6;
+$heart: #F8656B;
 // dragon colors
 $primary-color:#70C1B3;
 $secondary-color:#CC0036;
@@ -30,6 +31,7 @@ $dark-color:#247BA0;
   font-family: 'Antic Didone';
   font-size: 3em;
   font-weight: 700;
+  margin: 0 auto;
 }
 
 @mixin smallTitle{
@@ -43,6 +45,7 @@ $dark-color:#247BA0;
   margin: auto;
   background: linear-gradient(144deg,v.$light-color, v.$primary-color 50%, v.$dark-color);
   border: 0;
+  border-radius: 10px;
   box-sizing: border-box;
   color: v.$black;
   display: flex;

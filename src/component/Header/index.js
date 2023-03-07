@@ -15,7 +15,6 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
 
     const handleDeconnexion = () => {
         setUser('');
-        localStorage.setItem('token', JSON.stringify(''));
         setIsLogged(false);
         navigate('/login')
     };

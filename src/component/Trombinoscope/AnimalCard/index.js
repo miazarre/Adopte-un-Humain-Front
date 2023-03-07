@@ -14,15 +14,13 @@ const baseUrl = 'http://matthieuskrzypczak-server.eddi.cloud:8080/api'
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
 
-const AnimalCard = ({animal, toggleFavorite, favorites, user}) => {
+const AnimalCard = ({animal, toggleFavorite, favorites, user, avatarsTags}) => {
 
     const [data, setData] = useState([])
     const [matching, setMatching] = useState({
         count:'',
         pourcentage:''
     });
-    const [avatarsId, setAvatarsId] = useState([])
-    const [highestAvatar, setHighestAvatar] = useState([])
 
     const getMatching = async () => {
         try{
@@ -37,78 +35,9 @@ const AnimalCard = ({animal, toggleFavorite, favorites, user}) => {
         }
     }
 
-    const getAvatarsId = async () => {
-        try{
-// On récup la liste des avatars et on stock leurs ids dans un tableau
-            const responseavatar = await axios.get(`${baseUrl}/avatars`,
-            { headers: { Authorization: `Bearer ${newToken}` } }
-            )   
-
-            let avatars = []
-            responseavatar.data.forEach((avatar) => {
-                avatars.push(avatar)
-            })
-
-            setAvatarsId(avatars)
-        }catch(error){
-            console.log(error)
-        }
-}
-
-const getAvatars = async () => {
-    try {
-
-        console.log('---------------------------')
-        console.log('Début pour ' + animal.name)
-        avatarsId.forEach(async avatar => {
-            const avatarTags = await axios.get(`${baseUrl}/avatar/${avatar.id}/tag`,
-                { headers: { Authorization: `Bearer ${newToken}` } }
-            )
-
-
-            let animalTagCount = 0;
-
-            avatarTags.data.forEach((tag) => {
-                for (const animalTag of data) {
-                    if (animalTag.statut.includes('animal') || animalTag.statut.includes('commun')) {
-                        if (tag.tag_name === animalTag.tag_name) {
-                            animalTagCount++;
-                        }
-                    }
-                }
-            })
-
-            console.log(`${animal.name} à ${animalTagCount} tags de ${avatar.name}`)  
-            const avatarCount = { [avatar.name]: animalTagCount };
-            setHighestAvatar(prevState => [...prevState, avatarCount]); 
-        });
-
-        selectAvatar() 
-
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-    const selectAvatar = () => {
-        console.log(animal.name + 'ses tags sont :')
-        console.log(highestAvatar)    
-        console.log(highestAvatar[0])
-        console.log(highestAvatar[1])
-        console.log(highestAvatar[2])
-
-        console.log(highestAvatar[0].Licorne)
-        if(highestAvatar[0].Licorne > highestAvatar[1] && highestAvatar[0] > highestAvatar[2]){
-            console.log('Cet animal est' + highestAvatar[0] + '!!!!!!!!!!')
-        }
-        if(highestAvatar[1] > highestAvatar[0] && highestAvatar[1] > highestAvatar[2]){
-            console.log('Cet animal est' + highestAvatar[1] + '!!!!!!!!!!')
-        }
-        if(highestAvatar[2] > highestAvatar[0] && highestAvatar[2] > highestAvatar[1]){
-            console.log('Cet animal est' + highestAvatar[2] + '!!!!!!!!!!')
-        }
-    
-    }
+    useEffect(() => {
+        console.log(avatarsTags)
+    }, [avatarsTags])
 
     const resolveMatching = (data) => {
         let animalTagCount = 0;
@@ -128,12 +57,61 @@ const getAvatars = async () => {
 
     useEffect(() => {
         getMatching()
+        getAvatar()
     }, [])
 
-    useEffect(()=>{
-        getAvatarsId()
-        getAvatars()
-    }, [])
+    const getAvatar = async () => {
+
+        try{
+
+            const response = await axios.get(`${baseUrl}/animal/${animal.id}/tag`,
+            { headers: { Authorization: `Bearer ${newToken}` } }
+            )
+
+            let licorneCount = 0 ;
+            let dragonCount = 0 ;
+            let dinosaureCount = 0 ;
+            console.log('___________________________________________________________');
+            console.log('Nouvel animal : ' + animal.name);
+            console.log('Avatars tag :');
+            console.log(avatarsTags);
+            console.log('Licorne' + licorneCount + 'dragon' + dragonCount + 'dinosaure' + dinosaureCount);
+            
+            response.data.forEach(animalTag => {
+            
+                console.log('---- Nouveau tag de l\'animal ------')
+                console.log(animalTag.tag_name)
+
+                avatarsTags.Licorne.forEach(licorneTag => {
+                    console.log(licorneTag.tag_name)
+                    if(licorneTag.tag_name === animalTag.tag_name){
+                        licorneCount ++ ;
+                    }
+                });
+
+                avatarsTags.Dragon.forEach(dragonTag => {
+                    console.log(dragonTag.tag_name)
+                    if(dragonTag.tag_name === animalTag.tag_name){
+                        dragonCount ++ ;
+                    }
+                });
+
+                avatarsTags.Licorne.forEach(dinosaureTag => {
+                    console.log(dinosaureTag.tag_name)
+                    if(dinosaureTag.tag_name === animalTag.tag_name){
+                        dinosaureCount ++ ;
+                    }
+                });
+            });  
+
+            console.log(animal.name + ' a ' + licorneCount + ' tags licorne')
+            console.log(animal.name + ' a ' + dinosaureCount + ' tags dinosaure')
+            console.log(animal.name + ' a ' + dragonCount + ' tags dragon')
+
+        }catch(error){
+            console.log(error)
+        }
+    }
 
     return(
         <div className='animal-card__card'>

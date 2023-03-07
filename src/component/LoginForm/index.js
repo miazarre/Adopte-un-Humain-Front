@@ -29,11 +29,13 @@ const LoginForm = ({setUser, setIsLogged}) => {
               "password" : `${password}`
           })
 
+          console.log(response.data)
           localStorage.setItem('token', JSON.stringify(response.data.token));
           let newUser = response.data ;
           delete newUser.token ;
           setUser(newUser)
           setIsLogged(true)
+
           navigate('/trombinoscope')
 
       }catch(error){

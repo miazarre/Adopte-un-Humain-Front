@@ -57,12 +57,12 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
                     </>   
                     
                     : <>
-                        <div className='signin'>
+                        <div className='header__right-button__signin'>
                         <Link to='/signin'>
                         Inscription
                         </Link>
                         </div>
-                        <div className='login'>
+                        <div className='header__right-button__login'>
                         <Link to='/login'>
                         Connexion
                         </Link>

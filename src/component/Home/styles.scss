@@ -4,11 +4,12 @@
 .container{
     margin-top: 10vh ;
     padding-bottom: 10vh;    
-    background: linear-gradient( to bottom, v.$white 0%, v.$heart 350%);
+    background: linear-gradient( to bottom, v.$white 0%, v.$warm 350%);
     min-height: 76vh;
 
     .intro  {
-        padding: 1vh;
+        padding-left: 5vh;
+        padding-right: 5vh;
     }
 
     p {

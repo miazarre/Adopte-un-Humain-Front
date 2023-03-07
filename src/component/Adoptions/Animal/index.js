@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.scss';
 import axios from 'axios';
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
+const baseUrl=process.env.REACT_APP_BASE_URL
 
 const Animal = ({animal}) => {
 
@@ -14,7 +13,7 @@ const Animal = ({animal}) => {
         const newToken = JSON.parse(token);
 
         try{
-            const response = await axios.get(`http://matthieuskrzypczak-server.eddi.cloud:8080/api/adopts`,
+            const response = await axios.get(`${baseUrl}/adopts`,
             { headers: { Authorization: `Bearer ${newToken}` } });
             let adoptionsList = response.data
             adoptionsList = adoptionsList.filter((adoption) => adoption.animal_id == animal.id)
@@ -32,7 +31,7 @@ const Animal = ({animal}) => {
     return( 
         <Link to={`/adoptions/${animal.id}`}>
         <div className='animal-adoptions__card'>
-            <div className='animal-adoptions__card--image' style={{backgroundImage:`url(http://matthieuskrzypczak-server.eddi.cloud:8080/api/images/animal/${animal.photo1})`}}>
+            <div className='animal-adoptions__card--image' style={{backgroundImage:`url(${baseUrl}/images/animal/${animal.photo1})`}}>
             </div>
             <p className='animal-adoptions__card--name'>{animal.name} <span className='animal-adoptions__card--round'></span> <span className='animal-adoptions__card--adopt-count'>{adoptions.length} demande{adoptions.length===1 ? '' : 's'}</span></p>
         </div>

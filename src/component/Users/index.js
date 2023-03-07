@@ -6,6 +6,7 @@ import axios from 'axios';
 import { IoPersonAddSharp } from "react-icons/io5";
 
 import User from './User';
+const baseUrl=process.env.REACT_APP_BASE_URL
 
 const Users = () => {
     
@@ -19,7 +20,7 @@ const Users = () => {
         const token = localStorage.getItem('token');
         const newToken = JSON.parse(token);
         try {
-          const {data: response} = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/users',
+          const {data: response} = await axios.get(`${baseUrl}/users`,
           { headers: { Authorization: `Bearer ${newToken}` } });
           setData(response);
         } catch (error) {
@@ -71,7 +72,7 @@ const Users = () => {
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Rôle</th>
-                    <th>Profil</th>
+                    {/* <th>Profil</th> */}
                     <th className='users_container-title-table--icon'>Supprimer</th>
                 </tr>
                 {

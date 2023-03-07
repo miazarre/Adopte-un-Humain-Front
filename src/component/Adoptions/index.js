@@ -5,8 +5,6 @@ import Animal from './Animal';
 import './styles.scss'
 
 const baseUrl=process.env.REACT_APP_BASE_URL
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 
 const Adoptions = () => {
 

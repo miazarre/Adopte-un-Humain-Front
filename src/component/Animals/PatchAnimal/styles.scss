@@ -1,0 +1,224 @@
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
+
+.addAnimal-container {
+  display: flex;
+  justify-content: space-around;
+  align-items:center;
+  padding-top: 5vh;
+
+  & input {
+    font-family: v.$global-font ;
+    font-size: large;
+    // display: block;
+    padding: 1rem;
+  }
+
+  &-informations {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 1vh;
+    padding-top: 1vh;
+  }
+
+  & label {
+    font-family: v.$global-font ;
+    font-size: 1.3rem;
+    display: block;
+    padding-bottom: 1vh;
+  }
+}
+
+h1 {
+  color: v.$black;
+  text-align: center;
+}
+
+button {
+  @include button; 
+  font-family: v.$global-font ;
+  display: block;
+  margin: 1rem auto;
+  padding: 1rem;
+  font-size: 1.3rem;
+}
+
+input {
+    margin: 0.4rem;
+}
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+
+  &:hover {
+    border-color: orange;
+  }
+
+  img {
+    display: inline-block;
+    max-width: 100%;
+  }
+
+  &:not(:first-child) {
+    margin-left: 5rem;
+  }
+
+  &:first-child {
+    margin-left: 1rem;
+  }
+
+  &:last-child {
+    margin-right: 1rem;
+  }
+}
+
+.category-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.category-input {
+  display: flex;
+  align-items: baseline;
+}
+
+.category-input input {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.category-input label {
+  font-size: 1.25rem;
+}
+
+.textareas{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  gap: 3rem;
+  gap: 3rem;
+}
+
+.input-label{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-items: center;
+}
+
+.informations-date{
+  justify-content: center;
+  align-items: center;
+}
+
+.textareas-label{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.addanimal_container{
+  font-size: 1.3rem;
+    &-input {
+      font-family: v.$global-font ;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;  
+    }
+
+    &_textareas{
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-flow: column wrap;
+      flex-flow: column wrap;
+      justify-content: space-around;
+      align-items: center;
+      gap: 1rem; 
+
+      &-detail{
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+      }
+    }
+
+    &_photos{
+      display:flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    &_categories {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-bottom: 2rem;
+
+        &_category {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+          
+            &-input {       
+                margin-top: 1rem;      
+                align-self: center;
+            }
+            
+            & input {
+                display: inline-block;
+                margin-right: 0.5rem;
+            }
+
+            & label {
+                font-size: 1.25rem;
+            }
+
+            &:hover {
+              border-color: orange;
+            }
+          
+            img {
+              display: inline-block;
+              max-width: 100%;
+            }
+          
+            &:not(:first-child) {
+              margin-left: 5rem;
+            }
+          
+            &:first-child {
+              margin-left: 1rem;
+            }
+          
+
+            &:last-child {
+              margin-right: 1rem;
+            }
+        }
+    }
+}

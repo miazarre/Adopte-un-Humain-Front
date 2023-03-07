@@ -7,6 +7,7 @@ import Animal from './Animal';
 
 const Animals = () => {
 
+    const baseUrl=process.env.REACT_APP_BASE_URL;
     const [data, setData] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [filteredAnimal, setFilteredAnimal] = useState([]);
@@ -17,7 +18,7 @@ const Animals = () => {
         try {
           const token = localStorage.getItem('token');
           const newToken = JSON.parse(token);
-          const {data: response} = await axios.get('http://matthieuskrzypczak-server.eddi.cloud:8080/api/animals',
+          const {data: response} = await axios.get(`${baseUrl}/animals`,
           { headers: { Authorization: `Bearer ${newToken}` } });
           setData(response);
         } catch (error) {

@@ -7,12 +7,14 @@ import axios from 'axios';
 import { FiTrash2 } from "react-icons/fi";
 import { TfiPencil } from "react-icons/tfi";
 import { GiLabradorHead } from "react-icons/gi";
+import PatchAnimal from '../PatchAnimal';
+const baseUrl=process.env.REACT_APP_BASE_URL
 
 const Animal = ({name, birthdate, resume, needs, id }) => {
 
     const [data, setData] = useState([])
     const profile=`/trombinoscope/${id}`;
-    const URLdelete = `http://matthieuskrzypczak-server.eddi.cloud:8080/api/animal/${id}`;
+    const URLdelete = `${baseUrl}/animal/${id}`;
 
     const date = new Date(birthdate);
     const localeDate = (date.toLocaleDateString('fr-FR'));
@@ -45,7 +47,12 @@ const Animal = ({name, birthdate, resume, needs, id }) => {
                 </Link>
             </td>
             <td>
-                <TfiPencil size={'3vh'} className='animals_container-title-table--icon' />
+                <Link to={`/animals/patchanimal/${id}`} >
+                    <TfiPencil 
+                        size={'3vh'} 
+                        className='animals_container-title-table--icon' 
+                    />
+                </Link>
                 <FiTrash2 
                     size={'3vh'} 
                     className='animals_container-title-table--icon' 
@@ -70,6 +77,7 @@ Animal.propTypes = {
     resume: PropTypes.string.isRequired,
     needs: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
+    name2: PropTypes.string.isRequired,
 };
     
 export default Animal;

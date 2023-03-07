@@ -38,6 +38,9 @@ const Home = () => {
                     style={{ height: '800px', width: '800px' }}>
                 </Player>
             </div>
+
+            <h1 className='title'> J'adopte un humain </h1>
+            
                 <div className='intro'>
                     <p>Trouver le compagnon idéal peut être une tâche décourageante...C'est pourquoi nous avons créé un système de matching qui vous met en relation avec des animaux qui correspondent à votre personnalité.
                         Notre système prend en compte trois types de caractères différents, afin que vous puissiez trouver un animal qui vous corresponde vraiment. 

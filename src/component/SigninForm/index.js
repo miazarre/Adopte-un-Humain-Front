@@ -108,7 +108,7 @@ const SigninForm = () => {
 
 
         <div className="categories">
-        {/*{{categories.map(c => (
+        {categories.map(c => (
             <div className="category" key={c.name.toLowerCase()} onClick={() => setCategory(c.name.toLowerCase())}>
               <div className="category-image">
               <img src={c.image} alt={c.name}/>
@@ -120,7 +120,7 @@ const SigninForm = () => {
               <p>{c.description}
               </p>
             </div>
-          ))}*/}
+          ))}
         </div>
 
         <p className='validation' onClick={handleSubmit}><span>Valider</span></p>

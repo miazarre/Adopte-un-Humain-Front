@@ -15,7 +15,6 @@ const Board = ({user}) => {
             return
         }
         setCurrentUser(user)
-        console.log(currentUser)
     })
     return(
         <div className='board_container'>

@@ -17,6 +17,15 @@
 
         &--icons-div--icon{
             margin-right: 20px;
+
+            *{
+                color: v.$black;
+                transition: 0.2s;
+                &:hover{
+                  color: v.$primary-color;
+                  cursor: pointer;
+                }
+              }
         }
     }
 }

@@ -52,7 +52,7 @@ Animal.propTypes = {
     animal: PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      photo1: PropTypes.string.isRequired,
+      photo1: PropTypes.string,
     }).isRequired,
     setMessage: PropTypes.func.isRequired,
   };

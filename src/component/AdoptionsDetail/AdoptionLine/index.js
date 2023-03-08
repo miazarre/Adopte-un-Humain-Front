@@ -44,7 +44,7 @@ const AdoptionLine = ({adoption, getAdoptions, setMessage}) => {
         { headers: { Authorization: `Bearer ${newToken}` } }
         )
         
-        setUser(response.data)
+        setUser(response.data[0])
         
         getMatching()
         }catch(error){
@@ -56,6 +56,7 @@ const AdoptionLine = ({adoption, getAdoptions, setMessage}) => {
 // Au chargement on récupère l'utilisateur, le commentaire lié a la demande d'adoption et le matching animal-user
     useEffect(() => {
         getUser()
+
         if(adoption.comment){
             setComment(adoption.comment)
         }
@@ -96,7 +97,6 @@ const AdoptionLine = ({adoption, getAdoptions, setMessage}) => {
 // Fonction de récupération des informations liées au matching entre l'animal et l'utilisateur impliqués dans la demande
     const getMatching = async () => {
         try{
-            console.log(user.id)
             const response = await axios.get(`${baseUrl}/user/${adoption.user_id}/matching/${param.id}`,
             { headers: { Authorization: `Bearer ${newToken}` } }
             )

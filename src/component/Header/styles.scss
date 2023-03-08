@@ -13,6 +13,12 @@
     align-items: center;
     justify-content: center;
     font-family: $global-font; 
+
+  }
+
+  &__logo{
+    width: 100px;
+    margin: 0;
   }
 
   &__logo{
@@ -85,6 +91,15 @@
           &--social{
             margin-top: 20vh;
             margin-right: 0;
+
+            *{
+              color: v.$black;
+              transition: 0.2s;
+              &:hover{
+                color: v.$primary-color;
+                cursor: pointer;
+              }
+            }
           }
 
           &--title{
@@ -115,7 +130,8 @@
   &__right-button{
     @include smallTitle;
     position: absolute;
-    top: 30px;
+    top: 40px;
+
     right: 30px;
     &__login{
       padding: 1rem;

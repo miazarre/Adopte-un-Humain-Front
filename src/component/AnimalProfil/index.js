@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 //Imports librairies 
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {TiArrowBack} from 'react-icons/ti';
 import { RxCrossCircled } from 'react-icons/rx';
 import {BsSuitHeart, BsSuitHeartFill} from 'react-icons/bs';
@@ -22,6 +22,7 @@ const baseUrl=process.env.REACT_APP_BASE_URL;
 
 const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
+    
 // Déclaration de tous les params
     const param = useParams()
     const [animal, setAnimal] = useState([])
@@ -37,7 +38,7 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
         count:'',
         pourcentage:''
     });
-
+    const navigate = useNavigate();
 // Gestion des formulaires controlés
     const handleFormChange = (event) => {
         const { name, value } = event.target;
@@ -103,39 +104,38 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
     }, [])
 
 // Gestion du submit de la demande d'adoption avec vérification du contenu des form
-        const handleFormSubmit = async () => {
+    const handleFormSubmit = async () => {
 
-            if(form.form1 === '' || form.form2 === '' || form.form3 === ''){
-                setErrorMessage('Veuillez remplir toutes les parties du formulaire.')
-                return
-            }
-            if(form.form1.length < 10 || form.form2.length < 10 || form.form3.length < 10){
-                setErrorMessage('Chaque champs doit contenir un minimum de 10 caractères. N\'hésitez pas à lire les conseils présents à droite des formulaires.')
-                return
-            }
-
-            try{
-                const response = await axios.post(`${baseUrl}/adopt`,
-                {
-                    form1:form.form1,
-                    form2:form.form2,
-                    form3:form.form3,
-                    user_id:user.id,
-                    animal_id:param.id,
-                    status:'En cours'
-                },
-                { headers: { Authorization: `Bearer ${newToken}` } }
-                )
-
-                setIsContactinganimal('send')
-
-            }catch(error){
-                setErrorMessage('Il y a eu un soucis au moment de contacter le serveur.')
-                console.log(error)
-            }
-            
-            console.log('Hop')
+        if(form.form1 === '' || form.form2 === '' || form.form3 === ''){
+            setErrorMessage('Veuillez remplir toutes les parties du formulaire.')
+            return
         }
+        if(form.form1.length < 10 || form.form2.length < 10 || form.form3.length < 10){
+            setErrorMessage('Chaque champs doit contenir un minimum de 10 caractères. N\'hésitez pas à lire les conseils présents à droite des formulaires.')
+            return
+        }
+
+        try{
+            const response = await axios.post(`${baseUrl}/adopt`,
+            {
+                form1:form.form1,
+                form2:form.form2,
+                form3:form.form3,
+                user_id:user.id,
+                animal_id:param.id,
+                status:'En cours'
+            },
+            { headers: { Authorization: `Bearer ${newToken}` } }
+            )
+
+            setIsContactinganimal('send')
+
+        }catch(error){
+            setErrorMessage('Il y a eu un soucis au moment de contacter le serveur.')
+            console.log(error)
+        }
+    }
+
 // Settings nécessaires au slide de Slick
     const settings = {
         dots: true,
@@ -147,7 +147,7 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
     return(
     <>
-    <Link to='/trombinoscope' className='animal-profil__back'><span><TiArrowBack size={'50px'}/></span></Link>
+    <div className='animal-profil__back'><span><TiArrowBack onClick={e => navigate(-1)} size={'50px'}/></span></div>
     <div className='animal-profil__container'>
         {isLogged
         ? <>

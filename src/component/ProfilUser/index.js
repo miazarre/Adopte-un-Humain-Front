@@ -218,11 +218,11 @@ ProfilUser.propTypes = {
       firstname: PropTypes.string.isRequired,
       lastname: PropTypes.string.isRequired,
       phone: PropTypes.string.isRequired,
-      address: PropTypes.string.isRequired,
-      postal_code: PropTypes.string.isRequired,
-      city: PropTypes.string.isRequired,
-      country: PropTypes.string.isRequired,
-    }).isRequired,
+      address: PropTypes.string,
+      postal_code: PropTypes.string,
+      city: PropTypes.string,
+      country: PropTypes.string,
+    }),
     isLogged: PropTypes.bool.isRequired,
   };
 

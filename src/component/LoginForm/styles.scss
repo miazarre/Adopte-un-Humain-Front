@@ -12,12 +12,24 @@
 .form {
   height: 85vh;
   width: 90vw;
+
+  p{
+    text-align: center;
+    margin-top: 5vh;
+
+    .link{
+      font-weight: 700;
+      margin:auto;
+    }
+  }
 }
 .input-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: 10vh;
+
 
   &--boutton{
     @include button;
@@ -27,10 +39,12 @@
 
   &--message{
 
+    display: inline-block;
     background-color: v.$primary-color;
     padding: 10px;
-    display: inline-block;
-    margin: 5vh auto ;
+    margin: 5vh 40vw;
+    display: flex;
+    align-items: center;
 
     &-cross{
       color: v.$black;

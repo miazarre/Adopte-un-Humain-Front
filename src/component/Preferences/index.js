@@ -162,7 +162,7 @@ Preferences.propTypes = {
     isLogged: PropTypes.bool.isRequired,
     user: PropTypes.shape({
       id: PropTypes.number.isRequired,
-    }).isRequired,
+    }),
   };
 
 export default Preferences;

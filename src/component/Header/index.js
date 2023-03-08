@@ -71,7 +71,7 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
 
 Header.propTypes = {
     isLogged: PropTypes.bool.isRequired,
-    user: PropTypes.object.isRequired,
+    user: PropTypes.object,
     setUser: PropTypes.func.isRequired,
     setIsLogged: PropTypes.func.isRequired
 };

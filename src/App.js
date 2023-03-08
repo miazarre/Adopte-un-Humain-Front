@@ -19,6 +19,8 @@ import AddAnimal from './component/Animals/AddAnimal';
 import Error from './component/Error';
 import Filtres from './component/Filtres';
 import PatchAnimal from './component/Animals/PatchAnimal';
+import Tags from './component/Tags';
+import AddTag from './component/Tags/AddTag';
 
 import './styles/index.scss';
 import './styles/reset.scss';
@@ -61,6 +63,8 @@ function App() {
         <Route path='/animals/patchanimal/:id' element={<PatchAnimal user={user} isLogged={isLogged}/>} />
         <Route path='/adoptions' element={<Adoptions user={user} isLogged={isLogged}/>} />
         <Route path='/adoptions/:id' element={<AdoptionsDetail user={user} isLogged={isLogged}/>} />
+        <Route path='/tags' element={<Tags user={user} isLogged={isLogged}/>} />
+        <Route path='/tags/addtag' element={<AddTag user={user} isLogged={isLogged}/>} />
         <Route path='*' element={<Error />} />
       </Routes>
       <Footer/>

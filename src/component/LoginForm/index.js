@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {RxCrossCircled} from 'react-icons/rx';
 import PropTypes from 'prop-types';
-
+import { Link } from 'react-router-dom';
 // Base url
 const baseUrl=process.env.REACT_APP_BASE_URL;
 
@@ -29,7 +29,6 @@ const LoginForm = ({setUser, setIsLogged}) => {
               "password" : `${password}`
           })
 
-          console.log(response.data)
           localStorage.setItem('token', JSON.stringify(response.data.token));
           let newUser = response.data ;
           delete newUser.token ;
@@ -59,6 +58,7 @@ const LoginForm = ({setUser, setIsLogged}) => {
                 <span >Valider</span>
                 </p>
             </form>
+            <p>Pas encore de compte ? Inscrivez-vous <Link className='link' to='/signin'>par ici</Link></p>
             </div>
       </div>
           )

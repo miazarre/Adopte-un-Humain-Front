@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Player } from '@lottiefiles/react-lottie-player';
 import {RiLinksFill} from 'react-icons/ri'
 import {AiOutlineUser} from 'react-icons/ai'
+import { Link } from 'react-router-dom';
 
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
@@ -29,7 +30,7 @@ const Home = () => {
                 <div>
                     <h1>J'adopte un humain</h1>
                     <p>Rencontrez votre nouveau meilleur ami sur J'adopte un humain, où les animaux et les humains se rencontrent pour une vie remplie d'amour et de bonheur.</p>
-                    <div className='container--top-part--button'><span>Nous rejoindre</span></div>
+                    <div className='container--top-part--button'><span><Link to='/signin'>Nous rejoindre</Link></span></div>
                 </div>
                 <Player
                     autoplay
@@ -43,7 +44,10 @@ const Home = () => {
                 <h3 className='container--animal_profiles--titre'>Les derniers arrivés</h3>
                 <div className='profiles'>
                     {profiles.map((profile) => (
-                            <div className='container--animal_profiles--card'>
+                            <div 
+                            className='container--animal_profiles--card'
+                            key={Math.random()}
+                            >
                                 <div className='container--animal_profiles--image' style={{backgroundImage:`url(${baseUrl}/images/animal/${profile.photo1})`}}>
                                 </div>
                                 <p className='container--animal_profiles--name'>{profile.name}</p>

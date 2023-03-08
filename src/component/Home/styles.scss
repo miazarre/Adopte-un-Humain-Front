@@ -88,8 +88,8 @@
         }
 
         &--image{
-            width: 200px;
-            height: 200px;
+            width: 10vw;
+            height: 10vw;
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -123,7 +123,6 @@
             to right,
             v.$light-color,
             v.$dark-color
-
         );
         background-size: 60% 5px, 0 10px;
         background-position: 50% 0, 0 0;

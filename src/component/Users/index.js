@@ -8,7 +8,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { IoPersonAddSharp } from "react-icons/io5";
 
-import User from './User';
 const baseUrl=process.env.REACT_APP_BASE_URL
 
 const Users = () => {

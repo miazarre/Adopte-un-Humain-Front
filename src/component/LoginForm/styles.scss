@@ -3,11 +3,14 @@
 
 .title {
   @include Title;
-  margin-top: 30px;
-  margin-right: 90px;
+}
+
+.login {
+  @include smallTitle;
 }
 
 .form {
+  height: 85vh;
   width: 90vw;
 }
 .input-container {

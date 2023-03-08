@@ -12,6 +12,11 @@
         font-family: $global-font;
         min-height: 80vh;
 
+        &--message{
+            background-color: v.$primary-color;
+            padding: 10px;
+            margin: auto;
+        }
         &--animals{
             width: 80vw;
             margin: 5vh auto;

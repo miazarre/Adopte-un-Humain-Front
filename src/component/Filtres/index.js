@@ -1,8 +1,13 @@
-import { useEffect, useState } from 'react';
+// Imports internes
 import './styles.scss'
+
+// Imports externes
+import { useEffect, useState } from 'react';
+import { RxCrossCircled } from 'react-icons/rx';
 import React from 'react';
 import axios from 'axios';
 
+// BaseUrl
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL
@@ -10,6 +15,7 @@ const baseUrl=process.env.REACT_APP_BASE_URL
 
 const Filtres = () => {
 
+   const [message, setMessage] = useState('')
    const [tagToDelete, setTagToDelete] = useState('');
    const [tags, setTags] = useState([]);
    const [form, setForm] = useState({
@@ -31,23 +37,24 @@ const Filtres = () => {
       
    }, [])
 
-   const handleTagSelect = (event) => {
-      setTagToDelete(event.target.value);
-   };
-
+// Fonction qui récupère tous les tags
    const getTags = async () => {
 
       try{
+
          const response = await axios.get(`${baseUrl}/tags`,
          { headers: { Authorization: `Bearer ${newToken}` } }
          ) ;
+
          setTags(response.data);
-         console.log(response.data)
+         
       }catch(error){
+         setMessage('Il y a eu un problème au moment de récupérer les tags auprès du serveur.')
          console.log(error)
       }
    }
 
+// Fonction qui gère les form controlés
    const handleChange = (event) => {
       const { name, value } = event.target;
       setForm({
@@ -56,22 +63,30 @@ const Filtres = () => {
       });
   };
 
-  const handleDeleteTag = async () => {
+  // Au changement du select on récupère la valeur du tag choisi et on le stock
+  const handleTagSelect = (event) => {
+   setTagToDelete(event.target.value);
+};
 
+// fonction qui gère le delete d'un tag selon la valeur stockée par la fonction juste au dessus
+  const handleDeleteTag = async () => {
    try {
      const response = await axios.delete(
        `${baseUrl}/tag/${tagToDelete}`,
        { headers: { Authorization: `Bearer ${newToken}` } }
      );
- 
-     console.log(response.data);
+      
+     setMessage('Le tag a bien été supprimé.')
      setTagToDelete('');
      getTags();
+
    } catch (error) {
+      setMessage('Il y a eu un soucis au moment de la suppression du tag.')
       console.log(error)
    }
   }
 
+// Fonction qui gère l'ajout d'un nouveau tag
   const handleAddTag = async () => {
 
    const newTag={
@@ -79,18 +94,21 @@ const Filtres = () => {
       priority:form.eliminatoire
    }
       try {
+
        const response = await axios.post(
            `${baseUrl}/tag`,
            newTag,
            { headers: { Authorization: `Bearer ${newToken}` } }
        );   
-       console.log(response.data)
+       setMessage('Le nouveau tag a bien été ajouté')
        getTags();
       }catch(error){
-
+         setMessage('Il y a eu un soucis au moment de l\'ajout du tag.')
+         console.log(error)
       }
    } 
 
+// Fonction qui gère la modification d'un tag
    const handleModify = async () => {
 
       const modifiedField = {
@@ -104,10 +122,11 @@ const Filtres = () => {
          { headers: { Authorization: `Bearer ${newToken}` } }
          )
 
-         console.log(response)
+         setMessage('Le tag a bien été modifié')
          getTags()
 
       }catch(error){
+         setMessage('Il y a eu un soucis au moment de la modification du tag.')
          console.log(error)
       }
    }
@@ -116,6 +135,9 @@ const Filtres = () => {
     <div className='tags-page__container'>
     <div className='tags-page__list'>
       <h1>Gestion des filtres :</h1>
+      {message != '' &&
+      <p className='tags-page__message'>{message} <RxCrossCircled onClick={e=>setMessage('')}/></p>
+      }
       <div className='tags-page__CRUD--container'>
          <div className='tags-page__left-part'>
             <div className='tags-page__left-part--add'>

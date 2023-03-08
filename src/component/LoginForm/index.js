@@ -1,22 +1,27 @@
+// Imports internes
 import './styles.scss';
+
+// Imports externes
 import { useState } from 'react';
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {RxCrossCircled} from 'react-icons/rx';
+import PropTypes from 'prop-types';
 
-const baseUrl=process.env.REACT_APP_BASE_URL
+// Base url
+const baseUrl=process.env.REACT_APP_BASE_URL;
 
 const LoginForm = ({setUser, setIsLogged}) => {
 
   const navigate = useNavigate();
 
-  const [login, setLogin] = useState('')
+  const [login, setLogin] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+// Fonction qui gère la connexion et stock le token dans le localStorage
   const handleSubmit = async () => {
-    console.log('click')
       try{
           const response = await axios.post(`${baseUrl}/login`, 
             {
@@ -24,11 +29,13 @@ const LoginForm = ({setUser, setIsLogged}) => {
               "password" : `${password}`
           })
 
+          console.log(response.data)
           localStorage.setItem('token', JSON.stringify(response.data.token));
           let newUser = response.data ;
           delete newUser.token ;
           setUser(newUser)
           setIsLogged(true)
+
           navigate('/trombinoscope')
 
       }catch(error){
@@ -40,7 +47,7 @@ const LoginForm = ({setUser, setIsLogged}) => {
 
     return (
       <div className="input-container">
-        <h1 className='title'>Connexion</h1>
+        <h1 className='login'>Connexion</h1>
         <div className='form'>
            {login !== '' &&
             <p className='input-container--message'>{login} <RxCrossCircled className='input-container--message-cross' size='20px' onClick={e => setLogin('')}/></p>
@@ -55,6 +62,11 @@ const LoginForm = ({setUser, setIsLogged}) => {
             </div>
       </div>
           )
-        }
+};
+
+LoginForm.propTypes = {
+  setUser: PropTypes.func.isRequired,
+  setIsLogged: PropTypes.func.isRequired
+};
         
-export default LoginForm
+export default LoginForm;

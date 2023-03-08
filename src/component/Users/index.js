@@ -1,8 +1,11 @@
+// Imports internes
 import './styles.scss';
+import User from './User';
+
+// Imports externes
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react'; 
 import axios from 'axios';
-
 import { IoPersonAddSharp } from "react-icons/io5";
 
 import User from './User';

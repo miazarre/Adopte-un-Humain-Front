@@ -1,18 +1,25 @@
+// Imports internes
+import Animal from './Animal';
+import './styles.scss';
+
+// Imports librairies
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Animal from './Animal';
-import './styles.scss'
+import { BsXCircleFill } from 'react-icons/bs';
 
-const baseUrl=process.env.REACT_APP_BASE_URL
+// Déclarations pour contacter l'API
+const baseUrl=process.env.REACT_APP_BASE_URL;
+const token = localStorage.getItem('token');
+const newToken = JSON.parse(token);
 
 const Adoptions = () => {
 
-    const [animals, setAnimals] = useState([])
+    const [animals, setAnimals] = useState([]);
+    const [message, setMessage] = useState('');
 
+// Récupération de la liste des animaux
     const fetchData = async () =>{
-        const token = localStorage.getItem('token');
-        const newToken = JSON.parse(token);
 
         try {
           const response = await axios.get(`${baseUrl}/animals`,
@@ -21,6 +28,7 @@ const Adoptions = () => {
           setAnimals(response.data);
         } catch (error) {
           console.error(error);
+          setMessage('Il y a eu un soucis au moment de contacter le serveur.')
         }
       }
 
@@ -51,14 +59,19 @@ const Adoptions = () => {
                 <p className='adoptions_container--linkToBoard'><span>Retour au Tableau de Bord</span></p>
             </Link>
         </div>
-
+        {message != '' &&
+                    <p className='adoptions_container--message'>{message} <BsXCircleFill onClick={e => setMessage('')}/></p>
+                }
         <div className="adoptions_container--animals">
+
                 {
                     animals.map((animal) => {
                         return(
                             <Animal
                             key={animal.id}
-                            animal={animal} />
+                            animal={animal} 
+                            setMessage={setMessage}
+                            />
                         )
                     })
                 }

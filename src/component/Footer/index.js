@@ -1,4 +1,7 @@
+// Imorts internes
 import './styles.scss';
+
+// Imports externes
 import { FaTiktok, FaFacebookF} from 'react-icons/fa';
 import {AiOutlineTwitter} from 'react-icons/ai'
 import React from 'react';

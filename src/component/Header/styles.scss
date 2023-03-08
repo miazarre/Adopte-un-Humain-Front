@@ -21,6 +21,11 @@
     margin: 0;
   }
 
+  &__logo{
+    width: 100px;
+    margin: 0;
+  }
+
 // Burger Menu style with React-burger-menu properties
   &__menu{
 
@@ -126,6 +131,7 @@
     @include smallTitle;
     position: absolute;
     top: 40px;
+
     right: 30px;
     &__login{
       padding: 1rem;

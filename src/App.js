@@ -18,6 +18,7 @@ import Preferences from './component/Preferences';
 import AddAnimal from './component/Animals/AddAnimal';
 import Error from './component/Error';
 import Filtres from './component/Filtres';
+import PatchAnimal from './component/Animals/PatchAnimal';
 
 import './styles/index.scss';
 import './styles/reset.scss';
@@ -57,6 +58,7 @@ function App() {
         <Route path='/animals' element={<Animals  user={user} isLogged={isLogged}/>} />
         <Route path='/filtres' element={<Filtres  user={user} isLogged={isLogged}/>} />
         <Route path='/animals/addanimal' element={<AddAnimal user={user} isLogged={isLogged}/>} />
+        <Route path='/animals/patchanimal/:id' element={<PatchAnimal user={user} isLogged={isLogged}/>} />
         <Route path='/adoptions' element={<Adoptions user={user} isLogged={isLogged}/>} />
         <Route path='/adoptions/:id' element={<AdoptionsDetail user={user} isLogged={isLogged}/>} />
         <Route path='*' element={<Error />} />

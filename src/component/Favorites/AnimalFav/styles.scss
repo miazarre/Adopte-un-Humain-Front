@@ -20,7 +20,7 @@
             height: 15vw;
             border-radius: 50%;
             background: linear-gradient(v.$light-color, v.$dark-color);
-            filter: drop-shadow(-20px 0 10px rgba(0, 0, 0, 0.1));
+            box-shadow: 0 10px 20px rgba(63, 63, 78, 0.3);
             transition: 0.2s;
 
             &:hover{
@@ -43,8 +43,7 @@
             @include smallTitle;
             position: absolute;
             background-color: v.$primary-color;
-            color: #fff;
-            border-radius: 10px;
+            color: v.$white;
             padding: 15px 30px;
             bottom: -80px; left: 50%;
             white-space: nowrap;
@@ -60,5 +59,5 @@
 .fav__round .fav__round--gradient:hover + .fav__round--name {
     opacity: 1;
     transform: translateX(-50%);
-    box-shadow: 0 10px 20px rgba(86, 86, 198, 0.3);
+    box-shadow: 0 10px 20px rgba(63, 63, 78, 0.3);
   }

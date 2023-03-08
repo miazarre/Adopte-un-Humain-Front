@@ -8,6 +8,11 @@
   font-family: 'Arapey';
   src: url('../assets/fonts/Arapey-Regular.ttf');
 }
+
+@font-face {
+  font-family: 'Alice';
+  src: url('../assets/fonts/Alice-Regular.ttf');
+}
 // Font variables
 $global-font:'Arapey';
 $form-font:'Michel';
@@ -16,7 +21,7 @@ $form-font:'Michel';
 // Generic for all avatars
 $black:#303030;
 $white:#F7F7F7;
-$warm:#fdd2b6;
+$warm:#F4E8D5;
 $heart: #F8656B;
 // dragon colors
 $primary-color:#70C1B3;
@@ -41,11 +46,11 @@ $dark-color:#247BA0;
 }
 
 @mixin button{
+  font-family: 'Alice';
   text-align: center;
   margin: auto;
   background: linear-gradient(144deg,v.$light-color, v.$primary-color 50%, v.$dark-color);
   border: 0;
-  border-radius: 10px;
   box-sizing: border-box;
   color: v.$black;
   display: flex;

@@ -10,6 +10,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const baseUrl=process.env.REACT_APP_BASE_URL;
+const token = localStorage.getItem('token');
+const newToken = JSON.parse(token);
 
 {/* const categories = [
   {name: "Licorne", image: Licorne, description:"Il/Elle aime galoper à travers les champs ouverts et les forêts, explorer de nouveaux endroits et rencontrer de nouvelles créatures. Il/elle aime aussi utiliser sa créativité pour forger de merveilleux souvenirs. Pendant notre temps libre, il/elle aime se poser, méditer et mettre en pratique ses acquis. Dans l'ensemble, il/elle est un ami et un compagnon merveilleux, toujours prêt à égayer la journée de n'importe qui avec sa nature enjouée et aimante."},
@@ -53,7 +55,7 @@ const SigninForm = () => {
       return;
     }
 
-    if (!/^[0-9]{10}$/.test(phone)) {
+    if (!/^0[0-9]{9}$/.test(phone)) {
       alert("Le numéro de téléphone n'est pas au bon format");
       return;
     }
@@ -79,11 +81,11 @@ const SigninForm = () => {
   }
     try { 
 
-      const response  = await axios.post(`${baseUrl}/register`, newUser)
+      const response  = await axios.post(`${baseUrl}/register`, newUser, {
+        headers: { Authorization: `Bearer ${newToken}`}
+      });
+  
       navigate('/login')
-
-      console.log(response.request.statusText);
-      Navigate('/login');
 
     } catch(error) {
       console.log(error.response.error)
@@ -106,8 +108,8 @@ const SigninForm = () => {
         <input type="password" placeholder="Validation mot de passe" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPasswordSubmit} />
 
 
-        <div className="categories">
-{{categories.map(c => (
+     {/* <div className="categories">
+            {{categories.map(c => (
 
             <div className="category" key={c.name.toLowerCase()} onClick={() => setCategory(c.name.toLowerCase())}>
               <div className="category-image">
@@ -122,7 +124,7 @@ const SigninForm = () => {
             </div>
           ))}
 
-        </div>
+            </div> */}
 
         <p className='validation' onClick={handleSubmit}><span>Valider</span></p>
       </form>

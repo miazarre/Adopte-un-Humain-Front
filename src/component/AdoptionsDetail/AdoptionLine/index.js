@@ -1,5 +1,4 @@
 // Imports internes
-import Licorne from '../../../assets/Licorne.png';
 import './styles.scss';
 
 // Imports librairies
@@ -136,7 +135,6 @@ const AdoptionLine = ({adoption, getAdoptions, setMessage}) => {
 {/* Bloc qui correspond à la ligne qui affiche les infos de la demande avec ... */}
             {user.firstname &&
             <div className='adoptionLine__user'>
-                <img src={Licorne}/>
                 <p>{user.firstname} {user.lastname}</p>
             </div>
             }
@@ -173,7 +171,6 @@ qui display les détaisl de la demande d'adoption*/}
                     <div className='adoptionLine__bigdetails--body-part'>
                         <div className='adoptionLine__bigdetails--body-part--user'>
                             <h3>Utilisateur</h3>
-                            <img src={Licorne}/>
                             <p className='adoptionLine__bigdetails--body-part--user-name'>{user.firstname} {user.lastname}</p>
                             <p><BsFillTelephoneFill/> {user.phone}</p>
                             <p className='adoptionLine__bigdetails--body-part--address'>{user.address} {user.postal_code} {user.city} {user.country}</p>

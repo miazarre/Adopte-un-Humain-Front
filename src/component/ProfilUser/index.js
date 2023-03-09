@@ -1,5 +1,4 @@
 // Imports internes
-import dragon from '../../assets/Dragon.png';
 import './styles.scss';
 
 // Imports externes
@@ -9,6 +8,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {RxCrossCircled} from 'react-icons/rx';
 import PropTypes from "prop-types";
+import {AiOutlineMail, AiOutlinePhone, AiOutlineUser, AiOutlineHome} from 'react-icons/ai'
+
 
 //BaseUrl
 const baseUrl=process.env.REACT_APP_BASE_URL
@@ -34,6 +35,7 @@ const [form, setForm] = useState({
     new_password: '',
     confirm_new_password: ''
   });
+
   
   useEffect(() => {
     for (const key in profilUSer) {
@@ -44,7 +46,7 @@ const [form, setForm] = useState({
         }));
       }
     }
-  }, []);
+  }, [user]);
 
 // Au chargement de la page on contact l'API pour avoir els données à jour de l'utilisateur
     const settingUserOnLoad = async () => {
@@ -52,7 +54,7 @@ const [form, setForm] = useState({
             const response = await axios.get(`${baseUrl}/user/${user.id}`,
             { headers: { Authorization: `Bearer ${newToken}` }}
             )
-            setProfilUser(response.data)
+            setProfilUser(response.data[0])
         }catch(error){
             console.log(error)
             setErrorMessage('Il y a eu un problème au moment de récupérer vos informations.')
@@ -64,7 +66,7 @@ const [form, setForm] = useState({
         if(user){
             settingUserOnLoad()  
         }
-    });
+    }, [user]);
 
 // Quand un champs d'input est changé
     const handleFormChange = (event) => {
@@ -89,8 +91,9 @@ const [form, setForm] = useState({
         }
 
         let firstNumber = form.phone.charAt(0);
-
-        if(form.phone !== '' && (form.phone.length !== '10' || firstNumber !== '0')){
+        console.log(firstNumber)
+        console.log(form.phone)
+        if(form.phone != '' && (form.phone.length != '10' || firstNumber != '0')){
             setErrorMessage('Veuillez entrer un numéro de téléphone valide.')
             return
         }
@@ -144,11 +147,16 @@ const [form, setForm] = useState({
                 {isLogged
                 ? <>
                 <div className='profil-user__details'>
-                    <img src={dragon}/>
-                    <p className='profil-user__details--name'>{profilUSer.firstname} {profilUSer.lastname}</p>
-                    <p>{profilUSer.email}</p>
-                    <p>{profilUSer.phone}</p>
-                    <p>{profilUSer.address} {profilUSer.postal_code} {profilUSer.city} {profilUSer.country}</p>
+                   {profilUSer.firstname &&
+                    <>
+                        <p className='profil-user__details--name'><AiOutlineUser/> {profilUSer.firstname} {profilUSer.lastname}</p>
+                        <p><AiOutlineMail/> {profilUSer.email}</p>
+                        <p><AiOutlinePhone/> {profilUSer.phone}</p>
+                        <p><AiOutlineHome/> {profilUSer.address}</p>
+                        <p className='center'> {profilUSer.postal_code} {profilUSer.city}</p>
+                        <p className='center'> {profilUSer.country}</p>
+                    </>
+                   } 
                 </div>
                 <div className='profil-user__form'>
 

@@ -62,7 +62,7 @@ const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite, user}
             getAnimals()
         }
         }, 
-      []);
+      [user]);
 
     return(
         <div className='trombinoscope'>

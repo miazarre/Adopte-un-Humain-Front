@@ -57,7 +57,7 @@ const Favorites = ({favorites, setFavorites, isLogged}) => {
           });
 
         }
-      }, []);
+      }, [isLogged]);
 
     return(
         <div className='favorites-page__container'>

@@ -269,7 +269,7 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                     <>
                         <div className='animal-profil__description--text'>
                             <p>{animal.description}</p>
-                            <p>{animal.description}</p>
+                            <p>{animal.needs}</p>
                         </div>
                         <p className='animal-profil__description--button' onClick={e=>setIsContactinganimal('yes')}><span>Écrire à {animal.name}</span></p>
                     </>

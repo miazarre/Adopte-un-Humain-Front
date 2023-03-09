@@ -21,9 +21,9 @@
     &__details{
         position: fixed;
         left: 5vw;
-        top: 25vh;
-        height: 60vh;
-        width: 20%;
+        top: 20vh;
+        height: 40vh;
+        width: 15vw;
         box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
         padding: 30px;
 
@@ -36,6 +36,15 @@
             text-align: center;
             font-size: 1.2em;
             margin: 1vh;
+            display: flex;
+            justify-content: baseline;
+            align-items: center;
+            gap: 20px;
+
+        }
+
+        .center{
+            justify-content: center
         }
 
         &--name{

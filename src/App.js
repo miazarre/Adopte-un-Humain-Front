@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Home from './component/Home';
 import Header from './component/Header';
@@ -29,6 +29,7 @@ function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState() ;
   const [favorites, setFavorites] = useState([]);
+
 
   const toggleFavorite = (animal) => {
     if (favorites.includes(animal)) {

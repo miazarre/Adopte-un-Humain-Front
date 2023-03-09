@@ -1,6 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
+import './styles/index.scss';
+import './styles/reset.scss';
 import Home from './component/Home';
 import Header from './component/Header';
 import Footer from './component/Footer';
@@ -19,17 +22,17 @@ import AddAnimal from './component/Animals/AddAnimal';
 import Error from './component/Error';
 import Filtres from './component/Filtres';
 import PatchAnimal from './component/Animals/PatchAnimal';
-
-import './styles/index.scss';
-import './styles/reset.scss';
 import Favorites from './component/Favorites';
+
+const baseUrl=process.env.REACT_APP_BASE_URL;
+const token = localStorage.getItem('token');
+const newToken = JSON.parse(token);
 
 function App() {
 
   const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState() ;
   const [favorites, setFavorites] = useState([]);
-
 
   const toggleFavorite = (animal) => {
     if (favorites.includes(animal)) {
@@ -41,7 +44,32 @@ function App() {
     setFavorites(newFavorites);
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
     }
-};
+  };
+
+  const checkingLogging = async () => {
+
+    if(newToken){
+      try{
+        const response = await axios.get(`${baseUrl}/token`,
+        { headers: { Authorization: `Bearer ${newToken}` } })
+
+        if(response.data.message = 'Token valide'){
+          setUser(response.data.user[0])
+          setIsLogged(true)
+        }
+      }catch(error){
+        console.log(error)
+      }
+    }
+  }
+
+
+  useEffect( ()=>{
+
+    checkingLogging()
+
+  },[])
+
   return (
     <BrowserRouter>
       <Header user={user} setUser={setUser} isLogged={isLogged} setIsLogged={setIsLogged}/>

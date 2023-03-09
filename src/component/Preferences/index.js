@@ -36,8 +36,10 @@ const Preferences = ({isLogged, user}) => {
     }
 // Appel au chargement de la page de la fonction pour setup les tags du user
     useEffect(() => {
-        settingPref()
-    }, [])
+        if(user){
+            settingPref()
+        }
+    }, [user])
 
 // Au changement sur un Select on appelle la fonction qui contact l'API pour ajouter un tag
   const handleChange = async (selectedOption) => {

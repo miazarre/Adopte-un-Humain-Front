@@ -51,6 +51,7 @@
         .camembert{
             width: 100px;
             height: 100px;
+            margin: 20px;
         }
 
 
@@ -128,12 +129,13 @@
 
                 &-name{
                     @include smallTitle;
+                    margin-bottom: 30px;
                 }
             }
 
             &--address{
                 text-align: center;
-                margin-bottom: 30px;
+                margin-bottom: 10vh;
             }
 
             &--tagslist{

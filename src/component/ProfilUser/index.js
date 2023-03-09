@@ -35,6 +35,7 @@ const [form, setForm] = useState({
     new_password: '',
     confirm_new_password: ''
   });
+
   
   useEffect(() => {
     for (const key in profilUSer) {
@@ -45,7 +46,7 @@ const [form, setForm] = useState({
         }));
       }
     }
-  }, []);
+  }, [user]);
 
 // Au chargement de la page on contact l'API pour avoir els données à jour de l'utilisateur
     const settingUserOnLoad = async () => {
@@ -65,7 +66,7 @@ const [form, setForm] = useState({
         if(user){
             settingUserOnLoad()  
         }
-    }, []);
+    }, [user]);
 
 // Quand un champs d'input est changé
     const handleFormChange = (event) => {

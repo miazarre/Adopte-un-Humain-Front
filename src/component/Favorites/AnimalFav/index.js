@@ -10,7 +10,7 @@ const baseUrl=process.env.REACT_APP_BASE_URL;
 
 
 const AnimalFav = ({animal}) => {
-    console.log(animal)
+
     return(
         <div className='fav__round'>
             <Link to={`/trombinoscope/${animal.id}`}>

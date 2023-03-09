@@ -10,19 +10,17 @@ import { PieChart } from 'react-minimal-pie-chart';
 import PropTypes from 'prop-types';
 
 // Base url
-const baseUrl = 'http://matthieuskrzypczak-server.eddi.cloud:8080/api'
+const baseUrl=process.env.REACT_APP_BASE_URL;
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
 
-const AnimalCard = ({animal, toggleFavorite, favorites, user, avatarsTags}) => {
+const AnimalCard = ({animal, toggleFavorite, favorites, user}) => {
 
     const [data, setData] = useState([])
     const [matching, setMatching] = useState({
         count:'',
         pourcentage:''
     });
-    const [avatarsId, setAvatarsId] = useState([])
-    const [highestAvatar, setHighestAvatar] = useState([])
 
     const getMatching = async () => {
         try{
@@ -36,10 +34,6 @@ const AnimalCard = ({animal, toggleFavorite, favorites, user, avatarsTags}) => {
             console.log(error)
         }
     }
-
-    useEffect(() => {
-        console.log(avatarsTags)
-    }, [avatarsTags])
 
     const resolveMatching = (data) => {
         let animalTagCount = 0;
@@ -59,62 +53,9 @@ const AnimalCard = ({animal, toggleFavorite, favorites, user, avatarsTags}) => {
 
     useEffect(() => {
         getMatching()
-        getAvatar()
 
     }, [])
 
-    const getAvatar = async () => {
-
-        try{
-
-            const response = await axios.get(`${baseUrl}/animal/${animal.id}/tag`,
-            { headers: { Authorization: `Bearer ${newToken}` } }
-            )
-
-            let licorneCount = 0 ;
-            let dragonCount = 0 ;
-            let dinosaureCount = 0 ;
-            console.log('___________________________________________________________');
-            console.log('Nouvel animal : ' + animal.name);
-            console.log('Avatars tag :');
-            console.log(avatarsTags);
-            console.log('Licorne' + licorneCount + 'dragon' + dragonCount + 'dinosaure' + dinosaureCount);
-            
-            response.data.forEach(animalTag => {
-            
-                console.log('---- Nouveau tag de l\'animal ------')
-                console.log(animalTag.tag_name)
-
-                avatarsTags.Licorne.forEach(licorneTag => {
-                    console.log(licorneTag.tag_name)
-                    if(licorneTag.tag_name === animalTag.tag_name){
-                        licorneCount ++ ;
-                    }
-                });
-
-                avatarsTags.Dragon.forEach(dragonTag => {
-                    console.log(dragonTag.tag_name)
-                    if(dragonTag.tag_name === animalTag.tag_name){
-                        dragonCount ++ ;
-                    }
-                });
-
-                avatarsTags.Licorne.forEach(dinosaureTag => {
-                    console.log(dinosaureTag.tag_name)
-                    if(dinosaureTag.tag_name === animalTag.tag_name){
-                        dinosaureCount ++ ;
-                    }
-                });
-            });  
-
-            console.log(animal.name + ' a ' + licorneCount + ' tags licorne')
-            console.log(animal.name + ' a ' + dinosaureCount + ' tags dinosaure')
-            console.log(animal.name + ' a ' + dragonCount + ' tags dragon')
-
-        }catch(error){
-            console.log(error)
-        }
-    }
 
     return(
         <div className='animal-card__card'>

@@ -7,12 +7,23 @@
 // Global Header container
   &__container{
     z-index: 3 !important;
-    box-shadow: 1px 1px 40px rgba(v.$heart, 0.1);
-    padding: 30px;
+    box-shadow: 1px 1px 40px rgba(v.$black, 0.1);
+    padding: 10px;
     display: flex;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: center;
     font-family: $global-font; 
+
+  }
+
+  &__logo{
+    width: 100px;
+    margin: 0;
+  }
+
+  &__logo{
+    width: 100px;
+    margin: 0;
   }
 
 // Burger Menu style with React-burger-menu properties
@@ -22,11 +33,11 @@
 
       &-burger{
         &-button {
-        position: fixed;
+        position: absolute;
         width: 40px;
         height: 30px;
         left: 40px;
-        top: 3em;
+        top: 40px;
         }
     
         &-bars {
@@ -65,7 +76,7 @@
           linear-gradient(
             to right,
             v.$secondary-color,
-            v.$tertiary-color
+            v.$dark-color
         );
 
           background-size: 100% 4px, 0 4px;
@@ -80,6 +91,15 @@
           &--social{
             margin-top: 20vh;
             margin-right: 0;
+
+            *{
+              color: v.$black;
+              transition: 0.2s;
+              &:hover{
+                color: v.$primary-color;
+                cursor: pointer;
+              }
+            }
           }
 
           &--title{
@@ -109,20 +129,16 @@
 // Right button on header, connexion or img if you are connected or not
   &__right-button{
     @include smallTitle;
-    display: contents;
-    &__signin{
-      padding: 1rem;
-      border-radius: 10px;
-      &:hover {
-        background-color: v.$heart
-      }
-    }
+    position: absolute;
+    top: 40px;
+
+    right: 30px;
     &__login{
       padding: 1rem;
-      border-radius: 10px;
-      &:hover {
-        background-color: v.$tertiary-color
-      }
+      transition: 0.2s;
+          &:hover {
+            background-color: v.$tertiary-color;
+          }
     }
   }
 }

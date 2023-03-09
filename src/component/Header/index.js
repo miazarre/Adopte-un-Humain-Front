@@ -49,7 +49,7 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
                     </div>
                 </Menu>
             </div>
-            <Link to='/' className='title'> J'adopte un humain </Link>
+            <Link to='/' className='title'><img className='header__logo' src={logo}/></Link>
             <div className='header__right-button'>
                 {isLogged
                     ?<>
@@ -57,11 +57,6 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
                     </>   
                     
                     : <>
-                        <div className='header__right-button__signin'>
-                        <Link to='/signin'>
-                        Inscription
-                        </Link>
-                        </div>
                         <div className='header__right-button__login'>
                         <Link to='/login'>
                         Connexion
@@ -76,7 +71,7 @@ const Header = ({isLogged, user, setUser, setIsLogged}) => {
 
 Header.propTypes = {
     isLogged: PropTypes.bool.isRequired,
-    user: PropTypes.object.isRequired,
+    user: PropTypes.object,
     setUser: PropTypes.func.isRequired,
     setIsLogged: PropTypes.func.isRequired
 };

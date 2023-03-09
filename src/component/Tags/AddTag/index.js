@@ -10,18 +10,20 @@ const baseUrl=process.env.REACT_APP_BASE_URL
 
 const AddTag = () => {
     const [name, setName] = useState('');
-    const [priority, setPriority] = useState('');
+    const [priority, setPriority] = useState("false");
+
+    const onOptionChange = e => {
+        setPriority(e.target.value)
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {     
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('priority', priority);
-            
-            const response = await axios.post(`${baseUrl}/tag`, 
-            formData,
+        try {               
+            const response = await axios.post(`${baseUrl}/tag`, { 
+                name : name,
+                priority: priority,
+            },
             { 
               headers: {
                 Authorization : `Bearer ${newToken}`
@@ -49,9 +51,9 @@ const AddTag = () => {
             <fieldset>
                 <legend className='radio-title'>Choisir la priorité du tag :</legend>
                 <div className='radio-detail'>
-                    <input type="radio" id="obligatoire" name="priority" value="true" checked />
+                    <input type="radio" id="obligatoire" name="priority" value="true" checked={priority === "true"} onChange={onOptionChange}/>
                     <label for="obligatoire">Obligatoire</label>
-                    <input type="radio" id="optionnel" name="priority" value="false" />
+                    <input type="radio" id="optionnel" name="priority" value="false" checked={priority === "false"} onChange={onOptionChange} />
                     <label for="optionnel">Optionnel</label>
                 </div>
             </fieldset>

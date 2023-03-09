@@ -23,6 +23,7 @@ const User = ({lastname, firstname, id, role_id}) => {
     const onDelete = async (id) => {
         await reqInstance.delete(`${baseUrl}/user/${id}`)
         .then (setData(data))
+            window.confirm("Le profil de cet utilisateur a bien été supprimé")
         .catch(error => {
             console.error(error.message);
     })};

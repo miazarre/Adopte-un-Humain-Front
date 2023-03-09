@@ -63,43 +63,49 @@ const Tags = ({isLogged}) => {
     console.log(data)
 
     return(
-        <div className='preference__page-container'>
-        {isLogged
-        ?<>
-                    <div className='preference__actual-profil'>              
-                        <h1>Gestion des tags  <Link to="/tags/addtag"><VscDiffAdded /></Link></h1>
-                        <p className='preference__actual-profil--title'>Tags obligatoires</p>
-                        <div className='preference__actual-profil--tags'>
-                            {data.map((tag) =>{
-                                if(tag.priority === true){
-                                    return(
-                                    <span key={tag.id}>{tag.name} 
-                                        <TfiPencil onClick={e=>onPatch(tag.id, tag.name)} />
-                                        <RxCrossCircled onClick={e=>deletingTag(tag.id, tag.name)} className='cross'/>
-                                    </span>
-                                )}    
-                                })
+        <>
+            <Link to="/board">
+                <button className='animals_container--linkToBoard'>Retour au Tableau de Bord</button>
+            </Link>
+            <div className='preference__page-container'>
+
+            {isLogged
+            ?<>
+                        <div className='preference__actual-profil'>              
+                            <h1>Gestion des tags  <Link to="/tags/addtag"><VscDiffAdded /></Link></h1>
+                            <p className='preference__actual-profil--title'>Tags obligatoires</p>
+                            <div className='preference__actual-profil--tags'>
+                                {data.map((tag) =>{
+                                    if(tag.priority === true){
+                                        return(
+                                        <span key={tag.id}>{tag.name} 
+                                            <TfiPencil onClick={e=>onPatch(tag.id, tag.name)} />
+                                            <RxCrossCircled onClick={e=>deletingTag(tag.id, tag.name)} className='cross'/>
+                                        </span>
+                                    )}    
+                                    })
+                                }
+                            </div>
+                            <p className='preference__actual-profil--title'>Tags optionnels</p>
+                            <div className='preference__actual-profil--tags'>
+                                {data.map((tag) =>{
+                                    if(tag.priority === false){
+                                        return(
+                                        <span key={tag.id}>{tag.name} 
+                                            <TfiPencil onClick={e=>onPatch(tag.id, tag.name)} />
+                                            <RxCrossCircled onClick={e=>deletingTag(tag.id, tag.name)} className='cross'/>
+                                        </span>
+                                    )}
+                                    })
                             }
+                            </div>
                         </div>
-                        <p className='preference__actual-profil--title'>Tags optionnels</p>
-                        <div className='preference__actual-profil--tags'>
-                            {data.map((tag) =>{
-                                if(tag.priority === false){
-                                    return(
-                                    <span key={tag.id}>{tag.name} 
-                                        <TfiPencil onClick={e=>onPatch(tag.id, tag.name)} />
-                                        <RxCrossCircled onClick={e=>deletingTag(tag.id, tag.name)} className='cross'/>
-                                    </span>
-                                )}
-                                })
-                        }
-                        </div>
-                    </div>
-                    </>
-            : <p className='profil-user__connexion-message'> Il faut te connecter ! </p>
-                    
-            }
-        </div>
+                        </>
+                : <p className='profil-user__connexion-message'> Il faut te connecter ! </p>
+                        
+                }
+            </div>
+        </>
     )
 }
 

@@ -30,6 +30,7 @@ const Animal = ({name, birthdate, resume, needs, id }) => {
     const onDelete = async (id) => {
         await reqInstance.delete(URLdelete)
         .then (setData(data))
+            window.confirm("Le profil de cet animal a bien été supprimé")
         .catch(error => {
             console.error(error.message);
     })};

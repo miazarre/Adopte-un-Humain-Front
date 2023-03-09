@@ -82,9 +82,6 @@ const SigninForm = () => {
       const response  = await axios.post(`${baseUrl}/register`, newUser)
       navigate('/login')
 
-      console.log(response.request.statusText);
-      Navigate('/login');
-
     } catch(error) {
       console.log(error.response.error)
       setMessage(error.response.error)
@@ -106,8 +103,8 @@ const SigninForm = () => {
         <input type="password" placeholder="Validation mot de passe" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPasswordSubmit} />
 
 
-        <div className="categories">
-{{categories.map(c => (
+     {/* <div className="categories">
+            {{categories.map(c => (
 
             <div className="category" key={c.name.toLowerCase()} onClick={() => setCategory(c.name.toLowerCase())}>
               <div className="category-image">
@@ -122,7 +119,7 @@ const SigninForm = () => {
             </div>
           ))}
 
-        </div>
+            </div> */}
 
         <p className='validation' onClick={handleSubmit}><span>Valider</span></p>
       </form>

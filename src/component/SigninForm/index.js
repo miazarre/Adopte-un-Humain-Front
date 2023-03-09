@@ -6,16 +6,10 @@ import './styles.scss';
 // import Dinosaure from '../../assets/Dinosaure.png';
 // import Dragon from '../../assets/Dragon.png';
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-// Base url
 const baseUrl=process.env.REACT_APP_BASE_URL;
-
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
-
-// Suppression des catégories/Avatar pour le MVP
 
 {/* const categories = [
   {name: "Licorne", image: Licorne, description:"Il/Elle aime galoper à travers les champs ouverts et les forêts, explorer de nouveaux endroits et rencontrer de nouvelles créatures. Il/elle aime aussi utiliser sa créativité pour forger de merveilleux souvenirs. Pendant notre temps libre, il/elle aime se poser, méditer et mettre en pratique ses acquis. Dans l'ensemble, il/elle est un ami et un compagnon merveilleux, toujours prêt à égayer la journée de n'importe qui avec sa nature enjouée et aimante."},
@@ -23,7 +17,8 @@ const newToken = JSON.parse(token);
   {name: "Dragon", image: Dragon, description: "Il/elle est très fier et confiant, toujours avide d'aventures et de nouveaux défis. Il/elle est incroyablement intelligent et ingénieux, capable de réfléchir rapidement et de trouver des solutions créatives aux problèmes. Il/elle peut parfois être un peu têtu, mais il/elle est aussi farouchement loyal envers ceux qu'il/elle considère comme ses amis. Il/elle aime courir, jouer et amasser des trésors. Il/elle aime aussi utiliser son intelligence pour résoudre des puzzles et des énigmes, et défie souvent les autres dans des épreuves d'esprit et d'habileté. Pendant son temps libre, il/elle aime se prélasser au soleil et aiguiser ses griffes. Dans l'ensemble, il/elle est un compagnon redoutable et formidable, toujours prêt à aider ses amis ou dans une quête audacieuse."},
 ]; */}
 
-const SigninForm = ({setUser, setIsCreated}) => {
+const SigninForm = () => {
+  const navigate = useNavigate();
 
   const [lastname, setLastname] = useState('');
   const [firstname, setFirstname] = useState('');
@@ -84,9 +79,8 @@ const SigninForm = ({setUser, setIsCreated}) => {
   }
     try { 
 
-      const response  = await axios.post(`${baseUrl}/register`, newUser, {
-        headers: { Authorization: `Bearer ${newToken}` } 
-      })
+      const response  = await axios.post(`${baseUrl}/register`, newUser)
+      navigate('/login')
 
       console.log(response.request.statusText);
       Navigate('/login');
@@ -110,10 +104,11 @@ const SigninForm = ({setUser, setIsCreated}) => {
         <input type="text" placeholder="Numéro de téléphone" name="phone" value={phone} onChange={handlePhoneSubmit} />
         <input type="password" placeholder="Mot de passe" name="password" value={password} onChange={handlePasswordSubmit} />
         <input type="password" placeholder="Validation mot de passe" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPasswordSubmit} />
-    
-{/* Suppression des catégories/Avatar pour le MVP */} 
-       {/* <div className="categories">
-        {categories.map(c => (
+
+
+        <div className="categories">
+{{categories.map(c => (
+
             <div className="category" key={c.name.toLowerCase()} onClick={() => setCategory(c.name.toLowerCase())}>
               <div className="category-image">
               <img src={c.image} alt={c.name}/>
@@ -126,7 +121,8 @@ const SigninForm = ({setUser, setIsCreated}) => {
               </p>
             </div>
           ))}
-        </div> */}
+
+        </div>
 
         <p className='validation' onClick={handleSubmit}><span>Valider</span></p>
       </form>

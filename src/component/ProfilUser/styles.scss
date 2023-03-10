@@ -4,6 +4,36 @@
 
 .profil-user{
 
+    &__modal{
+        background-color: rgba(v.$black, 0.7);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+
+        &--color{
+            background-color: v.$primary-color;
+            position: fixed;
+            top: 3vh;
+            left: 36vw;
+            padding: 20px;
+            display: flex;
+        }
+
+        &--boutton{
+            @include button;
+        }
+    }
+
+    &__delete{
+        background-color: v.$secondary-color;
+        padding: 5px;
+        color: v.$white;
+        border-radius: 5px;
+        cursor:pointer;
+    }
+
     &__connexion-message{
         position: fixed;
         top: 30vh;
@@ -22,15 +52,11 @@
         position: fixed;
         left: 5vw;
         top: 20vh;
-        height: 40vh;
-        width: 15vw;
+        height: 45vh;
+        width: 20vw;
+        min-width: 250px;
         box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
         padding: 30px;
-
-        img{
-            all: unset;
-            width: 100%;
-        }
 
         p{
             text-align: center;

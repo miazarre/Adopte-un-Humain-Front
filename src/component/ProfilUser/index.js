@@ -2,8 +2,8 @@
 import './styles.scss';
 
 // Imports externes
-import { Link } from 'react-router-dom';
-import {HiLightBulb} from 'react-icons/hi';
+import { Link, useNavigate } from 'react-router-dom';
+import {HiLightBulb, HiTrash} from 'react-icons/hi';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {RxCrossCircled} from 'react-icons/rx';
@@ -16,10 +16,12 @@ const baseUrl=process.env.REACT_APP_BASE_URL
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
 
-const ProfilUser = ({user, isLogged}) => {
+const ProfilUser = ({user, setUser, isLogged, setIsLogged}) => {
 
+    const [showModal, setShowModal] = useState(false);
     const [profilUSer, setProfilUser] = useState([]);
     const [errorMessage, setErrorMessage] = useState('') ;
+    const navigate = useNavigate();
 
 // Déclaration de tous les champs de form à controler
 const [form, setForm] = useState({
@@ -141,6 +143,25 @@ const [form, setForm] = useState({
         }
       }
 
+      const deleteProfil = async () => {
+        try{
+
+            console.log('Delete !')
+            const response = await axios.delete(`${baseUrl}/user/${user.id}`,
+            { headers: { Authorization: `Bearer ${newToken}` }})
+
+            console.log(response)
+            setShowModal(!showModal)
+            setUser('');
+            setIsLogged(false);
+            navigate('/login')
+
+        }catch(error){
+            setErrorMessage('Suppression impossible.')
+            console.log(error)
+        }
+      }
+
 // Composant à afficher
     return( 
              <div className='profil-user__container'>
@@ -149,12 +170,23 @@ const [form, setForm] = useState({
                 <div className='profil-user__details'>
                    {profilUSer != [] &&
                     <>
-                        <p className='profil-user__details--name'><AiOutlineUser/> {profilUSer.firstname} {profilUSer.lastname}</p>
-                        <p><AiOutlineMail/> {profilUSer.email}</p>
-                        <p><AiOutlinePhone/> {profilUSer.phone}</p>
-                        <p><AiOutlineHome/> {profilUSer.address}</p>
+                        <p className='profil-user__details--name'><AiOutlineUser size={'30px'}/> {profilUSer.firstname} {profilUSer.lastname}</p>
+                        <p><AiOutlineMail size={'30px'}/> {profilUSer.email}</p>
+                        <p><AiOutlinePhone size={'30px'}/> {profilUSer.phone}</p>
+                        <p><AiOutlineHome size={'30px'}/> {profilUSer.address}</p>
                         <p className='center'> {profilUSer.postal_code} {profilUSer.city}</p>
                         <p className='center'> {profilUSer.country}</p>
+
+                        <p className='profil-user__delete' onClick={e=> setShowModal(true)}><HiTrash size={'30px'}/>Supprimer mon profil</p>
+                        {showModal && 
+                            <div className="profil-user__modal">
+                                <div className="profil-user__modal--color">
+                                    <p>Êtes-vous sûr de vouloir continuer ?</p>
+                                    <p className="profil-user__modal--boutton" onClick={deleteProfil}><span>Oui</span></p>
+                                    <p className="profil-user__modal--boutton" onClick={e=> setShowModal(!showModal)}><span>Non</span></p>
+                                </div>
+                            </div>
+                        }
                     </>
                    } 
                 </div>

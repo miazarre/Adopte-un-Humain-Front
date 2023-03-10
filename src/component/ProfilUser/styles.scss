@@ -80,6 +80,7 @@
         }
     }
 
+
     &__form{
         form{
             margin-top: 5vh;
@@ -181,3 +182,86 @@
 .profil-user__form--input:focus + .profil-user__form--label {
     background-color: rgb(118, 93, 141);
   }     
+
+
+  @media (max-width: $small-screen) {
+    .profil-user{
+
+        &__details{
+            position: absolute;
+            top: 15vh;
+            left: 10vw;
+            height: auto;
+            width: 80vw;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 30px;
+            gap: 10px;
+
+            p{
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+
+        &__container{
+            flex-direction: column-reverse;
+            align-items: center;
+            justify-content:center ;
+            padding-top: 25vh;
+            gap: 0;
+        }
+
+        &__tips{
+            width: 80%;
+        }
+
+        &__form{
+            margin: 0;
+            padding: 0;
+            form{
+                margin: 0;
+                padding: 0;
+                width: 90vw;
+            }
+        }
+
+
+    }
+  }
+  
+  // styles pour les écrans entre 576px et 768px (tablettes)
+  @media (min-width: $small-screen) and (max-width: $medium-screen) {
+    .profil-user{
+
+        &__details{
+            position: absolute;
+            top: 10vh;
+            left: 10vw;
+            height: auto;
+            width: 80vw;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 30px;
+            gap: 10px;
+
+            p{
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+
+        &__form{
+            margin-top: 20vh;
+        }
+
+        &__tips{
+            margin-top: 30vh;
+            margin-left: 0;
+        }
+
+
+    }
+  }

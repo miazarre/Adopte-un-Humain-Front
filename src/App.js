@@ -80,7 +80,7 @@ function App() {
         <Route path='/trombinoscope' element={<Trombinoscope isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite} user={user} /> } />
         <Route path='/trombinoscope/:id' element={<AnimalProfil user={user} isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite}/>}/>
         <Route path='/favorites' element={<Favorites isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite}/>} />
-        <Route path='/profil' element={<ProfilUser user={user} isLogged={isLogged} />}/>
+        <Route path='/profil' element={<ProfilUser user={user} setUser={setUser} isLogged={isLogged} setIsLogged={setIsLogged} />}/>
         <Route path='/preferences' element={<Preferences user={user} isLogged={isLogged}/>}/>
         <Route path='/board' element={<Board user={user} isLogged={isLogged}/>} />
         <Route path='/users' element={<Users user={user} isLogged={isLogged}/>} />

@@ -18,17 +18,25 @@ $global-font:'Arapey';
 $form-font:'Michel';
 
 // Colors variables 
-// Generic for all avatars
+// Generic
 $black:#303030;
 $white:#F7F7F7;
 $warm:#F4E8D5;
 $heart: #F8656B;
-// dragon colors
+// colors
 $primary-color:#70C1B3;
 $secondary-color:#CC0036;
 $tertiary-color:#B2DBBF;
 $light-color:#F3FFBD;
 $dark-color:#247BA0;
+
+// taille d'écrans - Responsive
+$small-screen: 576px;
+$medium-screen: 768px;
+$large-screen: 1024px;
+
+
+
 
 // Mixins
 // Titles

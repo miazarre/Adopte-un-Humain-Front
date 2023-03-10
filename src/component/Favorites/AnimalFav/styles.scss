@@ -61,3 +61,38 @@
     transform: translateX(-50%);
     box-shadow: 0 10px 20px rgba(63, 63, 78, 0.3);
   }
+
+  @media (max-width: $small-screen) {
+    .fav{
+        &__round{
+            margin-top: 50px;
+
+            &--gradient{
+                padding-top: 5vw;
+                width: 70vw;
+                height: 70vw;
+            }
+            &--image{
+                width: 60vw;
+                height: 60vw;
+            }
+    }}
+  }
+  
+  // styles pour les écrans entre 576px et 768px (tablettes)
+  @media (min-width: $small-screen) and (max-width: $medium-screen) {
+    .fav{
+        &__round{
+            margin-top: 50px;
+
+            &--gradient{
+                padding-top: 2.5vw;
+                width: 35vw;
+                height: 35vw;
+            }
+            &--image{
+                width: 30vw;
+                height: 30vw;
+            }
+    }}
+  }

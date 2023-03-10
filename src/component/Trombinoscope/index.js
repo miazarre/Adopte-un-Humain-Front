@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 // Base Url
 const token = localStorage.getItem('token');
@@ -23,6 +24,7 @@ const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite, user}
         }
       }, []);
     
+    const [message, setMessage] = useState('')
     const [animals, setAnimals] = useState([]);
     const [animalsId, setAnimalsId] = useState([]);
 
@@ -34,12 +36,16 @@ const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite, user}
 
             setAnimalsId(response.data)
 
+            if(response.data.length === 0){
+              setMessage("Il semble qu'il n'y ait pas d'animaux disponibles dans notre refuge qui correspondent aux critères que vous avez choisis. Vous devriez vérifier que vous avez bien des préférences sélectionnées !" )
+            }
             response.data.forEach(async animal => {
                 getOneAnimal(animal)
             });
 
         }catch(error){
-            console.log(error)  
+          setMessage('Il y a eu un soucis au moment de récupérer les informations des animaux')
+          console.log(error)  
         }
         
     }
@@ -52,6 +58,7 @@ const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite, user}
       
           setAnimals((prevAnimals) => prevAnimals.concat(response.data));
         } catch (error) {
+          setMessage('Il y a eu un soucis au moment de récupérer les informations de l\'animal')
           console.log(error);
         }
       };
@@ -68,6 +75,14 @@ const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite, user}
         <div className='trombinoscope'>
         {isLogged
             ? <>
+            <div className='trombinoscope__message--container'>
+                {message != '' &&
+                  <p className='trombinoscope__message'>{message}</p>
+                }
+                {message.includes('préférences') &&
+                <Link to='/preferences'><p className='trombinoscope__boutton'><span>Préférences</span></p></Link>
+                }
+            </div>
                 <div className='animal-card__container'>
                 {
                 animals.map((animal) => (

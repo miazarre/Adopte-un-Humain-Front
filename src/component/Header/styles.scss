@@ -142,3 +142,19 @@
     }
   }
 }
+
+
+@media (max-width: $small-screen) {
+
+  .header{
+    &__container{
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    &__right-button{
+      all: unset;
+      @include smallTitle;
+    }
+  }
+}

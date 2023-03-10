@@ -14,19 +14,20 @@ const Animals = ({isLogged}) => {
     console.log(searchText);
 
     useEffect(() => {
-      const fetchData = async () =>{
-        try {
-          const token = localStorage.getItem('token');
-          const newToken = JSON.parse(token);
-          const {data: response} = await axios.get(`${baseUrl}/animals`,
-          { headers: { Authorization: `Bearer ${newToken}` } });
-          setData(response);
-        } catch (error) {
-          console.error(error.message);
-        }
-      }
       fetchData();
     }, []);
+
+    const fetchData = async () =>{
+      try {
+        const token = localStorage.getItem('token');
+        const newToken = JSON.parse(token);
+        const {data: response} = await axios.get(`${baseUrl}/animals`,
+        { headers: { Authorization: `Bearer ${newToken}` } });
+        setData(response);
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
 
     useEffect(() => {
         if (searchText.length) {
@@ -83,12 +84,14 @@ const Animals = ({isLogged}) => {
           <Animal 
             key={animal.id}
             {...animal}
+            fetchData={fetchData}
           />
           ) :
           data.map((animal) => 
           <Animal 
             key={animal.id}
             {...animal}
+            fetchData={fetchData}
           />
           )
         }

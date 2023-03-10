@@ -101,8 +101,13 @@
             margin-top: 3vh;
             margin-left: 3vh;
             color: grey;
+
         }
 
+        .trash{
+            cursor: pointer;
+        }
+        
         /* From uiverse.io by @satyamchaudharydev */
         &-form{
             --timing: 0.3s;

@@ -9,7 +9,7 @@ import { TfiPencil } from "react-icons/tfi";
 import { GiLabradorHead } from "react-icons/gi";
 const baseUrl=process.env.REACT_APP_BASE_URL
 
-const Animal = ({name, birthdate, resume, needs, id }) => {
+const Animal = ({name, birthdate, resume, needs, id, fetchData }) => {
 
     const [data, setData] = useState([])
     const profile=`/trombinoscope/${id}`;
@@ -26,12 +26,15 @@ const Animal = ({name, birthdate, resume, needs, id }) => {
         }
     })
 
-    const onDelete = async (id) => {
-        await reqInstance.delete(URLdelete)
-        .then (setData(data))
-        .catch(error => {
-            console.error(error.message);
-    })};
+    const onDelete = async () => {
+        try {
+          await reqInstance.delete(URLdelete);
+          setData(data);
+          fetchData();
+        } catch (error) {
+          console.error(error.message);
+        }
+    };
 
     return( 
         <>
@@ -54,7 +57,7 @@ const Animal = ({name, birthdate, resume, needs, id }) => {
                 </Link>
                 <FiTrash2 
                     size={'3vh'} 
-                    className='animals_container-title-table--icon' 
+                    className='animals_container-title-table--icon trash' 
                     onClick={() => {const confirmation = window.confirm("Etes-vous sûr de vouloir supprimer le profil de cet animal ?")
                         if (confirmation){
                             console.log('On supprime')

@@ -41,3 +41,29 @@
         }
     }
 }
+
+
+  // styles pour les petits écrans
+@media (max-width: $small-screen) {
+    .animal-adoptions{
+        &__card{
+            &--image{
+                width: 70vw;
+                height: 70vw;
+            }
+        }
+    }
+  }
+  
+  // styles pour les écrans entre 576px et 768px (tablettes)
+  @media (min-width: $small-screen) and (max-width: $medium-screen) {
+
+    .animal-adoptions{
+        &__card{
+            &--image{
+                width: 30vw;
+                height: 30vw;
+            }
+        }
+    }
+  }

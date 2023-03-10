@@ -10,6 +10,23 @@
         min-height: 81vh;
     }
 
+    &__link{
+        margin-top: 40px;
+        display: inline-block;
+        font-weight: 700;
+        padding: 10px;
+        background:
+        linear-gradient(
+            to right,
+            v.$tertiary-color,
+            v.$dark-color
+
+        );
+        background-size: 100% 5px, 0 10px;
+        background-position: 100% 100%, 0 100%;
+        background-repeat: no-repeat;
+    }
+
     &__message{
         background-color: v.$primary-color;
         margin: 30px auto;

@@ -65,3 +65,41 @@
         text-align: center;
     }
 }
+
+  // styles pour les petits écrans (smartphone)
+
+@media (max-width: $small-screen) {
+
+    .adoptionsdetail{
+        flex-direction: column;
+        width: 90%;
+        &__image{
+            width: 50vw;
+            height: 50vw;
+        }
+
+        &__adoptions-list{
+            &--container{
+                padding: 5px;
+            }
+        }
+    }
+  }
+  
+  // styles pour les écrans entre 576px et 768px (tablettes)
+  @media (min-width: $small-screen) and (max-width: $medium-screen) {
+    .adoptionsdetail{
+        flex-direction: column;
+        width: 90%;
+        &__image{
+            width: 50vw;
+            height: 50vw;
+        }
+
+        &__adoptions-list{
+            &--container{
+                padding: 15px;
+            }
+        }
+    }
+  }

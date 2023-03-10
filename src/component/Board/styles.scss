@@ -35,3 +35,34 @@
         }
     }
 }
+
+// styles pour les petits écrans (smartphone)
+@media (max-width: $small-screen) {
+    .board{
+        &_container{
+            width: 80vw;
+
+            &_menu{
+                width: 80vw;
+            }
+        }
+    }
+}
+  
+// styles pour les écrans entre 576px et 768px (tablettes)
+@media (min-width: $small-screen) and (max-width: $medium-screen) {
+
+    .board{
+        &_container{
+            width: 80vw;
+            align-items: center;
+
+            &_menu{
+                width: 50vw;
+                span{
+                    justify-content: center ;
+                }
+            }
+        }
+    }
+}

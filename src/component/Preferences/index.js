@@ -9,6 +9,7 @@ import Select from 'react-select';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import {RxCrossCircled} from 'react-icons/rx'
+import { Link } from 'react-router-dom';
 
 // Base url
 const baseUrl=process.env.REACT_APP_BASE_URL
@@ -108,6 +109,7 @@ const Preferences = ({isLogged, user}) => {
         ?<>
                     <div className='preference__actual-profil'>
                         <h1>Profil actuel</h1>
+                        <Link to='/trombinoscope'><h2 className='preference__link'>Voir les animaux qui correspondent</h2></Link>
                         <p className='preference__actual-profil--title'>Profil</p>
                         <div className='preference__actual-profil--tags'>
                             {tags.map((tag) =>{

@@ -253,3 +253,95 @@
 
 }
 
+
+// styles pour les petits écrans (smartphone)
+
+@media (max-width: $small-screen) {
+
+    .tags-page{
+        &__CRUD{
+            &--container{
+            display: block;
+            margin: auto;
+        }
+    }
+
+        &__left-part{
+            width: 100%;
+            height: auto;
+            gap: 30px;
+            &--add{
+                margin: 0;
+
+                &--div{
+                    flex-direction: column;
+                }
+            }
+        }
+
+        &__right-part{
+            width: 100%;
+            overflow-y: auto;
+
+            &--tags-list{
+                flex-direction: row;
+            }
+
+            &--selected-tag{
+                flex-direction: column;
+            }
+        }
+
+        &__list{
+            margin: 5vh auto;
+            padding: 0;
+        }
+
+    }
+  }
+  
+  // styles pour les écrans entre 576px et 768px (tablettes)
+  @media (min-width: $small-screen) and (max-width: $medium-screen) {
+    .tags-page{
+        &__CRUD{
+            &--container{
+            display: block;
+            margin: auto;
+        }
+    }
+
+        &__left-part{
+            width: 100%;
+            height: auto;
+            gap: 30px;
+            &--add{
+                margin: 0;
+
+                &--div{
+                    flex-direction: column;
+                }
+            }
+        }
+
+        &__right-part{
+            width: 100%;
+            overflow-y: auto;
+
+            &--tags-list{
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &--selected-tag{
+                flex-direction: column;
+            }
+        }
+
+        &__list{
+            margin: 5vh auto;
+            padding: 20px;
+        }
+
+    }
+  }

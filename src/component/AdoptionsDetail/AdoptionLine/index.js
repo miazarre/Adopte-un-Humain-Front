@@ -138,7 +138,7 @@ const AdoptionLine = ({adoption, getAdoptions, setMessage}) => {
                 <p>{user.firstname} {user.lastname}</p>
             </div>
             }
-            <p><BsFillTelephoneFill/> {user.phone}</p>
+            <p className='adoptionLine__user--phone'><BsFillTelephoneFill/> {user.phone}</p>
             <p>{adoption.status}</p>
             <PieChart
             className='camembert'
@@ -205,7 +205,7 @@ qui display les détaisl de la demande d'adoption*/}
                         <div className='adoptionLine__bigdetails--body-part--comment'>
                             <h3>Partie Staff</h3>
                             <select onChange={e=> handleStatusChange(e)}>
-                                <option disabled defaultValue>Status</option>
+                                <option defaultValue>Status</option>
                                 <option>En cours</option>
                                 <option>Adopté</option>
                                 <option>Refusé</option>

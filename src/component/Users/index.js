@@ -12,7 +12,7 @@ import { IoPersonAddSharp } from "react-icons/io5";
 // Base url
 const baseUrl=process.env.REACT_APP_BASE_URL
 
-const Users = () => {
+const Users = ({isLogged, user}) => {
     
     const [data, setData] = useState([]);
     const [searchText, setSearchText] = useState('');
@@ -47,7 +47,11 @@ const Users = () => {
 
     return(
         <div className='users_container'>
-            <h1 className='users_container-title'>Liste des membres du refuge</h1>
+           {isLogged
+           ? <>
+            {(user.role_id === 3 || user.role_id === 2) &&
+            <>
+           <h1 className='users_container-title'>Liste des membres du refuge</h1>
             <div className='users_container-header'>
                 <div className='users_container-header--search'>
                     <form className="users_container-form">
@@ -95,6 +99,15 @@ const Users = () => {
                 )
                 }
             </table>
+            </>
+            }
+            {user.role_id === 1 &&
+            <p>Hep hep tu n'as pas le droit d'être là !</p>
+            }
+            </>
+            : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
+
+            }
         </div>
     )
 }

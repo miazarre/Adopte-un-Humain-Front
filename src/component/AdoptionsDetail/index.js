@@ -11,7 +11,7 @@ import { RxCrossCircled } from 'react-icons/rx';
 // Déclarations contact API
 const baseUrl=process.env.REACT_APP_BASE_URL;
 
-const AdoptionsDetail = ({isLogged}) => {
+const AdoptionsDetail = ({isLogged, user}) => {
 
     const token = localStorage.getItem('token');
     const newToken = JSON.parse(token);
@@ -73,6 +73,11 @@ const AdoptionsDetail = ({isLogged}) => {
             {isLogged
 
             ?<>
+
+        {user.role_id === 3 || user.role_id === 2 &&
+
+        <>
+        
                 {message != '' &&
             <p className='adoptionsdetail--message'>{message} <RxCrossCircled onClick={e => setMessage('')}/></p>
             }
@@ -107,7 +112,14 @@ const AdoptionsDetail = ({isLogged}) => {
                     }
                 </div>
             </div>
+
             </>
+        }
+        {user.role_id === 1 &&
+            <p>Hep hep tu n'as pas le droit d'être là !</p>
+        }
+            </>
+            
             : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
             
             }

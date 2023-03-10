@@ -11,7 +11,7 @@ const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL;
 
-const PatchAnimal = ({isLogged}) => {
+const PatchAnimal = ({isLogged, user}) => {
     // const [category, setCategory] = useState('');
     // const [category, setCategory] = useState('');
     const [data, setData] = useState('');
@@ -89,7 +89,10 @@ const PatchAnimal = ({isLogged}) => {
     </Link>
      <div className="addAnimal-container">
         {isLogged
-        ?<><form>
+        ?<>
+          {(user.role_id === 3 || user.role_id === 2) &&
+            <>
+            <form>
             <div className="addAnimal-container-informations">
                 <div>
                 <input type="text" placeholder={data.name} name="name" value={name} onChange={(event) => setName(event.target.value)} />
@@ -175,7 +178,11 @@ const PatchAnimal = ({isLogged}) => {
                 </div> */}
             <button onClick={handleSubmit}>Valider</button>
             </form>
-            
+            </>
+            }
+            {user.role_id === 1 &&
+              <p>Hep hep tu n'as pas le droit d'être là !</p>
+            }
             </>
             : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
 

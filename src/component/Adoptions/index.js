@@ -11,10 +11,7 @@ import { BsXCircleFill } from 'react-icons/bs';
 // Déclarations pour contacter l'API
 const baseUrl=process.env.REACT_APP_BASE_URL;
 
-const Adoptions = ({isLogged}) => {
-
-    const token = localStorage.getItem('token');
-    const newToken = JSON.parse(token);
+const Adoptions = ({isLogged, user}) => {
 
     const token = localStorage.getItem('token');
     const newToken = JSON.parse(token);
@@ -44,7 +41,8 @@ const Adoptions = ({isLogged}) => {
         <div className='adoptions_container'>
        {isLogged
         ? <>
-
+            {(user.role_id === 3 || user.role_id === 2) &&
+            <>
         <h1 className='adoptions_container-title'>Demandes d'adoptions</h1>
         <div className='adoptions_container-header'>
             <div className='adoptions_container-header--search'>
@@ -84,9 +82,15 @@ const Adoptions = ({isLogged}) => {
                 }
         </div>
         </>
-        : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
-        
         }
+        {user.role_id === 1 &&
+            <p>Hep hep tu n'as pas le droit d'être là ! </p>
+        }
+    </>
+    
+    : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
+    
+    }
 
     </div>
     )

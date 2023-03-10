@@ -16,6 +16,8 @@ const Board = ({user, isLogged}) => {
         }
         setCurrentUser(user)
     })
+
+    console.log(currentUser.role_id)
     return(
         <div className='board_container'>
             {isLogged
@@ -38,7 +40,7 @@ const Board = ({user, isLogged}) => {
                 </Link>
             </>
             }
-            {currentUser.role_id === '1' &&
+            {currentUser.role_id === 1 &&
             <p>Hep hep tu n'as pas le droit d'être là !</p>
             }
             </>

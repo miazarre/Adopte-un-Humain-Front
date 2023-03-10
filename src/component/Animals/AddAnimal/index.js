@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import './styles.scss';
@@ -11,7 +11,7 @@ const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL
 
-const AddAnimal = ({isLogged}) => {
+const AddAnimal = ({isLogged, user}) => {
     // const [category, setCategory] = useState('');
     // const [category, setCategory] = useState('');
     const [name, setName] = useState('');
@@ -24,6 +24,7 @@ const AddAnimal = ({isLogged}) => {
     const [photo4, setPhoto4] = useState('');
     const [birthdate, setBirthdate] = useState('');
 
+    const navigate = useNavigate();
     const newBirthdate = dayjs(birthdate).format('YYYY-MM-DD');
     console.log(newBirthdate);
 
@@ -50,7 +51,10 @@ const AddAnimal = ({isLogged}) => {
               },
             }
           );
+
+            navigate('/board')
             console.log(response.data)}
+
             catch(error) {
                 console.error(error)
         }
@@ -71,7 +75,9 @@ const AddAnimal = ({isLogged}) => {
      <div className="addAnimal-container">
      {isLogged
        ?<> 
-    <form>
+        {(user.role_id === 3 || user.role_id === 2 )&&
+        <>
+            <form>
             <div className="addAnimal-container-informations">
                 <div>
                 <input type="text" placeholder="Nom" name="name" value={name} onChange={(event) => setName(event.target.value)} />
@@ -157,6 +163,13 @@ const AddAnimal = ({isLogged}) => {
                 </div> */}
             <button onClick={handleSubmit}>Valider</button>
             </form>
+            
+            </>
+            }
+            {user.role_id === 1 &&
+            
+            <p>Hep hep tu n'as pas le droit d'être là !</p>
+            }
             </>
 
             : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>

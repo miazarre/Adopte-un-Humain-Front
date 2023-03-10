@@ -10,10 +10,12 @@ import { BsXCircleFill } from 'react-icons/bs';
 
 // Déclarations pour contacter l'API
 const baseUrl=process.env.REACT_APP_BASE_URL;
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
+
 
 const Adoptions = () => {
+
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
 
     const [animals, setAnimals] = useState([]);
     const [message, setMessage] = useState('');

@@ -23,7 +23,9 @@ export const optionsAge = [
     { value: 'calme', label: 'Calme' },
     { value: 'dynamique', label: 'Dynamique' },
     { value: 'indépendant', label: 'Indépendant' },
-    { value: 'sociable', label: 'Sociable' }
+    { value: 'sociable', label: 'Sociable' },
+    { value: 'intelligent', label: 'Intelligent' },
+    { value: 'enjoué²', label: 'Enjoué' }
   ]
 
  export const optionsSexe = [

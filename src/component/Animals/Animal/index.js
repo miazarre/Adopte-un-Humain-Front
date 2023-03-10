@@ -7,7 +7,6 @@ import axios from 'axios';
 import { FiTrash2 } from "react-icons/fi";
 import { TfiPencil } from "react-icons/tfi";
 import { GiLabradorHead } from "react-icons/gi";
-import PatchAnimal from '../PatchAnimal';
 const baseUrl=process.env.REACT_APP_BASE_URL
 
 const Animal = ({name, birthdate, resume, needs, id }) => {

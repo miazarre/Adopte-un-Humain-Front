@@ -18,7 +18,7 @@ const newToken = JSON.parse(token);
 
 const ProfilUser = ({user, isLogged}) => {
 
-    const [profilUSer, setProfilUser] = useState(user);
+    const [profilUSer, setProfilUser] = useState([]);
     const [errorMessage, setErrorMessage] = useState('') ;
 
 // Déclaration de tous les champs de form à controler
@@ -147,7 +147,7 @@ const [form, setForm] = useState({
                 {isLogged
                 ? <>
                 <div className='profil-user__details'>
-                   {profilUSer.firstname &&
+                   {profilUSer != [] &&
                     <>
                         <p className='profil-user__details--name'><AiOutlineUser/> {profilUSer.firstname} {profilUSer.lastname}</p>
                         <p><AiOutlineMail/> {profilUSer.email}</p>

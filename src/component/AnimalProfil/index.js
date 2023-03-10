@@ -15,8 +15,6 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 //Déclarations API
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL;
 
 
@@ -24,6 +22,9 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
     
 // Déclaration de tous les params
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
+
     const param = useParams()
     const [animal, setAnimal] = useState([])
     const [isContactingAnimal, setIsContactinganimal] = useState('no');
@@ -147,11 +148,10 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
     return(
     <>
-    <div className='animal-profil__back'><span><TiArrowBack onClick={e => navigate(-1)} size={'50px'}/></span></div>
     <div className='animal-profil__container'>
         {isLogged
         ? <>
-
+            <div className='animal-profil__back'><span><TiArrowBack onClick={e => navigate(-1)} size={'50px'}/></span></div>
             <div className='animal-profil__details'>
                 <div className='animal-profil__details--gradient'>
                     <Slider {...settings}>
@@ -290,7 +290,7 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
         </>
 
-        : <p className='profil-user__connexion-message'> Il faut te connecter ! </p>
+        : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
         
         }
     </div>

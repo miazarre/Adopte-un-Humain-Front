@@ -11,8 +11,6 @@ import PropTypes from 'prop-types';
 
 
 // Déclarations contact API
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL;
 
 
@@ -20,6 +18,9 @@ const AdoptionLine = ({adoption, getAdoptions, setMessage}) => {
 
 // Déclarations nécessaires pour la gestion d'état de la page
 // User contient toutes les infos de l'utilisateur impliqué dans l'adoption
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
+
     const [user, setUser] = useState({
         firstname:'',
         id:''

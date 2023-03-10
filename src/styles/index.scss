@@ -6,3 +6,19 @@ body{
     background-color: v.$white;
     font-family: v.$global-font;
 }
+
+.connexion-message{
+    font-family: 'Alice';
+    position: fixed;
+    top: 30vh;
+    left: 30vw;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:40px;
+
+    &--boutton{
+        @include button;
+    }
+}

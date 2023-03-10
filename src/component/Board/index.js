@@ -19,7 +19,7 @@ const Board = ({user}) => {
     return(
         <div className='board_container'>
             {(currentUser.role_id !== 1 && currentUser.role_id !== 2 && currentUser.role_id !== 3) &&
-                <p>Il faut te connecter</p>
+                <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
             }
             {(currentUser.role_id === 3 || currentUser.role_id === 2) &&
             <>

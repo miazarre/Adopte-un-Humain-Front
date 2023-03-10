@@ -6,11 +6,12 @@ import {RiLinksFill} from 'react-icons/ri'
 import {AiOutlineUser} from 'react-icons/ai'
 import { Link } from 'react-router-dom';
 
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL;
 
 const Home = () => {
+
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
     const [profiles, setProfiles] = useState([])
 
     const filteredProfiles = async () => {

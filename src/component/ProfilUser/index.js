@@ -13,11 +13,11 @@ import {AiOutlineMail, AiOutlinePhone, AiOutlineUser, AiOutlineHome} from 'react
 
 //BaseUrl
 const baseUrl=process.env.REACT_APP_BASE_URL
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 
 const ProfilUser = ({user, setUser, isLogged, setIsLogged}) => {
-
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
+    
     const [showModal, setShowModal] = useState(false);
     const [profilUSer, setProfilUser] = useState([]);
     const [errorMessage, setErrorMessage] = useState('') ;
@@ -244,7 +244,7 @@ const [form, setForm] = useState({
                     </div>
                 </>
     
-                : <p className='profil-user__connexion-message'> Il faut te connecter ! </p>
+                : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
                     
                 }
                 </div>

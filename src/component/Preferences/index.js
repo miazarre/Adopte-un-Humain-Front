@@ -13,10 +13,11 @@ import { Link } from 'react-router-dom';
 
 // Base url
 const baseUrl=process.env.REACT_APP_BASE_URL
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 
 const Preferences = ({isLogged, user}) => {
+
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
 
     const [tags, setTags] = useState([]);
     const [message, setMessage] = useState('');
@@ -155,7 +156,7 @@ const Preferences = ({isLogged, user}) => {
                         
                     </form>
                     </>
-            : <p className='profil-user__connexion-message'> Il faut te connecter ! </p>
+            : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
                     
             }
         </div>

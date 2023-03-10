@@ -4,16 +4,17 @@ import AdoptionLine from './AdoptionLine';
 
 // Imports librairies
 import { React, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { RxCrossCircled } from 'react-icons/rx';
 
 // Déclarations contact API
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL;
 
-const AdoptionsDetail = () => {
+const AdoptionsDetail = ({isLogged}) => {
+
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
 
     const idAnimal = useParams();
     const [animal, setAnimal] = useState({
@@ -69,7 +70,10 @@ const AdoptionsDetail = () => {
 
     return(
         <div className='adoptionsdetail'>
-            {message != '' &&
+            {isLogged
+
+            ?<>
+                {message != '' &&
             <p className='adoptionsdetail--message'>{message} <RxCrossCircled onClick={e => setMessage('')}/></p>
             }
             <div className='adoptionsdetail__animal-details'>
@@ -103,6 +107,10 @@ const AdoptionsDetail = () => {
                     }
                 </div>
             </div>
+            </>
+            : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
+            
+            }
         </div>
     )
 }

@@ -8,12 +8,12 @@ import React from 'react';
 import axios from 'axios';
 
 // BaseUrl
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL
 
 
 const Filtres = () => {
+   const token = localStorage.getItem('token');
+   const newToken = JSON.parse(token);
 
    const [message, setMessage] = useState('')
    const [tagToDelete, setTagToDelete] = useState('');

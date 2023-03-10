@@ -9,11 +9,12 @@ import PropTypes from 'prop-types';
 
 // Déclarations pour contacter l'API
 const baseUrl = process.env.REACT_APP_BASE_URL;
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 
 const Animal = ({animal, setMessage}) => {
 
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
+    
     const [adoptions, setAdoptions] = useState([]);
 
 // Fonction pour récupérer la liste de toutes les demandes d'adoptions 

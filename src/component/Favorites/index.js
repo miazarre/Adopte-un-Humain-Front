@@ -9,11 +9,11 @@ import PropTypes from 'prop-types';
 import { RxCrossCircled } from 'react-icons/rx';
 
 // Déclarations contact API
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL
 
 const Favorites = ({favorites, setFavorites, isLogged}) => {
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token); 
 
     const [animals, setAnimals] = useState([])
     const [message, setMessage] = useState('')

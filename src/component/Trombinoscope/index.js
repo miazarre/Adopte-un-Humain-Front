@@ -10,12 +10,13 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 // Base Url
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL
 
 
 const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite, user}) => {
+
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
 
     useEffect(() => {
         const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
@@ -98,7 +99,7 @@ const Trombinoscope = ({isLogged, favorites, setFavorites, toggleFavorite, user}
                 </div>
             </>
 
-            : <p className='profil-user__connexion-message'> Il faut te connecter ! </p> 
+            : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
 
         }
 
@@ -113,7 +114,7 @@ Trombinoscope.propTypes = {
   setFavorites: PropTypes.func.isRequired,
   toggleFavorite: PropTypes.func.isRequired,
   user: PropTypes.shape({
-    id: PropTypes.number.isRequired
+    id: PropTypes.number
   })
 };
 

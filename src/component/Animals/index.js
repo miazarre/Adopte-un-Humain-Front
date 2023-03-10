@@ -5,7 +5,7 @@ import { VscDiffAdded } from "react-icons/vsc";
 import axios from 'axios';
 import Animal from './Animal';
 
-const Animals = () => {
+const Animals = ({isLogged}) => {
 
     const baseUrl=process.env.REACT_APP_BASE_URL;
     const [data, setData] = useState([]);
@@ -41,8 +41,10 @@ const Animals = () => {
 
     return(
         <div className='animals_container'>
-        <h1 className='animals_container-title'>Liste des animaux du refuge</h1>
-        <div className='animals_container-header'>
+        {isLogged
+          ?<>
+          <h1 className='animals_container-title'>Liste des animaux du refuge</h1>
+          <div className='animals_container-header'>
             <div className='animals_container-header--search'>
                 <form className="animals_container-form">
                     <button>
@@ -91,6 +93,10 @@ const Animals = () => {
           )
         }
         </table>
+        </>
+        : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
+
+        }
     </div>
     )
 }

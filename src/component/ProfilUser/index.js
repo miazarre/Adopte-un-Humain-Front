@@ -13,10 +13,10 @@ import {AiOutlineMail, AiOutlinePhone, AiOutlineUser, AiOutlineHome} from 'react
 
 //BaseUrl
 const baseUrl=process.env.REACT_APP_BASE_URL
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 
 const ProfilUser = ({user, setUser, isLogged, setIsLogged}) => {
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
 
     const [showModal, setShowModal] = useState(false);
     const [profilUSer, setProfilUser] = useState([]);
@@ -244,7 +244,7 @@ const [form, setForm] = useState({
                     </div>
                 </>
     
-                : <p className='profil-user__connexion-message'> Il faut te connecter ! </p>
+                : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
                     
                 }
                 </div>
@@ -253,11 +253,11 @@ const [form, setForm] = useState({
 
 ProfilUser.propTypes = {
     user: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      email: PropTypes.string.isRequired,
-      firstname: PropTypes.string.isRequired,
-      lastname: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
+      id: PropTypes.number,
+      email: PropTypes.string,
+      firstname: PropTypes.string,
+      lastname: PropTypes.string,
+      phone: PropTypes.string,
       address: PropTypes.string,
       postal_code: PropTypes.string,
       city: PropTypes.string,

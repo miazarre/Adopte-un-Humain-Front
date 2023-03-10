@@ -10,6 +10,7 @@
         flex-flow: column wrap;
         margin-top: 1rem;
         font-family: $global-font;
+        min-height: 80vh;
 
         &-title{
             font-size:x-large;

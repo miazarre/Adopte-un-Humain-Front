@@ -114,7 +114,7 @@ Trombinoscope.propTypes = {
   setFavorites: PropTypes.func.isRequired,
   toggleFavorite: PropTypes.func.isRequired,
   user: PropTypes.shape({
-    id: PropTypes.number.isRequired
+    id: PropTypes.number
   })
 };
 

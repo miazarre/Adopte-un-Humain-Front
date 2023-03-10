@@ -166,7 +166,7 @@ const Preferences = ({isLogged, user}) => {
 Preferences.propTypes = {
     isLogged: PropTypes.bool.isRequired,
     user: PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.number,
     }),
   };
 

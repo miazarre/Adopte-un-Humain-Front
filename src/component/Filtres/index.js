@@ -6,12 +6,13 @@ import { useEffect, useState } from 'react';
 import { RxCrossCircled } from 'react-icons/rx';
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 // BaseUrl
 const baseUrl=process.env.REACT_APP_BASE_URL
 
 
-const Filtres = () => {
+const Filtres = ({isLogged}) => {
    const token = localStorage.getItem('token');
    const newToken = JSON.parse(token);
 
@@ -133,71 +134,77 @@ const Filtres = () => {
 
  return(
     <div className='tags-page__container'>
-    <div className='tags-page__list'>
-      <h1>Gestion des filtres :</h1>
-      {message != '' &&
-      <p className='tags-page__message'>{message} <RxCrossCircled onClick={e=>setMessage('')}/></p>
-      }
-      <div className='tags-page__CRUD--container'>
-         <div className='tags-page__left-part'>
-            <div className='tags-page__left-part--add'>
-               <h2>Ajouter un tag</h2>
-               <div className='tags-page__left-part--add--div'>
-                  <input className='tags-page__left-part--add--name' placeholder='Nom' value={form.new_tag_name} name='new_tag_name' onChange={handleChange}/>
-                  <div className='tags-page__left-part--add--toggle'>
-                     <p>Eliminatoire : </p>
-                     <label className="tags-page__left-part--add--toggle-button">
-                        <input type="checkbox" className="tags-page__left-part--add--toggle-button" checked={form.eliminatoire} onChange={(event) => setForm({...form, eliminatoire: event.target.checked})}/>
-                        <span className="tags-page__left-part--add--slider"></span>
-                     </label>
+      {isLogged
+      ?<>
+         <div className='tags-page__list'>
+         <h1>Gestion des filtres :</h1>
+         {message != '' &&
+         <p className='tags-page__message'>{message} <RxCrossCircled onClick={e=>setMessage('')}/></p>
+         }
+         <div className='tags-page__CRUD--container'>
+            <div className='tags-page__left-part'>
+               <div className='tags-page__left-part--add'>
+                  <h2>Ajouter un tag</h2>
+                  <div className='tags-page__left-part--add--div'>
+                     <input className='tags-page__left-part--add--name' placeholder='Nom' value={form.new_tag_name} name='new_tag_name' onChange={handleChange}/>
+                     <div className='tags-page__left-part--add--toggle'>
+                        <p>Eliminatoire : </p>
+                        <label className="tags-page__left-part--add--toggle-button">
+                           <input type="checkbox" className="tags-page__left-part--add--toggle-button" checked={form.eliminatoire} onChange={(event) => setForm({...form, eliminatoire: event.target.checked})}/>
+                           <span className="tags-page__left-part--add--slider"></span>
+                        </label>
+                     </div>
                   </div>
+                  <p className='tags-page__left-part--add--validate' onClick={handleAddTag}>Ajouter</p>
                </div>
-               <p className='tags-page__left-part--add--validate' onClick={handleAddTag}>Ajouter</p>
-            </div>
-            <div className='tags-page__left-part--remove'>
-               <h2>Supprimer un tag</h2>
-               <div className='tags-page__left-part--remove--div'>
-                  <select value={tagToDelete} onChange={handleTagSelect}>
-                     <option value="">Sélectionnez un tag à supprimer</option>
-                     {tags.map((tag) => (
-                     <option key={tag.id} value={tag.id}>{tag.name}</option>
-                     ))}
-                  </select>
+               <div className='tags-page__left-part--remove'>
+                  <h2>Supprimer un tag</h2>
+                  <div className='tags-page__left-part--remove--div'>
+                     <select value={tagToDelete} onChange={handleTagSelect}>
+                        <option value="">Sélectionnez un tag à supprimer</option>
+                        {tags.map((tag) => (
+                        <option key={tag.id} value={tag.id}>{tag.name}</option>
+                        ))}
+                     </select>
+                  </div>
+                  <p className='tags-page__left-part--remove--validate' onClick={handleDeleteTag}>Supprimer</p>
                </div>
-               <p className='tags-page__left-part--remove--validate' onClick={handleDeleteTag}>Supprimer</p>
+            </div>   
+            <div className='tags-page__right-part'>
+            <h2>Modifier un tag</h2>
+            <div className='tags-page__right-part--selected-tag'>
+               <p>Tag selectionné :</p>
+               <p className='tags-page__right-part--selected-tag--selected'>{tagSelected.name} - {tagSelected.priority ? 'Eliminatoire' : 'Non-éliminatoire'}</p>
             </div>
-         </div>   
-         <div className='tags-page__right-part'>
-         <h2>Modifier un tag</h2>
-         <div className='tags-page__right-part--selected-tag'>
-            <p>Tag selectionné :</p>
-            <p className='tags-page__right-part--selected-tag--selected'>{tagSelected.name} - {tagSelected.priority ? 'Eliminatoire' : 'Non-éliminatoire'}</p>
+            <div className='tags-page__right-part--selected-tag'>
+               <input placeholder='Nouveau nom' value={form.name_modified} name='name_modified' onChange={handleChange}/>
+               <p>Eliminatoire : </p>
+               <label className="tags-page__right-part--toggle-button">
+                  <input type="checkbox" className="tags-page__right-part--toggle-button" checked={form.priority_modified} onChange={(event) => setForm({...form, priority_modified :event.target.checked})}/>
+                  <span className="tags-page__right-part--slider"></span>
+               </label>
+               <p className='tags-page__right-part--validate' onClick={handleModify}>Modifier</p>
+            </div>
+            <div className='tags-page__right-part--tags-list'>
+               {
+               tags.map((tag) => (
+               <p
+               key={tag.id}
+               onClick={() => setTagSelected({name:tag.name, id:tag.id, priority:tag.priority})}
+               className={tagSelected.name === tag.name ? 'tags-page__right-part--tags-list--tag selected' : 'tags-page__right-part--tags-list--tag'}
+               >
+               {tag.name}
+               </p>
+               ))
+               }
+            </div> 
+            </div>  
          </div>
-         <div className='tags-page__right-part--selected-tag'>
-            <input placeholder='Nouveau nom' value={form.name_modified} name='name_modified' onChange={handleChange}/>
-            <p>Eliminatoire : </p>
-            <label className="tags-page__right-part--toggle-button">
-               <input type="checkbox" className="tags-page__right-part--toggle-button" checked={form.priority_modified} onChange={(event) => setForm({...form, priority_modified :event.target.checked})}/>
-               <span className="tags-page__right-part--slider"></span>
-            </label>
-            <p className='tags-page__right-part--validate' onClick={handleModify}>Modifier</p>
-         </div>
-         <div className='tags-page__right-part--tags-list'>
-            {
-            tags.map((tag) => (
-            <p
-            key={tag.id}
-            onClick={() => setTagSelected({name:tag.name, id:tag.id, priority:tag.priority})}
-            className={tagSelected.name === tag.name ? 'tags-page__right-part--tags-list--tag selected' : 'tags-page__right-part--tags-list--tag'}
-            >
-            {tag.name}
-            </p>
-            ))
-            }
-         </div> 
-         </div>  
       </div>
-    </div>
+      </>
+      : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
+                  
+      }
     </div>
  )   
 }

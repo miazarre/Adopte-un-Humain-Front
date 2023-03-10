@@ -300,7 +300,7 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
 AnimalProfil.propTypes = {
     user: PropTypes.shape({
-        id: PropTypes.number.isRequired
+        id: PropTypes.number
     }),
     isLogged: PropTypes.bool.isRequired,
     favorites: PropTypes.array.isRequired,

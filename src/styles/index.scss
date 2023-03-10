@@ -22,3 +22,14 @@ body{
         @include button;
     }
 }
+
+// styles pour les petits écrans (smartphone)
+
+@media (max-width: $small-screen) {
+
+    .connexion-message{
+        left: 2vw;
+        flex-direction: column;
+    }
+
+}

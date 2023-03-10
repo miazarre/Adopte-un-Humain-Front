@@ -17,7 +17,7 @@ const baseUrl=process.env.REACT_APP_BASE_URL
 const ProfilUser = ({user, setUser, isLogged, setIsLogged}) => {
     const token = localStorage.getItem('token');
     const newToken = JSON.parse(token);
-    
+
     const [showModal, setShowModal] = useState(false);
     const [profilUSer, setProfilUser] = useState([]);
     const [errorMessage, setErrorMessage] = useState('') ;
@@ -253,11 +253,11 @@ const [form, setForm] = useState({
 
 ProfilUser.propTypes = {
     user: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      email: PropTypes.string.isRequired,
-      firstname: PropTypes.string.isRequired,
-      lastname: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
+      id: PropTypes.number,
+      email: PropTypes.string,
+      firstname: PropTypes.string,
+      lastname: PropTypes.string,
+      phone: PropTypes.string,
       address: PropTypes.string,
       postal_code: PropTypes.string,
       city: PropTypes.string,

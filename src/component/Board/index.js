@@ -5,7 +5,7 @@ import { IoIosPaw, IoMdPeople, IoIosHeart, IoIosSearch } from "react-icons/io";
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-const Board = ({user}) => {
+const Board = ({user, isLogged}) => {
 
     const [currentUser, setCurrentUser] = useState({
     })
@@ -18,9 +18,8 @@ const Board = ({user}) => {
     })
     return(
         <div className='board_container'>
-            {(currentUser.role_id !== 1 && currentUser.role_id !== 2 && currentUser.role_id !== 3) &&
-                <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
-            }
+            {isLogged
+            ? <>
             {(currentUser.role_id === 3 || currentUser.role_id === 2) &&
             <>
                 <Link to="/animals">
@@ -41,6 +40,10 @@ const Board = ({user}) => {
             }
             {currentUser.role_id === '1' &&
             <p>Hep hep tu n'as pas le droit d'être là !</p>
+            }
+            </>
+
+            : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
             }
         </div>
     )

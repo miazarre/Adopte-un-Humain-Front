@@ -83,7 +83,7 @@ const AdoptionsDetail = ({isLogged}) => {
                 <div className='adoptionsdetail__tags-container'>
                 {tags.map((tag) =>{
                         return(
-                            <span className='adoptionsdetail__tags-container--tags'>{tag.tag_name}</span>
+                            <span key={tag.tag_name} className='adoptionsdetail__tags-container--tags'>{tag.tag_name}</span>
                         )
                     })
                 }

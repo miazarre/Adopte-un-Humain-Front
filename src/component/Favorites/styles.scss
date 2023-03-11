@@ -36,3 +36,12 @@
 
     }
 }
+
+@media (max-width: $small-screen) {
+    // styles ici
+  }
+  
+  // styles pour les écrans entre 576px et 768px (tablettes)
+  @media (min-width: $small-screen) and (max-width: $medium-screen) {
+    // styles ici
+  }

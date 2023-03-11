@@ -1,5 +1,4 @@
 // Imports internes
-import Licorne from '../../../assets/Licorne.png';
 import './styles.scss';
 
 // Imports librairies
@@ -12,8 +11,6 @@ import PropTypes from 'prop-types';
 
 
 // Déclarations contact API
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL;
 
 
@@ -21,6 +18,9 @@ const AdoptionLine = ({adoption, getAdoptions, setMessage}) => {
 
 // Déclarations nécessaires pour la gestion d'état de la page
 // User contient toutes les infos de l'utilisateur impliqué dans l'adoption
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
+
     const [user, setUser] = useState({
         firstname:'',
         id:''
@@ -136,11 +136,10 @@ const AdoptionLine = ({adoption, getAdoptions, setMessage}) => {
 {/* Bloc qui correspond à la ligne qui affiche les infos de la demande avec ... */}
             {user.firstname &&
             <div className='adoptionLine__user'>
-                <img src={Licorne}/>
                 <p>{user.firstname} {user.lastname}</p>
             </div>
             }
-            <p><BsFillTelephoneFill/> {user.phone}</p>
+            <p className='adoptionLine__user--phone'><BsFillTelephoneFill/> {user.phone}</p>
             <p>{adoption.status}</p>
             <PieChart
             className='camembert'
@@ -173,7 +172,6 @@ qui display les détaisl de la demande d'adoption*/}
                     <div className='adoptionLine__bigdetails--body-part'>
                         <div className='adoptionLine__bigdetails--body-part--user'>
                             <h3>Utilisateur</h3>
-                            <img src={Licorne}/>
                             <p className='adoptionLine__bigdetails--body-part--user-name'>{user.firstname} {user.lastname}</p>
                             <p><BsFillTelephoneFill/> {user.phone}</p>
                             <p className='adoptionLine__bigdetails--body-part--address'>{user.address} {user.postal_code} {user.city} {user.country}</p>
@@ -208,7 +206,7 @@ qui display les détaisl de la demande d'adoption*/}
                         <div className='adoptionLine__bigdetails--body-part--comment'>
                             <h3>Partie Staff</h3>
                             <select onChange={e=> handleStatusChange(e)}>
-                                <option disabled defaultValue>Status</option>
+                                <option defaultValue>Status</option>
                                 <option>En cours</option>
                                 <option>Adopté</option>
                                 <option>Refusé</option>

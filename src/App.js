@@ -1,6 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
+import './styles/index.scss';
+import './styles/reset.scss';
 import Home from './component/Home';
 import Header from './component/Header';
 import Footer from './component/Footer';
@@ -19,10 +22,11 @@ import AddAnimal from './component/Animals/AddAnimal';
 import Error from './component/Error';
 import Filtres from './component/Filtres';
 import PatchAnimal from './component/Animals/PatchAnimal';
-
-import './styles/index.scss';
-import './styles/reset.scss';
 import Favorites from './component/Favorites';
+
+const baseUrl=process.env.REACT_APP_BASE_URL;
+const token = localStorage.getItem('token');
+const newToken = JSON.parse(token);
 
 function App() {
 
@@ -40,7 +44,32 @@ function App() {
     setFavorites(newFavorites);
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
     }
-};
+  };
+
+  const checkingLogging = async () => {
+
+    if(newToken){
+      try{
+        const response = await axios.get(`${baseUrl}/token`,
+        { headers: { Authorization: `Bearer ${newToken}` } })
+
+        if(response.data.message = 'Token valide'){
+          setUser(response.data.user[0])
+          setIsLogged(true)
+        }
+      }catch(error){
+        console.log(error)
+      }
+    }
+  }
+
+
+  useEffect( ()=>{
+
+    checkingLogging()
+
+  },[])
+
   return (
     <BrowserRouter>
       <Header user={user} setUser={setUser} isLogged={isLogged} setIsLogged={setIsLogged}/>
@@ -51,7 +80,7 @@ function App() {
         <Route path='/trombinoscope' element={<Trombinoscope isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite} user={user} /> } />
         <Route path='/trombinoscope/:id' element={<AnimalProfil user={user} isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite}/>}/>
         <Route path='/favorites' element={<Favorites isLogged={isLogged} favorites={favorites} setFavorites={setFavorites} toggleFavorite={toggleFavorite}/>} />
-        <Route path='/profil' element={<ProfilUser user={user} isLogged={isLogged} />}/>
+        <Route path='/profil' element={<ProfilUser user={user} setUser={setUser} isLogged={isLogged} setIsLogged={setIsLogged} />}/>
         <Route path='/preferences' element={<Preferences user={user} isLogged={isLogged}/>}/>
         <Route path='/board' element={<Board user={user} isLogged={isLogged}/>} />
         <Route path='/users' element={<Users user={user} isLogged={isLogged}/>} />

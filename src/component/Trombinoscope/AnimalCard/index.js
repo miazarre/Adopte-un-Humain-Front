@@ -11,10 +11,12 @@ import PropTypes from 'prop-types';
 
 // Base url
 const baseUrl=process.env.REACT_APP_BASE_URL;
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
+
 
 const AnimalCard = ({animal, toggleFavorite, favorites, user}) => {
+    
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
 
     const [data, setData] = useState([])
     const [matching, setMatching] = useState({

@@ -1,25 +1,23 @@
-// @use 'src/styles/vars' as v ;
-// @import 'src/styles/vars';
+@use 'src/styles/vars' as v ;
+@import 'src/styles/vars';
 
 .error404{
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
-    &-image{
-        height: 75vh;
-        width: auto;
-        z-index: 1;
+
+    &--back{
+        @include button;
+        display: inline-block;
+        margin: 40px auto;
+        span{
+            display: inline-block;
+        }
     }
 
-    &-text{
-        position: absolute; 
-        z-index: 999;
-        color: white;
-        margin-top: 50vh;
-        font-size: xx-large;
-
-        &-board{
-            margin-top: 5vh;
-        }
+    &--player{
+        height: 70vh;
     }
 }

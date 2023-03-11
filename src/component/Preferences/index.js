@@ -9,13 +9,15 @@ import Select from 'react-select';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import {RxCrossCircled} from 'react-icons/rx'
+import { Link } from 'react-router-dom';
 
 // Base url
 const baseUrl=process.env.REACT_APP_BASE_URL
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 
 const Preferences = ({isLogged, user}) => {
+
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
 
     const [tags, setTags] = useState([]);
     const [message, setMessage] = useState('');
@@ -36,8 +38,10 @@ const Preferences = ({isLogged, user}) => {
     }
 // Appel au chargement de la page de la fonction pour setup les tags du user
     useEffect(() => {
-        settingPref()
-    }, [])
+        if(user){
+            settingPref()
+        }
+    }, [user])
 
 // Au changement sur un Select on appelle la fonction qui contact l'API pour ajouter un tag
   const handleChange = async (selectedOption) => {
@@ -106,6 +110,7 @@ const Preferences = ({isLogged, user}) => {
         ?<>
                     <div className='preference__actual-profil'>
                         <h1>Profil actuel</h1>
+                        <Link to='/trombinoscope'><h2 className='preference__link'>Voir les animaux qui correspondent</h2></Link>
                         <p className='preference__actual-profil--title'>Profil</p>
                         <div className='preference__actual-profil--tags'>
                             {tags.map((tag) =>{
@@ -151,7 +156,7 @@ const Preferences = ({isLogged, user}) => {
                         
                     </form>
                     </>
-            : <p className='profil-user__connexion-message'> Il faut te connecter ! </p>
+            : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
                     
             }
         </div>
@@ -161,7 +166,7 @@ const Preferences = ({isLogged, user}) => {
 Preferences.propTypes = {
     isLogged: PropTypes.bool.isRequired,
     user: PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.number,
     }),
   };
 

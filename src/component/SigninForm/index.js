@@ -6,16 +6,12 @@ import './styles.scss';
 // import Dinosaure from '../../assets/Dinosaure.png';
 // import Dragon from '../../assets/Dragon.png';
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-// Base url
 const baseUrl=process.env.REACT_APP_BASE_URL;
-
 const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
-
-// Suppression des catégories/Avatar pour le MVP
 
 {/* const categories = [
   {name: "Licorne", image: Licorne, description:"Il/Elle aime galoper à travers les champs ouverts et les forêts, explorer de nouveaux endroits et rencontrer de nouvelles créatures. Il/elle aime aussi utiliser sa créativité pour forger de merveilleux souvenirs. Pendant notre temps libre, il/elle aime se poser, méditer et mettre en pratique ses acquis. Dans l'ensemble, il/elle est un ami et un compagnon merveilleux, toujours prêt à égayer la journée de n'importe qui avec sa nature enjouée et aimante."},
@@ -24,6 +20,7 @@ const newToken = JSON.parse(token);
 ]; */}
 
 const SigninForm = () => {
+  const navigate = useNavigate();
 
   const [lastname, setLastname] = useState('');
   const [firstname, setFirstname] = useState('');
@@ -58,7 +55,7 @@ const SigninForm = () => {
       return;
     }
 
-    if (!/^[0-9]{10}$/.test(phone)) {
+    if (!/^0[0-9]{9}$/.test(phone)) {
       alert("Le numéro de téléphone n'est pas au bon format");
       return;
     }
@@ -76,26 +73,23 @@ const SigninForm = () => {
   // Contact de l'API pour envoyer les informations lors de la création de l'utilisation
 
     const newUser = {
-      "firstname": firstname,
-      "lastname": lastname,
-      "email": email,
-      "password": password,
-      "phone": phone
+      "firstname": `${firstname}`,
+      "lastname": `${lastname}`,
+      "email": `${email}`,
+      "password": `${password}`,
+      "phone": `${phone}`
   }
-    console.log(newUser)
     try { 
 
-      const response  = await axios.post(`${baseUrl}/register`,
-      { headers: { Authorization: `Bearer ${newToken}` } },
-      newUser
-        )
-      Navigate('/login')
-
-      console.log(response.request.statusText)
+      const response  = await axios.post(`${baseUrl}/register`, newUser, {
+        headers: { Authorization: `Bearer ${newToken}`}
+      });
+  
+      navigate('/login')
 
     } catch(error) {
-      console.log(error.response.data.error)
-      setMessage(error.response.data.error)
+      console.log(error.response.error)
+      setMessage(error.response.error)
     }
   }
 
@@ -112,10 +106,11 @@ const SigninForm = () => {
         <input type="text" placeholder="Numéro de téléphone" name="phone" value={phone} onChange={handlePhoneSubmit} />
         <input type="password" placeholder="Mot de passe" name="password" value={password} onChange={handlePasswordSubmit} />
         <input type="password" placeholder="Validation mot de passe" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPasswordSubmit} />
-    
-{/* Suppression des catégories/Avatar pour le MVP */} 
-       {/* <div className="categories">
-        {categories.map(c => (
+
+
+     {/* <div className="categories">
+            {{categories.map(c => (
+
             <div className="category" key={c.name.toLowerCase()} onClick={() => setCategory(c.name.toLowerCase())}>
               <div className="category-image">
               <img src={c.image} alt={c.name}/>
@@ -128,7 +123,8 @@ const SigninForm = () => {
               </p>
             </div>
           ))}
-        </div> */}
+
+            </div> */}
 
         <p className='validation' onClick={handleSubmit}><span>Valider</span></p>
       </form>

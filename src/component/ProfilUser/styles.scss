@@ -4,11 +4,34 @@
 
 .profil-user{
 
-    &__connexion-message{
+    &__modal{
+        background-color: rgba(v.$black, 0.7);
         position: fixed;
-        top: 30vh;
-        left: 10vw;
-        font-size: 2em;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+
+        &--color{
+            background-color: v.$primary-color;
+            position: fixed;
+            top: 3vh;
+            left: 36vw;
+            padding: 20px;
+            display: flex;
+        }
+
+        &--boutton{
+            @include button;
+        }
+    }
+
+    &__delete{
+        background-color: v.$secondary-color;
+        padding: 5px;
+        color: v.$white;
+        border-radius: 5px;
+        cursor:pointer;
     }
     
     &__container{
@@ -21,21 +44,26 @@
     &__details{
         position: fixed;
         left: 5vw;
-        top: 25vh;
-        height: 60vh;
-        width: 20%;
+        top: 20vh;
+        height: 45vh;
+        width: 20vw;
+        min-width: 250px;
         box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
         padding: 30px;
-
-        img{
-            all: unset;
-            width: 100%;
-        }
 
         p{
             text-align: center;
             font-size: 1.2em;
             margin: 1vh;
+            display: flex;
+            justify-content: baseline;
+            align-items: center;
+            gap: 20px;
+
+        }
+
+        .center{
+            justify-content: center
         }
 
         &--name{
@@ -44,6 +72,7 @@
             padding: 30px 0;
         }
     }
+
 
     &__form{
         form{
@@ -146,3 +175,88 @@
 .profil-user__form--input:focus + .profil-user__form--label {
     background-color: rgb(118, 93, 141);
   }     
+
+
+  @media (max-width: $small-screen) {
+    .profil-user{
+
+        &__details{
+            position: absolute;
+            top: 20vh;
+
+            left: 10vw;
+            height: auto;
+            width: 80vw;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 30px;
+            gap: 10px;
+
+            p{
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+
+        &__container{
+            flex-direction: column-reverse;
+            align-items: center;
+            justify-content:center ;
+            padding-top: 30vh;
+
+            gap: 0;
+        }
+
+        &__tips{
+            width: 80%;
+        }
+
+        &__form{
+            margin: 0;
+            padding: 0;
+            form{
+                margin: 0;
+                padding: 0;
+                width: 90vw;
+            }
+        }
+
+
+    }
+  }
+  
+  // styles pour les écrans entre 576px et 768px (tablettes)
+  @media (min-width: $small-screen) and (max-width: $medium-screen) {
+    .profil-user{
+
+        &__details{
+            position: absolute;
+            top: 10vh;
+            left: 10vw;
+            height: auto;
+            width: 80vw;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 30px;
+            gap: 10px;
+
+            p{
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+
+        &__form{
+            margin-top: 20vh;
+        }
+
+        &__tips{
+            margin-top: 30vh;
+            margin-left: 0;
+        }
+
+
+    }
+  }

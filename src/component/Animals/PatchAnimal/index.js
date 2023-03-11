@@ -185,7 +185,8 @@ const addingTag = async (selectedOption) => {
         <button className='adoptions_container--linkToBoard'>Retour au Tableau de Bord</button>
     </Link>
      <div className="addAnimal-container">
-        <form>
+        {isLogged
+        ?<><form>
             <div className="addAnimal-container-informations">
                 <div>
                 <input type="text" placeholder={data.name} name="name" value={name} onChange={(event) => setName(event.target.value)} />

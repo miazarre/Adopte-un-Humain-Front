@@ -1,24 +1,27 @@
 // Imports internes
-import dragon from '../../assets/Dragon.png';
 import './styles.scss';
 
 // Imports externes
-import { Link } from 'react-router-dom';
-import {HiLightBulb} from 'react-icons/hi';
+import { Link, useNavigate } from 'react-router-dom';
+import {HiLightBulb, HiTrash} from 'react-icons/hi';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {RxCrossCircled} from 'react-icons/rx';
 import PropTypes from "prop-types";
+import {AiOutlineMail, AiOutlinePhone, AiOutlineUser, AiOutlineHome} from 'react-icons/ai'
+
 
 //BaseUrl
 const baseUrl=process.env.REACT_APP_BASE_URL
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 
-const ProfilUser = ({user, isLogged}) => {
+const ProfilUser = ({user, setUser, isLogged, setIsLogged}) => {
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
 
-    const [profilUSer, setProfilUser] = useState(user);
+    const [showModal, setShowModal] = useState(false);
+    const [profilUSer, setProfilUser] = useState([]);
     const [errorMessage, setErrorMessage] = useState('') ;
+    const navigate = useNavigate();
 
 // Déclaration de tous les champs de form à controler
 const [form, setForm] = useState({
@@ -34,6 +37,7 @@ const [form, setForm] = useState({
     new_password: '',
     confirm_new_password: ''
   });
+
   
   useEffect(() => {
     for (const key in profilUSer) {
@@ -44,7 +48,7 @@ const [form, setForm] = useState({
         }));
       }
     }
-  }, []);
+  }, [user]);
 
 // Au chargement de la page on contact l'API pour avoir els données à jour de l'utilisateur
     const settingUserOnLoad = async () => {
@@ -52,7 +56,7 @@ const [form, setForm] = useState({
             const response = await axios.get(`${baseUrl}/user/${user.id}`,
             { headers: { Authorization: `Bearer ${newToken}` }}
             )
-            setProfilUser(response.data)
+            setProfilUser(response.data[0])
         }catch(error){
             console.log(error)
             setErrorMessage('Il y a eu un problème au moment de récupérer vos informations.')
@@ -64,7 +68,7 @@ const [form, setForm] = useState({
         if(user){
             settingUserOnLoad()  
         }
-    });
+    }, [user]);
 
 // Quand un champs d'input est changé
     const handleFormChange = (event) => {
@@ -89,8 +93,9 @@ const [form, setForm] = useState({
         }
 
         let firstNumber = form.phone.charAt(0);
-
-        if(form.phone !== '' && (form.phone.length !== '10' || firstNumber !== '0')){
+        console.log(firstNumber)
+        console.log(form.phone)
+        if(form.phone != '' && (form.phone.length != '10' || firstNumber != '0')){
             setErrorMessage('Veuillez entrer un numéro de téléphone valide.')
             return
         }
@@ -138,17 +143,52 @@ const [form, setForm] = useState({
         }
       }
 
+      const deleteProfil = async () => {
+        try{
+
+            console.log('Delete !')
+            const response = await axios.delete(`${baseUrl}/user/${user.id}`,
+            { headers: { Authorization: `Bearer ${newToken}` }})
+
+            console.log(response)
+            setShowModal(!showModal)
+            setUser('');
+            setIsLogged(false);
+            navigate('/login')
+
+        }catch(error){
+            setErrorMessage('Suppression impossible.')
+            console.log(error)
+        }
+      }
+
 // Composant à afficher
     return( 
              <div className='profil-user__container'>
                 {isLogged
                 ? <>
                 <div className='profil-user__details'>
-                    <img src={dragon}/>
-                    <p className='profil-user__details--name'>{profilUSer.firstname} {profilUSer.lastname}</p>
-                    <p>{profilUSer.email}</p>
-                    <p>{profilUSer.phone}</p>
-                    <p>{profilUSer.address} {profilUSer.postal_code} {profilUSer.city} {profilUSer.country}</p>
+                   {profilUSer != [] &&
+                    <>
+                        <p className='profil-user__details--name'><AiOutlineUser size={'30px'}/> {profilUSer.firstname} {profilUSer.lastname}</p>
+                        <p><AiOutlineMail size={'30px'}/> {profilUSer.email}</p>
+                        <p><AiOutlinePhone size={'30px'}/> {profilUSer.phone}</p>
+                        <p><AiOutlineHome size={'30px'}/> {profilUSer.address}</p>
+                        <p className='center'> {profilUSer.postal_code} {profilUSer.city}</p>
+                        <p className='center'> {profilUSer.country}</p>
+
+                        <p className='profil-user__delete' onClick={e=> setShowModal(true)}><HiTrash size={'30px'}/>Supprimer mon profil</p>
+                        {showModal && 
+                            <div className="profil-user__modal">
+                                <div className="profil-user__modal--color">
+                                    <p>Êtes-vous sûr de vouloir continuer ?</p>
+                                    <p className="profil-user__modal--boutton" onClick={deleteProfil}><span>Oui</span></p>
+                                    <p className="profil-user__modal--boutton" onClick={e=> setShowModal(!showModal)}><span>Non</span></p>
+                                </div>
+                            </div>
+                        }
+                    </>
+                   } 
                 </div>
                 <div className='profil-user__form'>
 
@@ -204,7 +244,7 @@ const [form, setForm] = useState({
                     </div>
                 </>
     
-                : <p className='profil-user__connexion-message'> Il faut te connecter ! </p>
+                : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
                     
                 }
                 </div>
@@ -213,11 +253,11 @@ const [form, setForm] = useState({
 
 ProfilUser.propTypes = {
     user: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      email: PropTypes.string.isRequired,
-      firstname: PropTypes.string.isRequired,
-      lastname: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
+      id: PropTypes.number,
+      email: PropTypes.string,
+      firstname: PropTypes.string,
+      lastname: PropTypes.string,
+      phone: PropTypes.string,
       address: PropTypes.string,
       postal_code: PropTypes.string,
       city: PropTypes.string,

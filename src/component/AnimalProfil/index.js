@@ -15,8 +15,6 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 //Déclarations API
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL;
 
 
@@ -24,6 +22,9 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
     
 // Déclaration de tous les params
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
+
     const param = useParams()
     const [animal, setAnimal] = useState([])
     const [isContactingAnimal, setIsContactinganimal] = useState('no');
@@ -147,11 +148,10 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
     return(
     <>
-    <div className='animal-profil__back'><span><TiArrowBack onClick={e => navigate(-1)} size={'50px'}/></span></div>
     <div className='animal-profil__container'>
         {isLogged
         ? <>
-
+            <div className='animal-profil__back'><span><TiArrowBack onClick={e => navigate(-1)} size={'50px'}/></span></div>
             <div className='animal-profil__details'>
                 <div className='animal-profil__details--gradient'>
                     <Slider {...settings}>
@@ -229,12 +229,12 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                     <h1 className='animal-profil__title-container--name'>{animal.name}</h1>
                     <span className='animal-profil__title-container--dot'></span>
                     <p className='animal-profil__title-container--points'>{matching.count} point{matching.count > 1 ? 's' : ''} commun{matching.count > 1 ? 's' : ''}</p>
-                    <div className='animal-card__card--heart' onClick={e => toggleFavorite(animal.id)}>
+                </div>
+                <div className='animal-profil__title-container--fav' onClick={e => toggleFavorite(animal.id)}>
                     {favorites.includes(animal.id)
                     ?  <div className='animal-profil__title-container--fav animal-profil__title-container--fav-added'><BsSuitHeartFill className='icon' size={'15px'}/> Retirer des coups de coeur</div>
                     :  <div className='animal-profil__title-container--fav animal-profil__title-container--fav-not-added'><BsSuitHeart className='icon' size={'15px'} /> Ajouter aux coups de coeur</div>
                     }
-                    </div>
                 </div>
 
 
@@ -269,7 +269,7 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
                     <>
                         <div className='animal-profil__description--text'>
                             <p>{animal.description}</p>
-                            <p>{animal.description}</p>
+                            <p>{animal.needs}</p>
                         </div>
                         <p className='animal-profil__description--button' onClick={e=>setIsContactinganimal('yes')}><span>Écrire à {animal.name}</span></p>
                     </>
@@ -290,7 +290,7 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
         </>
 
-        : <p className='profil-user__connexion-message'> Il faut te connecter ! </p>
+        : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
         
         }
     </div>
@@ -300,7 +300,7 @@ const AnimalProfil = ({user, isLogged, favorites, toggleFavorite}) => {
 
 AnimalProfil.propTypes = {
     user: PropTypes.shape({
-        id: PropTypes.number.isRequired
+        id: PropTypes.number
     }),
     isLogged: PropTypes.bool.isRequired,
     favorites: PropTypes.array.isRequired,

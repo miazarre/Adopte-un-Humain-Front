@@ -1,27 +1,28 @@
 import './styles.scss';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import {Player} from "@lottiefiles/react-lottie-player"
 
 //import Error from '../../../assets/Cookie.png';
 
 
-const anError = () => {
+const AnError = () => {
+    const navigate = useNavigate();
+    const back = () => {
+        navigate(-1)
+    }
+
     return(
-        <> 
-            <body className="error404">
-                <p className="error404-text">
-                    <p>ERROR 404</p>
-                    <Link to="/">
-                        <button className="adoptions_container--linkToBoard error404-text-board">Retour à l'accueil</button>
-                    </Link>
-                </p>
+        <div className="error404"> 
+                <p className="error404--back" onClick={back}><span>Retour</span></p>
+               <Player
+               className="error404--player"
+               autoplay
+               loop
+               src="https://assets9.lottiefiles.com/packages/lf20_hd8ztfyp.json"
+               />
 
-
-                ////<img src={Error} alt="error 404" className="error404-image" />
-
-            </body>
-        </>
+        </div>
     )
 }
 
-export default anError;
+export default AnError;

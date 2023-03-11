@@ -16,4 +16,44 @@
         gap: 3vw;
     
     }
+
+    &__message{
+        margin: auto;
+        text-align: center;
+        font-family: 'Alice';
+
+        &--container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 50px;
+        }
+    }
+
+    &__boutton{
+        @include button;
+        display: inline-block;
+
+        span{
+            display: inline-block;
+            margin: auto;
+        }
+    }
 }
+
+
+// styles pour les écrans de moins de 576px (smartphone)
+@media (max-width: $small-screen) {
+
+    .trombinoscope{
+        .animal-card__container{
+            gap: 10vh;
+        
+        }
+    }
+
+
+  }
+  
+  

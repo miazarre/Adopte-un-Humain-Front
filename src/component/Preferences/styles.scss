@@ -7,7 +7,24 @@
         padding: 10vh;
         display: flex;
         gap: 10vw;
-        min-height: 76vh;
+        min-height: 81vh;
+    }
+
+    &__link{
+        margin-top: 40px;
+        display: inline-block;
+        font-weight: 700;
+        padding: 10px;
+        background:
+        linear-gradient(
+            to right,
+            v.$tertiary-color,
+            v.$dark-color
+
+        );
+        background-size: 100% 5px, 0 10px;
+        background-position: 100% 100%, 0 100%;
+        background-repeat: no-repeat;
     }
 
     &__message{
@@ -93,4 +110,51 @@
 
 
     }
+}
+
+@media (max-width: $small-screen) {
+    .preference{
+        &__page-container{
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+    
+        &__actual-profil{
+            width:100%;
+        }
+    
+        &__form-container{
+            width: 100%;
+
+            &--select{
+                width: 100%;
+            }
+        }
+    
+    
+    }  
+  }
+  
+  // styles pour les écrans entre 576px et 768px (tablettes)
+  @media (min-width: $small-screen) and (max-width: $medium-screen) {
+.preference{
+    &__page-container{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__actual-profil{
+        width:100%;
+    }
+
+    &__form-container{
+        width: 100%;
+    }
+
+
+}  
+
 }

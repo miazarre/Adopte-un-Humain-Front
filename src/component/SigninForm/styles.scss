@@ -21,6 +21,10 @@
     .title {
       @include Title;
     } 
+
+    form {
+      justify-content: center;
+    }
   }
 
 .categories {
@@ -42,7 +46,7 @@
 
   img {
     display: inline-block;
-    width: 15rem;
+    max-width: 20%;
   }
   &:not(:first-child) {
     margin-left: 1rem;

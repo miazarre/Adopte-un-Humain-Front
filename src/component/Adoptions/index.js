@@ -10,10 +10,14 @@ import { BsXCircleFill } from 'react-icons/bs';
 
 // Déclarations pour contacter l'API
 const baseUrl=process.env.REACT_APP_BASE_URL;
-const token = localStorage.getItem('token');
-const newToken = JSON.parse(token);
 
-const Adoptions = () => {
+const Adoptions = ({isLogged}) => {
+
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
+
+    const token = localStorage.getItem('token');
+    const newToken = JSON.parse(token);
 
     const [animals, setAnimals] = useState([]);
     const [message, setMessage] = useState('');
@@ -38,6 +42,9 @@ const Adoptions = () => {
 
     return(
         <div className='adoptions_container'>
+       {isLogged
+        ? <>
+
         <h1 className='adoptions_container-title'>Demandes d'adoptions</h1>
         <div className='adoptions_container-header'>
             <div className='adoptions_container-header--search'>
@@ -75,7 +82,11 @@ const Adoptions = () => {
                         )
                     })
                 }
-            </div>
+        </div>
+        </>
+        : <p className='connexion-message'> Il faut te connecter pour voir cette page. <Link to='/login'><p className='connexion-message--boutton'><span>Connexion</span></p></Link></p>
+        
+        }
 
     </div>
     )

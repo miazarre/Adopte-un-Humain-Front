@@ -154,3 +154,75 @@
 }
 
 
+@media (max-width: $small-screen) {
+    .container{
+        margin-top: 2vh;
+        &--top-part{
+            flex-direction: column-reverse;
+        }
+
+        &--animal_profiles{
+
+            &--image{
+
+                width: 50vw;
+                height: 50vw;
+            }
+
+        }
+
+        .profiles{
+            flex-wrap: wrap;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
+
+        &--concept{
+            padding-top: 5vh;
+            flex-direction: column;
+            gap: 60px;
+            div{
+                width: 85%;
+                margin: auto;
+            }
+        }
+    }
+  }
+  
+  // styles pour les écrans entre 576px et 768px (tablettes)
+  @media (min-width: $small-screen) and (max-width: $medium-screen) {
+    .container{
+
+        &--animal_profiles{
+
+            &--image{
+
+                width: 30vw;
+                height: 30vw;
+            }
+
+        }
+
+        .profiles{
+            flex-wrap: wrap;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
+
+        &--concept{
+            padding-top: 5vh;
+            flex-direction: column;
+            gap: 60px;
+            div{
+                width: 85%;
+                margin: auto;
+            }
+        }
+    }
+  }

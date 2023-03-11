@@ -1,8 +1,14 @@
 import { React, useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import Select from 'react-select';
+import PropTypes from 'prop-types';
+import {RxCrossCircled} from 'react-icons/rx';
 
 import './styles.scss';
+import { optionsAge, optionsActivité, optionsBudget, optionsCaracter, optionsCohabitation, optionsHabitat, optionsJardin, optionsKids, optionsSexe } from '../../../data/options_select';
+import customStyles from './custom_styles';
+
 const dayjs = require('dayjs')
 // import Licorne from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Licorne.png';
 // import Dinosaure from '/var/www/html/SAISONS/Apothéose/projet-01-j-adopte-un-humain-front/src/assets/Dinosaure.png';
@@ -11,9 +17,12 @@ const token = localStorage.getItem('token');
 const newToken = JSON.parse(token);
 const baseUrl=process.env.REACT_APP_BASE_URL;
 
-const PatchAnimal = () => {
+const PatchAnimal = ({isLogged, user}) => {
     // const [category, setCategory] = useState('');
     // const [category, setCategory] = useState('');
+    const [tags, setTags] = useState([]);
+    const [message, setMessage] = useState('');
+
     const [data, setData] = useState('');
     const [name, setName] = useState('');
     const [resume, setResume] = useState('');
@@ -25,11 +34,6 @@ const PatchAnimal = () => {
     const [photo4, setPhoto4] = useState('');
     const [birthdate, setBirthdate] = useState('');
 
-   
-
-    const newBirthdate = dayjs(birthdate).format('YYYY-MM-DD');
-    console.log(newBirthdate);
-
     useEffect(() => {
         const fetchData = async () =>{
           try {
@@ -38,6 +42,16 @@ const PatchAnimal = () => {
             const {data: response} = await axios.get(`${baseUrl}/animal/${id}`,
             { headers: { Authorization: `Bearer ${newToken}` } });
             setData(response);
+            setName(response.name);
+            setResume(response.resume);
+            setDescription(response.description);
+            setNeeds(response.needs);
+            setPhoto1(response.photo1);
+            setPhoto2(response.photo2);
+            setPhoto3(response.photo3);
+            setPhoto4(response.photo4);
+            const newBirthdate = dayjs(response.birthdate).format('YYYY-MM-DD');
+            setBirthdate(newBirthdate);
           } catch (error) {
             console.error(error.message);
           }
@@ -47,6 +61,8 @@ const PatchAnimal = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const newBirthdate = dayjs(birthdate).format('YYYY-MM-DD');
+        console.log(newBirthdate);
 
         try {     
             const formData = new FormData();
@@ -82,6 +98,87 @@ const PatchAnimal = () => {
 
     const { id } = useParams();
 
+    // Contact de l'API pour récupérer les tags liés a l'animal sélectionné
+    const settingPref = async () => {
+      try{
+              const responseTags = await axios.get(`${baseUrl}/animal/${id}/tag`,
+          { headers: { Authorization: `Bearer ${newToken}` }}
+          )
+          setTags(responseTags.data)
+
+      }catch(error){
+          setMessage('Il y a eu un soucis au moment de récupérer vos données auprès du serveur.')
+          console.log(error)
+      }
+      
+  }
+// Appel au chargement de la page de la fonction pour setup les tags
+  useEffect(() => {
+      settingPref()
+  }, [])
+
+// Au changement sur un Select on appelle la fonction qui contact l'API pour ajouter un tag
+const handleChange = async (selectedOption) => {
+  addingTag(selectedOption)
+  };
+
+// On récupère l'id du tag selectionné via l'API
+  const getTagId = async (selectedOption) => {
+
+      try{
+      const response = await axios.get(`${baseUrl}/tags`,
+      { headers: { Authorization: `Bearer ${newToken}` }}
+      )
+      let foundTag = response.data.filter((tag) => tag.name.toLowerCase() === selectedOption.value.toLowerCase())
+      return foundTag ;
+      }catch(error){
+          console.log(error)
+          setMessage('Il y a eu un problème au moment de récupérer la liste des tags.')
+      }
+  }
+
+
+// Au changement sur un Select multi, on appelle la fonction qui contact l'API pour chaque champs séléctionné
+const handleChangeMulti = (selectedOption) => {
+  selectedOption.forEach(element => {
+      addingTag(element)
+  });
+}
+// Fonction qui appelle l'API pour ajouter une liaison tag-animal
+const addingTag = async (selectedOption) => {
+  try{
+      const tag = await getTagId(selectedOption);
+      const existingTag = tags.find((tag) => tag.tag_name.toLowerCase() === selectedOption.value.toLowerCase());
+      if (existingTag) {
+          setMessage(`Vous avez déjà choisi '${selectedOption.value}' comme option.`)
+          return;
+      }
+      const response = await axios.post(`${baseUrl}/animal/${id}/tag`,
+      {tag_id:tag[0].id},
+      { headers: { Authorization: `Bearer ${newToken}` }}
+      )
+      settingPref()
+      setMessage(`Vous avez bien ajouté ${tag[0].name} à vos préférences.`)
+
+  }catch(error){
+     setMessage('Il y a eu une erreur.')
+     console.log(error)
+  }
+}
+// Fonction qui appelle l'API pour supprimer la liaison tag-animal
+  const deletingTag = async (tagId, name) => {
+      console.log('delete' + tagId)
+      try{
+          const response = await axios.delete(`${baseUrl}/animal/${id}/tag/${tagId}`,
+          { headers: { Authorization: `Bearer ${newToken}` }}
+          )
+          settingPref()
+          setMessage(`Vous avez bien supprimé ${name} de vos préférences.`)
+      }catch(error){
+          console.log(error)
+          setMessage('Il y a eu une erreur.')        }
+  }
+
     return( 
     <>
     <Link to="/board">
@@ -100,6 +197,7 @@ const PatchAnimal = () => {
                     name="date" 
                     for="date" 
                     className="informations-date" 
+                    placeholder={data.birthdate}
                     value={birthdate} 
                     onChange={(event) => setBirthdate(event.target.value)}/>
                 </div>
@@ -175,7 +273,69 @@ const PatchAnimal = () => {
             <button onClick={handleSubmit}>Valider</button>
             </form>
     </div>
+    <div className='preference__page-container'>
+        {isLogged
+        ?<>
+                    <div className='preference__actual-profil'>
+                        <h1>Tags liés à l'animal</h1>
+                        <p className='preference__actual-profil--title'>Tags obligatoires</p>
+                        <div className='preference__actual-profil--tags'>
+                            {tags.map((tag) =>{
+                                if(tag.priority === true){
+                                    return(
+                                    <span key={tag.tag_id}>{tag.tag_name} <RxCrossCircled onClick={e=>deletingTag(tag.tag_id, tag.tag_name)} className='cross'/></span>
+                                )}
+                                
+                                })
+                            }
+                        </div>
+                        <p className='preference__actual-profil--title'>Tags optionnels</p>
+                        <div className='preference__actual-profil--tags'>
+                        {tags.map((tag) =>{
+                                if(tag.priority === false){
+                                    return(
+                                    <span key={tag.tag_id}>{tag.tag_name} <RxCrossCircled onClick={e=>deletingTag(tag.tag_id, tag.tag_name)} className='cross'/></span>
+                                )}
+                                
+                                })
+                        }
+                        </div>
+                    </div>
+                    <form className='preference__form-container'>
+                        <h2>Tags obligatoires</h2>
+                        {message !== '' &&
+                        <p className='preference__message'>{message} <RxCrossCircled onClick={e => setMessage('')}/></p>
+                        }
+                        <div className='preference__form-container--formdiv'>
+                            <Select options={optionsHabitat} placeholder='Habitat' className='preference__form-container--select' styles={customStyles} onChange={handleChange}/>
+                            <Select options={optionsJardin} placeholder='Jardin' className='preference__form-container--select' styles={customStyles} onChange={handleChange}/>
+                            <Select options={optionsKids} placeholder='Avez-vous des enfants ?' className='preference__form-container--select' styles={customStyles} onChange={handleChange}/>
+                            <Select options={optionsBudget} placeholder='Votre budget est plutôt...' className='preference__form-container--select' styles={customStyles} onChange={handleChange}/>
+                            <Select options={optionsCohabitation} isMulti placeholder='Vous avez déjà...' className='preference__form-container--select' styles={customStyles} onChange={handleChangeMulti}/>
+                        </div> 
+                        <h2>Tags optionnels</h2>
+                        <div className='preference__form-container--formdiv'>
+                            <Select options={optionsAge} isMulti name='age' placeholder='Age' className='preference__form-container--select' styles={customStyles} onChange={handleChangeMulti}/>
+                            <Select options={optionsCaracter} isMulti placeholder='Caractère' className='preference__form-container--select' styles={customStyles} onChange={handleChangeMulti}/>
+                            <Select options={optionsSexe} isMulti placeholder='Sexe' className='preference__form-container--select' styles={customStyles} onChange={handleChangeMulti}/>
+                            <Select options={optionsActivité} isMulti placeholder='Activité' className='preference__form-container--select' styles={customStyles} onChange={handleChangeMulti}/>
+                        </div>
+                        
+                    </form>
+                    </>
+            : <p className='profil-user__connexion-message'> Il faut te connecter ! </p>
+                    
+            }
+        </div>
     </>
     )
 }
+
+PatchAnimal.propTypes = {
+  isLogged: PropTypes.bool.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }),
+};
+
 export default PatchAnimal;

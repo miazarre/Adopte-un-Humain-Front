@@ -2,9 +2,7 @@ import './styles.scss';
 
 import { Link } from 'react-router-dom';
 import { IoIosPaw, IoMdPeople, IoIosHeart } from "react-icons/io";
-import { IoPricetagsOutline } from "react-icons/io5";
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const Board = ({user}) => {
 
@@ -35,9 +33,6 @@ const Board = ({user}) => {
                 </Link>
                 <Link to='/filtres'>
                     <button className='board_container_menu'><span><IoIosHeart size={'7vh'} className='board_container_menu--icon'/> Filtres</span></button>
-                </Link>
-                <Link to='/tags'>
-                    <button className='board_container_menu'><span><IoPricetagsOutline size={'7vh'} className='board_container_menu--icon'/> Gestion des tags</span></button>
                 </Link>
             </>
             }

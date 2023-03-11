@@ -21,19 +21,34 @@ const User = ({lastname, firstname, id, role_id}) => {
     });
 
     const onDelete = async (id) => {
-        await reqInstance.delete(`${baseUrl}/user/${id}`)
+        await reqInstance.delete(`${baseUrl}/admin/user/${id}`)
         .then (setData(data))
             window.confirm("Le profil de cet utilisateur a bien été supprimé")
         .catch(error => {
             console.error(error.message);
     })};
 
-    const onPatch = async (role_id) => {
-        await reqInstance.patch(`${baseUrl}/role/${role_id}`)
-        .then (setRole(role))
-        .catch(error => {
-            console.error(error.message);
-    })};
+    const onOptionChange = e => {
+        setRole(e.target.value)
+        console.log(setRole)
+    }
+
+    const onPatch = async (id) => {
+        try {               
+            const response = await axios.patch(`${baseUrl}/admin/user/${id}`, {
+               role : role,
+            },
+            { 
+                headers: {
+                    Authorization : `Bearer ${newToken}`
+                },
+            }
+      );
+            console.log(response.data)} 
+            catch (error) {
+              console.error(error.message);
+        }
+    };
 
     let newRole;
     if (role_id === 1){
@@ -44,6 +59,8 @@ const User = ({lastname, firstname, id, role_id}) => {
         newRole = <p>admin</p> 
     }
 
+    console.log(data)
+
     return( 
         <tr className='user_table'>
             <td>{lastname}</td>
@@ -51,9 +68,9 @@ const User = ({lastname, firstname, id, role_id}) => {
             <td>
                 <label for="role-selector" className='user-select'>{newRole}</label>
                 <select id="role-selector">
-                    <option value="membre">membre</option>
-                    <option value="staff">staff</option>
-                    <option value="admin">admin</option>
+                    <option value="membre" onChange={onOptionChange}>membre</option>
+                    <option value="staff" onChange={onOptionChange}>staff</option>
+                    <option value="admin" onChange={onOptionChange}>admin</option>
                 </select>
 
                 <TfiSave 
@@ -62,7 +79,7 @@ const User = ({lastname, firstname, id, role_id}) => {
                     onClick={ () => {const confirmation = window.confirm("Etes-vous sûr de vouloir modifier ce rôle ?")
                         if (confirmation){
                             console.log('OK on modifie');
-                            onPatch(role_id);
+                            onPatch(id);
                         } else {
                             console.log('On annule');
                     }}}

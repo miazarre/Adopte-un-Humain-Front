@@ -277,7 +277,7 @@ const addingTag = async (selectedOption) => {
   
               }
       </div>
-      </>}
+      </>,
     
     <div className='preference__page-container'>
         {isLogged
@@ -333,6 +333,8 @@ const addingTag = async (selectedOption) => {
                     
             }
         </div>
+  )
+}
 
 PatchAnimal.propTypes = {
   isLogged: PropTypes.bool.isRequired,

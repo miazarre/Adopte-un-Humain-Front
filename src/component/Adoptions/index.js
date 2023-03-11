@@ -16,9 +16,6 @@ const Adoptions = ({isLogged}) => {
     const token = localStorage.getItem('token');
     const newToken = JSON.parse(token);
 
-    const token = localStorage.getItem('token');
-    const newToken = JSON.parse(token);
-
     const [animals, setAnimals] = useState([]);
     const [message, setMessage] = useState('');
 

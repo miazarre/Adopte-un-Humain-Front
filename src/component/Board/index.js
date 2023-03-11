@@ -1,7 +1,7 @@
 import './styles.scss';
 
 import { Link } from 'react-router-dom';
-import { IoIosPaw, IoMdPeople, IoIosHeart } from "react-icons/io";
+import { IoIosPaw, IoMdPeople, IoIosHeart, IoIosSearch } from "react-icons/io";
 import { useState, useEffect } from 'react';
 
 const Board = ({user, isLogged}) => {

@@ -19,8 +19,7 @@ const Users = () => {
     const [filteredUser, setFilteredUser] = useState([]);
     console.log(searchText);
 
-    useEffect(() => {
-      const fetchData = async () =>{
+    const fetchData = async () =>{
         const token = localStorage.getItem('token');
         const newToken = JSON.parse(token);
         try {
@@ -30,7 +29,9 @@ const Users = () => {
         } catch (error) {
           console.error(error.message);
         }
-      }
+      };
+
+    useEffect(() => {
       fetchData();
     }, []);
 
@@ -85,12 +86,14 @@ const Users = () => {
                 <User 
                     key={user.id}
                     {...user}
+                    fetchData={fetchData}
                 />
                 ) :
                 data.map((user) => 
                 <User 
                     key={user.id}
                     {...user}
+                    fetchData={fetchData}
                 />
                 )
                 }

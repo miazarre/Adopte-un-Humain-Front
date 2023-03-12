@@ -8,7 +8,7 @@ import { TfiSave } from "react-icons/tfi";
 
 const baseUrl=process.env.REACT_APP_BASE_URL
 
-const User = ({lastname, firstname, id, role_id}) => {
+const User = ({lastname, firstname, id, role_id, fetchData}) => {
     const [data, setData] = useState([])
     const [role, setRole] = useState ([])
 
@@ -23,20 +23,33 @@ const User = ({lastname, firstname, id, role_id}) => {
     const onDelete = async (id) => {
         await reqInstance.delete(`${baseUrl}/admin/user/${id}`)
         .then (setData(data))
-            window.confirm("Le profil de cet utilisateur a bien été supprimé")
         .catch(error => {
             console.error(error.message);
-    })};
+    })
+         window.confirm("Le profil de cet utilisateur a bien été supprimé")
+        fetchData()
+    };
 
     const onOptionChange = e => {
-        setRole(e.target.value)
-        console.log(setRole)
+        console.log(e.target.value)
+
+        if(e.target.value === 'membre'){
+            setRole(1)
+        }else if(e.target.value === 'admin'){
+            setRole(3)
+        }
+        else if(e.target.value === 'staff'){
+            setRole(2)
+        }
+
     }
 
     const onPatch = async (id) => {
-        try {               
+        try {     
+            
+            console.log(role)
             const response = await axios.patch(`${baseUrl}/admin/user/${id}`, {
-               role : role,
+               role_id : role,
             },
             { 
                 headers: {
@@ -67,10 +80,10 @@ const User = ({lastname, firstname, id, role_id}) => {
             <td>{firstname}</td>
             <td>
                 <label for="role-selector" className='user-select'>{newRole}</label>
-                <select id="role-selector">
-                    <option value="membre" onChange={onOptionChange}>membre</option>
-                    <option value="staff" onChange={onOptionChange}>staff</option>
-                    <option value="admin" onChange={onOptionChange}>admin</option>
+                <select onChange={onOptionChange} id="role-selector">
+                    <option value="membre" >membre</option>
+                    <option value="staff" >staff</option>
+                    <option value="admin">admin</option>
                 </select>
 
                 <TfiSave 

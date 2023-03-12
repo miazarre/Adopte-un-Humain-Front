@@ -98,6 +98,12 @@
             color: $dark-color;
         }
 
+        svg{
+            &:hover{
+                cursor: pointer;
+            }
+        }
+
         /* From uiverse.io by @satyamchaudharydev */
         &-form{
             --timing: 0.3s;

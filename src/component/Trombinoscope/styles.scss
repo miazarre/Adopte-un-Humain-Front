@@ -1,20 +1,19 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
-.trombinoscope{
-    margin-top: 10vh ;
-    padding-bottom: 10vh;    
-    background: linear-gradient(v.$white, v.$primary-color);
-    min-height: 76vh;
-    
-    .animal-card__container{
-        width: 80%;
-        margin: auto;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        gap: 3vw;
-    
-    }
+.trombinoscope {
+  margin-top: 10vh;
+  padding-bottom: 10vh;
+  background: linear-gradient(v.$white, v.$primary-color);
+  min-height: 76vh;
+
+  .animal-card__container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3vw;
+  }
 }

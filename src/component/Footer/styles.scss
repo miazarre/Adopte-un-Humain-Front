@@ -1,22 +1,22 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
-.footer{
-    &__container{
-        z-index: 3 !important;
-        height: 10vh;
-        height: 7vh;
-        width: 100%;
-        box-shadow: 1px 1px 40px rgba(v.$black, 0.1);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-        font-family: $global-font;
-        background-color: v.$white;
+.footer {
+  &__container {
+    z-index: 3 !important;
+    height: 10vh;
+    height: 7vh;
+    width: 100%;
+    box-shadow: 1px 1px 40px rgba(v.$black, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    font-family: $global-font;
+    background-color: v.$white;
 
-        &--icons-div--icon{
-            margin-right: 20px;
-        }
+    &--icons-div--icon {
+      margin-right: 20px;
     }
+  }
 }

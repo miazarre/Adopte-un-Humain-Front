@@ -1,11 +1,11 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
 .input-container {
   display: flex;
 
   & input {
-    font-family: v.$global-font ;
+    font-family: v.$global-font;
     font-size: 1rem;
     display: block;
     margin: 2rem auto;
@@ -20,7 +20,7 @@
   }
 
   & label {
-    font-family: v.$global-font ;
+    font-family: v.$global-font;
     font-size: 1rem;
     display: block;
   }
@@ -32,15 +32,15 @@ h1 {
 }
 
 button {
-  @include button; 
-  font-family: v.$global-font ;
+  @include button;
+  font-family: v.$global-font;
   display: block;
   margin: 1rem auto;
   padding: 1rem;
 }
 
 input {
-    margin: 0.4rem;
+  margin: 0.4rem;
 }
 
 .categories {
@@ -98,119 +98,116 @@ input {
   font-size: 1.25rem;
 }
 
-.textareas{
+.textareas {
   display: flex;
   align-items: center;
   justify-content: space-around;
   margin-bottom: 1rem;
 }
 
-.input-label{
+.input-label {
   display: flex;
   justify-content: center;
-
 }
 
-.informations-date{
+.informations-date {
   justify-content: center;
   align-items: center;
 }
 
-.textareas-label{
+.textareas-label {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-.addanimal_container{
+.addanimal_container {
   font-size: 1.3rem;
-    &-input {
-      font-family: v.$global-font ;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
+  &-input {
+    font-family: v.$global-font;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &_textareas {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+
+    &-detail {
       display: flex;
       flex-flow: column wrap;
       justify-content: center;
       align-items: center;
-      gap: 1rem;  
+      gap: 1rem;
     }
+  }
 
-    &_textareas{
-      margin-top: 2rem;
-      margin-bottom: 1rem;
+  &_photos {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    &-addphotos {
+    }
+  }
+
+  &_categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+
+    &_category {
       display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-around;
-      align-items: center;
-      gap: 1rem; 
+      flex-direction: column;
+      padding: 1rem;
+      border: 1px solid transparent;
+      cursor: pointer;
 
-      &-detail{
-        display: flex;
-        flex-flow: column wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
+      &-input {
+        margin-top: 1rem;
+        align-self: center;
+      }
+
+      & input {
+        display: inline-block;
+        margin-right: 0.5rem;
+      }
+
+      & label {
+        font-size: 1.25rem;
+      }
+
+      &:hover {
+        border-color: orange;
+      }
+
+      img {
+        display: inline-block;
+        max-width: 100%;
+      }
+
+      &:not(:first-child) {
+        margin-left: 5rem;
+      }
+
+      &:first-child {
+        margin-left: 1rem;
+      }
+
+      &:last-child {
+        margin-right: 1rem;
       }
     }
-
-    &_photos{
-      display:flex;
-      flex-flow: column wrap;
-      justify-content: center;
-      align-items: center;
-      margin-top: 2rem;
-      &-addphotos{
-
-      }
-    }
-
-    &_categories {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        margin-bottom: 2rem;
-
-        &_category {
-            display: flex;
-            flex-direction: column;
-            padding: 1rem;
-            border: 1px solid transparent;
-            cursor: pointer;
-          
-            &-input {       
-                margin-top: 1rem;      
-                align-self: center;
-            }
-            
-            & input {
-                display: inline-block;
-                margin-right: 0.5rem;
-            }
-
-            & label {
-                font-size: 1.25rem;
-            }
-
-            &:hover {
-              border-color: orange;
-            }
-          
-            img {
-              display: inline-block;
-              max-width: 100%;
-            }
-          
-            &:not(:first-child) {
-              margin-left: 5rem;
-            }
-          
-            &:first-child {
-              margin-left: 1rem;
-            }
-          
-
-            &:last-child {
-              margin-right: 1rem;
-            }
-        }
-    }
+  }
 }

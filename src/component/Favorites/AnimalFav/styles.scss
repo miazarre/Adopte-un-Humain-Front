@@ -1,63 +1,58 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
+.fav {
+  &__round {
+    position: relative;
+    transition: all 0.3s;
 
-.fav{
-    &__round{
-
-        position: relative;
-        transition: all 0.3s;
-
-        &:hover {
-            transform: translateY(-25px);
-          }
-
-
-        &--gradient{
-            margin: 1vh auto;
-            padding-top: 1vw;
-            width: 15vw;
-            height: 15vw;
-            border-radius: 50%;
-            background: linear-gradient(v.$light-color, v.$dark-color);
-            filter: drop-shadow(-20px 0 10px rgba(0, 0, 0, 0.1));
-            transition: 0.2s;
-
-            &:hover{
-                cursor: pointer;
-            }
-        }
-
-
-        &--image{
-            margin: auto;
-            width: 13vw;
-            height: 13vw;
-            border-radius: 50%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        &--name{
-            @include smallTitle;
-            position: absolute;
-            background-color: v.$primary-color;
-            color: #fff;
-            padding: 15px 30px;
-            bottom: -80px; left: 50%;
-            white-space: nowrap;
-            transform: translate(-50%, -50px);
-            opacity: 0;
-            transition: all 0.3s;
-
-        }
-
+    &:hover {
+      transform: translateY(-25px);
     }
+
+    &--gradient {
+      margin: 1vh auto;
+      padding-top: 1vw;
+      width: 15vw;
+      height: 15vw;
+      border-radius: 50%;
+      background: linear-gradient(v.$light-color, v.$dark-color);
+      filter: drop-shadow(-20px 0 10px rgba(0, 0, 0, 0.1));
+      transition: 0.2s;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &--image {
+      margin: auto;
+      width: 13vw;
+      height: 13vw;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    &--name {
+      @include smallTitle;
+      position: absolute;
+      background-color: v.$primary-color;
+      color: #fff;
+      padding: 15px 30px;
+      bottom: -80px;
+      left: 50%;
+      white-space: nowrap;
+      transform: translate(-50%, -50px);
+      opacity: 0;
+      transition: all 0.3s;
+    }
+  }
 }
 
 .fav__round .fav__round--gradient:hover + .fav__round--name {
-    opacity: 1;
-    transform: translateX(-50%);
-    box-shadow: 0 10px 20px rgba(86, 86, 198, 0.3);
-  }
+  opacity: 1;
+  transform: translateX(-50%);
+  box-shadow: 0 10px 20px rgba(86, 86, 198, 0.3);
+}

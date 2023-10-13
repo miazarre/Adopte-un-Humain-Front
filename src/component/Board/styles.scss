@@ -1,37 +1,34 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
+.board {
+  &_container {
+    width: 45vw;
+    padding-top: 25vh;
+    padding-bottom: 25vh;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+    justify-content: center;
+    align-items: center;
+    font-family: $global-font;
 
-.board{
+    &_menu {
+      width: 20vw;
+      box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
+      color: v.$black;
+      font-size: x-large;
+      margin: 0;
+      &--icon {
+        padding-right: 1vw;
+      }
 
-    &_container{
-
-        width: 45vw;
-        padding-top: 25vh;
-        padding-bottom: 25vh;
-        margin: auto;
+      span {
         display: flex;
-        flex-wrap: wrap;
-        gap: 2vw;
         justify-content: center;
         align-items: center;
-        font-family: $global-font;
-
-        &_menu{
-            width: 20vw;
-            box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
-            color: v.$black;
-            font-size: x-large;
-            margin: 0;
-            &--icon{
-                padding-right: 1vw;
-            }
-
-            span{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-        }
+      }
     }
+  }
 }

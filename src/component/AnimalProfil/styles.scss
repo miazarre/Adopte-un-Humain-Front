@@ -1,230 +1,222 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
-.animal-profil{
+.animal-profil {
+  &__back {
+    position: absolute;
+    top: 20vh;
+    left: 40px;
+    @include button;
+    span {
+      padding: 0;
+    }
+  }
 
-    &__back{
-        position: absolute;
-        top: 20vh;
-        left: 40px;
-        @include button;
-        span {
-            padding: 0;
-        }
+  &__container {
+    display: flex;
+    justify-content: center;
+    gap: 5vw;
+    min-height: 85vh;
+  }
+
+  &__sending-message {
+    background-color: v.$primary-color;
+    padding: 10px;
+
+    &--cross {
+      color: v.$black;
+      transition: 0.2s;
+      margin-right: 10px;
+
+      &:hover {
+        cursor: pointer;
+        color: v.$white;
+      }
     }
 
-    &__container{
-        display: flex;
-        justify-content: center;
-        gap: 5vw;
-        min-height: 85vh;
-        
+    &--link {
+      border-bottom: 2px solid v.$black;
+      transition: 0.2s;
+      &:hover {
+        border-color: v.$white;
+      }
+    }
+  }
+
+  &__details {
+    width: 30%;
+
+    &--gradient {
+      margin: 5vh auto;
+      padding-top: 1vw;
+      width: 25vw;
+      height: 26vw;
+      background: linear-gradient(v.$light-color, v.$dark-color);
     }
 
-    &__sending-message{
+    &--image {
+      width: 23vw;
+      height: 23vw;
+      background-size: COVER;
+      background-position: center;
+      margin: auto;
+      margin-bottom: 1vh;
+    }
+    .slick-prev:before,
+    .slick-next:before {
+      color: v.$primary-color;
+      font-size: 20px;
+    }
+
+    .slick-dots li button:before {
+      color: v.$white;
+      font-size: 15px;
+      line-height: 20px;
+    }
+
+    .slick-dots li.slick-active button:before {
+      color: v.$secondary-color;
+    }
+  }
+
+  &__title-container {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+
+    &--dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: v.$secondary-color;
+    }
+
+    &--name {
+      @include Title;
+      margin: 5vh 0;
+    }
+
+    &--points {
+      @include smallTitle;
+    }
+
+    &--fav {
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      transition: 0.2s;
+      border-radius: 10px;
+      cursor: pointer;
+      &-added {
+        color: v.$white;
         background-color: v.$primary-color;
-        padding: 10px;
+        border: 2px solid v.$white;
+      }
 
-        &--cross{
-            color: v.$black;
-            transition: 0.2s;
-            margin-right: 10px;
+      &-not-added {
+        color: v.$primary-color;
+        background-color: v.$white;
+        border: 2px solid v.$primary-color;
+      }
+    }
+  }
 
-            &:hover{
-                cursor: pointer;
-                color:v.$white;
-            }
-        }
+  &__description {
+    width: 40%;
+    text-align: justify;
 
-        &--link{
-            border-bottom: 2px solid v.$black;
-            transition: 0.2s;
-            &:hover{
-                border-color: v.$white;
-            }
-        }
+    &--text {
+      p {
+        margin-bottom: 5vh;
+      }
+      & ::first-letter {
+        font-weight: 700;
+      }
     }
 
-    &__details{
-        width: 30%;
-
-        &--gradient{
-        margin: 5vh auto;
-        padding-top: 1vw;
-        width: 25vw;
-        height: 26vw;
-        background: linear-gradient(v.$light-color, v.$dark-color);
-        }
-        
-        &--image{
-            width: 23vw;
-            height: 23vw;
-            background-size: COVER;
-            background-position: center;
-            margin: auto;
-            margin-bottom: 1vh;
-
+    &--button {
+      @include button;
+      margin: 10vh auto;
+      font-size: 1.3em;
+      font-weight: 700;
+      width: 10em;
     }
-         .slick-prev:before, .slick-next:before{
-            color: v.$primary-color;
-            font-size: 20px;
-        }
+  }
 
-        .slick-dots li button:before
-        {
-            color: v.$white;
-            font-size: 15px;
-            line-height: 20px;
-        }
-
-        .slick-dots li.slick-active button:before {
-            color:v.$secondary-color;
-        }
+  &__contact {
+    &--container {
+      display: flex;
+      justify-content: space-between;
+      gap: 50px;
     }
 
-    &__title-container{
+    &--exemple {
+      width: 30vw;
+      font-size: 0.8em;
 
-        display: flex;
-        align-items: center;
-        gap: 1vw;
-
-        &--dot{
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: v.$secondary-color;
-        }
-
-        &--name{
-            @include Title ;
-            margin: 5vh 0;
-        }
-
-        &--points{
-            @include smallTitle;
-        }
-
-        &--fav{
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            transition: 0.2s;
-            border-radius: 10px;
-            cursor: pointer;
-            &-added{
-                color: v.$white;
-                background-color: v.$primary-color;
-                border: 2px solid v.$white;
-            }
-
-            &-not-added{
-                color: v.$primary-color;
-                background-color: v.$white;
-                border: 2px solid v.$primary-color;
-            }
-        }
+      &--title {
+        text-align: center;
+        background-color: rgba(v.$black, 0.1);
+        padding: 5px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+      }
     }
 
-    &__description{
-        width: 40%;
-        text-align: justify;
+    &--textarea {
+      width: 100%;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+      resize: vertical;
+      border: 2px solid v.$primary-color;
+      transition: 0.2s;
 
-        &--text{
-            p{
-                margin-bottom: 5vh;
-            }
-            & ::first-letter{
-                font-weight: 700;
-            }
-        }
-
-        &--button{
-            @include button;
-            margin: 10vh auto;
-            font-size: 1.3em;
-            font-weight: 700;
-            width: 10em;
-        }
+      &:focus {
+        outline: none;
+        border: 2px solid v.$secondary-color;
+      }
     }
 
-    &__contact{
-        
-        &--container{
-            display: flex;
-            justify-content: space-between;
-            gap: 50px;
-            
+    &--errorMessage {
+      background-color: v.$primary-color;
+      padding: 10px;
+      display: flex;
+      gap: 30px;
+      justify-content: space-between;
+      margin-bottom: 20px;
+
+      &--cross {
+        transition: 0.2s;
+        &:hover {
+          color: v.$white;
+          cursor: pointer;
         }
-
-        &--exemple{
-            width: 30vw;
-            font-size: 0.8em;
-
-            &--title{
-                text-align: center;
-                background-color: rgba(v.$black, 0.1);
-                padding: 5px;
-                margin-bottom: 10px;
-                border-radius: 10px;
-            }
-        }
-
-        &--textarea{
-            width: 100%;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 30px;
-            resize:vertical; 
-            border: 2px solid v.$primary-color ;
-            transition: 0.2s;
-
-        &:focus{
-            outline: none;
-            border: 2px solid v.$secondary-color;
-        }
+      }
     }
+  }
 
-    &--errorMessage{
-        background-color: v.$primary-color;
-        padding:10px;
-        display: flex;
-        gap: 30px;
-        justify-content: space-between;
-        margin-bottom: 20px;
+  &__button {
+    @include button;
+    width: 8rem;
 
-        &--cross{
-            transition: 0.2s;
-            &:hover{
-                color: v.$white;
-                cursor: pointer;
-            }
-        }
+    &--container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 7vh;
+
+      p {
+        margin: 10px;
+      }
     }
+    &--cross {
+      @include button;
+      width: 4em;
+      font-weight: 700;
+      position: relative;
     }
-
-    &__button{
-        @include button;
-        width: 8rem;
-        
-
-        &--container{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 7vh;
-
-            p{
-             margin:10px;
-            }
-        }
-        &--cross{
-            @include button;
-            width: 4em;
-            font-weight: 700;
-            position: relative;
-        }
-    }
-
+  }
 }

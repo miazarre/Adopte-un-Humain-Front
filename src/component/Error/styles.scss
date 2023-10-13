@@ -1,25 +1,25 @@
 // @use 'src/styles/vars' as v ;
 // @import 'src/styles/vars';
 
-.error404{
-    display: flex;
-    justify-content: center;
+.error404 {
+  display: flex;
+  justify-content: center;
 
-    &-image{
-        height: 75vh;
-        width: auto;
-        z-index: 1;
+  &-image {
+    height: 75vh;
+    width: auto;
+    z-index: 1;
+  }
+
+  &-text {
+    position: absolute;
+    z-index: 999;
+    color: white;
+    margin-top: 50vh;
+    font-size: xx-large;
+
+    &-board {
+      margin-top: 5vh;
     }
-
-    &-text{
-        position: absolute; 
-        z-index: 999;
-        color: white;
-        margin-top: 50vh;
-        font-size: xx-large;
-
-        &-board{
-            margin-top: 5vh;
-        }
-    }
+  }
 }

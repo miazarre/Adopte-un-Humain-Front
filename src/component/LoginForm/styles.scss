@@ -1,5 +1,5 @@
-@use 'src/styles/vars' as v;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
 .title {
   @include Title;
@@ -16,39 +16,45 @@
   align-items: center;
   flex-direction: column;
 
-  &--boutton{
+  &--boutton {
     @include button;
     margin: auto;
     width: 6em;
   }
 
-  &--message{
-
+  &--message {
     background-color: v.$primary-color;
     padding: 10px;
     display: inline-block;
-    margin: 5vh auto ;
+    margin: 5vh auto;
 
-    &-cross{
+    &-cross {
       color: v.$black;
       cursor: pointer;
       transition: 0.2s;
-      &:hover{
-          color: v.$white;
+      &:hover {
+        color: v.$white;
       }
     }
   }
 
-  &--input{
+  &--input {
     padding: 20rem auto;
-    border-image-source: linear-gradient(-140deg, v.$primary-color, v.$tertiary-color);
+    border-image-source: linear-gradient(
+      -140deg,
+      v.$primary-color,
+      v.$tertiary-color
+    );
     border-width: 3px;
     border-image-slice: 1;
     transition: 0.2s;
 
-    &:focus{
-        border-image-source: linear-gradient(-140deg, v.$dark-color, v.$secondary-color);
+    &:focus {
+      border-image-source: linear-gradient(
+        -140deg,
+        v.$dark-color,
+        v.$secondary-color
+      );
     }
-
-}
+  }
 }

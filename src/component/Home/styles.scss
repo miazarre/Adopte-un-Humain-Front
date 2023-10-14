@@ -1,228 +1,202 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
-.container{
-    margin-top: 10vh ;
-    padding-bottom: 10vh;    
-    min-height: 76vh;
+.container {
+  margin-top: 10vh;
+  padding-bottom: 10vh;
+  min-height: 76vh;
 
+  &--top-part {
+    width: 70vw;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5vw;
 
-    &--top-part{
-        width: 70vw;
-        margin: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5vw;
+    &--button {
+      @include button;
+      margin: 60px auto;
+      font-weight: 700;
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    h1 {
+      display: inline-block;
+      margin: auto;
+      font-size: 3em;
+      text-transform: uppercase;
+      font-family: "Arapey";
+      font-weight: 700;
+      background: linear-gradient(to right, v.$tertiary-color, v.$dark-color);
+      background-size:
+        97% 5px,
+        0 10px;
+      background-position:
+        100% 100%,
+        0 100%;
+      background-repeat: no-repeat;
+    }
+    p {
+      font-family: "Alice";
+      font-size: 1.3em;
+      text-align: justify;
+    }
+  }
 
-        &--button{
-            @include button;
-            margin: 60px auto ;
-            font-weight: 700;
-        }
-        div{
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-        }
-        h1{
-            display: inline-block;
-            margin: auto;
-            font-size: 3em;
-            text-transform: uppercase;
-            font-family: 'Arapey';
-            font-weight: 700;
-            background:
-                linear-gradient(
-                    to right,
-                    v.$tertiary-color,
-                    v.$dark-color
+  &--animal_profiles {
+    padding: 5vh;
+    background: linear-gradient(to right, v.$light-color, v.$dark-color);
+    background-size:
+      60% 5px,
+      0 10px;
+    background-position:
+      50% 0,
+      0 0;
+    background-repeat: no-repeat;
 
-                );
-          background-size: 97% 5px, 0 10px;
-          background-position: 100% 100%, 0 100%;
-          background-repeat: no-repeat;
-        }
-        p{
-            font-family: 'Alice';
-            font-size: 1.3em;
-            text-align: justify;
-        }
-
-
+    h3 {
+      @include smallTitle;
+      text-transform: uppercase;
+      font-size: 1.4em;
+      margin: auto;
+      margin-bottom: 5vh;
+      text-align: center;
+      font-weight: 700;
     }
 
-    &--animal_profiles{
+    &--card {
+      padding: 20px;
+      box-shadow: 1px 1px 30px rgba(v.$black, 0.3);
+      transition: 0.2s;
+      border-radius: 30px 0 30px 0;
 
-        padding: 5vh;
-        background:
-        linear-gradient(
-            to right,
-            v.$light-color,
-            v.$dark-color
-
-        );
-        background-size: 60% 5px, 0 10px;
-        background-position: 50% 0, 0 0;
-        background-repeat: no-repeat;
-
-        h3{
-            @include smallTitle;
-            text-transform: uppercase;
-            font-size: 1.4em;
-            margin: auto;
-            margin-bottom: 5vh;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        &--card {
-            padding: 20px;
-            box-shadow: 1px 1px 30px rgba(v.$black, 0.3);
-            transition: 0.2s;
-            border-radius: 30px 0 30px 0;
-
-            &:hover{
-                transform: scale(1.1);
-            }
-        }
-
-        &--image{
-            width: 10vw;
-            height: 10vw;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        &--name{
-            @include smallTitle;
-            text-align: center;
-            margin-top: 10px;
-        }
-
+      &:hover {
+        transform: scale(1.1);
+      }
     }
 
-    .profiles{
-        width: 60vw;
-        margin: auto;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        
+    &--image {
+      width: 10vw;
+      height: 10vw;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
     }
 
+    &--name {
+      @include smallTitle;
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
 
-    &--concept{
-        
-        margin: 2vh auto;
-        text-align: justify;
-        padding-top: 20vh;
-        background:
-        linear-gradient(
-            to right,
-            v.$light-color,
-            v.$dark-color
+  .profiles {
+    width: 60vw;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
 
-        );
-        background-size: 60% 5px, 0 10px;
-        background-position: 50% 0, 0 0;
-        background-repeat: no-repeat;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5vw;
-        justify-content: center;
-        align-items: baseline;
+  &--concept {
+    margin: 2vh auto;
+    text-align: justify;
+    padding-top: 20vh;
+    background: linear-gradient(to right, v.$light-color, v.$dark-color);
+    background-size:
+      60% 5px,
+      0 10px;
+    background-position:
+      50% 0,
+      0 0;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5vw;
+    justify-content: center;
+    align-items: baseline;
 
-        div{
-            width: 35vw;
-            font-size: 1.2em;
-            font-family: 'Alice';
-            line-height: 35px;
-        }
-
-        &--icons{
-            background-color: v.$primary-color;
-            color: v.$white;
-            padding: 5px;
-            margin-right: 10px;
-            border-radius: 50%;
-        }
-
+    div {
+      width: 35vw;
+      font-size: 1.2em;
+      font-family: "Alice";
+      line-height: 35px;
     }
 
+    &--icons {
+      background-color: v.$primary-color;
+      color: v.$white;
+      padding: 5px;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+  }
 }
 
-
 @media (max-width: $small-screen) {
-    .container{
-        margin-top: 2vh;
-        &--top-part{
-            flex-direction: column-reverse;
-        }
+  .container {
+    margin-top: 2vh;
+    &--top-part {
+      flex-direction: column-reverse;
+    }
 
-        &--animal_profiles{
+    &--animal_profiles {
+      &--image {
+        width: 50vw;
+        height: 50vw;
+      }
+    }
 
-            &--image{
+    .profiles {
+      flex-wrap: wrap;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+    }
 
-                width: 50vw;
-                height: 50vw;
-            }
-
-        }
-
-        .profiles{
-            flex-wrap: wrap;
-            width: 100%;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-        }
-
-
-        &--concept{
-            padding-top: 5vh;
-            flex-direction: column;
-            gap: 60px;
-            div{
-                width: 85%;
-                margin: auto;
-            }
-        }
+    &--concept {
+      padding-top: 5vh;
+      flex-direction: column;
+      gap: 60px;
+      div {
+        width: 85%;
+        margin: auto;
+      }
     }
   }
-  
-  // styles pour les écrans entre 576px et 768px (tablettes)
-  @media (min-width: $small-screen) and (max-width: $medium-screen) {
-    .container{
+}
 
-        &--animal_profiles{
+// styles pour les écrans entre 576px et 768px (tablettes)
+@media (min-width: $small-screen) and (max-width: $medium-screen) {
+  .container {
+    &--animal_profiles {
+      &--image {
+        width: 30vw;
+        height: 30vw;
+      }
+    }
 
-            &--image{
+    .profiles {
+      flex-wrap: wrap;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+    }
 
-                width: 30vw;
-                height: 30vw;
-            }
-
-        }
-
-        .profiles{
-            flex-wrap: wrap;
-            width: 100%;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-        }
-
-
-        &--concept{
-            padding-top: 5vh;
-            flex-direction: column;
-            gap: 60px;
-            div{
-                width: 85%;
-                margin: auto;
-            }
-        }
+    &--concept {
+      padding-top: 5vh;
+      flex-direction: column;
+      gap: 60px;
+      div {
+        width: 85%;
+        margin: auto;
+      }
     }
   }
+}

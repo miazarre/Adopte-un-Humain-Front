@@ -1,51 +1,47 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
-
-.header{
-
-// Global Header container
-  &__container{
+.header {
+  // Global Header container
+  &__container {
     z-index: 3 !important;
     box-shadow: 1px 1px 40px rgba(v.$black, 0.1);
     padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: $global-font; 
-
+    font-family: $global-font;
   }
 
-  &__logo{
+  &__logo {
     width: 100px;
     margin: 0;
   }
 
-  &__logo{
+  &__logo {
     width: 100px;
     margin: 0;
   }
 
-// Burger Menu style with React-burger-menu properties
-  &__menu{
-
-    .bm{
-
-      &-burger{
+  // Burger Menu style with React-burger-menu properties
+  &__menu {
+    .bm {
+      &-burger {
         &-button {
-        position: absolute;
-        width: 40px;
-        height: 30px;
-        left: 40px;
-        top: 40px;
+          position: absolute;
+          width: 40px;
+          height: 30px;
+          left: 40px;
+          top: 40px;
         }
-    
+
         &-bars {
           background: v.$black;
           transition: 0.2s;
           &-hover {
             background: $primary-color;
-          }}
+          }
+        }
       }
       &-cross {
         background: v.$primary-color;
@@ -55,58 +51,58 @@
         padding: 10px;
         font-size: 1.5em;
 
-        &-wrap{
+        &-wrap {
           top: 0;
           left: 0;
         }
 
-        .item-link{
+        .item-link {
+          padding: 15px;
+          margin-right: 10%;
+          display: block;
 
-        padding: 15px;
-        margin-right: 10%;
-        display: block;
+          &--text {
+            background: linear-gradient(
+                to right,
+                v.$primary-color,
+                v.$tertiary-color
+              ),
+              linear-gradient(to right, v.$secondary-color, v.$dark-color);
 
-        &--text{
-          background:
-          linear-gradient(
-            to right,
-            v.$primary-color,
-            v.$tertiary-color
-          ),
-          linear-gradient(
-            to right,
-            v.$secondary-color,
-            v.$dark-color
-        );
-
-          background-size: 100% 4px, 0 4px;
-          background-position: 100% 100%, 0 100%;
-          background-repeat: no-repeat;
-          transition: background-size 0.2s ease-in !important;
-          &:hover {
-            background-size: 0 4px, 100% 4px;
+            background-size:
+              100% 4px,
+              0 4px;
+            background-position:
+              100% 100%,
+              0 100%;
+            background-repeat: no-repeat;
+            transition: background-size 0.2s ease-in !important;
+            &:hover {
+              background-size:
+                0 4px,
+                100% 4px;
+            }
           }
-        }
 
-          &--social{
+          &--social {
             margin-top: 20vh;
             margin-right: 0;
 
-            *{
+            * {
               color: v.$black;
               transition: 0.2s;
-              &:hover{
+              &:hover {
                 color: v.$primary-color;
                 cursor: pointer;
               }
             }
           }
 
-          &--title{
-            padding-bottom: 5vh
+          &--title {
+            padding-bottom: 5vh;
           }
 
-          &--deco{
+          &--deco {
             @include button;
             margin: 40px;
           }
@@ -115,44 +111,42 @@
       &-morph-shape {
         fill: v.$white;
       }
-      &-overlay{
+      &-overlay {
         top: 0;
         left: 0;
       }
-    }}
+    }
+  }
 
   .title {
-  @include Title;
-}
+    @include Title;
+  }
 
-
-// Right button on header, connexion or img if you are connected or not
-  &__right-button{
+  // Right button on header, connexion or img if you are connected or not
+  &__right-button {
     @include smallTitle;
     position: absolute;
     top: 40px;
 
     right: 30px;
-    &__login{
+    &__login {
       padding: 1rem;
       transition: 0.2s;
-          &:hover {
-            background-color: v.$tertiary-color;
-          }
+      &:hover {
+        background-color: v.$tertiary-color;
+      }
     }
   }
 }
 
-
 @media (max-width: $small-screen) {
-
-  .header{
-    &__container{
+  .header {
+    &__container {
       flex-direction: column;
       gap: 10px;
     }
 
-    &__right-button{
+    &__right-button {
       all: unset;
       @include smallTitle;
     }

@@ -1,262 +1,257 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
+.profil-user {
+  &__modal {
+    background-color: rgba(v.$black, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 
-.profil-user{
-
-    &__modal{
-        background-color: rgba(v.$black, 0.7);
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-
-        &--color{
-            background-color: v.$primary-color;
-            position: fixed;
-            top: 3vh;
-            left: 36vw;
-            padding: 20px;
-            display: flex;
-        }
-
-        &--boutton{
-            @include button;
-        }
+    &--color {
+      background-color: v.$primary-color;
+      position: fixed;
+      top: 3vh;
+      left: 36vw;
+      padding: 20px;
+      display: flex;
     }
 
-    &__delete{
-        background-color: v.$secondary-color;
-        padding: 5px;
-        color: v.$white;
-        border-radius: 5px;
-        cursor:pointer;
+    &--boutton {
+      @include button;
     }
-    
-    &__container{
-        display: flex;
-        justify-content: end;
-        gap: 15vw;
-        min-height: 76vh;
-    }
+  }
 
-    &__details{
-        position: fixed;
-        left: 5vw;
-        top: 20vh;
-        height: 45vh;
-        width: 20vw;
-        min-width: 250px;
-        box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
-        padding: 30px;
+  &__delete {
+    background-color: v.$secondary-color;
+    padding: 5px;
+    color: v.$white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 
-        p{
-            text-align: center;
-            font-size: 1.2em;
-            margin: 1vh;
-            display: flex;
-            justify-content: baseline;
-            align-items: center;
-            gap: 20px;
+  &__container {
+    display: flex;
+    justify-content: end;
+    gap: 15vw;
+    min-height: 76vh;
+  }
 
-        }
+  &__details {
+    position: fixed;
+    left: 5vw;
+    top: 20vh;
+    height: 45vh;
+    width: 20vw;
+    min-width: 250px;
+    box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
+    padding: 30px;
 
-        .center{
-            justify-content: center
-        }
-
-        &--name{
-            @include smallTitle;
-            text-align: center;
-            padding: 30px 0;
-        }
+    p {
+      text-align: center;
+      font-size: 1.2em;
+      margin: 1vh;
+      display: flex;
+      justify-content: baseline;
+      align-items: center;
+      gap: 20px;
     }
 
-
-    &__form{
-        form{
-            margin-top: 5vh;
-            margin-left: 35vw;
-            display: flex;
-            flex-direction: column;
-            &:last-child{
-                margin-bottom: 5vh;
-            }
-        }
-
-        &--error_message{
-            background-color: v.$primary-color;
-            color: v.$white;
-            text-align: center;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            
-            &--cross{
-                color: v.$black;
-                cursor: pointer;
-                transition: 0.2s;
-                &:hover{
-                    color: v.$white;
-                }
-            }
-        }
-
-        &--input{
-            margin: 0;
-            padding: 10px;
-            border-image-source: linear-gradient(-140deg, v.$primary-color, v.$tertiary-color);
-            border-width: 3px;
-            border-image-slice: 1;
-            transition: 0.2s;
-            &:focus{
-                border-image-source: linear-gradient(-140deg, v.$dark-color, v.$secondary-color);
-            }
-        }
-
-        &--label{
-            background-color: v.$primary-color;
-            color: v.$white;
-            font-weight: 700;
-            padding: 5px;
-            margin: auto;
-            position: relative;
-            top: -50px;
-            left: 0;
-            font-size: 0.8em;
-            cursor: default;
-        }
-
-        &--section{
-            @include smallTitle;
-            text-align: center;
-            margin: 40px;
-        }
-
-        &--button{
-            @include button;
-            font-family: 'Antic Didone';
-            font-weight: 700;
-            margin: 40px auto;
-        }
+    .center {
+      justify-content: center;
     }
 
-    &__tips{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        background-color: v.$primary-color;
-        border-radius: 10px;
-        height: 100%;
-        width: 20%;
-        margin: 10vh 3vw;
-        padding:1vw;
-        font-family: v.$global-font;
-        font-weight: 700;
-
-        &--light{
-            color: v.$white;
-            margin: auto;
-        }
-
-        &--link{
-            border-bottom: 3px solid v.$dark-color;
-            transition: 0.2s;
-            &:hover{
-                border-bottom: 3px solid v.$light-color;
-            }
-        }
+    &--name {
+      @include smallTitle;
+      text-align: center;
+      padding: 30px 0;
     }
+  }
+
+  &__form {
+    form {
+      margin-top: 5vh;
+      margin-left: 35vw;
+      display: flex;
+      flex-direction: column;
+      &:last-child {
+        margin-bottom: 5vh;
+      }
+    }
+
+    &--error_message {
+      background-color: v.$primary-color;
+      color: v.$white;
+      text-align: center;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+
+      &--cross {
+        color: v.$black;
+        cursor: pointer;
+        transition: 0.2s;
+        &:hover {
+          color: v.$white;
+        }
+      }
+    }
+
+    &--input {
+      margin: 0;
+      padding: 10px;
+      border-image-source: linear-gradient(
+        -140deg,
+        v.$primary-color,
+        v.$tertiary-color
+      );
+      border-width: 3px;
+      border-image-slice: 1;
+      transition: 0.2s;
+      &:focus {
+        border-image-source: linear-gradient(
+          -140deg,
+          v.$dark-color,
+          v.$secondary-color
+        );
+      }
+    }
+
+    &--label {
+      background-color: v.$primary-color;
+      color: v.$white;
+      font-weight: 700;
+      padding: 5px;
+      margin: auto;
+      position: relative;
+      top: -50px;
+      left: 0;
+      font-size: 0.8em;
+      cursor: default;
+    }
+
+    &--section {
+      @include smallTitle;
+      text-align: center;
+      margin: 40px;
+    }
+
+    &--button {
+      @include button;
+      font-family: "Antic Didone";
+      font-weight: 700;
+      margin: 40px auto;
+    }
+  }
+
+  &__tips {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: v.$primary-color;
+    border-radius: 10px;
+    height: 100%;
+    width: 20%;
+    margin: 10vh 3vw;
+    padding: 1vw;
+    font-family: v.$global-font;
+    font-weight: 700;
+
+    &--light {
+      color: v.$white;
+      margin: auto;
+    }
+
+    &--link {
+      border-bottom: 3px solid v.$dark-color;
+      transition: 0.2s;
+      &:hover {
+        border-bottom: 3px solid v.$light-color;
+      }
+    }
+  }
 }
 
 .profil-user__form--input:focus + .profil-user__form--label {
-    background-color: rgb(118, 93, 141);
-  }     
+  background-color: rgb(118, 93, 141);
+}
 
+@media (max-width: $small-screen) {
+  .profil-user {
+    &__details {
+      position: absolute;
+      top: 20vh;
 
-  @media (max-width: $small-screen) {
-    .profil-user{
+      left: 10vw;
+      height: auto;
+      width: 80vw;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 30px;
+      gap: 10px;
 
-        &__details{
-            position: absolute;
-            top: 20vh;
+      p {
+        margin: 0;
+        padding: 0;
+      }
+    }
 
-            left: 10vw;
-            height: auto;
-            width: 80vw;
-            display: flex;
-            flex-wrap: wrap;
-            padding: 30px;
-            gap: 10px;
+    &__container {
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: center;
+      padding-top: 30vh;
 
-            p{
-                margin: 0;
-                padding: 0;
-            }
-        }
+      gap: 0;
+    }
 
+    &__tips {
+      width: 80%;
+    }
 
-        &__container{
-            flex-direction: column-reverse;
-            align-items: center;
-            justify-content:center ;
-            padding-top: 30vh;
-
-            gap: 0;
-        }
-
-        &__tips{
-            width: 80%;
-        }
-
-        &__form{
-            margin: 0;
-            padding: 0;
-            form{
-                margin: 0;
-                padding: 0;
-                width: 90vw;
-            }
-        }
-
-
+    &__form {
+      margin: 0;
+      padding: 0;
+      form {
+        margin: 0;
+        padding: 0;
+        width: 90vw;
+      }
     }
   }
-  
-  // styles pour les écrans entre 576px et 768px (tablettes)
-  @media (min-width: $small-screen) and (max-width: $medium-screen) {
-    .profil-user{
+}
 
-        &__details{
-            position: absolute;
-            top: 10vh;
-            left: 10vw;
-            height: auto;
-            width: 80vw;
-            display: flex;
-            flex-wrap: wrap;
-            padding: 30px;
-            gap: 10px;
+// styles pour les écrans entre 576px et 768px (tablettes)
+@media (min-width: $small-screen) and (max-width: $medium-screen) {
+  .profil-user {
+    &__details {
+      position: absolute;
+      top: 10vh;
+      left: 10vw;
+      height: auto;
+      width: 80vw;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 30px;
+      gap: 10px;
 
-            p{
-                margin: 0;
-                padding: 0;
-            }
-        }
+      p {
+        margin: 0;
+        padding: 0;
+      }
+    }
 
+    &__form {
+      margin-top: 20vh;
+    }
 
-        &__form{
-            margin-top: 20vh;
-        }
-
-        &__tips{
-            margin-top: 30vh;
-            margin-left: 0;
-        }
-
-
+    &__tips {
+      margin-top: 30vh;
+      margin-left: 0;
     }
   }
+}

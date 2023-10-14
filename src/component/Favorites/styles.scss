@@ -1,47 +1,43 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
+.favorites-page {
+  &__container {
+    min-height: 85vh;
+    padding: 10vh 0;
+  }
 
-.favorites-page{
-    
-    &__container{
-        min-height: 85vh;
-        padding: 10vh 0;
+  &__fav {
+    &--container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 5vw;
+      width: 80%;
+      margin: auto;
     }
+  }
 
-    &__fav{
-        
-        &--container{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 5vw;
-            width: 80%;
-            margin: auto;
-        }
+  &__message {
+    background-color: v.$primary-color;
+    padding: 10px;
+
+    .cross {
+      color: v.$black;
+      transition: 0.2s;
+
+      &:hover {
+        color: v.$white;
+      }
     }
-
-    &__message{
-        background-color: v.$primary-color;
-        padding: 10px;
-
-        .cross{
-            color: v.$black;
-            transition: 0.2s;
-
-            &:hover{
-                color: v.$white;
-            }
-        }
-
-    }
+  }
 }
 
 @media (max-width: $small-screen) {
-    // styles ici
-  }
-  
-  // styles pour les écrans entre 576px et 768px (tablettes)
-  @media (min-width: $small-screen) and (max-width: $medium-screen) {
-    // styles ici
-  }
+  // styles ici
+}
+
+// styles pour les écrans entre 576px et 768px (tablettes)
+@media (min-width: $small-screen) and (max-width: $medium-screen) {
+  // styles ici
+}

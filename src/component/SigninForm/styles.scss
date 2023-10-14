@@ -1,36 +1,36 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
 .input-container {
   width: 100%;
 }
 
 .input-container input {
-    font-family: v.$global-font ;
-    font-size: 1rem;
-    display: block;
-    justify-content:center;
-    margin: 2rem auto;
-    padding: 1rem;
-    border-radius: 10px;
+  font-family: v.$global-font;
+  font-size: 1rem;
+  display: block;
+  justify-content: center;
+  margin: 2rem auto;
+  padding: 1rem;
+  border-radius: 10px;
 
-    button {
-      @include button;
-    }   
-
-    .title {
-      @include Title;
-    } 
-
-    form {
-      justify-content: center;
-    }
+  button {
+    @include button;
   }
+
+  .title {
+    @include Title;
+  }
+
+  form {
+    justify-content: center;
+  }
+}
 
 .categories {
   display: flex;
   flex-direction: row;
-  justify-content:space-between;
+  justify-content: space-between;
   border-radius: 10px;
 }
 
@@ -77,12 +77,13 @@
 
 .category-input label {
   padding: 2rem;
-  font-size: 1.5rem;}
+  font-size: 1.5rem;
+}
 
-.validation{
+.validation {
   @include button;
   display: inline-block;
-  span{
+  span {
     display: block;
   }
 }

@@ -1,105 +1,102 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
-.adoptionsdetail{   
-    min-height: 65vh;
+.adoptionsdetail {
+  min-height: 65vh;
+  display: flex;
+  justify-content: center;
+  gap: 5vw;
+  margin: 10vh auto;
+
+  &--message {
+    background-color: v.$primary-color;
+    padding: 10px;
+    position: fixed;
+  }
+
+  &__animal-details {
+    box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
+    padding: 30px;
     display: flex;
-    justify-content: center;
-    gap: 5vw;
-    margin: 10vh auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 
-    &--message{
-        background-color: v.$primary-color;
-        padding: 10px;
-        position: fixed;
+    &--name {
+      @include smallTitle;
+      text-align: center;
+      margin-bottom: 20px;
     }
+  }
 
-    &__animal-details{
-        box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
-        padding: 30px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
+  &__image {
+    width: 25vw;
+    height: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 
-        &--name{
-            @include smallTitle;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+  &__tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 25vw;
+
+    &--tags {
+      background-color: v.$primary-color;
+      padding: 10px;
+      border-radius: 30px;
     }
+  }
 
-    &__image{
-        width: 25vw;
-        height: 50%;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
+  &__adoptions-list {
+    &--container {
+      box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
+      padding: 30px;
     }
+  }
 
-    &__tags-container{
-
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        width: 25vw;
-
-        &--tags{
-            background-color: v.$primary-color;
-            padding: 10px;
-            border-radius: 30px;
-        }
-    }
-
-    &__adoptions-list{
-        
-        &--container{
-        box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
-        padding: 30px;
-    }
-    }
-
-    h2{
-        @include smallTitle;
-        margin-bottom: 5vh;
-        text-align: center;
-    }
+  h2 {
+    @include smallTitle;
+    margin-bottom: 5vh;
+    text-align: center;
+  }
 }
 
-  // styles pour les petits écrans (smartphone)
+// styles pour les petits écrans (smartphone)
 
 @media (max-width: $small-screen) {
+  .adoptionsdetail {
+    flex-direction: column;
+    width: 90%;
+    &__image {
+      width: 50vw;
+      height: 50vw;
+    }
 
-    .adoptionsdetail{
-        flex-direction: column;
-        width: 90%;
-        &__image{
-            width: 50vw;
-            height: 50vw;
-        }
-
-        &__adoptions-list{
-            &--container{
-                padding: 5px;
-            }
-        }
+    &__adoptions-list {
+      &--container {
+        padding: 5px;
+      }
     }
   }
-  
-  // styles pour les écrans entre 576px et 768px (tablettes)
-  @media (min-width: $small-screen) and (max-width: $medium-screen) {
-    .adoptionsdetail{
-        flex-direction: column;
-        width: 90%;
-        &__image{
-            width: 50vw;
-            height: 50vw;
-        }
+}
 
-        &__adoptions-list{
-            &--container{
-                padding: 15px;
-            }
-        }
+// styles pour les écrans entre 576px et 768px (tablettes)
+@media (min-width: $small-screen) and (max-width: $medium-screen) {
+  .adoptionsdetail {
+    flex-direction: column;
+    width: 90%;
+    &__image {
+      width: 50vw;
+      height: 50vw;
+    }
+
+    &__adoptions-list {
+      &--container {
+        padding: 15px;
+      }
     }
   }
+}

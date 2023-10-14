@@ -1,160 +1,149 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
+.preference {
+  &__page-container {
+    padding: 10vh;
+    display: flex;
+    gap: 10vw;
+    min-height: 81vh;
+  }
 
-.preference{
-    &__page-container{
-        padding: 10vh;
-        display: flex;
-        gap: 10vw;
-        min-height: 81vh;
+  &__link {
+    margin-top: 40px;
+    display: inline-block;
+    font-weight: 700;
+    padding: 10px;
+    background: linear-gradient(to right, v.$tertiary-color, v.$dark-color);
+    background-size:
+      100% 5px,
+      0 10px;
+    background-position:
+      100% 100%,
+      0 100%;
+    background-repeat: no-repeat;
+  }
+
+  &__message {
+    background-color: v.$primary-color;
+    margin: 30px auto;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__actual-profil {
+    box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
+    padding: 40px;
+    width: 40vw;
+    text-align: center;
+
+    h1 {
+      @include Title;
+      font-size: 2em;
     }
 
-    &__link{
-        margin-top: 40px;
-        display: inline-block;
-        font-weight: 700;
-        padding: 10px;
-        background:
-        linear-gradient(
-            to right,
-            v.$tertiary-color,
-            v.$dark-color
-
-        );
-        background-size: 100% 5px, 0 10px;
-        background-position: 100% 100%, 0 100%;
-        background-repeat: no-repeat;
+    &--title {
+      text-align: center;
+      @include smallTitle;
+      margin: 30px;
     }
 
-    &__message{
+    &--tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      span {
+        border-radius: 20px;
         background-color: v.$primary-color;
-        margin: 30px auto;
-        padding: 10px;
+        color: v.$white;
+        font-weight: 700;
+        padding: 8px;
+        margin: 5px;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
+        gap: 10px;
+
+        .cross {
+          color: v.$black;
+          transition: 0.2s;
+          &:hover {
+            color: v.$white;
+          }
+        }
+      }
+    }
+  }
+
+  &__form-container {
+    padding: 30px;
+    width: 60%;
+
+    h2 {
+      @include smallTitle;
+      text-align: center;
+      margin-bottom: 5vh;
     }
 
-    &__actual-profil{
-        
-        box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
-        padding: 40px;
-        width: 40vw;
-        text-align: center;
-
-        h1{
-            @include Title;
-            font-size: 2em;
-        }
-
-        &--title{
-            text-align: center;
-            @include smallTitle;
-            margin: 30px ;
-        }
-
-        &--tags{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-
-            span{
-                border-radius: 20px;
-                background-color: v.$primary-color;
-                color: v.$white;
-                font-weight: 700;
-                padding: 8px;
-                margin: 5px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-
-                .cross{
-                    color: v.$black;
-                    transition: 0.2s;
-                    &:hover{
-                        color: v.$white;
-                    }
-                }
-            }
-        }
+    &--formdiv {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    &--button {
+      @include button;
+      margin: 5vh auto;
+      font-weight: 700;
     }
 
-    &__form-container{
-        padding: 30px;
-        width: 60%;
-
-        h2{
-            @include smallTitle;
-            text-align: center;
-            margin-bottom: 5vh;
-        }
-        
-        &--formdiv{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between
-        }
-        &--button{
-            @include button;
-            margin: 5vh auto;
-            font-weight: 700;
-        }
-
-        &--select{
-            width: 40%;
-            margin-bottom: 20px;
-        }
-
-
+    &--select {
+      width: 40%;
+      margin-bottom: 20px;
     }
+  }
 }
 
 @media (max-width: $small-screen) {
-    .preference{
-        &__page-container{
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-    
-        &__actual-profil{
-            width:100%;
-        }
-    
-        &__form-container{
-            width: 100%;
-
-            &--select{
-                width: 100%;
-            }
-        }
-    
-    
-    }  
-  }
-  
-  // styles pour les écrans entre 576px et 768px (tablettes)
-  @media (min-width: $small-screen) and (max-width: $medium-screen) {
-.preference{
-    &__page-container{
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+  .preference {
+    &__page-container {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
 
-    &__actual-profil{
-        width:100%;
+    &__actual-profil {
+      width: 100%;
     }
 
-    &__form-container{
+    &__form-container {
+      width: 100%;
+
+      &--select {
         width: 100%;
+      }
+    }
+  }
+}
+
+// styles pour les écrans entre 576px et 768px (tablettes)
+@media (min-width: $small-screen) and (max-width: $medium-screen) {
+  .preference {
+    &__page-container {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
+    &__actual-profil {
+      width: 100%;
+    }
 
-}  
-
+    &__form-container {
+      width: 100%;
+    }
+  }
 }

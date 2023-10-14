@@ -1,59 +1,51 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
-.trombinoscope{
-    margin-top: 10vh ;
-    padding-bottom: 10vh;    
-    background: linear-gradient(v.$white, v.$primary-color);
-    min-height: 76vh;
-    
-    .animal-card__container{
-        width: 82%;
-        margin: auto;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 3vw;
-    
+.trombinoscope {
+  margin-top: 10vh;
+  padding-bottom: 10vh;
+  background: linear-gradient(v.$white, v.$primary-color);
+  min-height: 76vh;
+
+  .animal-card__container {
+    width: 82%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3vw;
+  }
+
+  &__message {
+    margin: auto;
+    text-align: center;
+    font-family: "Alice";
+
+    &--container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 50px;
     }
+  }
 
-    &__message{
-        margin: auto;
-        text-align: center;
-        font-family: 'Alice';
+  &__boutton {
+    @include button;
+    display: inline-block;
 
-        &--container{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 50px;
-        }
+    span {
+      display: inline-block;
+      margin: auto;
     }
-
-    &__boutton{
-        @include button;
-        display: inline-block;
-
-        span{
-            display: inline-block;
-            margin: auto;
-        }
-    }
+  }
 }
-
 
 // styles pour les écrans de moins de 576px (smartphone)
 @media (max-width: $small-screen) {
-
-    .trombinoscope{
-        .animal-card__container{
-            gap: 10vh;
-        
-        }
+  .trombinoscope {
+    .animal-card__container {
+      gap: 10vh;
     }
-
-
   }
-  
-  
+}

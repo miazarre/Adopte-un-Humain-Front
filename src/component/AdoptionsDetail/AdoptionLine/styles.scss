@@ -1,286 +1,290 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
-.adoptionLine{
-    &__container{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background:linear-gradient(-90deg, v.$primary-color, v.$tertiary-color);
-        padding: 15px;
-        border-radius: 40px;
-        width: 40vw;
-        margin: 20px;
+.adoptionLine {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(-90deg, v.$primary-color, v.$tertiary-color);
+    padding: 15px;
+    border-radius: 40px;
+    width: 40vw;
+    margin: 20px;
 
-        .camembert{
-            width: 50px;
-            height: 50px;
-        }
-
-        
-        .dots{
-            transition: 0.2s;
-            &:hover{
-                color: v.$white;
-            }
-        }
+    .camembert {
+      width: 50px;
+      height: 50px;
     }
 
-    &__user{
-        display: flex;
-        gap: 20px;
-        justify-content: space-between;
-        align-items: center;
+    .dots {
+      transition: 0.2s;
+      &:hover {
+        color: v.$white;
+      }
+    }
+  }
 
+  &__user {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__bigdetails {
+    width: 90vw;
+    height: 70vh;
+    background: linear-gradient(v.$primary-color, v.$tertiary-color);
+    position: fixed;
+    top: 15vh;
+    left: 5vw;
+    padding: 30px;
+
+    .camembert {
+      width: 100px;
+      height: 100px;
+      margin: 20px;
     }
 
-    &__bigdetails{
-        width: 90vw;
-        height: 70vh;
-        background: linear-gradient( v.$primary-color, v.$tertiary-color);
-        position: fixed;
-        top: 15vh;
-        left: 5vw;
+    textarea {
+      width: 100%;
+      height: 80%;
+      resize: none;
+      border-image-source: linear-gradient(
+        -140deg,
+        v.$primary-color,
+        v.$tertiary-color
+      );
+      border-width: 3px;
+      border-image-slice: 1;
+      transition: 0.2s;
+
+      &:focus {
+        outline: none;
+        border-image-source: linear-gradient(
+          -140deg,
+          v.$dark-color,
+          v.$secondary-color
+        );
+      }
+    }
+
+    &--modal {
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: rgba(v.$black, 0.6);
+    }
+
+    &--title {
+      @include smallTitle;
+
+      &--container {
+        display: flex;
+        justify-content: space-between;
+        color: v.$white;
+
+        .cross {
+          transition: 0.2s;
+          &:hover {
+            color: v.$secondary-color;
+          }
+        }
+      }
+    }
+
+    &--body-part {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 10px;
+
+      h3 {
+        @include smallTitle;
+        text-align: center;
+        font-size: 1.1em;
+        margin-bottom: 20px;
+      }
+      &--match {
+        @include smallTitle;
+        font-size: 1em;
+        color: v.$dark-color;
+      }
+      &--user {
+        background-color: v.$white;
+        height: 57vh;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+        padding: 30px 10px;
+        width: 15vw;
+        overflow-y: auto;
+
+        &-name {
+          @include smallTitle;
+          margin-bottom: 30px;
+        }
+      }
+
+      &--address {
+        text-align: center;
+        margin-bottom: 10vh;
+      }
+
+      &--tagslist {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+
+        .tags {
+          background-color: v.$primary-color;
+          padding: 5px;
+          border-radius: 20px;
+          color: v.$white;
+        }
+      }
+
+      img {
+        width: 100px;
+        height: 100px;
+      }
+
+      &--adoption {
+        display: flex;
+        flex-direction: column;
+        text-align: justify;
+        gap: 30px;
+        width: 45vw;
+        height: 57vh;
+        overflow-y: auto;
         padding: 30px;
+        background-color: v.$white;
+      }
+      &--comment {
+        background-color: v.$white;
+        width: 20vw;
+        height: 57vh;
+        padding: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
 
-        .camembert{
-            width: 100px;
-            height: 100px;
-            margin: 20px;
+        p {
+          @include button;
+          display: inline-block;
+
+          span {
+            display: inline-block;
+          }
         }
 
+        select {
+          border-image-source: linear-gradient(
+            -140deg,
+            v.$primary-color,
+            v.$tertiary-color
+          );
+          border-width: 3px;
+          border-image-slice: 1;
+          transition: 0.2s;
+          padding: 5px;
 
-        textarea{
-            width: 100%;
-            height: 80%;
-            resize: none;
-            border-image-source: linear-gradient(-140deg, v.$primary-color, v.$tertiary-color);
-            border-width: 3px;
-            border-image-slice: 1;
-            transition: 0.2s;
-
-            &:focus{
-                outline: none;
-                border-image-source: linear-gradient(-140deg, v.$dark-color, v.$secondary-color);
-            }
-
+          &:focus {
+            outline: none;
+            border-image-source: linear-gradient(
+              -140deg,
+              v.$dark-color,
+              v.$secondary-color
+            );
+          }
         }
-
-        &--modal{
-            width: 100vw;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: rgba(v.$black, 0.6);
-
-        }
-
-        &--title{
-
-            @include smallTitle;    
-
-            &--container{
-                display: flex;
-                justify-content: space-between;
-                color: v.$white;
-
-                .cross{
-                    transition: 0.2s;
-                    &:hover{
-                        color: v.$secondary-color;
-                    }
-                }
-            }
-        }
- 
-        &--body-part{
-
-            display: flex;
-            justify-content: space-between;
-            padding-top: 10px;
-
-            h3{
-                @include smallTitle;
-                text-align: center;
-                font-size: 1.1em;
-                margin-bottom: 20px;
-            }
-            &--match{
-                @include smallTitle;
-                font-size: 1em;
-                color: v.$dark-color;
-            }
-            &--user{
-                background-color: v.$white;
-                height: 57vh;
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                align-items: center;
-                padding: 30px 10px;
-                width: 15vw;
-                overflow-y: auto;
-
-                &-name{
-                    @include smallTitle;
-                    margin-bottom: 30px;
-                }
-            }
-
-            &--address{
-                text-align: center;
-                margin-bottom: 10vh;
-            }
-
-            &--tagslist{
-                display: flex;
-                flex-wrap: wrap;
-                gap: 5px;
-
-                .tags{
-                    background-color: v.$primary-color;
-                    padding: 5px;
-                    border-radius: 20px;
-                    color: v.$white;
-                }
-            }
-
-            img{
-                width: 100px;
-                height: 100px;
-            }
-
-            &--adoption{
-                display: flex;
-                flex-direction: column;
-                text-align: justify;
-                gap: 30px;
-                width: 45vw;
-                height: 57vh;
-                overflow-y: auto;
-                padding: 30px;
-                background-color: v.$white;
-            }
-            &--comment{
-                background-color: v.$white;
-                width: 20vw;
-                height: 57vh;
-                padding: 30px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-                gap: 10px;
-
-                p{
-                    @include button;
-                    display: inline-block;
-                    
-                    span{
-                        display: inline-block;
-                    }
-                }
-
-                select{
-                    border-image-source: linear-gradient(-140deg, v.$primary-color, v.$tertiary-color);
-                    border-width: 3px;
-                    border-image-slice: 1;
-                    transition: 0.2s;
-                    padding: 5px;
-        
-                    &:focus{
-                        outline: none;
-                        border-image-source: linear-gradient(-140deg, v.$dark-color, v.$secondary-color);
-                    }
-                }
-            }
-        }
+      }
     }
+  }
 }
 
-
 @media (max-width: $small-screen) {
+  .adoptionLine {
+    &__container {
+      padding: 0;
+      width: 100%;
+      margin: 0;
+      padding: 5px;
+    }
 
-    .adoptionLine{
-        &__container{
-            padding: 0;
-            width: 100%;
-            margin: 0;
-            padding: 5px;
+    &__user {
+      &--phone {
+        display: none;
+      }
+    }
+
+    &__bigdetails {
+      height: 90vh;
+      top: 8vh;
+      overflow-y: auto;
+
+      &--body-part {
+        flex-direction: column;
+        gap: 30px;
+
+        &--user {
+          width: 100%;
+          height: auto;
         }
 
-        &__user{
-
-            &--phone{
-                display: none;
-            }
+        &--comment {
+          width: 100%;
+          height: 30vh;
         }
 
-        &__bigdetails{
-
-            height: 90vh;
-            top: 8vh;
-            overflow-y: auto;
-
-            &--body-part{
-                flex-direction: column;
-                gap: 30px;
-
-                &--user{
-                    width: 100%;
-                    height: auto;
-                }
-
-                &--comment{
-                    width: 100%;
-                    height: 30vh;
-                }
-
-                &--adoption{
-                    width: 100%;
-                    height: auto;
-                }
-            }
+        &--adoption {
+          width: 100%;
+          height: auto;
         }
+      }
     }
   }
-  
-  // styles pour les écrans entre 576px et 768px (tablettes)
-  @media (min-width: $small-screen) and (max-width: $medium-screen) {
-    .adoptionLine{
-        &__container{
-            padding: 0;
-            width: 100%;
-            margin: 0;
-            padding: 10px;
+}
+
+// styles pour les écrans entre 576px et 768px (tablettes)
+@media (min-width: $small-screen) and (max-width: $medium-screen) {
+  .adoptionLine {
+    &__container {
+      padding: 0;
+      width: 100%;
+      margin: 0;
+      padding: 10px;
+    }
+
+    &__bigdetails {
+      height: 90vh;
+      top: 8vh;
+      overflow-y: auto;
+
+      &--body-part {
+        flex-direction: column;
+        gap: 30px;
+
+        &--user {
+          width: 100%;
+          height: auto;
         }
 
-        &__bigdetails{
-
-            height: 90vh;
-            top: 8vh;
-            overflow-y: auto;
-
-            &--body-part{
-                flex-direction: column;
-                gap: 30px;
-
-                &--user{
-                    width: 100%;
-                    height: auto;
-                }
-
-                &--comment{
-                    width: 100%;
-                    height: 30vh;
-                }
-
-                &--adoption{
-                    width: 100%;
-                    height: auto;
-                }
-            }
+        &--comment {
+          width: 100%;
+          height: 30vh;
         }
+
+        &--adoption {
+          width: 100%;
+          height: auto;
+        }
+      }
     }
   }
+}

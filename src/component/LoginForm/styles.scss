@@ -1,5 +1,5 @@
-@use 'src/styles/vars' as v;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
 .title {
   @include Title;
@@ -13,13 +13,13 @@
   height: 85vh;
   width: 90vw;
 
-  p{
+  p {
     text-align: center;
     margin-top: 5vh;
 
-    .link{
+    .link {
       font-weight: 700;
-      margin:auto;
+      margin: auto;
     }
   }
 }
@@ -30,15 +30,13 @@
   flex-direction: column;
   margin-top: 10vh;
 
-
-  &--boutton{
+  &--boutton {
     @include button;
     margin: auto;
     width: 6em;
   }
 
-  &--message{
-
+  &--message {
     display: inline-block;
     background-color: v.$primary-color;
     padding: 10px;
@@ -46,26 +44,33 @@
     display: flex;
     align-items: center;
 
-    &-cross{
+    &-cross {
       color: v.$black;
       cursor: pointer;
       transition: 0.2s;
-      &:hover{
-          color: v.$white;
+      &:hover {
+        color: v.$white;
       }
     }
   }
 
-  &--input{
+  &--input {
     padding: 20rem auto;
-    border-image-source: linear-gradient(-140deg, v.$primary-color, v.$tertiary-color);
+    border-image-source: linear-gradient(
+      -140deg,
+      v.$primary-color,
+      v.$tertiary-color
+    );
     border-width: 3px;
     border-image-slice: 1;
     transition: 0.2s;
 
-    &:focus{
-        border-image-source: linear-gradient(-140deg, v.$dark-color, v.$secondary-color);
+    &:focus {
+      border-image-source: linear-gradient(
+        -140deg,
+        v.$dark-color,
+        v.$secondary-color
+      );
     }
-
-}
+  }
 }

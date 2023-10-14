@@ -1,35 +1,33 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
-body{
-    color: v.$black;
-    background-color: v.$white;
-    font-family: v.$global-font;
+body {
+  color: v.$black;
+  background-color: v.$white;
+  font-family: v.$global-font;
 }
 
-.connexion-message{
-    font-family: 'Alice';
-    position: fixed;
-    top: 30vh;
-    left: 30vw;
-    font-size: 1em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap:40px;
+.connexion-message {
+  font-family: "Alice";
+  position: fixed;
+  top: 30vh;
+  left: 30vw;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
 
-    &--boutton{
-        @include button;
-    }
+  &--boutton {
+    @include button;
+  }
 }
 
 // styles pour les petits écrans (smartphone)
 
 @media (max-width: $small-screen) {
-
-    .connexion-message{
-        left: 2vw;
-        flex-direction: column;
-    }
-
+  .connexion-message {
+    left: 2vw;
+    flex-direction: column;
+  }
 }

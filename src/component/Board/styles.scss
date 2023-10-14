@@ -1,70 +1,66 @@
-@use 'src/styles/vars' as v ;
-@import 'src/styles/vars';
+@use "src/styles/vars" as v;
+@import "src/styles/vars";
 
+.board {
+  &_container {
+    width: 45vw;
+    height: 80vh;
+    padding-top: 15vh;
+    padding-bottom: 15vh;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+    justify-content: center;
+    align-items: center;
+    font-family: $global-font;
+    min-height: 80vh;
 
-.board{
+    &_menu {
+      width: 20vw;
+      box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
+      color: v.$black;
+      font-size: x-large;
+      margin: 0;
+      &--icon {
+        padding-right: 1vw;
+      }
 
-    &_container{
-
-        width: 45vw;
-        height: 80vh;
-        padding-top: 15vh;
-        padding-bottom: 15vh;
-        margin: auto;
+      span {
         display: flex;
-        flex-wrap: wrap;
-        gap: 2vw;
         justify-content: center;
         align-items: center;
-        font-family: $global-font;
-        min-height: 80vh;
-
-        &_menu{
-            width: 20vw;
-            box-shadow: 1px 1px 30px rgba(v.$black, 0.1);
-            color: v.$black;
-            font-size: x-large;
-            margin: 0;
-            &--icon{
-                padding-right: 1vw;
-            }
-
-            span{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-        }
+      }
     }
+  }
 }
 
 // styles pour les petits écrans (smartphone)
 @media (max-width: $small-screen) {
-    .board{
-        &_container{
-            width: 80vw;
+  .board {
+    &_container {
+      width: 80vw;
 
-            &_menu{
-                width: 80vw;
-            }
-        }
+      &_menu {
+        width: 80vw;
+      }
     }
+  }
 }
-  
+
 // styles pour les écrans entre 576px et 768px (tablettes)
 @media (min-width: $small-screen) and (max-width: $medium-screen) {
+  .board {
+    &_container {
+      width: 80vw;
+      align-items: center;
 
-    .board{
-        &_container{
-            width: 80vw;
-            align-items: center;
-
-            &_menu{
-                width: 50vw;
-                span{
-                    justify-content: center ;
-                }
-            }
+      &_menu {
+        width: 50vw;
+        span {
+          justify-content: center;
         }
+      }
     }
+  }
 }

@@ -69,18 +69,12 @@
               ),
               linear-gradient(to right, v.$secondary-color, v.$dark-color);
 
-            background-size:
-              100% 4px,
-              0 4px;
-            background-position:
-              100% 100%,
-              0 100%;
+            background-size: 100% 4px, 0 4px;
+            background-position: 100% 100%, 0 100%;
             background-repeat: no-repeat;
             transition: background-size 0.2s ease-in !important;
             &:hover {
-              background-size:
-                0 4px,
-                100% 4px;
+              background-size: 0 4px, 100% 4px;
             }
           }
 
@@ -127,9 +121,10 @@
     @include smallTitle;
     position: absolute;
     top: 40px;
-
     right: 30px;
-    &__login {
+    display: flex;
+    &__login,
+    &__signin {
       padding: 1rem;
       transition: 0.2s;
       &:hover {

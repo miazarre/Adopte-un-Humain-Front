@@ -29,6 +29,16 @@ const Home = () => {
     <>
       <Helmet>
         <title>J'adopte un humain</title>
+        <meta
+          name="description"
+          content=" Rencontrez votre nouveau meilleur ami sur J'adopte un humain, où les animaux et les humains se rencontrent pour une vie remplie d'amour et de bonheur."
+        />
+        <meta
+          property="og:title"
+          content="J'adopte un humain - Trouvez votre compagnon parfait"
+        />
+        <meta property="og:image" content="jadopteunhumain/logo" />
+        <meta property="og:url" content="jadopteunhumain/home" />
       </Helmet>
       <div className="container">
         <div className="container--top-part">

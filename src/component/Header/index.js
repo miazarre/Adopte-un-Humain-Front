@@ -72,9 +72,14 @@ const Header = ({ isLogged, user, setUser, setIsLogged }) => {
               </button>
             </>
           ) : (
-            <Link to="/login" className="bm-item item-link item-link--text">
-              Connexion
-            </Link>
+            <>
+              <Link to="/signin" className="bm-item item-link item-link--text">
+                Inscription
+              </Link>
+              <Link to="/login" className="bm-item item-link item-link--text">
+                Connexion
+              </Link>
+            </>
           )}
           <div className="item-link item-link--social">
             <FaTiktok
@@ -93,7 +98,7 @@ const Header = ({ isLogged, user, setUser, setIsLogged }) => {
         </Menu>
       </div>
       <Link to="/" className="title">
-        <img className="header__logo" src={logo} />
+        <img className="header__logo" src={logo} alt="logo" />
       </Link>
       <div className="header__right-button">
         {isLogged ? (
@@ -102,6 +107,9 @@ const Header = ({ isLogged, user, setUser, setIsLogged }) => {
           </>
         ) : (
           <>
+            <div className="header__right-button__signin">
+              <Link to="/signin">Inscription</Link>
+            </div>
             <div className="header__right-button__login">
               <Link to="/login">Connexion</Link>
             </div>

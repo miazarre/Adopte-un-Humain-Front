@@ -7,6 +7,7 @@ import { React, useEffect, useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { RxCrossCircled } from "react-icons/rx";
+import { Helmet } from "react-helmet";
 
 // Déclarations contact API
 const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -31,7 +32,7 @@ const Favorites = ({ favorites, setFavorites, isLogged }) => {
         setAnimals((prevAnimals) => [...prevAnimals, response.data]);
       } catch (error) {
         setMessage(
-          "Il y a eu un soucis au moment de récupérer les informations de l'animal ",
+          "Il y a eu un soucis au moment de récupérer les informations de l'animal "
         );
         console.log(error);
       }
@@ -56,29 +57,34 @@ const Favorites = ({ favorites, setFavorites, isLogged }) => {
   }, [isLogged]);
 
   return (
-    <div className="favorites-page__container">
-      {isLogged ? (
-        <div className="favorites-page__fav--container">
-          {message != "" && (
-            <p className="favorites-page__message">
-              {message}{" "}
-              <RxCrossCircled
-                className="cross"
-                onClick={(e) => setMessage("")}
-              />
-            </p>
-          )}
-          {animals.map((animal) => (
-            <AnimalFav key={Math.random()} animal={animal} />
-          ))}
-        </div>
-      ) : (
-        <p className="profil-user__connexion-message">
-          {" "}
-          Il faut te connecter !{" "}
-        </p>
-      )}
-    </div>
+    <>
+      <Helmet>
+        <title>Favoris</title>
+      </Helmet>
+      <div className="favorites-page__container">
+        {isLogged ? (
+          <div className="favorites-page__fav--container">
+            {message != "" && (
+              <p className="favorites-page__message">
+                {message}{" "}
+                <RxCrossCircled
+                  className="cross"
+                  onClick={(e) => setMessage("")}
+                />
+              </p>
+            )}
+            {animals.map((animal) => (
+              <AnimalFav key={Math.random()} animal={animal} />
+            ))}
+          </div>
+        ) : (
+          <p className="profil-user__connexion-message">
+            {" "}
+            Il faut te connecter !{" "}
+          </p>
+        )}
+      </div>
+    </>
   );
 };
 

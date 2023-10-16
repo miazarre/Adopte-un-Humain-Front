@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { RxCrossCircled } from "react-icons/rx";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 // Base url
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
@@ -41,48 +42,53 @@ const LoginForm = ({ setUser, setIsLogged }) => {
   };
 
   return (
-    <div className="input-container">
-      <h1 className="login">Connexion</h1>
-      <div className="form">
-        {login !== "" && (
-          <p className="input-container--message">
-            {login}{" "}
-            <RxCrossCircled
-              className="input-container--message-cross"
-              size="20px"
-              onClick={(e) => setLogin("")}
+    <>
+      <Helmet>
+        <title>Connexion</title>
+      </Helmet>
+      <div className="input-container">
+        <h1 className="login">Connexion</h1>
+        <div className="form">
+          {login !== "" && (
+            <p className="input-container--message">
+              {login}{" "}
+              <RxCrossCircled
+                className="input-container--message-cross"
+                size="20px"
+                onClick={(e) => setLogin("")}
+              />
+            </p>
+          )}
+          <form>
+            <input
+              className="input-container--input"
+              type="text"
+              name="email"
+              placeholder="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
+            <input
+              className="input-container--input"
+              type="password"
+              name="password"
+              placeholder="mot de passe"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+            <p className="input-container--boutton" onClick={handleSubmit}>
+              <span>Valider</span>
+            </p>
+          </form>
+          <p>
+            Pas encore de compte ? Inscrivez-vous{" "}
+            <Link className="link" to="/signin">
+              par ici
+            </Link>
           </p>
-        )}
-        <form>
-          <input
-            className="input-container--input"
-            type="text"
-            name="email"
-            placeholder="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-          <input
-            className="input-container--input"
-            type="password"
-            name="password"
-            placeholder="mot de passe"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-          <p className="input-container--boutton" onClick={handleSubmit}>
-            <span>Valider</span>
-          </p>
-        </form>
-        <p>
-          Pas encore de compte ? Inscrivez-vous{" "}
-          <Link className="link" to="/signin">
-            par ici
-          </Link>
-        </p>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

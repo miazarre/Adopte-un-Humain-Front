@@ -8,6 +8,7 @@ import React from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 // Base Url
 const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -43,7 +44,7 @@ const Trombinoscope = ({
 
       if (response.data.length === 0) {
         setMessage(
-          "Il semble qu'il n'y ait pas d'animaux disponibles dans notre refuge qui correspondent aux critères que vous avez choisis. Vous devriez vérifier que vous avez bien des préférences sélectionnées !",
+          "Il semble qu'il n'y ait pas d'animaux disponibles dans notre refuge qui correspondent aux critères que vous avez choisis. Vous devriez vérifier que vous avez bien des préférences sélectionnées !"
         );
       }
       response.data.forEach(async (animal) => {
@@ -51,7 +52,7 @@ const Trombinoscope = ({
       });
     } catch (error) {
       setMessage(
-        "Il y a eu un soucis au moment de récupérer les informations des animaux",
+        "Il y a eu un soucis au moment de récupérer les informations des animaux"
       );
       console.log(error);
     }
@@ -66,7 +67,7 @@ const Trombinoscope = ({
       setAnimals((prevAnimals) => prevAnimals.concat(response.data));
     } catch (error) {
       setMessage(
-        "Il y a eu un soucis au moment de récupérer les informations de l'animal",
+        "Il y a eu un soucis au moment de récupérer les informations de l'animal"
       );
       console.log(error);
     }
@@ -79,45 +80,50 @@ const Trombinoscope = ({
   }, [user]);
 
   return (
-    <div className="trombinoscope">
-      {isLogged ? (
-        <>
-          <div className="trombinoscope__message--container">
-            {message != "" && (
-              <p className="trombinoscope__message">{message}</p>
-            )}
-            {message.includes("préférences") && (
-              <Link to="/preferences">
-                <p className="trombinoscope__boutton">
-                  <span>Préférences</span>
-                </p>
-              </Link>
-            )}
-          </div>
-          <div className="animal-card__container">
-            {animals.map((animal) => (
-              <AnimalCard
-                key={animal.id * Math.random()}
-                animal={animal}
-                toggleFavorite={toggleFavorite}
-                favorites={favorites}
-                user={user}
-              />
-            ))}
-          </div>
-        </>
-      ) : (
-        <p className="connexion-message">
-          {" "}
-          Il faut te connecter pour voir cette page.{" "}
-          <Link to="/login">
-            <p className="connexion-message--boutton">
-              <span>Connexion</span>
-            </p>
-          </Link>
-        </p>
-      )}
-    </div>
+    <>
+      <Helmet>
+        <title>Trombinoscope</title>
+      </Helmet>
+      <div className="trombinoscope">
+        {isLogged ? (
+          <>
+            <div className="trombinoscope__message--container">
+              {message != "" && (
+                <p className="trombinoscope__message">{message}</p>
+              )}
+              {message.includes("préférences") && (
+                <Link to="/preferences">
+                  <p className="trombinoscope__boutton">
+                    <span>Préférences</span>
+                  </p>
+                </Link>
+              )}
+            </div>
+            <div className="animal-card__container">
+              {animals.map((animal) => (
+                <AnimalCard
+                  key={animal.id * Math.random()}
+                  animal={animal}
+                  toggleFavorite={toggleFavorite}
+                  favorites={favorites}
+                  user={user}
+                />
+              ))}
+            </div>
+          </>
+        ) : (
+          <p className="connexion-message">
+            {" "}
+            Il faut te connecter pour voir cette page.{" "}
+            <Link to="/login">
+              <p className="connexion-message--boutton">
+                <span>Connexion</span>
+              </p>
+            </Link>
+          </p>
+        )}
+      </div>
+    </>
   );
 };
 

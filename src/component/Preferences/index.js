@@ -20,6 +20,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { RxCrossCircled } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 // Base url
 const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -40,7 +41,7 @@ const Preferences = ({ isLogged, user }) => {
       setTags(responseTags.data);
     } catch (error) {
       setMessage(
-        "Il y a eu un soucis au moment de récupérer vos données auprès du serveur.",
+        "Il y a eu un soucis au moment de récupérer vos données auprès du serveur."
       );
       console.log(error);
     }
@@ -64,13 +65,13 @@ const Preferences = ({ isLogged, user }) => {
         headers: { Authorization: `Bearer ${newToken}` },
       });
       let foundTag = response.data.filter(
-        (tag) => tag.name.toLowerCase() === selectedOption.value.toLowerCase(),
+        (tag) => tag.name.toLowerCase() === selectedOption.value.toLowerCase()
       );
       return foundTag;
     } catch (error) {
       console.log(error);
       setMessage(
-        "Il y a eu un problème au moment de récupérer la liste des tags.",
+        "Il y a eu un problème au moment de récupérer la liste des tags."
       );
     }
   };
@@ -87,18 +88,18 @@ const Preferences = ({ isLogged, user }) => {
       const tag = await getTagId(selectedOption);
       const existingTag = tags.find(
         (tag) =>
-          tag.tag_name.toLowerCase() === selectedOption.value.toLowerCase(),
+          tag.tag_name.toLowerCase() === selectedOption.value.toLowerCase()
       );
       if (existingTag) {
         setMessage(
-          `Vous avez déjà choisi '${selectedOption.value}' comme option.`,
+          `Vous avez déjà choisi '${selectedOption.value}' comme option.`
         );
         return;
       }
       const response = await axios.post(
         `${baseUrl}/user/${user.id}/tag`,
         { tag_id: tag[0].id },
-        { headers: { Authorization: `Bearer ${newToken}` } },
+        { headers: { Authorization: `Bearer ${newToken}` } }
       );
       settingPref();
       setMessage(`Vous avez bien ajouté ${tag[0].name} à vos préférences.`);
@@ -113,7 +114,7 @@ const Preferences = ({ isLogged, user }) => {
     try {
       const response = await axios.delete(
         `${baseUrl}/user/${user.id}/tag/${id}`,
-        { headers: { Authorization: `Bearer ${newToken}` } },
+        { headers: { Authorization: `Bearer ${newToken}` } }
       );
       settingPref();
       setMessage(`Vous avez bien supprimé ${name} de vos préférences.`);
@@ -123,144 +124,149 @@ const Preferences = ({ isLogged, user }) => {
     }
   };
   return (
-    <div className="preference__page-container">
-      {isLogged ? (
-        <>
-          <div className="preference__actual-profil">
-            <h1>Profil actuel</h1>
-            <Link to="/trombinoscope">
-              <h2 className="preference__link">
-                Voir les animaux qui correspondent
-              </h2>
-            </Link>
-            <p className="preference__actual-profil--title">Profil</p>
-            <div className="preference__actual-profil--tags">
-              {tags.map((tag) => {
-                if (tag.priority === true) {
-                  return (
-                    <span key={tag.tag_id}>
-                      {tag.tag_name}{" "}
-                      <RxCrossCircled
-                        onClick={(e) => deletingTag(tag.tag_id, tag.tag_name)}
-                        className="cross"
-                      />
-                    </span>
-                  );
-                }
-              })}
+    <>
+      <Helmet>
+        <title>Préférences</title>
+      </Helmet>
+      <div className="preference__page-container">
+        {isLogged ? (
+          <>
+            <div className="preference__actual-profil">
+              <h1>Profil actuel</h1>
+              <Link to="/trombinoscope">
+                <h2 className="preference__link">
+                  Voir les animaux qui correspondent
+                </h2>
+              </Link>
+              <p className="preference__actual-profil--title">Profil</p>
+              <div className="preference__actual-profil--tags">
+                {tags.map((tag) => {
+                  if (tag.priority === true) {
+                    return (
+                      <span key={tag.tag_id}>
+                        {tag.tag_name}{" "}
+                        <RxCrossCircled
+                          onClick={(e) => deletingTag(tag.tag_id, tag.tag_name)}
+                          className="cross"
+                        />
+                      </span>
+                    );
+                  }
+                })}
+              </div>
+              <p className="preference__actual-profil--title">Préférences</p>
+              <div className="preference__actual-profil--tags">
+                {tags.map((tag) => {
+                  if (tag.priority === false) {
+                    return (
+                      <span key={tag.tag_id}>
+                        {tag.tag_name}{" "}
+                        <RxCrossCircled
+                          onClick={(e) => deletingTag(tag.tag_id, tag.tag_name)}
+                          className="cross"
+                        />
+                      </span>
+                    );
+                  }
+                })}
+              </div>
             </div>
-            <p className="preference__actual-profil--title">Préférences</p>
-            <div className="preference__actual-profil--tags">
-              {tags.map((tag) => {
-                if (tag.priority === false) {
-                  return (
-                    <span key={tag.tag_id}>
-                      {tag.tag_name}{" "}
-                      <RxCrossCircled
-                        onClick={(e) => deletingTag(tag.tag_id, tag.tag_name)}
-                        className="cross"
-                      />
-                    </span>
-                  );
-                }
-              })}
-            </div>
-          </div>
-          <form className="preference__form-container">
-            <h2>Votre profil</h2>
-            {message !== "" && (
-              <p className="preference__message">
-                {message} <RxCrossCircled onClick={(e) => setMessage("")} />
+            <form className="preference__form-container">
+              <h2>Votre profil</h2>
+              {message !== "" && (
+                <p className="preference__message">
+                  {message} <RxCrossCircled onClick={(e) => setMessage("")} />
+                </p>
+              )}
+              <div className="preference__form-container--formdiv">
+                <Select
+                  options={optionsHabitat}
+                  placeholder="Habitat"
+                  className="preference__form-container--select"
+                  styles={customStyles}
+                  onChange={handleChange}
+                />
+                <Select
+                  options={optionsJardin}
+                  placeholder="Jardin"
+                  className="preference__form-container--select"
+                  styles={customStyles}
+                  onChange={handleChange}
+                />
+                <Select
+                  options={optionsKids}
+                  placeholder="Avez-vous des enfants ?"
+                  className="preference__form-container--select"
+                  styles={customStyles}
+                  onChange={handleChange}
+                />
+                <Select
+                  options={optionsBudget}
+                  placeholder="Votre budget est plutôt..."
+                  className="preference__form-container--select"
+                  styles={customStyles}
+                  onChange={handleChange}
+                />
+                <Select
+                  options={optionsCohabitation}
+                  isMulti
+                  placeholder="Vous avez déjà..."
+                  className="preference__form-container--select"
+                  styles={customStyles}
+                  onChange={handleChangeMulti}
+                />
+              </div>
+              <h2>Vos préférences</h2>
+              <div className="preference__form-container--formdiv">
+                <Select
+                  options={optionsAge}
+                  isMulti
+                  name="age"
+                  placeholder="Age"
+                  className="preference__form-container--select"
+                  styles={customStyles}
+                  onChange={handleChangeMulti}
+                />
+                <Select
+                  options={optionsCaracter}
+                  isMulti
+                  placeholder="Caractère"
+                  className="preference__form-container--select"
+                  styles={customStyles}
+                  onChange={handleChangeMulti}
+                />
+                <Select
+                  options={optionsSexe}
+                  isMulti
+                  placeholder="Sexe"
+                  className="preference__form-container--select"
+                  styles={customStyles}
+                  onChange={handleChangeMulti}
+                />
+                <Select
+                  options={optionsActivité}
+                  isMulti
+                  placeholder="Activité"
+                  className="preference__form-container--select"
+                  styles={customStyles}
+                  onChange={handleChangeMulti}
+                />
+              </div>
+            </form>
+          </>
+        ) : (
+          <p className="connexion-message">
+            {" "}
+            Il faut te connecter pour voir cette page.{" "}
+            <Link to="/login">
+              <p className="connexion-message--boutton">
+                <span>Connexion</span>
               </p>
-            )}
-            <div className="preference__form-container--formdiv">
-              <Select
-                options={optionsHabitat}
-                placeholder="Habitat"
-                className="preference__form-container--select"
-                styles={customStyles}
-                onChange={handleChange}
-              />
-              <Select
-                options={optionsJardin}
-                placeholder="Jardin"
-                className="preference__form-container--select"
-                styles={customStyles}
-                onChange={handleChange}
-              />
-              <Select
-                options={optionsKids}
-                placeholder="Avez-vous des enfants ?"
-                className="preference__form-container--select"
-                styles={customStyles}
-                onChange={handleChange}
-              />
-              <Select
-                options={optionsBudget}
-                placeholder="Votre budget est plutôt..."
-                className="preference__form-container--select"
-                styles={customStyles}
-                onChange={handleChange}
-              />
-              <Select
-                options={optionsCohabitation}
-                isMulti
-                placeholder="Vous avez déjà..."
-                className="preference__form-container--select"
-                styles={customStyles}
-                onChange={handleChangeMulti}
-              />
-            </div>
-            <h2>Vos préférences</h2>
-            <div className="preference__form-container--formdiv">
-              <Select
-                options={optionsAge}
-                isMulti
-                name="age"
-                placeholder="Age"
-                className="preference__form-container--select"
-                styles={customStyles}
-                onChange={handleChangeMulti}
-              />
-              <Select
-                options={optionsCaracter}
-                isMulti
-                placeholder="Caractère"
-                className="preference__form-container--select"
-                styles={customStyles}
-                onChange={handleChangeMulti}
-              />
-              <Select
-                options={optionsSexe}
-                isMulti
-                placeholder="Sexe"
-                className="preference__form-container--select"
-                styles={customStyles}
-                onChange={handleChangeMulti}
-              />
-              <Select
-                options={optionsActivité}
-                isMulti
-                placeholder="Activité"
-                className="preference__form-container--select"
-                styles={customStyles}
-                onChange={handleChangeMulti}
-              />
-            </div>
-          </form>
-        </>
-      ) : (
-        <p className="connexion-message">
-          {" "}
-          Il faut te connecter pour voir cette page.{" "}
-          <Link to="/login">
-            <p className="connexion-message--boutton">
-              <span>Connexion</span>
-            </p>
-          </Link>
-        </p>
-      )}
-    </div>
+            </Link>
+          </p>
+        )}
+      </div>
+    </>
   );
 };
 

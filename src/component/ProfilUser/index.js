@@ -14,6 +14,7 @@ import {
   AiOutlineUser,
   AiOutlineHome,
 } from "react-icons/ai";
+import { Helmet } from "react-helmet";
 
 //BaseUrl
 const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -63,7 +64,7 @@ const ProfilUser = ({ user, setUser, isLogged, setIsLogged }) => {
     } catch (error) {
       console.log(error);
       setErrorMessage(
-        "Il y a eu un problème au moment de récupérer vos informations.",
+        "Il y a eu un problème au moment de récupérer vos informations."
       );
     }
   };
@@ -93,7 +94,7 @@ const ProfilUser = ({ user, setUser, isLogged, setIsLogged }) => {
     }
     if (form.new_password !== form.confirm_new_password) {
       setErrorMessage(
-        "Le nouveau mot de passe et sa confirmation ne correspondent pas.",
+        "Le nouveau mot de passe et sa confirmation ne correspondent pas."
       );
       return;
     }
@@ -136,7 +137,7 @@ const ProfilUser = ({ user, setUser, isLogged, setIsLogged }) => {
       const response = await axios.patch(
         `${baseUrl}/user/${user.id}`,
         modifiedFields,
-        { headers: { Authorization: `Bearer ${newToken}` } },
+        { headers: { Authorization: `Bearer ${newToken}` } }
       );
       // On modifie le user avec les données qu'on viens de modif
       // On affiche un message de confirmation
@@ -169,245 +170,253 @@ const ProfilUser = ({ user, setUser, isLogged, setIsLogged }) => {
 
   // Composant à afficher
   return (
-    <div className="profil-user__container">
-      {isLogged ? (
-        <>
-          <div className="profil-user__details">
-            {profilUSer != [] && (
-              <>
-                <p className="profil-user__details--name">
-                  <AiOutlineUser size={"30px"} /> {profilUSer.firstname}{" "}
-                  {profilUSer.lastname}
-                </p>
-                <p>
-                  <AiOutlineMail size={"30px"} /> {profilUSer.email}
-                </p>
-                <p>
-                  <AiOutlinePhone size={"30px"} /> {profilUSer.phone}
-                </p>
-                <p>
-                  <AiOutlineHome size={"30px"} /> {profilUSer.address}
-                </p>
-                <p className="center">
-                  {" "}
-                  {profilUSer.postal_code} {profilUSer.city}
-                </p>
-                <p className="center"> {profilUSer.country}</p>
+    <>
+      <Helmet>
+        <title>Profil</title>
+      </Helmet>
+      <div className="profil-user__container">
+        {isLogged ? (
+          <>
+            <div className="profil-user__details">
+              {profilUSer != [] && (
+                <>
+                  <p className="profil-user__details--name">
+                    <AiOutlineUser size={"30px"} /> {profilUSer.firstname}{" "}
+                    {profilUSer.lastname}
+                  </p>
+                  <p>
+                    <AiOutlineMail size={"30px"} /> {profilUSer.email}
+                  </p>
+                  <p>
+                    <AiOutlinePhone size={"30px"} /> {profilUSer.phone}
+                  </p>
+                  <p>
+                    <AiOutlineHome size={"30px"} /> {profilUSer.address}
+                  </p>
+                  <p className="center">
+                    {" "}
+                    {profilUSer.postal_code} {profilUSer.city}
+                  </p>
+                  <p className="center"> {profilUSer.country}</p>
 
-                <p
-                  className="profil-user__delete"
-                  onClick={(e) => setShowModal(true)}
-                >
-                  <HiTrash size={"30px"} />
-                  Supprimer mon profil
-                </p>
-                {showModal && (
-                  <div className="profil-user__modal">
-                    <div className="profil-user__modal--color">
-                      <p>Êtes-vous sûr de vouloir continuer ?</p>
-                      <p
-                        className="profil-user__modal--boutton"
-                        onClick={deleteProfil}
-                      >
-                        <span>Oui</span>
-                      </p>
-                      <p
-                        className="profil-user__modal--boutton"
-                        onClick={(e) => setShowModal(!showModal)}
-                      >
-                        <span>Non</span>
-                      </p>
+                  <p
+                    className="profil-user__delete"
+                    onClick={(e) => setShowModal(true)}
+                  >
+                    <HiTrash size={"30px"} />
+                    Supprimer mon profil
+                  </p>
+                  {showModal && (
+                    <div className="profil-user__modal">
+                      <div className="profil-user__modal--color">
+                        <p>Êtes-vous sûr de vouloir continuer ?</p>
+                        <p
+                          className="profil-user__modal--boutton"
+                          onClick={deleteProfil}
+                        >
+                          <span>Oui</span>
+                        </p>
+                        <p
+                          className="profil-user__modal--boutton"
+                          onClick={(e) => setShowModal(!showModal)}
+                        >
+                          <span>Non</span>
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                )}
-              </>
-            )}
-          </div>
-          <div className="profil-user__form">
-            <form>
-              {errorMessage !== "" && (
-                <p className="profil-user__form--error_message">
-                  {errorMessage}{" "}
-                  <RxCrossCircled
-                    size="20px"
-                    onClick={(e) => setErrorMessage("")}
-                    className="profil-user__form--error_message--cross"
-                  />
-                </p>
+                  )}
+                </>
               )}
-              <p className="profil-user__form--section">
-                Informations personnelles
+            </div>
+            <div className="profil-user__form">
+              <form>
+                {errorMessage !== "" && (
+                  <p className="profil-user__form--error_message">
+                    {errorMessage}{" "}
+                    <RxCrossCircled
+                      size="20px"
+                      onClick={(e) => setErrorMessage("")}
+                      className="profil-user__form--error_message--cross"
+                    />
+                  </p>
+                )}
+                <p className="profil-user__form--section">
+                  Informations personnelles
+                </p>
+                <input
+                  className="profil-user__form--input"
+                  value={form.firstname}
+                  name="firstname"
+                  placeholder={profilUSer.firstname}
+                  onChange={handleFormChange}
+                />
+                <label className="profil-user__form--label" htmlFor="firstname">
+                  Prénom
+                </label>
+
+                <input
+                  className="profil-user__form--input"
+                  value={form.lastname}
+                  name="lastname"
+                  placeholder={profilUSer.lastname}
+                  onChange={handleFormChange}
+                />
+                <label className="profil-user__form--label" htmlFor="lastname">
+                  Nom
+                </label>
+
+                <input
+                  className="profil-user__form--input"
+                  value={form.phone}
+                  name="phone"
+                  placeholder={profilUSer.phone}
+                  type="tel"
+                  onChange={handleFormChange}
+                />
+                <label className="profil-user__form--label" htmlFor="phone">
+                  Téléphone
+                </label>
+
+                <p className="profil-user__form--section">Adresse</p>
+
+                <input
+                  className="profil-user__form--input"
+                  value={form.address}
+                  name="address"
+                  placeholder={profilUSer.address}
+                  onChange={handleFormChange}
+                />
+                <label className="profil-user__form--label" htmlFor="address">
+                  Adresse
+                </label>
+
+                <input
+                  className="profil-user__form--input"
+                  value={form.postal_code}
+                  name="postal_code"
+                  placeholder={profilUSer.postal_code}
+                  onChange={handleFormChange}
+                />
+                <label
+                  className="profil-user__form--label"
+                  htmlFor="postal_code"
+                >
+                  Code postal
+                </label>
+
+                <input
+                  className="profil-user__form--input"
+                  value={form.city}
+                  name="city"
+                  placeholder={profilUSer.city}
+                  onChange={handleFormChange}
+                />
+                <label className="profil-user__form--label" htmlFor="city">
+                  Ville
+                </label>
+
+                <input
+                  className="profil-user__form--input"
+                  value={form.country}
+                  name="country"
+                  placeholder={profilUSer.country}
+                  onChange={handleFormChange}
+                />
+                <label className="profil-user__form--label" htmlFor="country">
+                  Pays
+                </label>
+
+                <p className="profil-user__form--section">Sécurité</p>
+
+                <input
+                  className="profil-user__form--input"
+                  value={form.new_mail}
+                  name="new_mail"
+                  placeholder={profilUSer.email}
+                  type="email"
+                  onChange={handleFormChange}
+                />
+                <label className="profil-user__form--label" htmlFor="new_mail">
+                  E-mail
+                </label>
+
+                <input
+                  className="profil-user__form--input"
+                  value={form.mail_confirm}
+                  name="mail_confirm"
+                  placeholder="Confirmation e-mail"
+                  type="email"
+                  onChange={handleFormChange}
+                />
+                <label
+                  className="profil-user__form--label"
+                  htmlFor="mail_confirm"
+                >
+                  Confirmation
+                </label>
+
+                <input
+                  className="profil-user__form--input"
+                  value={form.new_password}
+                  name="new_password"
+                  placeholder="Nouveau mot de passe"
+                  type="password"
+                  onChange={handleFormChange}
+                />
+                <label
+                  className="profil-user__form--label"
+                  htmlFor="new_password"
+                >
+                  Mot de passe
+                </label>
+
+                <input
+                  className="profil-user__form--input"
+                  value={form.confirm_new_password}
+                  name="confirm_new_password"
+                  placeholder="Confirmation"
+                  type="password"
+                  onChange={handleFormChange}
+                />
+                <label
+                  className="profil-user__form--label"
+                  htmlFor="confirm_new_password"
+                >
+                  Confirmation
+                </label>
+
+                <button
+                  onClick={handleSubmit}
+                  className="profil-user__form--button"
+                >
+                  <span>Valider</span>
+                </button>
+              </form>
+            </div>
+            <div className="profil-user__tips">
+              <HiLightBulb size={"40px"} className="profil-user__tips--light" />
+              <p>
+                Pour modifier vos préférences en matière de compagnon, c'est par
+                ici :{" "}
+                <Link to="/preferences" className="profil-user__tips--link">
+                  Préférences
+                </Link>
               </p>
-              <input
-                className="profil-user__form--input"
-                value={form.firstname}
-                name="firstname"
-                placeholder={profilUSer.firstname}
-                onChange={handleFormChange}
-              />
-              <label className="profil-user__form--label" htmlFor="firstname">
-                Prénom
-              </label>
-
-              <input
-                className="profil-user__form--input"
-                value={form.lastname}
-                name="lastname"
-                placeholder={profilUSer.lastname}
-                onChange={handleFormChange}
-              />
-              <label className="profil-user__form--label" htmlFor="lastname">
-                Nom
-              </label>
-
-              <input
-                className="profil-user__form--input"
-                value={form.phone}
-                name="phone"
-                placeholder={profilUSer.phone}
-                type="tel"
-                onChange={handleFormChange}
-              />
-              <label className="profil-user__form--label" htmlFor="phone">
-                Téléphone
-              </label>
-
-              <p className="profil-user__form--section">Adresse</p>
-
-              <input
-                className="profil-user__form--input"
-                value={form.address}
-                name="address"
-                placeholder={profilUSer.address}
-                onChange={handleFormChange}
-              />
-              <label className="profil-user__form--label" htmlFor="address">
-                Adresse
-              </label>
-
-              <input
-                className="profil-user__form--input"
-                value={form.postal_code}
-                name="postal_code"
-                placeholder={profilUSer.postal_code}
-                onChange={handleFormChange}
-              />
-              <label className="profil-user__form--label" htmlFor="postal_code">
-                Code postal
-              </label>
-
-              <input
-                className="profil-user__form--input"
-                value={form.city}
-                name="city"
-                placeholder={profilUSer.city}
-                onChange={handleFormChange}
-              />
-              <label className="profil-user__form--label" htmlFor="city">
-                Ville
-              </label>
-
-              <input
-                className="profil-user__form--input"
-                value={form.country}
-                name="country"
-                placeholder={profilUSer.country}
-                onChange={handleFormChange}
-              />
-              <label className="profil-user__form--label" htmlFor="country">
-                Pays
-              </label>
-
-              <p className="profil-user__form--section">Sécurité</p>
-
-              <input
-                className="profil-user__form--input"
-                value={form.new_mail}
-                name="new_mail"
-                placeholder={profilUSer.email}
-                type="email"
-                onChange={handleFormChange}
-              />
-              <label className="profil-user__form--label" htmlFor="new_mail">
-                E-mail
-              </label>
-
-              <input
-                className="profil-user__form--input"
-                value={form.mail_confirm}
-                name="mail_confirm"
-                placeholder="Confirmation e-mail"
-                type="email"
-                onChange={handleFormChange}
-              />
-              <label
-                className="profil-user__form--label"
-                htmlFor="mail_confirm"
-              >
-                Confirmation
-              </label>
-
-              <input
-                className="profil-user__form--input"
-                value={form.new_password}
-                name="new_password"
-                placeholder="Nouveau mot de passe"
-                type="password"
-                onChange={handleFormChange}
-              />
-              <label
-                className="profil-user__form--label"
-                htmlFor="new_password"
-              >
-                Mot de passe
-              </label>
-
-              <input
-                className="profil-user__form--input"
-                value={form.confirm_new_password}
-                name="confirm_new_password"
-                placeholder="Confirmation"
-                type="password"
-                onChange={handleFormChange}
-              />
-              <label
-                className="profil-user__form--label"
-                htmlFor="confirm_new_password"
-              >
-                Confirmation
-              </label>
-
-              <button
-                onClick={handleSubmit}
-                className="profil-user__form--button"
-              >
-                <span>Valider</span>
-              </button>
-            </form>
-          </div>
-          <div className="profil-user__tips">
-            <HiLightBulb size={"40px"} className="profil-user__tips--light" />
-            <p>
-              Pour modifier vos préférences en matière de compagnon, c'est par
-              ici :{" "}
-              <Link to="/preferences" className="profil-user__tips--link">
-                Préférences
-              </Link>
-            </p>
-          </div>
-        </>
-      ) : (
-        <p className="connexion-message">
-          {" "}
-          Il faut te connecter pour voir cette page.{" "}
-          <Link to="/login">
-            <p className="connexion-message--boutton">
-              <span>Connexion</span>
-            </p>
-          </Link>
-        </p>
-      )}
-    </div>
+            </div>
+          </>
+        ) : (
+          <p className="connexion-message">
+            {" "}
+            Il faut te connecter pour voir cette page.{" "}
+            <Link to="/login">
+              <p className="connexion-message--boutton">
+                <span>Connexion</span>
+              </p>
+            </Link>
+          </p>
+        )}
+      </div>
+    </>
   );
 };
 

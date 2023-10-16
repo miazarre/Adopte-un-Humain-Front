@@ -1,6 +1,7 @@
 import "./styles.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { Player } from "@lottiefiles/react-lottie-player";
+import { Helmet } from "react-helmet";
 
 //import Error from '../../../assets/Cookie.png';
 
@@ -11,17 +12,22 @@ const AnError = () => {
   };
 
   return (
-    <div className="error404">
-      <p className="error404--back" onClick={back}>
-        <span>Retour</span>
-      </p>
-      <Player
-        className="error404--player"
-        autoplay
-        loop
-        src="https://assets9.lottiefiles.com/packages/lf20_hd8ztfyp.json"
-      />
-    </div>
+    <>
+      <Helmet>
+        <title>Erreur</title>
+      </Helmet>
+      <div className="error404">
+        <p className="error404--back" onClick={back}>
+          <span>Retour</span>
+        </p>
+        <Player
+          className="error404--player"
+          autoplay
+          loop
+          src="https://assets9.lottiefiles.com/packages/lf20_hd8ztfyp.json"
+        />
+      </div>
+    </>
   );
 };
 

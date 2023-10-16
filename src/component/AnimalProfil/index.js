@@ -13,6 +13,7 @@ import { PieChart } from "react-minimal-pie-chart";
 import Slider from "react-slick";
 import axios from "axios";
 import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
 
 //Déclarations API
 const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -52,7 +53,7 @@ const AnimalProfil = ({ user, isLogged, favorites, toggleFavorite }) => {
       setAnimal(response.data);
     } catch (error) {
       setErrorMessage(
-        "Impossible de récupérer les données de l'animal auprès du serveur.",
+        "Impossible de récupérer les données de l'animal auprès du serveur."
       );
       console.log(error);
     }
@@ -68,14 +69,14 @@ const AnimalProfil = ({ user, isLogged, favorites, toggleFavorite }) => {
     try {
       const response = await axios.get(
         `${baseUrl}/user/${user.id}/matching/${param.id}`,
-        { headers: { Authorization: `Bearer ${newToken}` } },
+        { headers: { Authorization: `Bearer ${newToken}` } }
       );
       setData(response.data);
       resolveMatching(response.data);
     } catch (error) {
       console.log(error);
       setErrorMessage(
-        "Impossible de récupérer les données de matching auprès du serveur.",
+        "Impossible de récupérer les données de matching auprès du serveur."
       );
     }
   };
@@ -95,7 +96,7 @@ const AnimalProfil = ({ user, isLogged, favorites, toggleFavorite }) => {
     });
 
     let pourcentageDone = parseInt(
-      (animalFilledTagCount / animalTagCount) * 100,
+      (animalFilledTagCount / animalTagCount) * 100
     );
     let pourcentage = parseInt(100 - pourcentageDone);
     setMatching({
@@ -123,7 +124,7 @@ const AnimalProfil = ({ user, isLogged, favorites, toggleFavorite }) => {
       form.form3.length < 10
     ) {
       setErrorMessage(
-        "Chaque champs doit contenir un minimum de 10 caractères. N'hésitez pas à lire les conseils présents à droite des formulaires.",
+        "Chaque champs doit contenir un minimum de 10 caractères. N'hésitez pas à lire les conseils présents à droite des formulaires."
       );
       return;
     }
@@ -139,7 +140,7 @@ const AnimalProfil = ({ user, isLogged, favorites, toggleFavorite }) => {
           animal_id: param.id,
           status: "En cours",
         },
-        { headers: { Authorization: `Bearer ${newToken}` } },
+        { headers: { Authorization: `Bearer ${newToken}` } }
       );
 
       setIsContactinganimal("send");
@@ -160,6 +161,9 @@ const AnimalProfil = ({ user, isLogged, favorites, toggleFavorite }) => {
 
   return (
     <>
+      <Helmet>
+        <title>Profil animal</title>
+      </Helmet>
       <div className="animal-profil__container">
         {isLogged ? (
           <>

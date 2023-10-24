@@ -34,18 +34,16 @@ L'application devrait maintenant être accessible dans votre navigateur à l'adr
 
 ## Fonctionnalités
 
-- API pour la recherche d'animaux en fonction de critères.
-- API pour l'enregistrement d'utilisateurs.
-- Gestion des correspondances entre humains et animaux.
-- Upload d'images d'animaux grâce à Multer.
-- Validation des entrées avec JOI.
+- Recherche d'animaux en fonction de critères (type, âge, taille, etc.).
+- Affichage des détails de chaque animal.
+- Enregistrement d'animaux favoris.
+- Possibilité de contacter le refuge.
 
 ## Structure du Projet
 
-- `/app` : Contient le code source du serveur Node.js.
-- `/app/routers`: Définition des routes et contrôleurs Express.
-- `/src/models` : Modèles de données pour la base de données PostgreSQL.
-- `/src/script` : Configuration de la base de données et d'autres paramètres.
+- `/src` : Contient le code source de l'application React.
+- `/src/component`: Composants React réutilisables.
+- `/src/styles` : Fichiers SASS pour les styles.
 
 ### Auteur
 

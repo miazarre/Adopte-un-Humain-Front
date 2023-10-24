@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# J'adopte un humain Front
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Ce répertoire contient le code source du front-end pour le site web fictif J'adopte un Humain. Cette application a été développée en utilisant React.js, SASS pour les styles, et Axios pour les requêtes HTTP. Elle permet aux utilisateurs de trouver leur animal de compagnie idéal en fonction de leurs préférences et de soutenir le refuge animalier.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+1. Clonez ce dépôt sur votre machine locale.
 
-### `npm start`
+   `git clone https://github.com/miazarre/Adopte-un-Humain-Front.git`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. Accédez au répertoire du projet.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+   `cd Adopte-un-Humain-Front`
 
-### `npm test`
+3. Installez les dépendances.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   `npm install`
 
-### `npm run build`
+## Configuration
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Avant de démarrer le serveur, assurez-vous de configurer les variables d'environnement. Créez un fichier .env à la racine du projet et configurez les variables suivantes :
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+`REACT_APP_API_URL=http://localhost:3000/api`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Assurez-vous de remplacer l'URL par l'URL de l'API back-end si nécessaire.
 
-### `npm run eject`
+## Utilisation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Démarrez l'application en mode développement.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`npm start`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+L'application devrait maintenant être accessible dans votre navigateur à l'adresse http://localhost:3000.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Fonctionnalités
 
-## Learn More
+- API pour la recherche d'animaux en fonction de critères.
+- API pour l'enregistrement d'utilisateurs.
+- Gestion des correspondances entre humains et animaux.
+- Upload d'images d'animaux grâce à Multer.
+- Validation des entrées avec JOI.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Structure du Projet
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `/app` : Contient le code source du serveur Node.js.
+- `/app/routers`: Définition des routes et contrôleurs Express.
+- `/src/models` : Modèles de données pour la base de données PostgreSQL.
+- `/src/script` : Configuration de la base de données et d'autres paramètres.
 
-### Code Splitting
+### Auteur
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Ce projet a été développé par [miazarre](https://github.com/miazarre).

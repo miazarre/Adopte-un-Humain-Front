@@ -49,11 +49,6 @@ const Home = () => {
               les animaux et les humains se rencontrent pour une vie remplie
               d'amour et de bonheur.
             </p>
-            <div className="container--top-part--button">
-              <span>
-                <Link to="/signin">Nous rejoindre</Link>
-              </span>
-            </div>
           </div>
           <Player
             autoplay

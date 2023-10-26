@@ -2,9 +2,9 @@
 
 import React from "react";
 import "./styles.scss";
-import Licorne from "../../assets/Licorne.png";
-import Dinosaure from "../../assets/Dinosaure.png";
-import Dragon from "../../assets/Dragon.png";
+//import Licorne from "../../assets/Licorne.png";
+//import Dinosaure from "../../assets/Dinosaure.png";
+//import Dragon from "../../assets/Dragon.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -14,7 +14,7 @@ const baseUrl = process.env.REACT_APP_BASE_URL;
 const token = localStorage.getItem("token");
 const newToken = JSON.parse(token);
 
-const categories = [
+/* const categories = [
   {
     name: "Licorne",
     image: Licorne,
@@ -33,7 +33,7 @@ const categories = [
     description:
       "Il/elle est très fier et confiant, toujours avide d'aventures et de nouveaux défis. Il/elle est incroyablement intelligent et ingénieux, capable de réfléchir rapidement et de trouver des solutions créatives aux problèmes. Il/elle peut parfois être un peu têtu, mais il/elle est aussi farouchement loyal envers ceux qu'il/elle considère comme ses amis. Il/elle aime courir, jouer et amasser des trésors. Il/elle aime aussi utiliser son intelligence pour résoudre des puzzles et des énigmes, et défie souvent les autres dans des épreuves d'esprit et d'habileté. Pendant son temps libre, il/elle aime se prélasser au soleil et aiguiser ses griffes. Dans l'ensemble, il/elle est un compagnon redoutable et formidable, toujours prêt à aider ses amis ou dans une quête audacieuse.",
   },
-];
+];*/
 
 const SigninForm = () => {
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ const SigninForm = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [category, setCategory] = useState("");
+  //const [category, setCategory] = useState("");
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (event) => {
@@ -78,7 +78,7 @@ const SigninForm = () => {
       email: `${email}`,
       password: `${password}`,
       phone: `${phone}`,
-      category: `${category}`,
+      //category: `${category}`,
     };
 
     try {
@@ -144,7 +144,7 @@ const SigninForm = () => {
             value={confirmPassword}
             onChange={(event) => setConfirmPassword(event.target.value)}
           />
-          <div className="categories">
+          {/*<div className="categories">
             {categories.map((c) => (
               <div
                 className="category"
@@ -168,7 +168,7 @@ const SigninForm = () => {
                 <p>{c.description}</p>
               </div>
             ))}
-          </div>
+            </div>*/}
           <button type="submit" onClick={handleSubmit}>
             Valider
           </button>

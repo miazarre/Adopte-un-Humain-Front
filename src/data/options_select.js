@@ -11,7 +11,7 @@ export const optionsJardin = [
 export const optionsAge = [
   { value: "bébé", label: "Bébé" },
   { value: "junior", label: "Junior" },
-  { value: "adult", label: "Adulte" },
+  { value: "adulte", label: "Adulte" },
   { value: "senior", label: "Senior" },
 ];
 
@@ -24,7 +24,7 @@ export const optionsCaracter = [
   { value: "indépendant", label: "Indépendant" },
   { value: "sociable", label: "Sociable" },
   { value: "intelligent", label: "Intelligent" },
-  { value: "enjoué²", label: "Enjoué" },
+  { value: "enjoué", label: "Enjoué" },
 ];
 
 export const optionsSexe = [

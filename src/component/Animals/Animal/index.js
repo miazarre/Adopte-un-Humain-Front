@@ -6,7 +6,7 @@ import axios from "axios";
 
 import { FiTrash2 } from "react-icons/fi";
 import { TfiPencil } from "react-icons/tfi";
-import { GiLabradorHead } from "react-icons/gi";
+import { GiPawPrint } from "react-icons/gi";
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const Animal = ({ name, birthdate, resume, needs, id }) => {
@@ -43,7 +43,7 @@ const Animal = ({ name, birthdate, resume, needs, id }) => {
         <td>{needs}</td>
         <td>
           <Link to={profile}>
-            <GiLabradorHead
+            <GiPawPrint
               size={"3vh"}
               className="users_container-title-table--icon"
             />
@@ -61,7 +61,7 @@ const Animal = ({ name, birthdate, resume, needs, id }) => {
             className="animals_container-title-table--icon"
             onClick={() => {
               const confirmation = window.confirm(
-                "Etes-vous sûr de vouloir supprimer le profil de cet animal ?",
+                "Etes-vous sûr de vouloir supprimer le profil de cet animal ?"
               );
               if (confirmation) {
                 console.log("On supprime");
